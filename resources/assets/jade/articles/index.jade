@@ -14,6 +14,6 @@ block content
             +if('$articles')
                 ul.disc
                     +foreach('$articles as $article')
-                        li: a(href!="{{ url('articles/' . $article->id . '/edit') }}") {{ $article->title }}
+                        li: a(href!="{{ url('articles', $article->id) }}") {{ $article->title }}
                     
             

@@ -1,0 +1,10 @@
+extend ../layout/base
+
+block title
+    title {{ $article->title }}
+    
+block content
+    .row
+        h1 {{ $article->title }}
+    .row
+        article {{ $article->body }}
