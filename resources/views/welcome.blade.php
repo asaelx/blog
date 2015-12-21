@@ -41,5 +41,6 @@
                 <div class="title">Laravel 5</div>
             </div>
         </div>
+        <script src="{{ asset('js/magic.js') }}" charset="utf-8"></script>
     </body>
 </html>
