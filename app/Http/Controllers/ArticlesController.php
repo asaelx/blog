@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Article;
 
 class ArticlesController extends Controller
 {
@@ -16,7 +17,9 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        return view('articles.index');
+        $articles = Article::all();
+
+        return view('articles.index', compact('articles'));
     }
 
     /**
@@ -26,7 +29,7 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-        //
+        return view('articles.create');
     }
 
     /**

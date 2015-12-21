@@ -4,4 +4,16 @@ block title
     title Articles
     
 block content
-    h1 Articles
+    .row
+        h1 Articles
+    
+    include ../mixins/blade
+    
+    .row
+        .column.medium-12
+            +if('$articles')
+                ul.disc
+                    +foreach('$articles as $article')
+                        li: a(href="#") {{ $article->title }}
+                    
+            

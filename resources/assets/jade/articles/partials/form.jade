@@ -1,0 +1,15 @@
+.column.medium-6.medium-centered
+    label
+        | Title
+        | {!! Form::text('title', null) !!}
+.column.medium-6.medium-centered
+    label
+        | Content
+        | {!! Form::textarea('body') !!}
+.column.medium-6.medium-centered
+    label
+        | Publish Date
+        | {!! Form::input('date', 'published_at', Carbon\Carbon::now()->format('Y-m-d')) !!}
+.column.medium-6.medium-centered
+    | {!! Form::submit($submitButtonText, ['class' => 'button']) !!}
+    

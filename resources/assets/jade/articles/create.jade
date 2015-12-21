@@ -1,0 +1,14 @@
+extend ../layout/base
+
+block title
+    title Create Article
+    
+block content
+    .row
+        .column.medium-12
+        | {!! Form::open(['url' => 'articles']) !!}
+        fieldset
+            legend CREATE ARTICLE
+            include ../mixins/blade
+            +include("articles.partials.form", '[\'submitButtonText\' => \'Create\']')
+        | {!! Form::close() !!}
