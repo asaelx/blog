@@ -55,6 +55,12 @@ class Article extends Model
         $this->attributes['published_at'] = Carbon::parse($date);
     }
 
+    /**
+     * Accesor for published_at attribute
+     *
+     * @param  string $date
+     * @return Carbon\Carbon
+     */
     public function getPublishedAtAttribute($date)
     {
         return Carbon::parse($date)->format('Y-m-d');

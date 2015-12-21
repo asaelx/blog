@@ -8,10 +8,10 @@
 </head>
 <body>
   <div class="row">
-    <div class="column medium-12"></div>{!! Form::open(['url' => 'articles']) !!}
+    <div class="column medium-12"></div>{!! Form::model($article = new \App\Article, ['url' => 'articles']) !!}
     <fieldset>
       <legend>CREATE ARTICLE</legend>
-@include('articles.partials.form', ['submitButtonText' => 'Create Article', 'published_at' => Carbon\Carbon::now()->format('Y-m-d')])
+@include('articles.partials.form', ['submitButtonText' => 'Create Article'])
 
     </fieldset>{!! Form::close() !!}
   </div>

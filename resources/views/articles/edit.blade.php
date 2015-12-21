@@ -11,7 +11,7 @@
     <div class="column medium-12"></div>{!! Form::model($article, ['method' => 'PATCH', 'url' => 'articles/' . $article->id]) !!}
     <fieldset>
       <legend>{{ $article->title }}</legend>
-@include('articles.partials.form', ['submitButtonText' => 'Update Article', 'published_at' => $article->published_at])
+@include('articles.partials.form', ['submitButtonText' => 'Update Article'])
 
     </fieldset>{!! Form::close() !!}
   </div>

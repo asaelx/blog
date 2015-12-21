@@ -9,7 +9,7 @@
 .column.medium-6.medium-centered
     label
         | Publish Date
-        | {!! Form::input('date', 'published_at', $published_at) !!}
+        | {!! Form::input('date', 'published_at', $article->published_at) !!}
 .column.medium-6.medium-centered
     | {!! Form::submit($submitButtonText, ['class' => 'button']) !!}
     

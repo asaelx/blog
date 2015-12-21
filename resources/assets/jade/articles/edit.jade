@@ -10,5 +10,5 @@ block content
         fieldset
             legend {{ $article->title }}
             include ../mixins/blade
-            +include("articles.partials.form", "['submitButtonText' => 'Update Article', 'published_at' => $article->published_at]")
+            +include("articles.partials.form", "['submitButtonText' => 'Update Article']")
         | {!! Form::close() !!}
