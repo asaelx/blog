@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Article;
+use App\Http\Requests\ArticleRequest;
+use Auth;
 
 class ArticlesController extends Controller
 {
@@ -38,9 +40,13 @@ class ArticlesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
-        //
+        $article = new Article($request->all());
+
+        Auth::user()->articles()->save($article);
+
+        return redirect('articles');
     }
 
     /**
