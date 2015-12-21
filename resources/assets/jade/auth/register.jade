@@ -1,0 +1,30 @@
+extend ../layout/base
+
+block title
+    title Register
+    
+block content
+    .row
+        .columns.medium-12
+            | {!! Form::open(['url' => '/auth/register']) !!}
+            fieldset
+                legend REGISTER
+                .column.medium-6.medium-centered
+                    label
+                        | Name
+                        input(type="text", name="name", value="{{ old('name') }}")
+                .column.medium-6.medium-centered
+                    label
+                        | E-mail
+                        input(type="email", name="email", value="{{ old('email') }}")
+                .column.medium-6.medium-centered
+                    label
+                        | Password
+                        input(type="password", name="password")
+                .column.medium-6.medium-centered
+                    label
+                        | Confirm password
+                        input(type="password", name="password_confirmation")
+                .column.medium-6.medium-centered
+                    input.button(type="submit", value="Register")
+            | {!! Form::close() !!}

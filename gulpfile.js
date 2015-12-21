@@ -5,7 +5,10 @@ var elixir     = require('laravel-elixir'),
 elixir.config.sourcemaps = false;
 
 elixir(function(mix) {
-    mix.sass('master.sass');
+    mix.sass([
+        '../../../node_modules/zurb-foundation-5/scss/foundation.scss',
+        'master.sass'
+    ], 'public/css/master.css');
 });
 
 elixir(function(mix) {

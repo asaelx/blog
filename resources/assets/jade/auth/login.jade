@@ -1,0 +1,26 @@
+extend ../layout/base
+
+block title
+    title Login
+
+block content
+    .row
+        .columns.medium-12
+            | {!! Form::open(['url' => '/auth/login']) !!}
+            fieldset
+                legend LOGIN
+                .column.medium-6.medium-centered
+                    label
+                        | E-mail
+                        input(type="email", name="email" value="{{ old('email') }}")
+                .column.medium-6.medium-centered
+                    label
+                        | Password
+                        input#password(type="password", name="password")
+                .column.medium-6.medium-centered
+                    input#remember(type="checkbox", name="remember")
+                    label(for="remember") Remember Me
+                .column.medium-6.medium-centered
+                    input.button(type="submit", value="Login")
+                
+            | {!! Form::close() !!}
