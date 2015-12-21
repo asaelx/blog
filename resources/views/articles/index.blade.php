@@ -17,7 +17,7 @@
         <ul class="disc">
 @foreach($articles as $article)
 
-            <li><a href="#">{{ $article->title }}</a></li>
+            <li><a href="{{ url('articles/' . $article->id . '/edit') }}">{{ $article->title }}</a></li>
 @endforeach
 
         </ul>

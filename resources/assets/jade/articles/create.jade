@@ -10,5 +10,5 @@ block content
         fieldset
             legend CREATE ARTICLE
             include ../mixins/blade
-            +include("articles.partials.form", '[\'submitButtonText\' => \'Create\']')
+            +include("articles.partials.form", "['submitButtonText' => 'Create Article', 'published_at' => Carbon\\Carbon::now()->format('Y-m-d')]")
         | {!! Form::close() !!}

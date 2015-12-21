@@ -14,7 +14,7 @@
 <div class="column medium-6 medium-centered">
   <label>
     Publish Date
-    {!! Form::input('date', 'published_at', Carbon\Carbon::now()->format('Y-m-d')) !!}
+    {!! Form::input('date', 'published_at', $published_at) !!}
   </label>
 </div>
 <div class="column medium-6 medium-centered">{!! Form::submit($submitButtonText, ['class' => 'button']) !!}</div>

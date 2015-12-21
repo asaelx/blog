@@ -1,0 +1,14 @@
+extend ../layout/base
+
+block title
+    title Edit Article
+    
+block content
+    .row
+        .column.medium-12
+        | {!! Form::model($article, ['method' => 'PATCH', 'url' => 'articles/' . $article->id]) !!}
+        fieldset
+            legend {{ $article->title }}
+            include ../mixins/blade
+            +include("articles.partials.form", "['submitButtonText' => 'Update Article', 'published_at' => $article->published_at]")
+        | {!! Form::close() !!}
