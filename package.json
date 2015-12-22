@@ -8,6 +8,7 @@
   "dependencies": {
     "jquery": "^2.1.4",
     "laravel-elixir": "^4.0.0",
+    "select2": "^4.0.1",
     "zurb-foundation-5": "^5.4.7"
   }
 }

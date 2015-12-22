@@ -7,4 +7,10 @@ block content
     .row
         h1 {{ $article->title }}
     .row
-        article {{ $article->body }}
+        .column.medium-12
+            article {{ $article->body }}
+            include ../mixins/blade
+            +unless('$article->tags->isEmpty()')
+                ul
+                    +foreach('$article->tags as $tag')
+                        li {{ $tag->name }}

@@ -7,4 +7,5 @@
   <link rel="stylesheet" href="{{ asset('css/master.css') }}">
 </head>
 <body>
+  <script src="{{ asset('js/magic.js') }}" type="text/javascript"></script>
 </body>

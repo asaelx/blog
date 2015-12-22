@@ -11,6 +11,20 @@
     <h1>{{ $article->title }}</h1>
   </div>
   <div class="row">
-    <article>{{ $article->body }}</article>
+    <div class="column medium-12">
+      <article>{{ $article->body }}</article>
+@unless($article->tags->isEmpty())
+
+            <ul>
+@foreach($article->tags as $tag)
+
+                    <li>{{ $tag->name }}</li>
+@endforeach
+
+            </ul>
+@endunless
+
+    </div>
   </div>
+  <script src="{{ asset('js/magic.js') }}" type="text/javascript"></script>
 </body>

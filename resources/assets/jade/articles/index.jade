@@ -15,5 +15,7 @@ block content
                 ul.disc
                     +foreach('$articles as $article')
                         li: a(href!="{{ url('articles', $article->id) }}") {{ $article->title }}
+                +else
+                    h4 There's not articles yet :(
                     
             

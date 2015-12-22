@@ -21,8 +21,12 @@
 @endforeach
 
         </ul>
+@else
+
+          <h4>There's not articles yet :(</h4>
 @endif
 
     </div>
   </div>
+  <script src="{{ asset('js/magic.js') }}" type="text/javascript"></script>
 </body>

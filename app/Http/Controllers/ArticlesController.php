@@ -6,9 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use App\Article;
 use App\Http\Requests\ArticleRequest;
 use Auth;
+use App\Article;
+use App\Tag;
 
 class ArticlesController extends Controller
 {
@@ -19,7 +20,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $articles = Article::all();
+        $articles = Article::latest()->published()->get();
 
         return view('articles.index', compact('articles'));
     }
@@ -31,7 +32,8 @@ class ArticlesController extends Controller
      */
     public function create()
     {
-        return view('articles.create');
+        $tags = Tag::lists('name', 'id');
+        return view('articles.create', compact('tags'));
     }
 
     /**
@@ -42,9 +44,11 @@ class ArticlesController extends Controller
      */
     public function store(ArticleRequest $request)
     {
-        $article = new Article($request->all());
+        $article = Auth::user()->articles()->create($request->all());
 
-        Auth::user()->articles()->save($article);
+        $this->syncTags($article, $request->input('tag_list'));
+
+        //File
 
         return redirect('articles');
     }
@@ -71,8 +75,9 @@ class ArticlesController extends Controller
     public function edit($id)
     {
         $article = Article::findOrFail($id);
+        $tags = Tag::lists('name', 'id');
 
-        return view('articles.edit', compact('article'));
+        return view('articles.edit', compact('article', 'tags'));
     }
 
     /**
@@ -88,6 +93,8 @@ class ArticlesController extends Controller
 
         $article->update($request->all());
 
+        $this->syncTags($article, $request->input('tag_list'));
+
         return redirect('articles');
     }
 
@@ -100,5 +107,26 @@ class ArticlesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Sync up the list of tags in the database
+     *
+     * @param  Article $article
+     * @param  array $tags
+     */
+    private function syncTags($article, array $tags)
+    {
+        if(!is_null($tags)):
+            $currentTags = array_filter($tags, 'is_numeric');
+            $newTags = array_diff($tags, $currentTags);
+
+            foreach($newTags as $newTag):
+                if($tag = Tag::create(['name' => $newTag]))
+                    $currentTags[] = $tag->id;
+            endforeach;
+
+            $article->tags()->sync($currentTags);
+        endif;
     }
 }

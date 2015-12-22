@@ -37,4 +37,5 @@
       </fieldset>{!! Form::close() !!}
     </div>
   </div>
+  <script src="{{ asset('js/magic.js') }}" type="text/javascript"></script>
 </body>
