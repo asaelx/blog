@@ -19,7 +19,7 @@ elixir(function(mix) {
 
 elixir(function(mix) {
     mix.jade({
-        search: '**/*.jade',
+        search: '**/**/*.jade',
         src: '/assets/jade/'
     });
 });

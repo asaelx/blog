@@ -1,0 +1,20 @@
+.btn
+    display: inline-block
+    border-radius: rem(20px)
+    padding: 0.3em 1em
+    font-family: 'Varela'
+    +font-size(14px)
+    text-transform: uppercase
+    letter-spacing: 0.08em
+    &.white
+        background: linear-gradient(rgba($white,0.6), rgba($black,0.2))
+        border: 2px solid $white
+        color: white
+    &.green
+        border: 2px solid $green
+        color: $green
+        &:hover
+            background: $green
+            color: $white
+    &:hover
+        transition: all 0.3s ease

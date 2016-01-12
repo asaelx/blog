@@ -3,12 +3,18 @@ nav.nav
         a.logo(href="#")
             img.img(src="{{ asset('img/asael_logo.svg') }}", alt="Asael Logo")
             span.subtitle Las aventuras de Asael
-        ul.tags
-            li.option: a.link(href="") Diseño
-            li.option: a.link(href="") Web
-            li.option: a.link(href="") Fotografía
-            li.option: a.link(href="") Cine
-            li.option: a.link(href="") Libros
-            li.option: a.link(href="") Viajes
-            li.option: a.link(href="") ¿Quién es Asael?
-            li.option: a.link(href="") Contáctame
+        label.toggle-menu(for="toggle-menu")
+            img.img(src="{{ asset('img/menu.svg') }}", alt="menu")
+            input#toggle-menu(type="checkbox")
+            ul.tags
+                li.option
+                    img(src="{{ asset('img/close.svg') }}", alt="close")
+                    //- |  Esconder menú
+                li.option: a.link(href="") Diseño
+                li.option: a.link(href="") Web
+                li.option: a.link(href="") Fotografía
+                li.option: a.link(href="") Cine
+                li.option: a.link(href="") Libros
+                li.option: a.link(href="") Viajes
+                li.option: a.link(href="") ¿Quién es Asael?
+                li.option: a.link(href="") Contáctame

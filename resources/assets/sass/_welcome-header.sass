@@ -1,88 +1,9 @@
 .header
-    background: url(../img/welcome-header-bg.jpg) no-repeat
-    background-size: cover
-    .profile
-        background: white
-        position: relative
-        +boxie
-        .cover
-            pointer-events: none
-            position: absolute
-            top: 0
-            left: 0
-            width: 100%
-            +over-gradient
-            .img
-                width: 100%
-        .photo
-            margin: 4em auto 0 auto
-            position: relative
-            z-index: 1
-            height: rem(72px)
-            width: rem(72px)
-            border-radius: 50%
-            overflow: hidden
-            box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5)
-            +over-gradient
-            .img
-                width: 100%
-        .name
-            text-align: center
-            color: $green
-            font-family: 'Varela'
-            +font-size(16px)
-            margin-top: 0.5em
-        .job
-            text-align: center
-            font-family: 'Varela'
-            +font-size(11px)
-            text-transform: uppercase
-            color: $gray
-            letter-spacing: 0.2em
-        .instagram
-            +clearfix
-            margin: 0 auto
-            width: 90%
-            margin-top: 0.5em
-            position: relative
-            z-index: 1
-            .insta
-                float: left
-                width: calc(100% / 4)
-                padding: 0.5em
-                .link
-                    display: block
+    margin-top: 5em
+    @import '_profile'
+    @import '_featured'
+    .wrapper
+        .row
+            [class^="col-"]:nth-child(2)
+                +breakpoint($large)
                     width: 100%
-                    border-radius: rem(3px)
-                    position: relative
-                    +over-gradient
-                    .img
-                        width: 100%
-                        border-radius: rem(3px)
-                        box-shadow: 0 2px 3px 0 rgba(0,0,0,0.5)
-        .social
-            +clearfix
-            width: 60%
-            margin: 1em auto
-            position: relative
-            z-index: 1
-            .network
-                float: left
-                width: calc(100% / 4)
-                text-align: center
-        .background
-            pointer-events: none
-            position: absolute
-            bottom: 0
-            left: 0
-            z-index: 0
-            &:before
-                content: ""
-                position: absolute
-                top: 0
-                left: 0
-                width: 100%
-                height: 100%
-                background: linear-gradient(rgba(255,255,255,1), rgba(255,255,255,0.7))
-            .img
-                width: 100%

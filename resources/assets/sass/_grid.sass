@@ -12,8 +12,8 @@ $max-width: 1000px
     box-sizing: border-box
 
 img
-    height: auto!important
-    max-width: 100%
+    // height: auto!important
+    // max-width: 100%
     width: auto
 
 .wrapper
@@ -40,3 +40,7 @@ img
     @for $i from 1 through $columns
         .col-#{$i}
             width: 100% / $columns * $i
+
++breakpoint("max-width: 1000px")
+    .header
+        // display: none
