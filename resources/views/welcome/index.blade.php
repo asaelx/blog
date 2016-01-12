@@ -30,6 +30,13 @@
     <header class="header">
       <div class="wrapper">
         <div class="row">
+          <div class="col-12">
+            <div class="welcome">
+              <h1>Hola, soy Asael Jaimes y me gusta hacer cosas para internet. Soy diseñador web, desarrollador, nómada digital, aventurero, bloguero, youtuber, minimalista y entusiasta de la fotografía, entre otras cosas.</h1>
+            </div>
+          </div>
+        </div>
+        <div class="row">
           <div class="col-3">
             <div class="profile">
               <div class="cover glassy"><img src="https://pbs.twimg.com/profile_banners/53294337/1447581003/600x200" alt="cover" class="img"></div>
@@ -76,6 +83,7 @@
     <div class="articles">
       <div class="wrapper">
         <div class="row">
+          <h3 class="section-title">Últimos artículos</h3>
           <div class="col-3">
             <article class="article">
               <div class="cover glassy"><img src="{{ asset('img/cover.jpg') }}" alt="cover" class="img"></div>
@@ -153,6 +161,9 @@
               <div class="tag">#VIAJES</div><a href="#" class="read btn white">Leer</a>
             </article>
           </div>
+        </div>
+        <div class="row load-more">
+          <button class="btn blue">Cargar más</button>
         </div>
       </div>
     </div>

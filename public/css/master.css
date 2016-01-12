@@ -673,13 +673,26 @@ img {
     background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(0, 0, 0, 0.2));
     border: 2px solid #FFFFFF;
     color: white; }
+    .btn.white:hover {
+      opacity: 0.8;
+      filter: alpha(opacity=80); }
   .btn.green {
     border: 2px solid #16A085;
     color: #16A085; }
     .btn.green:hover {
       background: #16A085;
       color: #FFFFFF; }
+  .btn.blue {
+    background: none;
+    border: 2px solid #3498DB;
+    color: #3498DB; }
+    .btn.blue:hover {
+      background: #3498DB;
+      color: #FFFFFF; }
+    .btn.blue:active {
+      background: #217dbb; }
   .btn:hover {
+    cursor: pointer;
     transition: all 0.3s ease; }
 
 .nav {
@@ -732,7 +745,7 @@ img {
           position: relative; }
         .nav .wrapper .toggle-menu .tags {
           display: none;
-          background: rgba(255, 255, 255, 0.9);
+          background: rgba(255, 255, 255, 0.95);
           position: fixed;
           top: 0;
           left: 0;
@@ -776,214 +789,255 @@ img {
     height: 100%;
     background: linear-gradient(rgba(255, 255, 255, 0), white); }
 
-.header {
-  margin-top: 5em; }
-  .header .profile {
-    background: white;
+.header .profile {
+  background: white;
+  position: relative;
+  border-radius: 0.2142857143rem;
+  box-shadow: 0 5px 14px 5px rgba(0, 0, 0, 0.3);
+  overflow: hidden; }
+  .header .profile > * {
     position: relative;
-    border-radius: 0.2142857143rem;
-    box-shadow: 0 5px 14px 5px rgba(0, 0, 0, 0.3);
+    z-index: 1; }
+  .header .profile .cover {
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 5.1428571429rem;
+    width: 100%;
     overflow: hidden; }
-    @media only screen and (max-width: 1000px) {
-      .header .profile {
-        display: none; } }
-    .header .profile .cover {
-      pointer-events: none;
+    .header .profile .cover .img {
+      position: relative;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      width: 100%; }
+  .header .profile .photo {
+    margin: 4em auto 0 auto;
+    position: relative;
+    z-index: 1;
+    height: 5.1428571429rem;
+    width: 5.1428571429rem;
+    border-radius: 50%;
+    overflow: hidden;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); }
+    .header .profile .photo .img {
+      width: 100%; }
+  .header .profile .name {
+    text-align: center;
+    color: #16A085;
+    font-family: 'Varela';
+    font-size: 16px;
+    font-size: 1.1428571429rem;
+    margin-top: 0.5em; }
+  .header .profile .job {
+    text-align: center;
+    font-family: 'Varela';
+    font-size: 11px;
+    font-size: 0.7857142857rem;
+    text-transform: uppercase;
+    color: #95A5A6;
+    letter-spacing: 0.2em; }
+  .header .profile .instagram {
+    content: " ";
+    display: table;
+    clear: both;
+    margin: 0 auto;
+    width: 90%;
+    margin-top: 0.5em;
+    position: relative;
+    z-index: 1; }
+    .header .profile .instagram .insta {
+      float: left;
+      width: calc(100% / 4);
+      padding: 0.5em; }
+      .header .profile .instagram .insta .link {
+        display: block;
+        width: 100%;
+        border-radius: 0.2142857143rem;
+        position: relative; }
+        .header .profile .instagram .insta .link .img {
+          width: 100%;
+          border-radius: 0.2142857143rem;
+          box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5); }
+  .header .profile .social {
+    content: " ";
+    display: table;
+    clear: both;
+    width: 60%;
+    margin: 1em auto;
+    position: relative;
+    z-index: 1; }
+    .header .profile .social .network {
+      float: left;
+      width: calc(100% / 4);
+      text-align: center; }
+  .header .profile .background {
+    pointer-events: none;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    width: 100%; }
+    .header .profile .background:before {
+      content: "";
       position: absolute;
       top: 0;
       left: 0;
-      height: 6.4285714286rem; }
-      .header .profile .cover .img {
-        height: 100%; }
-    .header .profile .photo {
-      margin: 4em auto 0 auto;
-      position: relative;
-      z-index: 1;
-      height: 5.1428571429rem;
-      width: 5.1428571429rem;
-      border-radius: 50%;
-      overflow: hidden;
-      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); }
-      .header .profile .photo .img {
-        width: 100%; }
-    .header .profile .name {
-      text-align: center;
-      color: #16A085;
-      font-family: 'Varela';
-      font-size: 16px;
-      font-size: 1.1428571429rem;
-      margin-top: 0.5em; }
-    .header .profile .job {
-      text-align: center;
-      font-family: 'Varela';
-      font-size: 11px;
-      font-size: 0.7857142857rem;
-      text-transform: uppercase;
-      color: #95A5A6;
-      letter-spacing: 0.2em; }
-    .header .profile .instagram {
-      content: " ";
-      display: table;
-      clear: both;
-      margin: 0 auto;
-      width: 90%;
-      margin-top: 0.5em;
-      position: relative;
-      z-index: 1; }
-      .header .profile .instagram .insta {
-        float: left;
-        width: calc(100% / 4);
-        padding: 0.5em; }
-        .header .profile .instagram .insta .link {
-          display: block;
-          width: 100%;
-          border-radius: 0.2142857143rem;
-          position: relative; }
-          .header .profile .instagram .insta .link .img {
-            width: 100%;
-            border-radius: 0.2142857143rem;
-            box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5); }
-    .header .profile .social {
-      content: " ";
-      display: table;
-      clear: both;
-      width: 60%;
-      margin: 1em auto;
-      position: relative;
-      z-index: 1; }
-      .header .profile .social .network {
-        float: left;
-        width: calc(100% / 4);
-        text-align: center; }
-    .header .profile .background {
-      pointer-events: none;
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      z-index: 0; }
-      .header .profile .background:before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(white, rgba(255, 255, 255, 0.8)); }
-      .header .profile .background .img {
-        width: 100%; }
-  .header .featured {
-    border-radius: 0.2142857143rem;
-    box-shadow: 0 5px 14px 5px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
-    background: #FFFFFF;
-    position: relative;
-    min-height: 23.7142857143rem;
-    padding: 1em 0.5em 1em calc(33% + 1em); }
-    .header .featured > * {
-      position: relative;
-      z-index: 1; }
-    .header .featured .cover {
-      width: 33%;
-      height: 23.7142857143rem;
-      overflow: hidden;
-      position: absolute;
-      left: 0;
-      top: 0; }
-      .header .featured .cover .img {
-        height: 100%;
-        position: relative;
-        left: 50%;
-        -webkit-transform: translateX(-50%);
-        transform: translateX(-50%);
-        z-index: 0; }
-    .header .featured .title {
-      font-family: 'Montserrat';
-      font-weight: bold;
-      font-size: 25px;
-      font-size: 1.7857142857rem;
-      color: #16A085;
-      text-transform: uppercase;
-      margin-bottom: 0.5em; }
-    .header .featured .excerpt {
-      font-family: 'Varela';
-      font-size: 16px;
-      font-size: 1.1428571429rem;
-      color: #34495E;
-      line-height: 1.7142857143rem; }
-    .header .featured .details {
-      font-family: 'Varela';
-      font-size: 14px;
-      font-size: 1rem;
-      color: #95A5A6;
-      position: absolute;
-      left: calc(33% + 1em);
-      bottom: 2.5em; }
-      .header .featured .details .date, .header .featured .details .comments {
-        display: inline; }
-      .header .featured .details .date {
-        border-right: 1px solid #95A5A6;
-        padding-right: 0.5em; }
-    .header .featured .tag {
-      font-family: 'Varela';
-      font-size: 13px;
-      font-size: 0.9285714286rem;
-      color: #FFFFFF;
-      letter-spacing: 0.1em;
-      position: absolute;
-      bottom: 1rem;
-      left: 1rem; }
-    .header .featured .read {
-      position: absolute;
-      bottom: 2em;
-      right: 2em; }
-    .header .featured .background {
-      pointer-events: none;
-      position: absolute;
-      right: 0;
-      bottom: 0;
       width: 100%;
-      padding-left: 50%;
-      z-index: 0; }
-      .header .featured .background .img {
-        width: 100%; }
-      .header .featured .background:before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(white, rgba(255, 255, 255, 0.8)); }
-      .header .featured .background .img {
-        width: 100%; }
-    @media only screen and (max-width: 480px) {
-      .header .featured {
-        padding: calc(14.2857142857rem + 1rem) 1rem 1rem 1rem; }
-        .header .featured .cover {
-          width: 100%;
-          height: 14.2857142857rem; }
-          .header .featured .cover .img {
-            width: 100%;
-            height: auto; }
-        .header .featured .excerpt {
-          margin-bottom: 1rem; }
-        .header .featured .details {
-          position: relative;
-          left: 0;
-          bottom: 0;
-          margin-bottom: 1rem; }
-        .header .featured .tag {
-          position: relative;
-          left: 0;
-          bottom: 0;
-          color: #16A085; }
-        .header .featured .read {
-          bottom: 1rem; }
-        .header .featured .background {
-          padding-left: 0; } }
+      height: 100%;
+      background: linear-gradient(white, rgba(255, 255, 255, 0.7)); }
+    .header .profile .background .img {
+      width: 100%; }
   @media only screen and (max-width: 1000px) {
-    .header .wrapper .row [class^="col-"]:nth-child(2) {
-      width: 100%; } }
+    .header .profile .cover {
+      height: 9.6428571429rem; }
+    .header .profile .photo {
+      margin: 1rem auto 0 auto; }
+    .header .profile .name {
+      color: #FFFFFF; }
+    .header .profile .job {
+      color: #FFFFFF; }
+    .header .profile .instagram {
+      display: none; }
+    .header .profile .social {
+      width: 9.6428571429rem; } }
+  @media only screen and (max-width: 480px) {
+    .header .profile .cover {
+      height: 5.7142857143rem; }
+    .header .profile .name {
+      color: #16A085; }
+    .header .profile .job {
+      color: #95A5A6; } }
+
+.header .featured {
+  border-radius: 0.2142857143rem;
+  box-shadow: 0 5px 14px 5px rgba(0, 0, 0, 0.3);
+  overflow: hidden;
+  background: #FFFFFF;
+  position: relative;
+  min-height: 23.7142857143rem;
+  padding: 1em 0.5em 1em calc(33% + 1em); }
+  .header .featured > * {
+    position: relative;
+    z-index: 1; }
+  .header .featured .cover {
+    width: 33%;
+    height: 23.7142857143rem;
+    overflow: hidden;
+    position: absolute;
+    left: 0;
+    top: 0; }
+    .header .featured .cover .img {
+      pointer-events: none;
+      height: 100%;
+      position: relative;
+      left: 50%;
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%);
+      z-index: 0; }
+  .header .featured .title {
+    font-family: 'Montserrat';
+    font-weight: bold;
+    font-size: 25px;
+    font-size: 1.7857142857rem;
+    color: #16A085;
+    text-transform: uppercase;
+    margin-bottom: 0.5em; }
+  .header .featured .excerpt {
+    font-family: 'Varela';
+    font-size: 16px;
+    font-size: 1.1428571429rem;
+    color: #34495E;
+    line-height: 1.7142857143rem; }
+  .header .featured .details {
+    font-family: 'Varela';
+    font-size: 14px;
+    font-size: 1rem;
+    color: #95A5A6;
+    position: absolute;
+    left: calc(33% + 1em);
+    bottom: 2.5em; }
+    .header .featured .details .date, .header .featured .details .comments {
+      display: inline; }
+    .header .featured .details .date {
+      border-right: 1px solid #95A5A6;
+      padding-right: 0.5em; }
+  .header .featured .tag {
+    font-family: 'Varela';
+    font-size: 13px;
+    font-size: 0.9285714286rem;
+    color: #FFFFFF;
+    letter-spacing: 0.1em;
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem; }
+  .header .featured .read {
+    position: absolute;
+    bottom: 2em;
+    right: 2em; }
+  .header .featured .background {
+    pointer-events: none;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    padding-left: 50%;
+    z-index: 0; }
+    .header .featured .background .img {
+      width: 100%; }
+    .header .featured .background:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(white, rgba(255, 255, 255, 0.8)); }
+    .header .featured .background .img {
+      width: 100%; }
+  @media only screen and (max-width: 480px) {
+    .header .featured {
+      padding: calc(14.2857142857rem + 1rem) 1rem 1rem 1rem; }
+      .header .featured .cover {
+        width: 100%;
+        height: 14.2857142857rem; }
+        .header .featured .cover .img {
+          width: 100%;
+          height: auto; }
+      .header .featured .excerpt {
+        margin-bottom: 1rem; }
+      .header .featured .details {
+        position: relative;
+        left: 0;
+        bottom: 0;
+        margin-bottom: 1rem; }
+      .header .featured .tag {
+        position: relative;
+        left: 0;
+        bottom: 0;
+        color: #16A085; }
+      .header .featured .read {
+        bottom: 1rem; }
+      .header .featured .background {
+        padding-left: 0; } }
+
+.header .wrapper .row .welcome {
+  font-family: 'Montserrat';
+  font-size: 24px;
+  font-size: 1.7142857143rem;
+  color: #FFFFFF;
+  text-align: center;
+  text-shadow: 0 2px 1px rgba(0, 0, 0, 0.5);
+  margin: 1rem 0;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 0.2142857143rem;
+  box-shadow: 0 5px 14px 9px rgba(0, 0, 0, 0.3); }
+
+@media only screen and (max-width: 1000px) {
+  .header .wrapper .row [class^="col-"] {
+    width: 100%; } }
 
 @media only screen and (max-width: 900px) {
   .articles [class^="col"] {
@@ -997,12 +1051,26 @@ img {
   .articles [class^="col"] {
     width: 100%; } }
 
+.articles .section-title {
+  font-family: 'Varela';
+  font-size: 16px;
+  font-size: 1.1428571429rem;
+  color: #95A5A6;
+  text-transform: uppercase;
+  border-bottom: 1px solid #ECF0F1;
+  margin: 1rem 1rem 0 1rem; }
+
 .articles .article {
   position: relative;
   border-radius: 0.2142857143rem;
   box-shadow: 0 5px 14px 5px rgba(0, 0, 0, 0.3);
   overflow: hidden;
-  height: 21.4285714286rem; }
+  height: 21.4285714286rem;
+  transition: all 0.1s ease; }
+  .articles .article:hover {
+    -webkit-transform: scale(1.03);
+    transform: scale(1.03);
+    transition: all 0.3s ease; }
   .articles .article > * {
     position: relative;
     z-index: 1; }
@@ -1013,6 +1081,7 @@ img {
     top: 0;
     left: 0; }
     .articles .article .cover .img {
+      pointer-events: none;
       height: 100%;
       position: relative;
       left: 50%;
@@ -1051,3 +1120,10 @@ img {
     position: absolute;
     bottom: 1rem;
     right: 1rem; }
+
+.articles .load-more {
+  padding: 3rem 0;
+  text-align: center; }
+  .articles .load-more .btn {
+    font-size: 16px;
+    font-size: 1.1428571429rem; }

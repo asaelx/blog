@@ -2,6 +2,13 @@
 <header class="header">
   <div class="wrapper">
     <div class="row">
+      <div class="col-12">
+        <div class="welcome">
+          <h1>Hola, soy Asael Jaimes y me gusta hacer cosas para internet. Soy diseñador web, desarrollador, nómada digital, aventurero, bloguero, youtuber, minimalista y entusiasta de la fotografía, entre otras cosas.</h1>
+        </div>
+      </div>
+    </div>
+    <div class="row">
       <div class="col-3">
         <div class="profile">
           <div class="cover glassy"><img src="https://pbs.twimg.com/profile_banners/53294337/1447581003/600x200" alt="cover" class="img"/></div>

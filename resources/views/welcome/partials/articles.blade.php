@@ -2,6 +2,7 @@
 <div class="articles">
   <div class="wrapper">
     <div class="row">
+      <h3 class="section-title">Últimos artículos</h3>
       <div class="col-3">
         <article class="article">
           <div class="cover glassy"><img src="{{ asset('img/cover.jpg') }}" alt="cover" class="img"/></div>
@@ -79,6 +80,9 @@
           <div class="tag">#VIAJES</div><a href="#" class="read btn white">Leer</a>
         </article>
       </div>
+    </div>
+    <div class="row load-more">
+      <button class="btn blue">Cargar más</button>
     </div>
   </div>
 </div>

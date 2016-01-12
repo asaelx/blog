@@ -1,9 +1,19 @@
 .header
-    margin-top: 5em
     @import '_profile'
     @import '_featured'
     .wrapper
         .row
-            [class^="col-"]:nth-child(2)
+            .welcome
+                font-family: 'Montserrat'
+                +font-size(24px)
+                color: $white
+                text-align: center
+                text-shadow: 0 2px 1px rgba($black, 0.5)
+                margin: 1rem 0
+                padding: 1rem
+                background: rgba($black, 0.3)
+                border-radius: rem(3px)
+                box-shadow: 0 5px 14px 9px rgba($black, 0.3)
+            [class^="col-"]
                 +breakpoint($large)
                     width: 100%

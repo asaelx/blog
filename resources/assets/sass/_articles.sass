@@ -6,12 +6,23 @@
             width: calc(100% / 2)
         +breakpoint($xsmall)
             width: 100%
+    .section-title
+        font-family: 'Varela'
+        +font-size(16px)
+        color: $gray
+        text-transform: uppercase
+        border-bottom: 1px solid $thin
+        margin: 1rem 1rem 0 1rem
     .article
         position: relative
         border-radius: rem(3px)
         box-shadow: 0 5px 14px 5px rgba(0,0,0,0.3)
         overflow: hidden
         height: rem(300px)
+        transition: all 0.1s ease
+        &:hover
+            transform: scale(1.03)
+            transition: all 0.3s ease
         & > *
             position: relative
             z-index: 1
@@ -22,6 +33,7 @@
             top: 0
             left: 0
             .img
+                pointer-events: none
                 height: 100%
                 position: relative
                 left: 50%
@@ -42,7 +54,6 @@
             color: white
             padding: 1rem
             text-shadow: 0 2px 4px rgba(0,0,0,0.5)
-            // padding-bottom: 12em
         .tag
             font-family: 'Varela'
             +font-size(13px)
@@ -57,3 +68,9 @@
             position: absolute
             bottom: 1rem
             right: 1rem
+
+    .load-more
+        padding: 3rem 0
+        text-align: center
+        .btn
+            +font-size(16px)
