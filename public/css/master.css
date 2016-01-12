@@ -540,9 +540,6 @@ body {
   position: relative;
   width: 100%; }
 
-html {
-  font-size: 14px; }
-
 img {
   vertical-align: bottom; }
 
@@ -599,6 +596,9 @@ a {
     outline: 0; }
   a:hover {
     cursor: pointer; }
+
+html {
+  font-size: 14px; }
 
 *, *:after, *:before {
   margin: 0;
@@ -683,3 +683,121 @@ img {
         font-size: 12px;
         font-size: 0.8571428571rem;
         text-transform: uppercase; }
+
+.header {
+  background: url(../img/welcome-header-bg.jpg) no-repeat;
+  background-size: cover; }
+  .header .profile {
+    background: white;
+    position: relative;
+    border-radius: 0.2142857143rem;
+    box-shadow: 0 5px 14px 5px rgba(0, 0, 0, 0.3);
+    overflow: hidden; }
+    .header .profile .cover {
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%; }
+      .header .profile .cover:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgba(255, 255, 255, 0.35), rgba(0, 0, 0, 0.35)); }
+      .header .profile .cover .img {
+        width: 100%; }
+    .header .profile .photo {
+      margin: 4em auto 0 auto;
+      position: relative;
+      z-index: 1;
+      height: 5.1428571429rem;
+      width: 5.1428571429rem;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); }
+      .header .profile .photo:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(rgba(255, 255, 255, 0.35), rgba(0, 0, 0, 0.35)); }
+      .header .profile .photo .img {
+        width: 100%; }
+    .header .profile .name {
+      text-align: center;
+      color: #16A085;
+      font-family: 'Varela';
+      font-size: 16px;
+      font-size: 1.1428571429rem;
+      margin-top: 0.5em; }
+    .header .profile .job {
+      text-align: center;
+      font-family: 'Varela';
+      font-size: 11px;
+      font-size: 0.7857142857rem;
+      text-transform: uppercase;
+      color: #95A5A6;
+      letter-spacing: 0.2em; }
+    .header .profile .instagram {
+      content: " ";
+      display: table;
+      clear: both;
+      margin: 0 auto;
+      width: 90%;
+      margin-top: 0.5em;
+      position: relative;
+      z-index: 1; }
+      .header .profile .instagram .insta {
+        float: left;
+        width: calc(100% / 4);
+        padding: 0.5em; }
+        .header .profile .instagram .insta .link {
+          display: block;
+          width: 100%;
+          border-radius: 0.2142857143rem;
+          position: relative; }
+          .header .profile .instagram .insta .link:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(rgba(255, 255, 255, 0.35), rgba(0, 0, 0, 0.35)); }
+          .header .profile .instagram .insta .link .img {
+            width: 100%;
+            border-radius: 0.2142857143rem;
+            box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.5); }
+    .header .profile .social {
+      content: " ";
+      display: table;
+      clear: both;
+      width: 60%;
+      margin: 1em auto;
+      position: relative;
+      z-index: 1; }
+      .header .profile .social .network {
+        float: left;
+        width: calc(100% / 4);
+        text-align: center; }
+    .header .profile .background {
+      pointer-events: none;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 0; }
+      .header .profile .background:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(white, rgba(255, 255, 255, 0.7)); }
+      .header .profile .background .img {
+        width: 100%; }
