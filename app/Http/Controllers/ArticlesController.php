@@ -13,6 +13,16 @@ use App\Tag;
 
 class ArticlesController extends Controller
 {
+
+    /**
+     * Attach middleware auth to the Controller
+     * 
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *

@@ -6,8 +6,9 @@ elixir.config.sourcemaps = false;
 
 elixir(function(mix) {
     mix.sass([
-        '../../../node_modules/zurb-foundation-5/scss/foundation.scss',
+        // '../../../node_modules/zurb-foundation-5/scss/foundation.scss',
         '../../../node_modules/select2/dist/css/select2.min.css',
+        // '../../../resources/assets/css/flexboxgrid.min.css',
         'master.sass'
     ], 'public/css/master.css');
 });
