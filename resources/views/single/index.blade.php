@@ -78,7 +78,7 @@
           <div class="more-articles">
             <div>¿Ganas de más? Aquí hay otros artículos...</div>
             <article class="article">
-              <div class="cover glassy"><img src="{{ asset('img/cover.jpg') }}" alt="cover" class="img"></div>
+              <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
               <h2 class="title">My trip to Taiwan</h2>
               <div class="details">
                 <div class="date">Enero 15, 2016</div>
@@ -87,7 +87,7 @@
               <div class="tag">#VIAJES</div><a href="#" class="read btn white">Leer</a>
             </article>
             <article class="article">
-              <div class="cover glassy"><img src="{{ asset('img/cover.jpg') }}" alt="cover" class="img"></div>
+              <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
               <h2 class="title">My trip to Taiwan</h2>
               <div class="details">
                 <div class="date">Enero 15, 2016</div>

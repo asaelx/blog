@@ -11,8 +11,9 @@
     <div class="row">
       <div class="col-3">
         <div class="profile">
-          <div class="cover glassy"><img src="https://pbs.twimg.com/profile_banners/53294337/1447581003/600x200" alt="cover" class="img"/></div>
-          <div class="photo glassy"><img src="https://pbs.twimg.com/profile_images/665827494986018817/WJ4VdDNn_bigger.jpg" alt="" class="img"/></div>
+          <div style="background: url(https://pbs.twimg.com/profile_banners/53294337/1447581003/600x200) no-repeat center center; background-size: cover;" class="cover">
+          </div>
+          <div style="background: url(https://pbs.twimg.com/profile_images/665827494986018817/WJ4VdDNn_bigger.jpg) no-repeat center center; background-size: cover;" class="photo"></div>
           <div class="name">Asael Jaimes</div>
           <div class="job">Diseñador Web</div>
           <ul class="instagram">
@@ -36,7 +37,7 @@
       </div>
       <div class="col-9">
         <article class="article featured">
-          <div class="cover glassy"><img src="{{ asset('img/cover.jpg') }}" alt="cover" class="img"/></div>
+          <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
           <h2 class="title">It's not about the destination</h2>
           <div class="excerpt">
             <p>Tousled food truck polaroid, salvia bespoke small batch Pinterest Marfa. Fingerstache authentic craft beer, food truck Banksy Carles kale chips hoodie. Trust fund artisan master cleanse fingerstache post-ironic.</p>

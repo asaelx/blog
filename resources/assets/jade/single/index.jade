@@ -67,8 +67,7 @@ block content
                 .more-articles
                     div ¿Ganas de más? Aquí hay otros artículos...
                     article.article
-                        .cover.glassy
-                            img.img(src="{{ asset('img/cover.jpg') }}", alt="cover")
+                        .cover(style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;")
                         h2.title My trip to Taiwan
                         .details
                             .date Enero 15, 2016
@@ -76,8 +75,7 @@ block content
                         .tag #VIAJES
                         a.read.btn.white(href="#") Leer
                     article.article
-                        .cover.glassy
-                            img.img(src="{{ asset('img/cover.jpg') }}", alt="cover")
+                        .cover(style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;")
                         h2.title My trip to Taiwan
                         .details
                             .date Enero 15, 2016

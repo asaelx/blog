@@ -811,12 +811,14 @@ img {
       height: 5.1428571429rem;
       width: 100%;
       overflow: hidden; }
-      .header .profile .cover .img {
-        position: relative;
-        top: 50%;
-        -webkit-transform: translateY(-50%);
-        transform: translateY(-50%);
-        width: 100%; }
+      .header .profile .cover:before {
+        content: "";
+        background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.3));
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0; }
     .header .profile .photo {
       margin: 4em auto 0 auto;
       position: relative;
@@ -826,8 +828,6 @@ img {
       border-radius: 50%;
       overflow: hidden;
       box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); }
-      .header .profile .photo .img {
-        width: 100%; }
     .header .profile .name {
       text-align: center;
       color: #16A085;
@@ -932,14 +932,14 @@ img {
       position: absolute;
       left: 0;
       top: 0; }
-      .header .featured .cover .img {
-        pointer-events: none;
-        height: 100%;
-        position: relative;
-        left: 50%;
-        -webkit-transform: translateX(-50%);
-        transform: translateX(-50%);
-        z-index: 0; }
+      .header .featured .cover:before {
+        content: "";
+        background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.3));
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0; }
     .header .featured .title {
       font-family: 'Montserrat';
       font-weight: bold;
@@ -1080,14 +1080,14 @@ img {
     height: 100%;
     top: 0;
     left: 0; }
-    .articles .article .cover .img {
-      pointer-events: none;
-      height: 100%;
-      position: relative;
-      left: 50%;
-      -webkit-transform: translateX(-50%);
-      transform: translateX(-50%);
-      z-index: 0; }
+    .articles .article .cover:before {
+      content: "";
+      background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.3));
+      position: absolute;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      right: 0; }
   .articles .article .title {
     display: block;
     font-family: 'Montserrat';
@@ -1139,7 +1139,7 @@ img {
   position: relative; }
   .single > .cover:before {
     content: "";
-    background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(0, 0, 0, 0.5));
+    background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.3));
     position: absolute;
     top: 0;
     left: 0;
@@ -1348,14 +1348,14 @@ img {
           height: 100%;
           top: 0;
           left: 0; }
-          .single .more-footer .thanks .more-articles .article .cover .img {
-            pointer-events: none;
-            height: 100%;
-            position: relative;
-            left: 50%;
-            -webkit-transform: translateX(-50%);
-            transform: translateX(-50%);
-            z-index: 0; }
+          .single .more-footer .thanks .more-articles .article .cover:before {
+            content: "";
+            background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.3));
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0; }
         .single .more-footer .thanks .more-articles .article .title {
           display: block;
           font-family: 'Montserrat';

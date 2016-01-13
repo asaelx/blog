@@ -11,14 +11,7 @@
         box-shadow: 0 5px 14px 5px rgba(0,0,0,0.3)
         margin-top: rem(45px)
         position: relative
-        &:before
-            content: ""
-            background: linear-gradient(rgba($white, 0.5), rgba($black, 0.5))
-            position: absolute
-            top: 0
-            left: 0
-            bottom: 0
-            right: 0
+        +over-gradient
         & > *
             position: relative
             z-index: 1
@@ -180,13 +173,7 @@
                         height: 100%
                         top: 0
                         left: 0
-                        .img
-                            pointer-events: none
-                            height: 100%
-                            position: relative
-                            left: 50%
-                            transform: translateX(-50%)
-                            z-index: 0
+                        +over-gradient
                     .title
                         display: block
                         font-family: 'Montserrat'

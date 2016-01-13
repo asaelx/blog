@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('single.index');
+    return view('welcome.index');
 });
 
 // Authentication routes

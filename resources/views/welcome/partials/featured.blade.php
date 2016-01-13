@@ -1,6 +1,6 @@
 
 <article class="article featured">
-  <div class="cover glassy"><img src="{{ asset('img/cover.jpg') }}" alt="cover" class="img"/></div>
+  <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
   <h2 class="title">It's not about the destination</h2>
   <div class="excerpt">
     <p>Tousled food truck polaroid, salvia bespoke small batch Pinterest Marfa. Fingerstache authentic craft beer, food truck Banksy Carles kale chips hoodie. Trust fund artisan master cleanse fingerstache post-ironic.</p>
