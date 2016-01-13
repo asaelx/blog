@@ -27,7 +27,7 @@
       </div>
     </nav>
     <article class="single">
-      <div class="cover glassy"><img src="{{ asset('img/hero.jpg') }}" alt="hero" class="img">
+      <div style="background: url({{ asset('img/hero.jpg') }}) bottom center; background-size: cover;" class="cover">
         <div class="heading">
           <h1 class="title">Pretty cool places in the world</h1>
           <div class="details">Por Asael Jaimes · Enero 2, 2016 · 14 comentarios · #VIAJES</div>
@@ -75,7 +75,8 @@
               </ul>
             </div>
           </div>
-          <div class="more-articles">¿Ganas de más? Aquí hay otros artículos...
+          <div class="more-articles">
+            <div>¿Ganas de más? Aquí hay otros artículos...</div>
             <article class="article">
               <div class="cover glassy"><img src="{{ asset('img/cover.jpg') }}" alt="cover" class="img"></div>
               <h2 class="title">My trip to Taiwan</h2>

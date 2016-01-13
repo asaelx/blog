@@ -6,8 +6,7 @@ block title
 block content
     include ../includes/nav
     article.single
-        .cover.glassy
-            img.img(src="{{ asset('img/hero.jpg') }}", alt="hero")
+        .cover(style="background: url({{ asset('img/hero.jpg') }}) bottom center; background-size: cover;")
             .heading
                 h1.title Pretty cool places in the world
                 .details Por Asael Jaimes · Enero 2, 2016 · 14 comentarios · #VIAJES
@@ -66,7 +65,7 @@ block content
                                 a.link(href="#")
                                     img.img(src="{{ asset('img/youtube.svg') }}", alt="youtube")
                 .more-articles
-                    | ¿Ganas de más? Aquí hay otros artículos...
+                    div ¿Ganas de más? Aquí hay otros artículos...
                     article.article
                         .cover.glassy
                             img.img(src="{{ asset('img/cover.jpg') }}", alt="cover")

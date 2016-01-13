@@ -1,7 +1,7 @@
 =reading-width
     display: block
     margin: 0 auto
-    width: rem(655px)
+    width: rem(680px)
 
 .single
     & > .cover
@@ -11,19 +11,23 @@
         box-shadow: 0 5px 14px 5px rgba(0,0,0,0.3)
         margin-top: rem(45px)
         position: relative
+        &:before
+            content: ""
+            background: linear-gradient(rgba($white, 0.5), rgba($black, 0.5))
+            position: absolute
+            top: 0
+            left: 0
+            bottom: 0
+            right: 0
         & > *
             position: relative
             z-index: 1
-        .img
-            position: absolute
-            width: 100%
-            bottom: 0
-            left: 0
-            z-index: 0
-            +opacity(0.4)
         .heading
             +reading-width
-            padding-top: rem(320px)
+            padding-top: rem(280px)
+            +breakpoint($small)
+                width: 100%
+                padding: rem(280px) 1rem 0 1rem
             .title
                 font-family: 'Montserrat'
                 font-weight: bold
@@ -33,7 +37,7 @@
             .details
                 font-family: 'Varela'
                 +font-size(14px)
-                color: rgba($white, 0.75)
+                color: rgba($white, 0.9)
     .body
         margin-top: 2rem
         p
@@ -43,12 +47,21 @@
             line-height: rem(33px)
             +reading-width
             margin: 1.5rem auto 1.5rem auto
+            +breakpoint($small)
+                width: 100%
+                padding: 0 1rem
+            +breakpoint($xsmall)
+                +font-size(17px)
+                line-height: rem(26px)
         .full
             width: 100%
         .medium
             border-radius: rem(3px)
             +reading-width
             margin: 1rem auto 1rem auto
+            +breakpoint($small)
+                width: 100%
+                padding: 0 1rem
         .caption
             font-family: 'Lato'
             font-style: italic
@@ -56,12 +69,18 @@
             color: $gray
             text-align: center
             +reading-width
+            +breakpoint($small)
+                width: 100%
+                padding: 0 1rem
         blockquote
             +reading-width
             color: $gray
             +font-size(24px)
             padding-left: 1rem
             border-left: 2px solid $thin
+            +breakpoint($small)
+                width: 100%
+                padding: 0 1rem
     .more-footer
         padding-bottom: 1rem
         .profile
@@ -147,7 +166,7 @@
                     width: calc(50% - 1rem)
                     float: left
                     margin-top: 1rem
-                    &:nth-child(1)
+                    &:nth-child(2)
                         margin-right: 2rem
                     &:hover
                         transform: scale(1.03)
@@ -197,3 +216,42 @@
                         position: absolute
                         bottom: 1rem
                         right: 1rem
+        +breakpoint($small)
+            width: 100%
+            padding: 0 1rem
+            .profile
+                width: 100%
+                .photo
+                    float: none
+                    margin: 0 auto
+                .bio
+                    width: 100%
+                    text-align: center
+                    margin-top: 1rem
+                .find-me
+                    width: 100%
+                    margin-top: 1rem
+                    .social
+                        margin: 0.5rem auto 0 auto
+            .thanks
+                width: 100%
+                .like
+                    width: 100%
+                    p
+                        margin-bottom: 0
+                        text-align: center
+                    .share
+                        margin-top: 1rem
+                        text-align: center
+                        .options
+                            margin: 0.5rem auto 1rem auto
+                .more-articles
+                    width: 100%
+                    padding-left: 0
+                    border-top: 1px solid $thin
+                    padding: 1rem 0
+        +breakpoint($xsmall)
+            .thanks
+                .more-articles
+                    .article
+                        width: 100%
