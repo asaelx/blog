@@ -1,0 +1,199 @@
+=reading-width
+    display: block
+    margin: 0 auto
+    width: rem(655px)
+
+.single
+    & > .cover
+        height: rem(400px)
+        width: 100%
+        overflow: hidden
+        box-shadow: 0 5px 14px 5px rgba(0,0,0,0.3)
+        margin-top: rem(45px)
+        position: relative
+        & > *
+            position: relative
+            z-index: 1
+        .img
+            position: absolute
+            width: 100%
+            bottom: 0
+            left: 0
+            z-index: 0
+            +opacity(0.4)
+        .heading
+            +reading-width
+            padding-top: rem(320px)
+            .title
+                font-family: 'Montserrat'
+                font-weight: bold
+                +font-size(32px)
+                color: $white
+                text-transform: uppercase
+            .details
+                font-family: 'Varela'
+                +font-size(14px)
+                color: rgba($white, 0.75)
+    .body
+        margin-top: 2rem
+        p
+            font-family: 'Lora'
+            +font-size(20px)
+            color: $dark
+            line-height: rem(33px)
+            +reading-width
+            margin: 1.5rem auto 1.5rem auto
+        .full
+            width: 100%
+        .medium
+            border-radius: rem(3px)
+            +reading-width
+            margin: 1rem auto 1rem auto
+        .caption
+            font-family: 'Lato'
+            font-style: italic
+            +font-size(14px)
+            color: $gray
+            text-align: center
+            +reading-width
+        blockquote
+            +reading-width
+            color: $gray
+            +font-size(24px)
+            padding-left: 1rem
+            border-left: 2px solid $thin
+    .more-footer
+        padding-bottom: 1rem
+        .profile
+            +reading-width
+            +clearfix
+            border-top: 1px solid $thin
+            padding: 1rem 0
+            .photo
+                border-radius: 50%
+                overflow: hidden
+                height: rem(72px)
+                width: rem(72px)
+                box-shadow: 0 2px 4px 0 rgba(0,0,0,0.5)
+                float: left
+                .img
+                    width: 100%
+            .bio
+                font-family: 'Varela'
+                +font-size(14px)
+                color: $gray
+                line-height: rem(20px)
+                float: left
+                width: calc(80% - #{rem(72px)})
+                padding: 0 1rem
+            .find-me
+                float: left
+                width: calc(30% - #{rem(72px)})
+                font-family: 'Varela'
+                color: $gray
+                +font-size(14px)
+                text-align: center
+                .social
+                    +clearfix
+                    margin: 1em auto
+                    position: relative
+                    .network
+                        float: left
+                        width: calc(100% / 4)
+                        text-align: center
+                        padding: 0 0.2rem
+        .thanks
+            +reading-width
+            +clearfix
+            border-top: 1px solid $thin
+            padding: 1rem 0
+            .like
+                float: left
+                width: 25%
+                p
+                    font-family: 'Lato'
+                    font-style: italic
+                    +font-size(16px)
+                    color: $gray
+                    line-height: rem(22px)
+                    margin-bottom: 1rem
+                .share
+                    font-family: 'Lato'
+                    +font-size(14px)
+                    color: $gray
+                    text-transform: uppercase
+                    .options
+                        +clearfix
+                        margin-top: 0.5rem
+                        .option
+                            float: left
+                            .link
+                                display: block
+                                padding: 0 0.2rem
+            .more-articles
+                float: left
+                width: 75%
+                font-family: 'Varela'
+                +font-size(14px)
+                color: $gray
+                padding-left: 1.5rem
+                .article
+                    position: relative
+                    border-radius: rem(3px)
+                    box-shadow: 0 5px 14px 5px rgba(0,0,0,0.3)
+                    overflow: hidden
+                    height: rem(300px)
+                    transition: all 0.1s ease
+                    width: calc(50% - 1rem)
+                    float: left
+                    margin-top: 1rem
+                    &:nth-child(1)
+                        margin-right: 2rem
+                    &:hover
+                        transform: scale(1.03)
+                        transition: all 0.3s ease
+                    & > *
+                        position: relative
+                        z-index: 1
+                    .cover
+                        position: absolute
+                        width: 100%
+                        height: 100%
+                        top: 0
+                        left: 0
+                        .img
+                            pointer-events: none
+                            height: 100%
+                            position: relative
+                            left: 50%
+                            transform: translateX(-50%)
+                            z-index: 0
+                    .title
+                        display: block
+                        font-family: 'Montserrat'
+                        font-weight: bold
+                        +font-size(25px)
+                        color: white
+                        text-transform: uppercase
+                        background: rgba(52,73,94,0.26)
+                        padding: 1rem
+                    .details
+                        font-family: 'Varela'
+                        +font-size(14px)
+                        color: white
+                        padding: 1rem
+                        text-shadow: 0 2px 4px rgba(0,0,0,0.5)
+                    .tag
+                        font-family: 'Varela'
+                        +font-size(13px)
+                        text-transform: uppercase
+                        text-shadow: 0 2px 4px rgba(0,0,0,0.5)
+                        letter-spacing: 0.1em
+                        color: white
+                        position: absolute
+                        bottom: 1.5rem
+                        left: 1rem
+                    .read
+                        position: absolute
+                        bottom: 1rem
+                        right: 1rem

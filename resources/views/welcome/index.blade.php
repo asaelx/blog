@@ -170,7 +170,6 @@
     <footer class="footer">
       <p>Diseño y códigos hechos con ❤️ por @asaelx | Todos los derechos reservados | México, 2016</p>
     </footer>
-    <div class="bg-bottom"></div>
     <script src="{{ asset('js/magic.js') }}"></script>
   </body>
 </html>

@@ -780,7 +780,7 @@ img {
   position: absolute;
   top: 3.2142857143rem;
   left: 0;
-  width: 100%;
+  right: 0;
   height: 42.8571428571rem;
   z-index: -1; }
   .bg-top:before {
@@ -1129,6 +1129,240 @@ img {
   .articles .load-more .btn {
     font-size: 16px;
     font-size: 1.1428571429rem; }
+
+.single > .cover {
+  height: 28.5714285714rem;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 5px 14px 5px rgba(0, 0, 0, 0.3);
+  margin-top: 3.2142857143rem;
+  position: relative; }
+  .single > .cover > * {
+    position: relative;
+    z-index: 1; }
+  .single > .cover .img {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    opacity: 0.4;
+    filter: alpha(opacity=40); }
+  .single > .cover .heading {
+    display: block;
+    margin: 0 auto;
+    width: 46.7857142857rem;
+    padding-top: 22.8571428571rem; }
+    .single > .cover .heading .title {
+      font-family: 'Montserrat';
+      font-weight: bold;
+      font-size: 32px;
+      font-size: 2.2857142857rem;
+      color: #FFFFFF;
+      text-transform: uppercase; }
+    .single > .cover .heading .details {
+      font-family: 'Varela';
+      font-size: 14px;
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.75); }
+
+.single .body {
+  margin-top: 2rem; }
+  .single .body p {
+    font-family: 'Lora';
+    font-size: 20px;
+    font-size: 1.4285714286rem;
+    color: #34495E;
+    line-height: 2.3571428571rem;
+    display: block;
+    margin: 0 auto;
+    width: 46.7857142857rem;
+    margin: 1.5rem auto 1.5rem auto; }
+  .single .body .full {
+    width: 100%; }
+  .single .body .medium {
+    border-radius: 0.2142857143rem;
+    display: block;
+    margin: 0 auto;
+    width: 46.7857142857rem;
+    margin: 1rem auto 1rem auto; }
+  .single .body .caption {
+    font-family: 'Lato';
+    font-style: italic;
+    font-size: 14px;
+    font-size: 1rem;
+    color: #95A5A6;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    width: 46.7857142857rem; }
+  .single .body blockquote {
+    display: block;
+    margin: 0 auto;
+    width: 46.7857142857rem;
+    color: #95A5A6;
+    font-size: 24px;
+    font-size: 1.7142857143rem;
+    padding-left: 1rem;
+    border-left: 2px solid #ECF0F1; }
+
+.single .more-footer {
+  padding-bottom: 1rem; }
+  .single .more-footer .profile {
+    display: block;
+    margin: 0 auto;
+    width: 46.7857142857rem;
+    content: " ";
+    display: table;
+    clear: both;
+    border-top: 1px solid #ECF0F1;
+    padding: 1rem 0; }
+    .single .more-footer .profile .photo {
+      border-radius: 50%;
+      overflow: hidden;
+      height: 5.1428571429rem;
+      width: 5.1428571429rem;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+      float: left; }
+      .single .more-footer .profile .photo .img {
+        width: 100%; }
+    .single .more-footer .profile .bio {
+      font-family: 'Varela';
+      font-size: 14px;
+      font-size: 1rem;
+      color: #95A5A6;
+      line-height: 1.4285714286rem;
+      float: left;
+      width: calc(80% - 5.1428571429rem);
+      padding: 0 1rem; }
+    .single .more-footer .profile .find-me {
+      float: left;
+      width: calc(30% - 5.1428571429rem);
+      font-family: 'Varela';
+      color: #95A5A6;
+      font-size: 14px;
+      font-size: 1rem;
+      text-align: center; }
+      .single .more-footer .profile .find-me .social {
+        content: " ";
+        display: table;
+        clear: both;
+        margin: 1em auto;
+        position: relative; }
+        .single .more-footer .profile .find-me .social .network {
+          float: left;
+          width: calc(100% / 4);
+          text-align: center;
+          padding: 0 0.2rem; }
+  .single .more-footer .thanks {
+    display: block;
+    margin: 0 auto;
+    width: 46.7857142857rem;
+    content: " ";
+    display: table;
+    clear: both;
+    border-top: 1px solid #ECF0F1;
+    padding: 1rem 0; }
+    .single .more-footer .thanks .like {
+      float: left;
+      width: 25%; }
+      .single .more-footer .thanks .like p {
+        font-family: 'Lato';
+        font-style: italic;
+        font-size: 16px;
+        font-size: 1.1428571429rem;
+        color: #95A5A6;
+        line-height: 1.5714285714rem;
+        margin-bottom: 1rem; }
+      .single .more-footer .thanks .like .share {
+        font-family: 'Lato';
+        font-size: 14px;
+        font-size: 1rem;
+        color: #95A5A6;
+        text-transform: uppercase; }
+        .single .more-footer .thanks .like .share .options {
+          content: " ";
+          display: table;
+          clear: both;
+          margin-top: 0.5rem; }
+          .single .more-footer .thanks .like .share .options .option {
+            float: left; }
+            .single .more-footer .thanks .like .share .options .option .link {
+              display: block;
+              padding: 0 0.2rem; }
+    .single .more-footer .thanks .more-articles {
+      float: left;
+      width: 75%;
+      font-family: 'Varela';
+      font-size: 14px;
+      font-size: 1rem;
+      color: #95A5A6;
+      padding-left: 1.5rem; }
+      .single .more-footer .thanks .more-articles .article {
+        position: relative;
+        border-radius: 0.2142857143rem;
+        box-shadow: 0 5px 14px 5px rgba(0, 0, 0, 0.3);
+        overflow: hidden;
+        height: 21.4285714286rem;
+        transition: all 0.1s ease;
+        width: calc(50% - 1rem);
+        float: left;
+        margin-top: 1rem; }
+        .single .more-footer .thanks .more-articles .article:nth-child(1) {
+          margin-right: 2rem; }
+        .single .more-footer .thanks .more-articles .article:hover {
+          -webkit-transform: scale(1.03);
+          transform: scale(1.03);
+          transition: all 0.3s ease; }
+        .single .more-footer .thanks .more-articles .article > * {
+          position: relative;
+          z-index: 1; }
+        .single .more-footer .thanks .more-articles .article .cover {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          left: 0; }
+          .single .more-footer .thanks .more-articles .article .cover .img {
+            pointer-events: none;
+            height: 100%;
+            position: relative;
+            left: 50%;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+            z-index: 0; }
+        .single .more-footer .thanks .more-articles .article .title {
+          display: block;
+          font-family: 'Montserrat';
+          font-weight: bold;
+          font-size: 25px;
+          font-size: 1.7857142857rem;
+          color: white;
+          text-transform: uppercase;
+          background: rgba(52, 73, 94, 0.26);
+          padding: 1rem; }
+        .single .more-footer .thanks .more-articles .article .details {
+          font-family: 'Varela';
+          font-size: 14px;
+          font-size: 1rem;
+          color: white;
+          padding: 1rem;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); }
+        .single .more-footer .thanks .more-articles .article .tag {
+          font-family: 'Varela';
+          font-size: 13px;
+          font-size: 0.9285714286rem;
+          text-transform: uppercase;
+          text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+          letter-spacing: 0.1em;
+          color: white;
+          position: absolute;
+          bottom: 1.5rem;
+          left: 1rem; }
+        .single .more-footer .thanks .more-articles .article .read {
+          position: absolute;
+          bottom: 1rem;
+          right: 1rem; }
 
 .footer {
   background: url(../img/footer-bg.jpg) no-repeat bottom center;
