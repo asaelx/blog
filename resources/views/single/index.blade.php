@@ -99,7 +99,7 @@
         </div>
       </footer>
     </article>
-    <footer class="footer">
+    <footer class="footer down-in">
       <p>Diseño y códigos hechos con ❤️ por @asaelx | Todos los derechos reservados | México, 2016</p>
     </footer>
     <script src="{{ asset('js/magic.js') }}"></script>

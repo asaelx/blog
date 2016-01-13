@@ -3,14 +3,14 @@
   <div class="wrapper">
     <div class="row">
       <div class="col-12">
-        <div class="welcome">
+        <div class="welcome up-in">
           <h1>Hola, soy Asael Jaimes y me gusta hacer cosas para internet. Soy diseñador web, desarrollador, nómada digital, aventurero, bloguero, youtuber, minimalista y entusiasta de la fotografía, entre otras cosas.</h1>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-3">
-        <div class="profile">
+        <div class="profile down-in">
           <div style="background: url(https://pbs.twimg.com/profile_banners/53294337/1447581003/600x200) no-repeat center center; background-size: cover;" class="cover">
           </div>
           <div style="background: url(https://pbs.twimg.com/profile_images/665827494986018817/WJ4VdDNn_bigger.jpg) no-repeat center center; background-size: cover;" class="photo"></div>
@@ -36,7 +36,7 @@
         </div>
       </div>
       <div class="col-9">
-        <article class="article featured">
+        <article class="article featured down-in">
           <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
           <h2 class="title">It's not about the destination</h2>
           <div class="excerpt">

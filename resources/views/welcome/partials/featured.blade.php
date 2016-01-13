@@ -1,5 +1,5 @@
 
-<article class="article featured">
+<article class="article featured down-in">
   <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
   <h2 class="title">It's not about the destination</h2>
   <div class="excerpt">

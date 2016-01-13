@@ -1,11 +1,16 @@
 .articles
-    [class^="col"]
+    [class^="col-"]
         +breakpoint($medium)
             width: calc(100% / 3)
         +breakpoint($small)
             width: calc(100% / 2)
         +breakpoint($xsmall)
             width: 100%
+    .wrapper
+        .row
+            // @for $i from 2 through 9
+            //     [class^="col-"]:nth-child(#{$i})
+            //         animation: show-in 0.8s #{0.1s * $i} forwards ease
     .section-title
         font-family: 'Varela'
         +font-size(16px)

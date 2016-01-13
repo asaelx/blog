@@ -26,19 +26,19 @@
         </label>
       </div>
     </nav>
-    <div class="bg-top"></div>
+    <div class="bg-top up-in"></div>
     <header class="header">
       <div class="wrapper">
         <div class="row">
           <div class="col-12">
-            <div class="welcome">
+            <div class="welcome up-in">
               <h1>Hola, soy Asael Jaimes y me gusta hacer cosas para internet. Soy diseñador web, desarrollador, nómada digital, aventurero, bloguero, youtuber, minimalista y entusiasta de la fotografía, entre otras cosas.</h1>
             </div>
           </div>
         </div>
         <div class="row">
           <div class="col-3">
-            <div class="profile">
+            <div class="profile down-in">
               <div style="background: url(https://pbs.twimg.com/profile_banners/53294337/1447581003/600x200) no-repeat center center; background-size: cover;" class="cover">
               </div>
               <div style="background: url(https://pbs.twimg.com/profile_images/665827494986018817/WJ4VdDNn_bigger.jpg) no-repeat center center; background-size: cover;" class="photo"></div>
@@ -64,7 +64,7 @@
             </div>
           </div>
           <div class="col-9">
-            <article class="article featured">
+            <article class="article featured down-in">
               <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
               <h2 class="title">It's not about the destination</h2>
               <div class="excerpt">
@@ -85,7 +85,7 @@
       <div class="wrapper">
         <div class="row">
           <h3 class="section-title">Últimos artículos</h3>
-          <div class="col-3">
+          <div class="col-3 show-in">
             <article class="article">
               <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
               <h2 class="title">My trip to Taiwan</h2>
@@ -96,7 +96,7 @@
               <div class="tag">#VIAJES</div><a href="#" class="read btn white">Leer</a>
             </article>
           </div>
-          <div class="col-3">
+          <div class="col-3 show-in">
             <article class="article">
               <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
               <h2 class="title">The amazing Spider-Man</h2>
@@ -107,7 +107,7 @@
               <div class="tag">#VIAJES</div><a href="#" class="read btn white">Leer</a>
             </article>
           </div>
-          <div class="col-3">
+          <div class="col-3 show-in">
             <article class="article">
               <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
               <h2 class="title">My trip to Taiwan</h2>
@@ -118,7 +118,7 @@
               <div class="tag">#VIAJES</div><a href="#" class="read btn white">Leer</a>
             </article>
           </div>
-          <div class="col-3">
+          <div class="col-3 show-in">
             <article class="article">
               <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
               <h2 class="title">My trip to Taiwan</h2>
@@ -129,7 +129,7 @@
               <div class="tag">#VIAJES</div><a href="#" class="read btn white">Leer</a>
             </article>
           </div>
-          <div class="col-3">
+          <div class="col-3 show-in">
             <article class="article">
               <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
               <h2 class="title">My trip to Taiwan</h2>
@@ -140,7 +140,7 @@
               <div class="tag">#VIAJES</div><a href="#" class="read btn white">Leer</a>
             </article>
           </div>
-          <div class="col-3">
+          <div class="col-3 show-in">
             <article class="article">
               <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
               <h2 class="title">My trip to Taiwan</h2>
@@ -151,7 +151,7 @@
               <div class="tag">#VIAJES</div><a href="#" class="read btn white">Leer</a>
             </article>
           </div>
-          <div class="col-3">
+          <div class="col-3 show-in">
             <article class="article">
               <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
               <h2 class="title">My trip to Taiwan</h2>
@@ -168,7 +168,7 @@
         </div>
       </div>
     </div>
-    <footer class="footer">
+    <footer class="footer down-in">
       <p>Diseño y códigos hechos con ❤️ por @asaelx | Todos los derechos reservados | México, 2016</p>
     </footer>
     <script src="{{ asset('js/magic.js') }}"></script>

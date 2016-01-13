@@ -3,7 +3,7 @@
   <div class="wrapper">
     <div class="row">
       <h3 class="section-title">Últimos artículos</h3>
-      <div class="col-3">
+      <div class="col-3 show-in">
         <article class="article">
           <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
           <h2 class="title">My trip to Taiwan</h2>
@@ -14,7 +14,7 @@
           <div class="tag">#VIAJES</div><a href="#" class="read btn white">Leer</a>
         </article>
       </div>
-      <div class="col-3">
+      <div class="col-3 show-in">
         <article class="article">
           <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
           <h2 class="title">The amazing Spider-Man</h2>
@@ -25,7 +25,7 @@
           <div class="tag">#VIAJES</div><a href="#" class="read btn white">Leer</a>
         </article>
       </div>
-      <div class="col-3">
+      <div class="col-3 show-in">
         <article class="article">
           <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
           <h2 class="title">My trip to Taiwan</h2>
@@ -36,7 +36,7 @@
           <div class="tag">#VIAJES</div><a href="#" class="read btn white">Leer</a>
         </article>
       </div>
-      <div class="col-3">
+      <div class="col-3 show-in">
         <article class="article">
           <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
           <h2 class="title">My trip to Taiwan</h2>
@@ -47,7 +47,7 @@
           <div class="tag">#VIAJES</div><a href="#" class="read btn white">Leer</a>
         </article>
       </div>
-      <div class="col-3">
+      <div class="col-3 show-in">
         <article class="article">
           <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
           <h2 class="title">My trip to Taiwan</h2>
@@ -58,7 +58,7 @@
           <div class="tag">#VIAJES</div><a href="#" class="read btn white">Leer</a>
         </article>
       </div>
-      <div class="col-3">
+      <div class="col-3 show-in">
         <article class="article">
           <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
           <h2 class="title">My trip to Taiwan</h2>
@@ -69,7 +69,7 @@
           <div class="tag">#VIAJES</div><a href="#" class="read btn white">Leer</a>
         </article>
       </div>
-      <div class="col-3">
+      <div class="col-3 show-in">
         <article class="article">
           <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
           <h2 class="title">My trip to Taiwan</h2>
