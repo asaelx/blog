@@ -3,19 +3,81 @@ extend ../layout/base
 block title
     title Articles
     
+block styles
+    link(rel="stylesheet", href="{{ asset('css/admin.css') }}")
+    
+block sidebar
+    include partials/sidebar
+    
 block content
-    .row
-        h1 Articles
+    .content
+        h1.title Your posts
+        .tools
+            ul.tabs
+                li.tab
+                    a.link.active(href="#", data-tab="drafts") Drafts
+                li.tab
+                    a.link(href="#", data-tab="published") Published
+            .search
+                span.typcn.typcn-zoom
+                input(type="search", name="s", placeholder="Search...")
+        ul.posts.active.tabbed#drafts
+            
+            include ../mixins/blade
+            //- +foreach('$articles as $article')    
+            //-     li.post
+            //-         .date {{ $article->published_at->diffForHumans() }}
+            //-         a.title(href="") {{ $article->title }}
+            //-         .details
+            //-             | By <a href="#">Asael Jaimes</a> · Filed under <a href="#">Web Design</a>
+            //-         ul.options
+            //-             li.option
+            //-                 a.link.edit(href="")
+            //-                     span.typcn.typcn-edit
+            //-             li.option
+            //-                 a.link.delete(href="")
+            //-                     span.typcn.typcn-trash
+        ul.posts.tabbed#published
+            li.post
+                .date 2/12/2015
+                a.title(href="") This is a published post
+                .details
+                    | By <a href="#">Asael Jaimes</a> · Filed under <a href="#">Web Design</a>
+                ul.options
+                    li.option
+                        a.link.edit(href="")
+                            span.typcn.typcn-edit
+                    li.option
+                        a.link.delete(href="")
+                            span.typcn.typcn-trash
+            li.post
+                .date 2/12/2015
+                a.title(href="") Published post, man
+                .details
+                    | By <a href="#">Asael Jaimes</a> · Filed under <a href="#">Web Design</a>
+                ul.options
+                    li.option
+                        a.link.edit(href="")
+                            span.typcn.typcn-edit
+                    li.option
+                        a.link.delete(href="")
+                            span.typcn.typcn-trash
     
-    include ../mixins/blade
-    
-    .row
-        .column.medium-12
-            +if('$articles')
-                ul.disc
-                    +foreach('$articles as $article')
-                        li: a(href!="{{ url('articles', $article->id) }}") {{ $article->title }}
-                +else
-                    h4 There's not articles yet :(
+    // Delete this
+    //- .row
+    //-     h1 Articles
+    //- 
+    //- include ../mixins/blade
+    //- 
+    //- .row
+    //-     .column.medium-12
+    //-         +if('$articles')
+    //-             ul.disc
+    //-                 +foreach('$articles as $article')
+    //-                     li: a(href!="{{ url('articles', $article->id) }}") {{ $article->title }}
+    //-             +else
+    //-                 h4 There's not articles yet :(
                     
+block scripts
+    script(src="{{asset('js/admin.js')}}")
             
