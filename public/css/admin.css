@@ -5172,6 +5172,17 @@ html {
   display: none; }
   .content .posts.active {
     display: block; }
+  .content .posts .empty {
+    padding: 4rem 0;
+    text-align: center;
+    color: #C2CFD0; }
+    .content .posts .empty .legend {
+      font-size: 28px;
+      font-size: 2rem;
+      margin-bottom: 0.5em; }
+    .content .posts .empty .fa {
+      font-size: 50px;
+      font-size: 3.5714285714rem; }
   .content .posts .post {
     position: relative;
     border-bottom: 1px solid #ECF0F1;

@@ -27,35 +27,61 @@
       <h1 class="title">Your posts</h1>
       <div class="tools">
         <ul class="tabs">
-          <li class="tab"><a href="#" data-tab="drafts" class="link active">Drafts</a></li>
-          <li class="tab"><a href="#" data-tab="published" class="link">Published</a></li>
+          <li class="tab"><a href="#" data-tab="published" class="link active">Published</a></li>
+          <li class="tab"><a href="#" data-tab="drafts" class="link">Drafts</a></li>
         </ul>
         <div class="search"><span class="typcn typcn-zoom"></span>
           <input type="search" name="s" placeholder="Search...">
         </div>
       </div>
-      <ul id="drafts" class="posts active tabbed">
+      <!-- Posts list-->
+      <ul id="published" class="posts active tabbed">
+@if(!$articles->isEmpty())
+
+@foreach($articles as $article)
+   
+                    <li class="post">
+                      <div class="date">{{ $article->published_at->diffForHumans() }}</div><a href="" class="title">{{ $article->title }}</a>
+                      <div class="details">By <a href="#">Asael Jaimes</a> · Filed under <a href="#">Web Design</a></div>
+                      <ul class="options">
+                        <li class="option"><a href="#" class="link edit"><span class="typcn typcn-edit"></span></a></li>
+                        <li class="option"><a href="#" class="link delete"><span class="typcn typcn-trash"></span></a></li>
+                      </ul>
+                    </li>
+@endforeach
+
+@else
+
+                    <div class="empty"><i class="fa fa-frown-o"></i>
+                      <h4 class="legend">You don't have any publications yet</h4><a href="{{ url('articles/create') }}" class="btn blue">Write an article</a>
+                    </div>
+@endif
+
       </ul>
-      <ul id="published" class="posts tabbed">
-        <li class="post">
-          <div class="date">2/12/2015</div><a href="" class="title">This is a published post</a>
-          <div class="details">By <a href="#">Asael Jaimes</a> · Filed under <a href="#">Web Design</a></div>
-          <ul class="options">
-            <li class="option"><a href="" class="link edit"><span class="typcn typcn-edit"></span></a></li>
-            <li class="option"><a href="" class="link delete"><span class="typcn typcn-trash"></span></a></li>
-          </ul>
-        </li>
-        <li class="post">
-          <div class="date">2/12/2015</div><a href="" class="title">Published post, man</a>
-          <div class="details">By <a href="#">Asael Jaimes</a> · Filed under <a href="#">Web Design</a></div>
-          <ul class="options">
-            <li class="option"><a href="" class="link edit"><span class="typcn typcn-edit"></span></a></li>
-            <li class="option"><a href="" class="link delete"><span class="typcn typcn-trash"></span></a></li>
-          </ul>
-        </li>
+      <ul id="drafts" class="posts tabbed">       
+@if(!$articles->isEmpty())
+
+@foreach($articles as $article)
+   
+                    <li class="post">
+                      <div class="date">{{ $article->published_at->diffForHumans() }}</div><a href="" class="title">{{ $article->title }}</a>
+                      <div class="details">By <a href="#">Asael Jaimes</a> · Filed under <a href="#">Web Design</a></div>
+                      <ul class="options">
+                        <li class="option"><a href="#" class="link edit"><span class="typcn typcn-edit"></span></a></li>
+                        <li class="option"><a href="#" class="link delete"><span class="typcn typcn-trash"></span></a></li>
+                      </ul>
+                    </li>
+@endforeach
+
+@else
+
+                    <div class="empty"><i class="fa fa-meh-o"></i>
+                      <h4 class="legend">You don't have any drafts yet</h4><a href="{{ url('articles/create') }}" class="btn blue">Write an article</a>
+                    </div>
+@endif
+
       </ul>
     </div>
-    <!-- Delete this-->
     <script src="{{asset('js/admin.js')}}"></script>
   </body>
 </html>
