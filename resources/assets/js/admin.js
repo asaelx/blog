@@ -12,7 +12,7 @@ $(function(){
             buttonLabels: 'fontawesome',
             targetBlank: true,
             placeholder: {
-                text: 'Write something cool'
+                text: 'Empieza a escribir algo genial...'
             }
         });
 

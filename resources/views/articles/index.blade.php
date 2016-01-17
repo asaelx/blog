@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>Articles</title>
+    <title>Artículos</title>
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
   </head>
   <body>
@@ -17,21 +17,21 @@
       </div>
       <nav class="nav">
         <ul class="options">
-          <li class="option"><a href="{{ url('articles/create') }}" class="link active"> <span class="typcn typcn-pen"></span>New Post</a></li>
-          <li class="option"><a href="{{ url('articles') }}" class="link"><span class="typcn typcn-document-text"></span>Content</a></li>
-          <li class="option"><a href="#" class="link"> <span class="typcn typcn-cog"></span>Settings</a></li>
+          <li class="option"><a href="{{ url('articles/create') }}" class="link active"> <span class="typcn typcn-pen"></span>Nuevo artículo</a></li>
+          <li class="option"><a href="{{ url('articles') }}" class="link"><span class="typcn typcn-document-text"></span>Contentido</a></li>
+          <li class="option"><a href="#" class="link"> <span class="typcn typcn-cog"></span>Ajustes</a></li>
         </ul>
       </nav>
     </aside>
     <div class="content">
-      <h1 class="title">Your posts</h1>
+      <h1 class="title">Tus artículos</h1>
       <div class="tools">
         <ul class="tabs">
-          <li class="tab"><a href="#" data-tab="published" class="link active">Published</a></li>
-          <li class="tab"><a href="#" data-tab="unpublished" class="link">Unpublished</a></li>
+          <li class="tab"><a href="#" data-tab="published" class="link active">Publicados</a></li>
+          <li class="tab"><a href="#" data-tab="unpublished" class="link">Por publicar</a></li>
         </ul>
         <div class="search"><span class="typcn typcn-zoom"></span>
-          <input type="search" name="s" placeholder="Search...">
+          <input type="search" name="s" placeholder="Buscar...">
         </div>
       </div>
       <!-- Posts list-->
@@ -42,7 +42,7 @@
    
                     <li class="post">
                       <div class="date">{{ $article->published_at }}</div><a href="{{ url('articles/' . $article->id . '/edit') }}" class="title">{{ $article->title }}</a>
-                      <div class="details">By <a href="#">{{ $article->user->name }}</a> · Filed under <a href="#">{{ $article->tags->first()->name }}</a></div>
+                      <div class="details">Por <a href="#">{{ $article->user->name }}</a> · Archivado en <a href="#">{{ $article->tags->first()->name }}</a></div>
                       <ul class="options">
                         <li class="option"><a href="{{ url('articles/' . $article->id . '/edit') }}" class="link edit"><span class="typcn typcn-edit"></span></a></li>
                         <li class="option"><a href="#" class="link delete"><span class="typcn typcn-trash"></span></a></li>
@@ -53,7 +53,7 @@
 @else
 
                     <div class="empty"><i class="fa fa-frown-o"></i>
-                      <h4 class="legend">You don't have any publications yet</h4><a href="{{ url('articles/create') }}" class="btn blue">Write an article</a>
+                      <h4 class="legend">Aún no tienes artículos publicados</h4><a href="{{ url('articles/create') }}" class="btn blue">Escribe tu primer artículo</a>
                     </div>
 @endif
 
@@ -76,7 +76,7 @@
 @else
 
                     <div class="empty"><i class="fa fa-meh-o"></i>
-                      <h4 class="legend">You don't have any future posts</h4><a href="{{ url('articles/create') }}" class="btn blue">Write an article</a>
+                      <h4 class="legend">No tienes artículos pendientes por publicar</h4><a href="{{ url('articles/create') }}" class="btn blue">Escribe un artículo</a>
                     </div>
 @endif
 

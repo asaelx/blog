@@ -1,7 +1,7 @@
 extend ../layout/base
 
 block title
-    title Articles
+    title Artículos
     
 block styles
     link(rel="stylesheet", href="{{ asset('css/admin.css') }}")
@@ -11,16 +11,16 @@ block sidebar
     
 block content
     .content
-        h1.title Your posts
+        h1.title Tus artículos
         .tools
             ul.tabs
                 li.tab
-                    a.link.active(href="#", data-tab="published") Published
+                    a.link.active(href="#", data-tab="published") Publicados
                 li.tab
-                    a.link(href="#", data-tab="unpublished") Unpublished
+                    a.link(href="#", data-tab="unpublished") Por publicar
             .search
                 span.typcn.typcn-zoom
-                input(type="search", name="s", placeholder="Search...")
+                input(type="search", name="s", placeholder="Buscar...")
         
         // Posts list
         include ../mixins/blade
@@ -32,7 +32,7 @@ block content
                         .date {{ $article->published_at }}
                         a.title(href!="{{ url('articles/' . $article->id . '/edit') }}") {{ $article->title }}
                         .details
-                            | By <a href="#">{{ $article->user->name }}</a> · Filed under <a href="#">{{ $article->tags->first()->name }}</a>
+                            | Por <a href="#">{{ $article->user->name }}</a> · Archivado en <a href="#">{{ $article->tags->first()->name }}</a>
                         ul.options
                             li.option
                                 a.link.edit(href!="{{ url('articles/' . $article->id . '/edit') }}")
@@ -43,8 +43,8 @@ block content
                 +else
                     .empty
                         i.fa.fa-frown-o
-                        h4.legend You don't have any publications yet
-                        a.btn.blue(href="{{ url('articles/create') }}") Write an article
+                        h4.legend Aún no tienes artículos publicados
+                        a.btn.blue(href="{{ url('articles/create') }}") Escribe tu primer artículo
                             
         //- Drafts
         ul.posts.tabbed#unpublished        
@@ -65,8 +65,8 @@ block content
                 +else
                     .empty
                         i.fa.fa-meh-o
-                        h4.legend You don't have any future posts
-                        a.btn.blue(href="{{ url('articles/create') }}") Write an article
+                        h4.legend No tienes artículos pendientes por publicar
+                        a.btn.blue(href="{{ url('articles/create') }}") Escribe un artículo
                     
 block scripts
     script(src="{{asset('js/admin.js')}}")

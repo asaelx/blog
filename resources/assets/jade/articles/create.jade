@@ -1,7 +1,7 @@
 extend ../layout/base
 
 block title
-    title Create Article
+    title Nuevo Artículo
     
 block styles
     link(rel="stylesheet", href="{{ asset('css/admin.css') }}")
@@ -13,7 +13,7 @@ block content
     .content
         | {!! Form::model($article = new \App\Article, ['url' => url('articles'), 'class' => 'form', 'files' => true]) !!}
         include ../mixins/blade
-        +include("articles.partials.form", "['submitButtonText' => 'Publish']")
+        +include("articles.partials.form", "['submitButtonText' => 'Publicar']")
         | {!! Form::close() !!}
 
 block scripts
