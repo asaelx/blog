@@ -30,12 +30,12 @@ block content
                 +foreach('$published as $article')    
                     li.post
                         .date {{ $article->published_at }}
-                        a.title(href="") {{ $article->title }}
+                        a.title(href!="{{ url('articles/' . $article->id . '/edit') }}") {{ $article->title }}
                         .details
-                            | By <a href="#">Asael Jaimes</a> · Filed under <a href="#">Web Design</a>
+                            | By <a href="#">{{ $article->user->name }}</a> · Filed under <a href="#">{{ $article->tags->first()->name }}</a>
                         ul.options
                             li.option
-                                a.link.edit(href="#")
+                                a.link.edit(href!="{{ url('articles/' . $article->id . '/edit') }}")
                                     span.typcn.typcn-edit
                             li.option
                                 a.link.delete(href="#")
@@ -65,7 +65,7 @@ block content
                 +else
                     .empty
                         i.fa.fa-meh-o
-                        h4.legend You don't any future posts
+                        h4.legend You don't have any future posts
                         a.btn.blue(href="{{ url('articles/create') }}") Write an article
                     
 block scripts

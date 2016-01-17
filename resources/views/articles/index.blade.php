@@ -17,8 +17,8 @@
       </div>
       <nav class="nav">
         <ul class="options">
-          <li class="option"><a href="#" class="link active"> <span class="typcn typcn-pen"></span>New Post</a></li>
-          <li class="option"><a href="#" class="link"><span class="typcn typcn-document-text"></span>Content</a></li>
+          <li class="option"><a href="{{ url('articles/create') }}" class="link active"> <span class="typcn typcn-pen"></span>New Post</a></li>
+          <li class="option"><a href="{{ url('articles') }}" class="link"><span class="typcn typcn-document-text"></span>Content</a></li>
           <li class="option"><a href="#" class="link"> <span class="typcn typcn-cog"></span>Settings</a></li>
         </ul>
       </nav>
@@ -41,10 +41,10 @@
 @foreach($published as $article)
    
                     <li class="post">
-                      <div class="date">{{ $article->published_at }}</div><a href="" class="title">{{ $article->title }}</a>
-                      <div class="details">By <a href="#">Asael Jaimes</a> · Filed under <a href="#">Web Design</a></div>
+                      <div class="date">{{ $article->published_at }}</div><a href="{{ url('articles/' . $article->id . '/edit') }}" class="title">{{ $article->title }}</a>
+                      <div class="details">By <a href="#">{{ $article->user->name }}</a> · Filed under <a href="#">{{ $article->tags->first()->name }}</a></div>
                       <ul class="options">
-                        <li class="option"><a href="#" class="link edit"><span class="typcn typcn-edit"></span></a></li>
+                        <li class="option"><a href="{{ url('articles/' . $article->id . '/edit') }}" class="link edit"><span class="typcn typcn-edit"></span></a></li>
                         <li class="option"><a href="#" class="link delete"><span class="typcn typcn-trash"></span></a></li>
                       </ul>
                     </li>
@@ -76,7 +76,7 @@
 @else
 
                     <div class="empty"><i class="fa fa-meh-o"></i>
-                      <h4 class="legend">You don't any future posts</h4><a href="{{ url('articles/create') }}" class="btn blue">Write an article</a>
+                      <h4 class="legend">You don't have any future posts</h4><a href="{{ url('articles/create') }}" class="btn blue">Write an article</a>
                     </div>
 @endif
 
