@@ -28,7 +28,7 @@
       <div class="tools">
         <ul class="tabs">
           <li class="tab"><a href="#" data-tab="published" class="link active">Published</a></li>
-          <li class="tab"><a href="#" data-tab="drafts" class="link">Drafts</a></li>
+          <li class="tab"><a href="#" data-tab="unpublished" class="link">Unpublished</a></li>
         </ul>
         <div class="search"><span class="typcn typcn-zoom"></span>
           <input type="search" name="s" placeholder="Search...">
@@ -36,9 +36,9 @@
       </div>
       <!-- Posts list-->
       <ul id="published" class="posts active tabbed">
-@if(!$articles->isEmpty())
+@if(!$published->isEmpty())
 
-@foreach($articles as $article)
+@foreach($published as $article)
    
                     <li class="post">
                       <div class="date">{{ $article->published_at }}</div><a href="" class="title">{{ $article->title }}</a>
@@ -58,10 +58,10 @@
 @endif
 
       </ul>
-      <ul id="drafts" class="posts tabbed">       
-@if(!$articles->isEmpty())
+      <ul id="unpublished" class="posts tabbed">       
+@if(!$unpublished->isEmpty())
 
-@foreach($articles as $article)
+@foreach($unpublished as $article)
    
                     <li class="post">
                       <div class="date">{{ $article->published_at }}</div><a href="" class="title">{{ $article->title }}</a>
@@ -76,7 +76,7 @@
 @else
 
                     <div class="empty"><i class="fa fa-meh-o"></i>
-                      <h4 class="legend">You don't have any drafts yet</h4><a href="{{ url('articles/create') }}" class="btn blue">Write an article</a>
+                      <h4 class="legend">You don't any future posts</h4><a href="{{ url('articles/create') }}" class="btn blue">Write an article</a>
                     </div>
 @endif
 

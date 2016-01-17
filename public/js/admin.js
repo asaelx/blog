@@ -8097,23 +8097,6 @@ $(function(){
         }
     }
 
-    // /* Panel */
-    // var panel = $('.panel');
-    // if(panel.length){
-    //     var close_btn = panel.find('.title').find('.close-panel'),
-    //         open_btn = $('.open-panel');
-    //
-    //     open_btn.click(function(e){
-    //         e.preventDefault();
-    //         panel.addClass('revealed');
-    //     });
-    //
-    //     close_btn.click(function(e){
-    //         e.preventDefault();
-    //         panel.removeClass('revealed');
-    //     });
-    // }
-
     /* File preview */
     var file_img = $('.file').filter('.img');
     if(file_img.length){
@@ -8161,30 +8144,24 @@ $(function(){
     /* Checkbox Switch */
     var onoffswitch = $('.onoffswitch');
     if(onoffswitch.length){
-        var onoffswitch_wrap = $('<div>', {
-                class: 'onoffswitch-styled'
-            });
-        onoffswitch.wrap(onoffswitch_wrap).after($('<label>', {
-            class: 'onoffswitch-label',
-            for: onoffswitch.attr('id')
-        }));
+        $.each(onoffswitch, function(){
+            var $this = $(this);
+            var onoffswitch_wrap = $('<div>', {
+                    class: 'onoffswitch-styled'
+                });
+            $this.wrap(onoffswitch_wrap).after($('<label>', {
+                class: 'onoffswitch-label',
+                for: $this.attr('id')
+            }));
+        });
+        // var onoffswitch_wrap = $('<div>', {
+        //         class: 'onoffswitch-styled'
+        //     });
+        // onoffswitch.wrap(onoffswitch_wrap).after($('<label>', {
+        //     class: 'onoffswitch-label',
+        //     for: onoffswitch.attr('id')
+        // }));
     }
-
-    // /* Datetime field */
-    // var dtBox = $("#dtBox");
-    // if(dtBox.length){
-    //     dtBox.DateTimePicker({
-    //         dateTimeFormat: "dd-MM-yyyy hh:mm:ss AA",
-    //         shortDayNames: ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"],
-    //         fullDayNames: ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"],
-    //         shortMonthNames: ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"],
-    //         fullMonthNames: ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"],
-    //         titleContentDateTime: "Fecha de publicación",
-    //         setButtonContent: "Aceptar",
-    //         clearButtonContent: "Borrar",
-    //         minDateTime: new Date().format('dd-mm-yyyy hh:mm:ss TT')
-    //     });
-    // }
 
     // Datepicker
 
@@ -8235,7 +8212,8 @@ $(function(){
             var $target = $(e.target);
             if(!$target.hasClass('drop') &&
                 !$target.hasClass('drop-trigger') &&
-                !$target.closest('.drop').length
+                !$target.closest('.drop').length &&
+                !$target.closest('.select2-container').length
             ){
                 drops.removeClass('visible');
             }

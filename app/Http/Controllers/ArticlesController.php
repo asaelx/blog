@@ -30,8 +30,9 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $articles = Article::latest()->published()->get();
-        return view('articles.index', compact('articles'));
+        $published = Article::latest()->published()->get();
+        $unpublished = Article::latest()->unpublished()->get();
+        return view('articles.index', compact('published', 'unpublished'));
     }
 
     /**

@@ -22,21 +22,3 @@
         | {!! Form::text('title', null, ['placeholder' => 'Your article title', 'id' => 'input-title']) !!}
     .body
         | {!! Form::textarea('body', null, ['class' => 'editable']) !!}
-
-//- .panel.page-settings
-//-     h2.title Page Settings
-//-         button.btn.green.close-panel Close
-//-     .group
-//-         | {!! Form::label('cover', 'Cover image', ['class' => 'label']) !!}
-//-         | {!! Form::file('cover', ['class' => 'file img']) !!}
-//-     .group
-//-         | {!! Form::label('tags', 'Tags', ['class' => 'label']) !!}
-//-         | {!! Form::select('tag_list[]', $tags, null, ['multiple', 'class' => 'select2']) !!}
-//-     .group
-//-         | {!! Form::label('published_at', 'Publish date') !!}
-//-         | {!! Form::text('published_at', \Carbon\Carbon::now('America/Mexico_City')->format('d-m-Y h:m:s A'), ['data-field' => 'datetime', 'readonly' => true, 'class' => 'input']) !!}
-//-     .group
-//-         | {!! Form::label('twitter', 'Post to twitter', ['class' => 'label']) !!}
-//-         | {!! Form::checkbox('twitter', 1, null, ['class' => 'onoffswitch']) !!}
-//-         #dtBox
-    

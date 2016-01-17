@@ -17,7 +17,7 @@ block content
                 li.tab
                     a.link.active(href="#", data-tab="published") Published
                 li.tab
-                    a.link(href="#", data-tab="drafts") Drafts
+                    a.link(href="#", data-tab="unpublished") Unpublished
             .search
                 span.typcn.typcn-zoom
                 input(type="search", name="s", placeholder="Search...")
@@ -26,8 +26,8 @@ block content
         include ../mixins/blade
         //- Published
         ul.posts.active.tabbed#published
-            +if('!$articles->isEmpty()')
-                +foreach('$articles as $article')    
+            +if('!$published->isEmpty()')
+                +foreach('$published as $article')    
                     li.post
                         .date {{ $article->published_at }}
                         a.title(href="") {{ $article->title }}
@@ -47,9 +47,9 @@ block content
                         a.btn.blue(href="{{ url('articles/create') }}") Write an article
                             
         //- Drafts
-        ul.posts.tabbed#drafts        
-            +if('!$articles->isEmpty()')
-                +foreach('$articles as $article')    
+        ul.posts.tabbed#unpublished        
+            +if('!$unpublished->isEmpty()')
+                +foreach('$unpublished as $article')    
                     li.post
                         .date {{ $article->published_at }}
                         a.title(href="") {{ $article->title }}
@@ -65,7 +65,7 @@ block content
                 +else
                     .empty
                         i.fa.fa-meh-o
-                        h4.legend You don't have any drafts yet
+                        h4.legend You don't any future posts
                         a.btn.blue(href="{{ url('articles/create') }}") Write an article
                     
 block scripts
