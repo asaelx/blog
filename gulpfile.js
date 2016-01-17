@@ -21,7 +21,10 @@ elixir(function(mix) {
         bw + 'medium-editor/dist/css/medium-editor.min.css',
         bw + 'medium-editor/dist/css/themes/default.min.css',
         bw + 'medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin.min.css',
-        bw + 'datetimepicker/dist/DateTimePicker.min.css',
+        // bw + 'datetimepicker/dist/DateTimePicker.min.css',
+        // bw + 'bootstrap/dist/css/bootstrap.css',
+        '../../../resources/assets/css/dropdowns.css',
+        bw + 'bootstrap-datepicker/dist/css/bootstrap-datepicker3.css',
         bw + 'select2/src/scss/core.scss',
         'admin/admin.sass'
     ], 'public/css/admin.css');
@@ -38,8 +41,9 @@ elixir(function(mix) {
         bw + 'blueimp-file-upload/js/jquery.iframe-transport.js',
         bw + 'blueimp-file-upload/js/jquery.fileupload.js',
         bw + 'medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin.min.js',
-        bw + 'datetimepicker/dist/DateTimePicker.min.js',
+        // bw + 'datetimepicker/dist/DateTimePicker.min.js',
         bw + 'date.format/date.format.js',
+        bw + 'bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',
         bw + 'select2/dist/js/select2.js',
         'admin.js'
     ], 'public/js/admin.js');

@@ -8,13 +8,16 @@
     position: relative
     &:hover
         cursor: pointer
-        opacity: 0.8
         transition: all 0.3s ease
     &.blue
         background: $blue
+        &:hover
+            background: lighten($blue, 10)
         &:active
             background: darken($blue, 15)
     &.green
         background: $green
+        &:hover
+            background: lighten($green, 10)
         &:active
             background: darken($green, 15)

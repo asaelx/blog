@@ -63,7 +63,8 @@ class Article extends Model
      */
     public function getPublishedAtAttribute($date)
     {
-        return Carbon::parse($date)->format('Y-m-d');
+        // This overrides 'protected $dates'
+        return Carbon::parse($date)->tz('America/Mexico_City')->format('Y-m-d');
     }
 
     /**

@@ -29,7 +29,7 @@ block content
             +if('!$articles->isEmpty()')
                 +foreach('$articles as $article')    
                     li.post
-                        .date {{ $article->published_at->diffForHumans() }}
+                        .date {{ $article->published_at }}
                         a.title(href="") {{ $article->title }}
                         .details
                             | By <a href="#">Asael Jaimes</a> · Filed under <a href="#">Web Design</a>
@@ -45,37 +45,13 @@ block content
                         i.fa.fa-frown-o
                         h4.legend You don't have any publications yet
                         a.btn.blue(href="{{ url('articles/create') }}") Write an article
-            //- li.post
-            //-     .date 2/12/2015
-            //-     a.title(href="") This is a published post
-            //-     .details
-            //-         | By <a href="#">Asael Jaimes</a> · Filed under <a href="#">Web Design</a>
-            //-     ul.options
-            //-         li.option
-            //-             a.link.edit(href="")
-            //-                 span.typcn.typcn-edit
-            //-         li.option
-            //-             a.link.delete(href="")
-            //-                 span.typcn.typcn-trash
-            //- li.post
-            //-     .date 2/12/2015
-            //-     a.title(href="") Published post, man
-            //-     .details
-            //-         | By <a href="#">Asael Jaimes</a> · Filed under <a href="#">Web Design</a>
-            //-     ul.options
-            //-         li.option
-            //-             a.link.edit(href="")
-            //-                 span.typcn.typcn-edit
-            //-         li.option
-            //-             a.link.delete(href="")
-            //-                 span.typcn.typcn-trash
                             
         //- Drafts
         ul.posts.tabbed#drafts        
             +if('!$articles->isEmpty()')
                 +foreach('$articles as $article')    
                     li.post
-                        .date {{ $article->published_at->diffForHumans() }}
+                        .date {{ $article->published_at }}
                         a.title(href="") {{ $article->title }}
                         .details
                             | By <a href="#">Asael Jaimes</a> · Filed under <a href="#">Web Design</a>

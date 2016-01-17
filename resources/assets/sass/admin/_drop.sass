@@ -1,0 +1,11 @@
+.drop
+    visibility: hidden
+    +opacity(0)
+    background: $white
+    border-radius: rem(3px)
+    box-shadow: 0 0px 10px 3px rgba($black, 0.2)
+    padding: 2rem
+    z-index: 10
+    transition: all 0.3s ease
+    &.visible
+        animation: drop-in 0.3s forwards ease

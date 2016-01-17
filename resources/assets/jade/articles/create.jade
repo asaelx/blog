@@ -11,42 +11,10 @@ block sidebar
     
 block content
     .content
-        | {!! Form::open(['url' => url('admin/store'), 'class' => 'form', 'files' => true]) !!}
-        .editor
-            .title
-                .options
-                    a(href="#").settings.open-panel
-                        span.typcn.typcn-cog
-                    input(type="submit", value="Publish").btn.blue.publish
-                | {!! Form::text('title', null, ['placeholder' => 'Your article title', 'id' => 'input-title']) !!}
-            .body
-                | {!! Form::textarea('body', null, ['class' => 'editable']) !!}
-        .panel.page-settings
-            h2.title Page Settings
-                button.btn.green.close-panel Close
-            .group
-                | {!! Form::label('cover', 'Cover image', ['class' => 'label']) !!}
-                | {!! Form::file('cover', ['class' => 'file img']) !!}
-            .group
-                | {!! Form::label('tags', 'Tags', ['class' => 'label']) !!}
-                | {!! Form::select('tags[]', ($tags ? $tags : null), null, ['class' => 'select2', 'multiple' => true]) !!}
-            .group
-                | {!! Form::label('published_at', 'Publish date') !!}
-                | {!! Form::text('published_at', \Carbon\Carbon::now('America/Mexico_City')->format('d-m-Y h:m:s A'), ['data-field' => 'datetime', 'readonly' => true, 'class' => 'input']) !!}
-            .group
-                | {!! Form::label('twitter', 'Post to twitter', ['class' => 'label']) !!}
-                | {!! Form::checkbox('twitter', 1, null, ['class' => 'onoffswitch']) !!}
-                #dtBox
+        | {!! Form::model($article = new \App\Article, ['url' => url('articles'), 'class' => 'form', 'files' => true]) !!}
+        include ../mixins/blade
+        +include("articles.partials.form", "['submitButtonText' => 'Publish']")
         | {!! Form::close() !!}
-    
-    //- .row
-    //-     .column.medium-12
-    //-     | {!! Form::model($article = new \App\Article, ['url' => 'articles']) !!}
-    //-     fieldset
-    //-         legend CREATE ARTICLE
-    //-         include ../mixins/blade
-    //-         +include("articles.partials.form", "['submitButtonText' => 'Create Article']")
-    //-     | {!! Form::close() !!}
 
 block scripts
     script(src="{{ asset('js/admin.js') }}")

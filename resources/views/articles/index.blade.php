@@ -41,7 +41,7 @@
 @foreach($articles as $article)
    
                     <li class="post">
-                      <div class="date">{{ $article->published_at->diffForHumans() }}</div><a href="" class="title">{{ $article->title }}</a>
+                      <div class="date">{{ $article->published_at }}</div><a href="" class="title">{{ $article->title }}</a>
                       <div class="details">By <a href="#">Asael Jaimes</a> · Filed under <a href="#">Web Design</a></div>
                       <ul class="options">
                         <li class="option"><a href="#" class="link edit"><span class="typcn typcn-edit"></span></a></li>
@@ -64,7 +64,7 @@
 @foreach($articles as $article)
    
                     <li class="post">
-                      <div class="date">{{ $article->published_at->diffForHumans() }}</div><a href="" class="title">{{ $article->title }}</a>
+                      <div class="date">{{ $article->published_at }}</div><a href="" class="title">{{ $article->title }}</a>
                       <div class="details">By <a href="#">Asael Jaimes</a> · Filed under <a href="#">Web Design</a></div>
                       <ul class="options">
                         <li class="option"><a href="#" class="link edit"><span class="typcn typcn-edit"></span></a></li>

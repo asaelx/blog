@@ -6,15 +6,17 @@
         .options
             float: right
             margin-bottom: 0.5em
+            position: relative
+            .publish
+                .typcn
+                    pointer-events: none
             .settings
-                +font-size(26px)
-                color: $light
-                position: relative
-                top: rem(3px)
-                transition: all 0.3s ease
-                &:hover
-                    opacity: 0.8
-                    transition: all 0.3s ease
+                position: absolute
+                top: 100%
+                right: 0
+                background: white
+                .btn
+                    float: right
         #input-title
             border: 0
             +font-size(24px)

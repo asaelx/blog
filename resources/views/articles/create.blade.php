@@ -23,37 +23,9 @@
         </ul>
       </nav>
     </aside>
-    <div class="content">{!! Form::open(['url' => url('admin/store'), 'class' => 'form', 'files' => true]) !!}
-      <div class="editor">
-        <div class="title">
-          <div class="options"><a href="#" class="settings open-panel"><span class="typcn typcn-cog"></span></a>
-            <input type="submit" value="Publish" class="btn blue publish">
-          </div>{!! Form::text('title', null, ['placeholder' => 'Your article title', 'id' => 'input-title']) !!}
-        </div>
-        <div class="body">{!! Form::textarea('body', null, ['class' => 'editable']) !!}</div>
-      </div>
-      <div class="panel page-settings">
-        <h2 class="title">Page Settings
-          <button class="btn green close-panel">Close</button>
-        </h2>
-        <div class="group">
-          {!! Form::label('cover', 'Cover image', ['class' => 'label']) !!}
-          {!! Form::file('cover', ['class' => 'file img']) !!}
-        </div>
-        <div class="group">
-          {!! Form::label('tags', 'Tags', ['class' => 'label']) !!}
-          {!! Form::select('tags[]', ($tags ? $tags : null), null, ['class' => 'select2', 'multiple' => true]) !!}
-        </div>
-        <div class="group">
-          {!! Form::label('published_at', 'Publish date') !!}
-          {!! Form::text('published_at', \Carbon\Carbon::now('America/Mexico_City')->format('d-m-Y h:m:s A'), ['data-field' => 'datetime', 'readonly' => true, 'class' => 'input']) !!}
-        </div>
-        <div class="group">
-          {!! Form::label('twitter', 'Post to twitter', ['class' => 'label']) !!}
-          {!! Form::checkbox('twitter', 1, null, ['class' => 'onoffswitch']) !!}
-          <div id="dtBox"></div>
-        </div>
-      </div>{!! Form::close() !!}
+    <div class="content">{!! Form::model($article = new \App\Article, ['url' => url('articles'), 'class' => 'form', 'files' => true]) !!}
+@include('articles.partials.form', ['submitButtonText' => 'Publish'])
+{!! Form::close() !!}
     </div>
     <script src="{{ asset('js/admin.js') }}"></script>
   </body>

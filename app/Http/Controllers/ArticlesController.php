@@ -16,7 +16,7 @@ class ArticlesController extends Controller
 
     /**
      * Attach middleware auth to the Controller
-     * 
+     *
      */
     public function __construct()
     {
@@ -31,7 +31,6 @@ class ArticlesController extends Controller
     public function index()
     {
         $articles = Article::latest()->published()->get();
-
         return view('articles.index', compact('articles'));
     }
 
@@ -58,7 +57,7 @@ class ArticlesController extends Controller
 
         $this->syncTags($article, $request->input('tag_list'));
 
-        //File
+        //Code for cover image upload
 
         return redirect('articles');
     }
