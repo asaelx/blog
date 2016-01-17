@@ -9,10 +9,10 @@
   </div>
   <nav class="nav">
     <ul class="options">
-      <li class="option"><a href="{{ url('admin/articles/create') }}" class="link active"> <span class="typcn typcn-pen"></span>Nuevo artículo</a></li>
-      <li class="option"><a href="{{ url('admin/articles') }}" class="link"><span class="typcn typcn-document-text"></span>Contentido</a></li>
-      <li class="option"><a href="{{ url('admin/tags') }}" class="link"><span class="typcn typcn-tags"></span>Etiquetas</a></li>
-      <li class="option"><a href="{{ url('admin/settings') }}" class="link"> <span class="typcn typcn-cog"></span>Ajustes</a></li>
+      <li class="option"><a href="{{ url('admin/articles/create') }}" class="link {{ (request()->is('admin/articles/create')) ? 'active' : '' }}"><span class="typcn typcn-pen"></span>Nuevo artículo</a></li>
+      <li class="option"><a href="{{ url('admin/articles') }}" class="link {{ (request()->is('admin/articles') || request()->is('admin/articles/*') && !request()->is('admin/articles/create')) ? 'active' : '' }}"><span class="typcn typcn-document-text"></span>Contentido</a></li>
+      <li class="option"><a href="{{ url('admin/tags') }}" class="link {{ (request()->is('admin/tags') || request()->is('admin/tags/*')) ? 'active' : '' }}"><span class="typcn typcn-tags"></span>Etiquetas</a></li>
+      <li class="option"><a href="{{ url('admin/settings') }}" class="link link {{ (request()->is('admin/settings') || request()->is('admin/settings/*')) ? 'active' : '' }}"> <span class="typcn typcn-cog"></span>Ajustes</a></li>
     </ul>
   </nav>
 </aside>

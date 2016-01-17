@@ -9,18 +9,18 @@ aside.sidebar
     nav.nav
         ul.options
             li.option
-                a.link.active(href="{{ url('admin/articles/create') }}") 
+                a(href="{{ url('admin/articles/create') }}", class!="link {{ (request()->is('admin/articles/create')) ? 'active' : '' }}")
                     span.typcn.typcn-pen
                     | Nuevo artículo
             li.option
-                a.link(href="{{ url('admin/articles') }}")
+                a(href="{{ url('admin/articles') }}", class!="link {{ (request()->is('admin/articles') || request()->is('admin/articles/*') && !request()->is('admin/articles/create')) ? 'active' : '' }}")
                     span.typcn.typcn-document-text
                     | Contentido
             li.option
-                a.link(href="{{ url('admin/tags') }}")
+                a(href="{{ url('admin/tags') }}", class!="link {{ (request()->is('admin/tags') || request()->is('admin/tags/*')) ? 'active' : '' }}")
                     span.typcn.typcn-tags
                     | Etiquetas
             li.option
-                a.link(href="{{ url('admin/settings') }}") 
+                a.link(href="{{ url('admin/settings') }}", class!="link {{ (request()->is('admin/settings') || request()->is('admin/settings/*')) ? 'active' : '' }}") 
                     span.typcn.typcn-cog
                     | Ajustes
