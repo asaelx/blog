@@ -11,7 +11,7 @@ block sidebar
     
 block content
     .content
-        h1.title Tus artículos
+        h1.title Artículos archivados en <a href="{{ url('articles/tagged', $tag->name) }}" class="link">{{ $tag->name }}</a>
         include ../partials/tools
         
         // Posts list

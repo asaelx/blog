@@ -5648,6 +5648,8 @@ html {
     font-size: 1.7142857143rem;
     color: #34495E;
     margin-bottom: 1em; }
+    .content > .title .link {
+      color: #6A8AAA; }
 
 .drop {
   visibility: hidden;
@@ -5784,7 +5786,8 @@ html {
       float: left; }
       .content .tools .tabs .tab .link {
         display: block;
-        padding: 0 1em 0.5em 1em; }
+        padding: 0 1em 0.5em 1em;
+        color: #34495E; }
         .content .tools .tabs .tab .link.active {
           color: #3498DB;
           border-bottom: 3px solid #3498DB; }

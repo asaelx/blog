@@ -2,7 +2,7 @@ li.post
     .date {{ \Carbon\Carbon::parse($article->published_at)->diffForHumans() }}
     a.title(href!="{{ url('articles/' . $article->id . '/edit') }}") {{ $article->title }}
     .details
-        | Por <a href="#">{{ $article->user->name }}</a> · Archivado en <a href="#">{{ $article->tags->first()->name }}</a>
+        | Por <a href="#">{{ $article->user->name }}</a> · Archivado en <a href="{{ url('articles/tagged', $article->tags->first()->name) }}">{{ $article->tags->first()->name }}</a>
     ul.options
         li.option
             a.link.edit(href!="{{ url('articles/' . $article->id . '/edit') }}")
