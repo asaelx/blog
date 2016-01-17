@@ -25,5 +25,6 @@ Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 Route::get('articles/tagged/{tags}', 'TagsController@show');
+Route::get('articles/author/{users}', 'UsersController@show');
 
 Route::resource('articles', 'ArticlesController');

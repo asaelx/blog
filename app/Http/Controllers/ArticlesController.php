@@ -30,8 +30,8 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $published = Article::latest()->published()->get();
-        $unpublished = Article::latest()->unpublished()->get();
+        $published = Article::latest()->published()->paginate(1, ['*'], 'published_page');
+        $unpublished = Article::latest()->unpublished()->paginate(10, ['*'], 'unpublished_page');
         return view('articles.index', compact('published', 'unpublished'));
     }
 

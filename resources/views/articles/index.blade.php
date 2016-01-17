@@ -42,7 +42,7 @@
    
                     <li class="post">
                       <div class="date">{{ \Carbon\Carbon::parse($article->published_at)->diffForHumans() }}</div><a href="{{ url('articles/' . $article->id . '/edit') }}" class="title">{{ $article->title }}</a>
-                      <div class="details">Por <a href="#">{{ $article->user->name }}</a> · Archivado en <a href="{{ url('articles/tagged', $article->tags->first()->name) }}">{{ $article->tags->first()->name }}</a></div>
+                      <div class="details">Por <a href="{{ url('articles/author', $article->user->name) }}">{{ $article->user->name }}</a> · Archivado en <a href="{{ url('articles/tagged', $article->tags->first()->name) }}">{{ $article->tags->first()->name }}</a></div>
                       <ul class="options">
                         <li class="option"><a href="{{ url('articles/' . $article->id . '/edit') }}" class="link edit"><span class="typcn typcn-edit"></span></a></li>
                         <li class="option">{!! Form::open(['url' => url('articles', $article->id), 'method' => 'DELETE']) !!}
@@ -52,6 +52,16 @@
                     </li>
 @endforeach
 
+              <div class="list-footer">
+@if($published->total() > 1)
+
+                      <div class="count">Hay {{ $published->total() }} artículos en total</div>
+@else
+
+                            <div class="count">Solo hay {{ $published->total() }} artículo</div>
+@endif
+{!! $published->render() !!}
+              </div>
 @else
 
                     <div class="empty"><i class="fa fa-frown-o"></i>
@@ -67,7 +77,7 @@
    
                     <li class="post">
                       <div class="date">{{ \Carbon\Carbon::parse($article->published_at)->diffForHumans() }}</div><a href="{{ url('articles/' . $article->id . '/edit') }}" class="title">{{ $article->title }}</a>
-                      <div class="details">Por <a href="#">{{ $article->user->name }}</a> · Archivado en <a href="{{ url('articles/tagged', $article->tags->first()->name) }}">{{ $article->tags->first()->name }}</a></div>
+                      <div class="details">Por <a href="{{ url('articles/author', $article->user->name) }}">{{ $article->user->name }}</a> · Archivado en <a href="{{ url('articles/tagged', $article->tags->first()->name) }}">{{ $article->tags->first()->name }}</a></div>
                       <ul class="options">
                         <li class="option"><a href="{{ url('articles/' . $article->id . '/edit') }}" class="link edit"><span class="typcn typcn-edit"></span></a></li>
                         <li class="option">{!! Form::open(['url' => url('articles', $article->id), 'method' => 'DELETE']) !!}
@@ -77,6 +87,16 @@
                     </li>
 @endforeach
 
+              <div class="list-footer">
+@if($unpublished->total() > 1)
+
+                      <div class="count">Hay {{ $unpublished->total() }} artículos en total</div>
+@else
+
+                            <div class="count">Solo hay {{ $unpublished->total() }} artículo</div>
+@endif
+{!! $unpublished->render() !!}
+              </div>
 @else
 
                     <div class="empty"><i class="fa fa-meh-o"></i>

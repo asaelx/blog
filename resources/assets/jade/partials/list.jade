@@ -4,6 +4,12 @@ ul.posts.active.tabbed#published
     +if('!$published->isEmpty()')
         +foreach('$published as $article')    
             include ../partials/post
+        .list-footer
+            +if('$published->total() > 1')
+                .count Hay {{ $published->total() }} artículos en total
+                +else
+                    .count Solo hay {{ $published->total() }} artículo
+            {!! $published->render() !!}
         +else
             .empty
                 i.fa.fa-frown-o
@@ -15,6 +21,12 @@ ul.posts.tabbed#unpublished
     +if('!$unpublished->isEmpty()')
         +foreach('$unpublished as $article')    
             include ../partials/post
+        .list-footer
+            +if('$unpublished->total() > 1')
+                .count Hay {{ $unpublished->total() }} artículos en total
+                +else
+                    .count Solo hay {{ $unpublished->total() }} artículo
+            {!! $unpublished->render() !!}
         +else
             .empty
                 i.fa.fa-meh-o

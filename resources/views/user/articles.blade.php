@@ -24,7 +24,7 @@
       </nav>
     </aside>
     <div class="content">
-      <h1 class="title">Artículos archivados en <a href="{{ url('articles/tagged', $tag->name) }}" class="link">{{ $tag->name }}</a></h1>
+      <h1 class="title">Artículos escritos por <a href="{{ url('articles/author', $user->name) }}" class="link">{{ $user->name }}</a></h1>
       <div class="tools">
         <ul class="tabs">
           <li class="tab"><a href="#" data-tab="published" class="link active">Publicados</a></li>

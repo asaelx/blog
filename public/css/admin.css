@@ -5881,6 +5881,49 @@ html {
               font-size: 1.4285714286rem;
               color: #E74C3C; }
 
+.content .list-footer {
+  content: " ";
+  display: table;
+  clear: both;
+  margin: 2rem 0;
+  width: 100%; }
+  .content .list-footer .count {
+    float: left;
+    font-size: 14px;
+    font-size: 1rem;
+    font-family: 'Lato';
+    font-style: italic;
+    color: #95A5A6;
+    text-align: center; }
+  .content .list-footer .pagination {
+    float: right;
+    padding: 0 1rem 1rem 1rem; }
+    .content .list-footer .pagination li {
+      float: left;
+      border-radius: 0.2142857143rem;
+      margin: 0 0.1em; }
+      .content .list-footer .pagination li span, .content .list-footer .pagination li a {
+        display: block;
+        padding: 0.2em 0.5em;
+        font-size: 14px;
+        font-size: 1rem;
+        color: #34495E; }
+      .content .list-footer .pagination li:hover {
+        background: #3498DB;
+        transition: all 0.3s ease; }
+        .content .list-footer .pagination li:hover span, .content .list-footer .pagination li:hover a {
+          color: #FFFFFF; }
+    .content .list-footer .pagination .disabled span {
+      color: #C2CFD0; }
+    .content .list-footer .pagination .disabled:hover {
+      background: none; }
+      .content .list-footer .pagination .disabled:hover span {
+        color: #C2CFD0; }
+    .content .list-footer .pagination .active {
+      background: #3498DB; }
+      .content .list-footer .pagination .active span {
+        color: #FFFFFF; }
+
 .editor {
   width: 57.1428571429rem;
   margin: 0 auto; }

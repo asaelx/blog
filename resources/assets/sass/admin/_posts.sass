@@ -63,3 +63,42 @@
                             .typcn
                                 +font-size(20px)
                                 color: $red
+    .list-footer
+        +clearfix
+        margin: 2rem 0
+        width: 100%
+        .count
+            float: left
+            +font-size(14px)
+            font-family: 'Lato'
+            font-style: italic
+            color: $gray
+            text-align: center
+        .pagination
+            float: right
+            padding: 0 1rem 1rem 1rem
+            li
+                float: left
+                border-radius: rem(3px)
+                margin: 0 0.1em
+                span, a
+                    display: block
+                    padding: 0.2em 0.5em
+                    +font-size(14px)
+                    color: $dark
+                &:hover
+                    background: $blue
+                    transition: all 0.3s ease
+                    span, a
+                        color: $white
+            .disabled
+                span
+                    color: $silver
+                &:hover
+                    background: none
+                    span
+                        color: $silver
+            .active
+                background: $blue
+                span
+                    color: $white

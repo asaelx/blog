@@ -46,4 +46,24 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->hasMany('App\Article');
     }
+
+    /**
+     * Get the published articles associated by the given tag
+     *
+     * @return Scope
+     */
+    public function publishedArticles()
+    {
+        return $this->articles()->published();
+    }
+
+    /**
+     * Get the unpublished articles associated by the given tag
+     *
+     * @return Scope
+     */
+    public function unpublishedArticles()
+    {
+        return $this->articles()->unpublished();
+    }
 }
