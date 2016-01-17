@@ -41,11 +41,13 @@
 @foreach($published as $article)
    
                     <li class="post">
-                      <div class="date">{{ $article->published_at }}</div><a href="{{ url('articles/' . $article->id . '/edit') }}" class="title">{{ $article->title }}</a>
+                      <div class="date">{{ \Carbon\Carbon::parse($article->published_at)->diffForHumans() }}</div><a href="{{ url('articles/' . $article->id . '/edit') }}" class="title">{{ $article->title }}</a>
                       <div class="details">Por <a href="#">{{ $article->user->name }}</a> · Archivado en <a href="#">{{ $article->tags->first()->name }}</a></div>
                       <ul class="options">
                         <li class="option"><a href="{{ url('articles/' . $article->id . '/edit') }}" class="link edit"><span class="typcn typcn-edit"></span></a></li>
-                        <li class="option"><a href="#" class="link delete"><span class="typcn typcn-trash"></span></a></li>
+                        <li class="option">{!! Form::open(['url' => url('articles', $article->id), 'method' => 'DELETE']) !!}
+                          <button type="submit" class="link delete"><span class="typcn typcn-trash"></span></button>{!! Form::close() !!}
+                        </li>
                       </ul>
                     </li>
 @endforeach
@@ -64,11 +66,13 @@
 @foreach($unpublished as $article)
    
                     <li class="post">
-                      <div class="date">{{ $article->published_at }}</div><a href="" class="title">{{ $article->title }}</a>
-                      <div class="details">By <a href="#">Asael Jaimes</a> · Filed under <a href="#">Web Design</a></div>
+                      <div class="date">{{ \Carbon\Carbon::parse($article->published_at)->diffForHumans() }}</div><a href="{{ url('articles/' . $article->id . '/edit') }}" class="title">{{ $article->title }}</a>
+                      <div class="details">Por <a href="#">{{ $article->user->name }}</a> · Archivado en <a href="#">{{ $article->tags->first()->name }}</a></div>
                       <ul class="options">
-                        <li class="option"><a href="#" class="link edit"><span class="typcn typcn-edit"></span></a></li>
-                        <li class="option"><a href="#" class="link delete"><span class="typcn typcn-trash"></span></a></li>
+                        <li class="option"><a href="{{ url('articles/' . $article->id . '/edit') }}" class="link edit"><span class="typcn typcn-edit"></span></a></li>
+                        <li class="option">{!! Form::open(['url' => url('articles', $article->id), 'method' => 'DELETE']) !!}
+                          <button type="submit" class="link delete"><span class="typcn typcn-trash"></span></button>{!! Form::close() !!}
+                        </li>
                       </ul>
                     </li>
 @endforeach

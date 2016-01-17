@@ -1,0 +1,14 @@
+li.post
+    .date {{ \Carbon\Carbon::parse($article->published_at)->diffForHumans() }}
+    a.title(href!="{{ url('articles/' . $article->id . '/edit') }}") {{ $article->title }}
+    .details
+        | Por <a href="#">{{ $article->user->name }}</a> · Archivado en <a href="#">{{ $article->tags->first()->name }}</a>
+    ul.options
+        li.option
+            a.link.edit(href!="{{ url('articles/' . $article->id . '/edit') }}")
+                span.typcn.typcn-edit
+        li.option
+            | {!! Form::open(['url' => url('articles', $article->id), 'method' => 'DELETE']) !!}
+            button.link.delete(type="submit")
+                span.typcn.typcn-trash
+            | {!! Form::close() !!}

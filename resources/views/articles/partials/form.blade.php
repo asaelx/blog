@@ -14,7 +14,7 @@
         </div>
         <div class="group">
           {!! Form::label('published_at', 'Fecha de publicación', ['class' => 'label']) !!}
-          {!! Form::text('published_at', null, ['class' => 'datepicker input']) !!}
+          {!! Form::text('published_at', \Carbon\Carbon::now()->tz('America/Mexico_City')->format('Y-m-d'), ['class' => 'datepicker input']) !!}
         </div>
         <div class="group">
           {!! Form::label('twitter', 'Publicar en twitter', ['class' => 'label']) !!}

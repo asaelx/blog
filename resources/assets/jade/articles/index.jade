@@ -28,18 +28,7 @@ block content
         ul.posts.active.tabbed#published
             +if('!$published->isEmpty()')
                 +foreach('$published as $article')    
-                    li.post
-                        .date {{ $article->published_at }}
-                        a.title(href!="{{ url('articles/' . $article->id . '/edit') }}") {{ $article->title }}
-                        .details
-                            | Por <a href="#">{{ $article->user->name }}</a> · Archivado en <a href="#">{{ $article->tags->first()->name }}</a>
-                        ul.options
-                            li.option
-                                a.link.edit(href!="{{ url('articles/' . $article->id . '/edit') }}")
-                                    span.typcn.typcn-edit
-                            li.option
-                                a.link.delete(href="#")
-                                    span.typcn.typcn-trash
+                    include partials/post
                 +else
                     .empty
                         i.fa.fa-frown-o
@@ -50,18 +39,7 @@ block content
         ul.posts.tabbed#unpublished        
             +if('!$unpublished->isEmpty()')
                 +foreach('$unpublished as $article')    
-                    li.post
-                        .date {{ $article->published_at }}
-                        a.title(href="") {{ $article->title }}
-                        .details
-                            | By <a href="#">Asael Jaimes</a> · Filed under <a href="#">Web Design</a>
-                        ul.options
-                            li.option
-                                a.link.edit(href="#")
-                                    span.typcn.typcn-edit
-                            li.option
-                                a.link.delete(href="#")
-                                    span.typcn.typcn-trash
+                    include partials/post
                 +else
                     .empty
                         i.fa.fa-meh-o

@@ -111,9 +111,12 @@ class ArticlesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($article)
     {
-        //
+        $this->syncTags($article, []);
+        $article->delete();
+
+        return redirect('articles');
     }
 
     /**

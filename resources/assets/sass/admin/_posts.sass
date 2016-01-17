@@ -30,6 +30,7 @@
             .title
                 display: inline-block
                 +font-size(18px)
+                color: $dark
                 margin: 0.5em 0
             .details
                 font-family: 'Lato'
@@ -52,4 +53,13 @@
                         color: $light
                         +font-size(20px)
                         &.delete
-                            color: $red
+                            appearance: none
+                            border: none
+                            background: none
+                            margin: 0
+                            padding: 0
+                            &:hover
+                                cursor: pointer
+                            .typcn
+                                +font-size(20px)
+                                color: $red

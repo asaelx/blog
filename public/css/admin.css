@@ -5836,6 +5836,7 @@ html {
       display: inline-block;
       font-size: 18px;
       font-size: 1.2857142857rem;
+      color: #34495E;
       margin: 0.5em 0; }
     .content .posts .post .details {
       font-family: 'Lato';
@@ -5863,7 +5864,19 @@ html {
           font-size: 20px;
           font-size: 1.4285714286rem; }
           .content .posts .post .options .option .link.delete {
-            color: #E74C3C; }
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            border: none;
+            background: none;
+            margin: 0;
+            padding: 0; }
+            .content .posts .post .options .option .link.delete:hover {
+              cursor: pointer; }
+            .content .posts .post .options .option .link.delete .typcn {
+              font-size: 20px;
+              font-size: 1.4285714286rem;
+              color: #E74C3C; }
 
 .editor {
   width: 57.1428571429rem;

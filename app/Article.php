@@ -52,7 +52,7 @@ class Article extends Model
      */
     public function setPublishedAtAttribute($date)
     {
-        $this->attributes['published_at'] = Carbon::parse($date);
+        $this->attributes['published_at'] = Carbon::createFromFormat('Y-m-d', $date, 'America/Mexico_City')->tz('UTC');
     }
 
     /**
@@ -64,7 +64,7 @@ class Article extends Model
     public function getPublishedAtAttribute($date)
     {
         // This overrides 'protected $dates'
-        return Carbon::parse($date)->tz('America/Mexico_City')->format('Y-m-d');
+        return Carbon::createFromFormat('Y-m-d H:i:s', $date, 'America/Mexico_City');
     }
 
     /**

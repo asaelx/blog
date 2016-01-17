@@ -13,7 +13,7 @@
                     | {!! Form::select('tag_list[]', $tags, null, ['multiple', 'class' => 'select2']) !!}
                 .group
                     | {!! Form::label('published_at', 'Fecha de publicación', ['class' => 'label']) !!}
-                    | {!! Form::text('published_at', null, ['class' => 'datepicker input']) !!}
+                    | {!! Form::text('published_at', \Carbon\Carbon::now()->tz('America/Mexico_City')->format('Y-m-d'), ['class' => 'datepicker input']) !!}
                 .group
                     | {!! Form::label('twitter', 'Publicar en twitter', ['class' => 'label']) !!}
                     | {!! Form::checkbox('twitter', 1, null, ['class' => 'onoffswitch']) !!}
