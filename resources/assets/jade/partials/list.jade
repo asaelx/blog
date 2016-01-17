@@ -1,6 +1,6 @@
 include ../mixins/blade
 //- Published
-ul.posts.active.tabbed#published
+ul.list.active.tabbed#published
     +if('!$published->isEmpty()')
         +foreach('$published as $article')    
             include ../partials/post
@@ -9,15 +9,15 @@ ul.posts.active.tabbed#published
                 .count Hay {{ $published->total() }} artículos en total
                 +else
                     .count Solo hay {{ $published->total() }} artículo
-            {!! $published->render() !!}
+            | {!! $published->render() !!}
         +else
             .empty
                 i.fa.fa-frown-o
                 h4.legend Aún no tienes artículos publicados
-                a.btn.blue(href="{{ url('articles/create') }}") Escribe tu primer artículo
+                a.btn.blue(href="{{ url('admin/articles/create') }}") Escribe tu primer artículo
                     
 //- Drafts
-ul.posts.tabbed#unpublished        
+ul.list.tabbed#unpublished        
     +if('!$unpublished->isEmpty()')
         +foreach('$unpublished as $article')    
             include ../partials/post
@@ -26,9 +26,9 @@ ul.posts.tabbed#unpublished
                 .count Hay {{ $unpublished->total() }} artículos en total
                 +else
                     .count Solo hay {{ $unpublished->total() }} artículo
-            {!! $unpublished->render() !!}
+            | {!! $unpublished->render() !!}
         +else
             .empty
                 i.fa.fa-meh-o
                 h4.legend No tienes artículos pendientes por publicar
-                a.btn.blue(href="{{ url('articles/create') }}") Escribe un artículo
+                a.btn.blue(href="{{ url('admin/articles/create') }}") Escribe un artículo

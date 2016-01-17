@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>Actualizar Artículo - {{ $article->title }}</title>
+    <title>Ajustes</title>
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
   </head>
   <body>
@@ -24,10 +24,23 @@
         </ul>
       </nav>
     </aside>
-    <div class="content">{!! Form::model($article, ['url' => url('admin/articles', $article->id), 'method' => 'PATCH', 'class' => 'form', 'files' => true]) !!}
-@include('partials.form', ['submitButtonText' => 'Actualizar'])
-{!! Form::close() !!}
+    <div class="content">
+      <h1 class="title">Ajustes</h1>{!! Form::open(['url' => url('admin/settings'), 'class' => 'form', 'files' => true]) !!}
+      <fieldset class="fieldset">
+        <legend class="legend">General</legend>
+        <div class="group">
+          {!! Form::label('title', 'Título del blog', ['class' => 'label']) !!}
+          {!! Form::text('title', null, ['class' => 'input']) !!}
+        </div>
+        <div class="group">
+          {!! Form::label('description', 'Descripción', ['class' => 'label']) !!}
+          {!! Form::textarea('description', null, ['class' => 'input autosize', 'size' => '50x3']) !!}
+        </div>
+      </fieldset>
+      <fieldset class="fieldset">
+        <div class="group">{!! Form::submit('Guardar', ['class' => 'btn blue submit-right']) !!}</div>
+      </fieldset>{!! Form::close() !!}
     </div>
-    <script src="{{ asset('js/admin.js') }}"></script>
+    <script src="{{asset('js/admin.js')}}"></script>
   </body>
 </html>

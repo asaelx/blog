@@ -8049,6 +8049,12 @@ $(function(){
 
     var $body = $('body');
 
+    /* Autosize */
+    var sizeable = $('.autosize');
+    if(sizeable.length){
+        autosize(sizeable);
+    }
+
     /* Medium Editor */
     var editable = $('.editable');
     if(editable.length){

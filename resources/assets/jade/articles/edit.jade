@@ -11,9 +11,9 @@ block sidebar
     
 block content
     .content
-        | {!! Form::model($article, ['url' => url('articles', $article->id), 'method' => 'PATCH', 'class' => 'form', 'files' => true]) !!}
+        | {!! Form::model($article, ['url' => url('admin/articles', $article->id), 'method' => 'PATCH', 'class' => 'form', 'files' => true]) !!}
         include ../mixins/blade
-        +include("articles.partials.form", "['submitButtonText' => 'Actualizar']")
+        +include("partials.form", "['submitButtonText' => 'Actualizar']")
         | {!! Form::close() !!}
 
 block scripts

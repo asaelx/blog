@@ -1,0 +1,32 @@
+extend ../layout/base
+
+block title
+    title Ajustes
+    
+block styles
+    link(rel="stylesheet", href="{{ asset('css/admin.css') }}")
+    
+block sidebar
+    include ../partials/sidebar
+    
+block content
+    .content
+        h1.title Ajustes
+        
+        | {!! Form::open(['url' => url('admin/settings'), 'class' => 'form', 'files' => true]) !!}
+        fieldset.fieldset
+            legend.legend General
+            .group
+                | {!! Form::label('title', 'Título del blog', ['class' => 'label']) !!}
+                | {!! Form::text('title', null, ['class' => 'input']) !!}
+            .group
+                | {!! Form::label('description', 'Descripción', ['class' => 'label']) !!}
+                | {!! Form::textarea('description', null, ['class' => 'input autosize', 'size' => '50x3']) !!}
+        fieldset.fieldset
+            .group
+                | {!! Form::submit('Guardar', ['class' => 'btn blue submit-right']) !!}
+        | {!! Form::close() !!}
+                    
+block scripts
+    script(src="{{asset('js/admin.js')}}")
+            

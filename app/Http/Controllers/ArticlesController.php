@@ -13,16 +13,6 @@ use App\Tag;
 
 class ArticlesController extends Controller
 {
-
-    /**
-     * Attach middleware auth to the Controller
-     *
-     */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -30,7 +20,7 @@ class ArticlesController extends Controller
      */
     public function index()
     {
-        $published = Article::latest()->published()->paginate(1, ['*'], 'published_page');
+        $published = Article::latest()->published()->paginate(10, ['*'], 'published_page');
         $unpublished = Article::latest()->unpublished()->paginate(10, ['*'], 'unpublished_page');
         return view('articles.index', compact('published', 'unpublished'));
     }
@@ -60,7 +50,7 @@ class ArticlesController extends Controller
 
         //Code for cover image upload
 
-        return redirect('articles');
+        return redirect('admin/articles');
     }
 
     /**
@@ -102,21 +92,21 @@ class ArticlesController extends Controller
 
         $this->syncTags($article, $request->input('tag_list'));
 
-        return redirect('articles');
+        return redirect('admin/articles');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  Article $article
      * @return \Illuminate\Http\Response
      */
-    public function destroy($article)
+    public function destroy(Article $article)
     {
         $this->syncTags($article, []);
         $article->delete();
 
-        return redirect('articles');
+        return redirect('admin/articles');
     }
 
     /**

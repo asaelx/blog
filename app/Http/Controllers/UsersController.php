@@ -26,8 +26,8 @@ class UsersController extends Controller
      */
     public function show(User $user)
     {
-        $published = $user->publishedArticles;
-        $unpublished = $user->unpublishedArticles;
+        $published = $user->publishedArticles()->paginate(10, ['*'], 'published_page');
+        $unpublished = $user->unpublishedArticles()->paginate(10, ['*'], 'unpublished_page');
         return view('user.articles', compact('published', 'unpublished', 'user'));
     }
 }

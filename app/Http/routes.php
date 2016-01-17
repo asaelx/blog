@@ -24,7 +24,15 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
-Route::get('articles/tagged/{tags}', 'TagsController@show');
-Route::get('articles/author/{users}', 'UsersController@show');
+Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
+    // Tags
+    Route::get('articles/tagged/{tags}', 'TagsController@show');
+    Route::resource('tags', 'TagsController');
 
-Route::resource('articles', 'ArticlesController');
+    // Articles
+    Route::get('articles/author/{users}', 'UsersController@show');
+    Route::resource('articles', 'ArticlesController');
+
+    // Settings
+    Route::resource('settings', 'SettingsController');
+});
