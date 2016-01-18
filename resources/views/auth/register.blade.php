@@ -3,40 +3,41 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>Register</title>
-    <link rel="stylesheet" href="{{ asset('css/master.css') }}">
+    <title>Instalación</title>
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
   </head>
-  <body>
-    <div class="row">
-      <div class="columns medium-12">{!! Form::open(['url' => '/auth/register']) !!}
-        <fieldset>
-          <legend>REGISTER</legend>
-          <div class="column medium-6 medium-centered">
-            <label>Name
-              <input type="text" name="name" value="{{ old('name') }}">
-            </label>
-          </div>
-          <div class="column medium-6 medium-centered">
-            <label>E-mail
-              <input type="email" name="email" value="{{ old('email') }}">
-            </label>
-          </div>
-          <div class="column medium-6 medium-centered">
-            <label>Password
-              <input type="password" name="password">
-            </label>
-          </div>
-          <div class="column medium-6 medium-centered">
-            <label>Confirm password
-              <input type="password" name="password_confirmation">
-            </label>
-          </div>
-          <div class="column medium-6 medium-centered">
-            <input type="submit" value="Register" class="button">
-          </div>
-        </fieldset>{!! Form::close() !!}
+  <body>{!! Form::open(['url' => url('auth/register'), 'class' => 'form sign-form']) !!}
+    <fieldset class="fieldset">
+      <legend class="legend">Datos personales</legend>
+      <div class="group">
+        {!! Form::label('name', 'Nombre', ['class' => 'label']) !!}
+        {!! Form::text('name', old('name'), ['class' => 'input']) !!}
       </div>
-    </div>
-    <script src="{{ asset('js/magic.js') }}"></script>
+      <div class="group">
+        {!! Form::label('email', 'Correo electrónico', ['class' => 'label']) !!}
+        {!! Form::text('email', old('email'), ['class' => 'input']) !!}
+      </div>
+      <div class="group">
+        {!! Form::label('password', 'Contraseña', ['class' => 'label']) !!}
+        {!! Form::password('password', ['class' => 'input']) !!}
+      </div>
+      <div class="group">
+        {!! Form::label('password_confirmation]', 'Confirmar contraseña', ['class' => 'label']) !!}
+        {!! Form::password('password_confirmation', ['class' => 'input']) !!}
+      </div>
+    </fieldset>
+    <fieldset class="fieldset">
+      <legend class="legend">Datos del blog</legend>
+      <div class="group">
+        {!! Form::label('setting[title]', 'Título', ['class' => 'label']) !!}
+        {!! Form::text('setting[title]', old('setting[title]'), ['class' => 'input']) !!}
+      </div>
+      <div class="group">
+        {!! Form::label('setting[description]', 'Descripción', ['class' => 'label']) !!}
+        {!! Form::textarea('setting[description]', old('setting[description]'), ['class' => 'input autosize', 'size' => '50x3']) !!}
+      </div>
+    </fieldset>
+    <div class="group">{!! Form::submit('Registrar', ['class' => 'btn blue submit-right']) !!}</div>{!! Form::close() !!}
+    <script src="{{ asset('js/admin.js') }}"></script>
   </body>
 </html>

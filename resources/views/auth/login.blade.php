@@ -3,34 +3,26 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="{{ asset('css/master.css') }}">
+    <title>Instalación</title>
+    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
   </head>
-  <body>
-    <div class="row">
-      <div class="columns medium-12">{!! Form::open(['url' => '/auth/login']) !!}
-        <fieldset>
-          <legend>LOGIN</legend>
-          <div class="column medium-6 medium-centered">
-            <label>E-mail
-              <input type="email" name="email" value="{{ old('email') }}">
-            </label>
-          </div>
-          <div class="column medium-6 medium-centered">
-            <label>Password
-              <input id="password" type="password" name="password">
-            </label>
-          </div>
-          <div class="column medium-6 medium-centered">
-            <input id="remember" type="checkbox" name="remember">
-            <label for="remember">Remember Me</label>
-          </div>
-          <div class="column medium-6 medium-centered">
-            <input type="submit" value="Login" class="button">
-          </div>
-        </fieldset>{!! Form::close() !!}
+  <body>{!! Form::open(['url' => url('auth/login'), 'class' => 'form sign-form']) !!}
+    <fieldset class="fieldset">
+      <legend class="legend">Iniciar sesión</legend>
+      <div class="group">
+        {!! Form::label('email', 'Correo electrónico', ['class' => 'label']) !!}
+        {!! Form::text('email', old('email'), ['class' => 'input']) !!}
       </div>
-    </div>
-    <script src="{{ asset('js/magic.js') }}"></script>
+      <div class="group">
+        {!! Form::label('password', 'Contraseña', ['class' => 'label']) !!}
+        {!! Form::password('password', ['class' => 'input']) !!}
+      </div>
+      <div class="group">
+        {!! Form::label('remember', 'Recordarme', ['class' => 'label']) !!}
+        {!! Form::checkbox('remember', null, null, ['class' => 'onoffswitch']) !!}
+      </div>
+    </fieldset>
+    <div class="group">{!! Form::submit('Entrar', ['class' => 'btn blue submit-right']) !!}</div>{!! Form::close() !!}
+    <script src="{{ asset('js/admin.js') }}"></script>
   </body>
 </html>

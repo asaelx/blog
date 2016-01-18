@@ -1,26 +1,27 @@
 extend ../layout/base
 
 block title
-    title Login
-
+    title Instalación
+    
+block styles
+    link(rel="stylesheet", href="{{ asset('css/admin.css') }}")
+    
 block content
-    .row
-        .columns.medium-12
-            | {!! Form::open(['url' => '/auth/login']) !!}
-            fieldset
-                legend LOGIN
-                .column.medium-6.medium-centered
-                    label
-                        | E-mail
-                        input(type="email", name="email" value="{{ old('email') }}")
-                .column.medium-6.medium-centered
-                    label
-                        | Password
-                        input#password(type="password", name="password")
-                .column.medium-6.medium-centered
-                    input#remember(type="checkbox", name="remember")
-                    label(for="remember") Remember Me
-                .column.medium-6.medium-centered
-                    input.button(type="submit", value="Login")
-                
-            | {!! Form::close() !!}
+    | {!! Form::open(['url' => url('auth/login'), 'class' => 'form sign-form']) !!}
+    fieldset.fieldset
+        legend.legend Iniciar sesión
+        .group
+            | {!! Form::label('email', 'Correo electrónico', ['class' => 'label']) !!}
+            | {!! Form::text('email', old('email'), ['class' => 'input']) !!}
+        .group
+            | {!! Form::label('password', 'Contraseña', ['class' => 'label']) !!}
+            | {!! Form::password('password', ['class' => 'input']) !!}
+        .group
+            | {!! Form::label('remember', 'Recordarme', ['class' => 'label']) !!}
+            | {!! Form::checkbox('remember', null, null, ['class' => 'onoffswitch']) !!}
+    .group
+        | {!! Form::submit('Entrar', ['class' => 'btn blue submit-right']) !!}
+    | {!! Form::close() !!}
+    
+block scripts
+    script(src="{{ asset('js/admin.js') }}")

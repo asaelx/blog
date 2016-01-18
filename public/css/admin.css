@@ -5667,8 +5667,7 @@ html {
 .form .fieldset {
   border: none;
   border-top: 1px solid #ECF0F1;
-  padding: 1rem 0rem 2rem 1rem;
-  width: 35.7142857143rem; }
+  padding: 1rem 0rem 2rem 1rem; }
   .form .fieldset .legend {
     font-size: 16px;
     font-size: 1.1428571429rem;
@@ -5792,6 +5791,10 @@ html {
         color: #E74C3C; }
   .select2-container.select2-container--default.select2-container--focus .select2-selection--multiple {
     border: 2px solid #3498DB; }
+
+.sign-form {
+  margin: 4rem auto 0 auto;
+  width: 28.5714285714rem; }
 
 .content .tools {
   content: " ";
