@@ -25,11 +25,11 @@
       </nav>
     </aside>
     <div class="content">
-      <h1 class="title">Ajustes</h1>{!! Form::model($setting, ['url' => url('admin/settings', $setting->id), 'class' => 'form', 'method' => 'PATCH','files' => true]) !!}
+      <h1 class="title">Ajustes</h1>{!! Form::model($setting, ['url' => url('admin/settings', $setting->id), 'class' => 'form settings-form', 'method' => 'PATCH','files' => true]) !!}
       <fieldset class="fieldset">
-        <legend class="legend">General</legend>
+        <legend class="legend">Datos del blog</legend>
         <div class="group">
-          {!! Form::label('title', 'Título del blog', ['class' => 'label']) !!}
+          {!! Form::label('title', 'Título', ['class' => 'label']) !!}
           {!! Form::text('title', null, ['class' => 'input']) !!}
         </div>
         <div class="group">
@@ -37,9 +37,7 @@
           {!! Form::textarea('description', null, ['class' => 'input autosize', 'size' => '50x3']) !!}
         </div>
       </fieldset>
-      <fieldset class="fieldset">
-        <div class="group">{!! Form::submit('Guardar', ['class' => 'btn blue submit-right']) !!}</div>
-      </fieldset>{!! Form::close() !!}
+      <div class="group">{!! Form::submit('Guardar', ['class' => 'btn blue submit-right']) !!}</div>{!! Form::close() !!}
     </div>
     <script src="{{asset('js/admin.js')}}"></script>
   </body>

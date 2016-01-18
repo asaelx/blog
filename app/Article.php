@@ -105,7 +105,8 @@ class Article extends Model
      */
     public function files()
     {
-        return $this->belongsToMany('App\File');
+        return $this->belongsToMany('App\File')
+                    ->withTimestamps();
     }
 
 

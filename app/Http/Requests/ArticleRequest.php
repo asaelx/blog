@@ -25,7 +25,9 @@ class ArticleRequest extends Request
     {
         return [
             'title'        => 'required',
-            'body'         => 'required'
+            'body'         => 'required',
+            'published_at' => 'required',
+            'cover'        => 'required'
         ];
     }
 }

@@ -13,18 +13,17 @@ block content
     .content
         h1.title Ajustes
         
-        | {!! Form::model($setting, ['url' => url('admin/settings', $setting->id), 'class' => 'form', 'method' => 'PATCH','files' => true]) !!}
+        | {!! Form::model($setting, ['url' => url('admin/settings', $setting->id), 'class' => 'form settings-form', 'method' => 'PATCH','files' => true]) !!}
         fieldset.fieldset
-            legend.legend General
+            legend.legend Datos del blog
             .group
-                | {!! Form::label('title', 'Título del blog', ['class' => 'label']) !!}
+                | {!! Form::label('title', 'Título', ['class' => 'label']) !!}
                 | {!! Form::text('title', null, ['class' => 'input']) !!}
             .group
                 | {!! Form::label('description', 'Descripción', ['class' => 'label']) !!}
                 | {!! Form::textarea('description', null, ['class' => 'input autosize', 'size' => '50x3']) !!}
-        fieldset.fieldset
-            .group
-                | {!! Form::submit('Guardar', ['class' => 'btn blue submit-right']) !!}
+        .group
+            | {!! Form::submit('Guardar', ['class' => 'btn blue submit-right']) !!}
         | {!! Form::close() !!}
                     
 block scripts

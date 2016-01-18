@@ -5796,6 +5796,9 @@ html {
   margin: 4rem auto 0 auto;
   width: 28.5714285714rem; }
 
+.settings-form {
+  width: 35.7142857143rem; }
+
 .content .tools {
   content: " ";
   display: table;

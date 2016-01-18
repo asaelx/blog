@@ -10,6 +10,7 @@ use App\Http\Requests\ArticleRequest;
 use Auth;
 use App\Article;
 use App\Tag;
+use App\File;
 
 class ArticlesController extends Controller
 {
@@ -44,11 +45,20 @@ class ArticlesController extends Controller
      */
     public function store(ArticleRequest $request)
     {
+        if($request->hasFile('cover')):
+            $path = $this->uploadFile($request->file('cover'));
+            $file = File::create([
+                'url' => $path,
+                'original_name' => pathinfo($request->file('cover')->getClientOriginalName(), PATHINFO_FILENAME)
+            ]);
+        endif;
+
+
         $article = Auth::user()->articles()->create($request->all());
 
         $this->syncTags($article, $request->input('tag_list'));
 
-        //Code for cover image upload
+        $article->files()->attach($file->id);
 
         return redirect('admin/articles');
     }
@@ -128,5 +138,22 @@ class ArticlesController extends Controller
 
             $article->tags()->sync($currentTags);
         endif;
+    }
+
+    /**
+     * Upload File with Request
+     *
+     * @param  \Illuminate\Http\Request::file() $file
+     * @return string  $path
+     */
+    private function uploadFile($file)
+    {
+        $fileName = time() . '_' . $file->getClientOriginalName();
+        $destinationPath = 'uploads';
+        $file->move($destinationPath, $fileName);
+
+        $path = $destinationPath . '/' . $fileName;
+
+        return $path;
     }
 }
