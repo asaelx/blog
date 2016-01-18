@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Setting;
 
 class SettingsController extends Controller
 {
@@ -16,7 +17,7 @@ class SettingsController extends Controller
      */
     public function index()
     {
-        return view('settings.index');
+        // return view('settings.index');
     }
 
     /**
@@ -26,7 +27,7 @@ class SettingsController extends Controller
      */
     public function create()
     {
-        //
+        return view('settings.index');
     }
 
     /**
@@ -37,7 +38,9 @@ class SettingsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $setting = Setting::create($request->all());
+
+        return redirect('admin/articles');
     }
 
     /**
@@ -54,12 +57,13 @@ class SettingsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  Setting  $setting
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit()
     {
-        //
+        $setting = Setting::latest()->first();
+        return view('settings.index', compact('setting'));
     }
 
     /**
@@ -71,7 +75,9 @@ class SettingsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $setting = Setting::findOrFail($id);
+        $setting->update($request->all());
+        return redirect('admin/settings');
     }
 
     /**

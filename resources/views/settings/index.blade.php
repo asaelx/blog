@@ -25,7 +25,7 @@
       </nav>
     </aside>
     <div class="content">
-      <h1 class="title">Ajustes</h1>{!! Form::open(['url' => url('admin/settings'), 'class' => 'form', 'files' => true]) !!}
+      <h1 class="title">Ajustes</h1>{!! Form::model($setting, ['url' => url('admin/settings', $setting->id), 'class' => 'form', 'method' => 'PATCH','files' => true]) !!}
       <fieldset class="fieldset">
         <legend class="legend">General</legend>
         <div class="group">

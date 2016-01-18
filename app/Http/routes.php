@@ -34,5 +34,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
     Route::resource('articles', 'ArticlesController');
 
     // Settings
-    Route::resource('settings', 'SettingsController');
+    Route::get('settings', 'SettingsController@edit');
+    Route::patch('settings/{id}', 'SettingsController@update');
 });

@@ -13,7 +13,7 @@ block content
     .content
         h1.title Ajustes
         
-        | {!! Form::open(['url' => url('admin/settings'), 'class' => 'form', 'files' => true]) !!}
+        | {!! Form::model($setting, ['url' => url('admin/settings', $setting->id), 'class' => 'form', 'method' => 'PATCH','files' => true]) !!}
         fieldset.fieldset
             legend.legend General
             .group
