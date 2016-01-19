@@ -1,14 +1,14 @@
 li.item
     .date {{ \Carbon\Carbon::parse($article->published_at)->diffForHumans() }}
-    a.title(href!="{{ url('admin/articles/' . $article->id . '/edit') }}") {{ $article->title }}
+    a.title(href!="{{ url('admin/articles/' . $article->slug . '/edit') }}") {{ $article->title }}
     .details
-        | Por <a href="{{ url('admin/articles/author', $article->user->name) }}">{{ $article->user->name }}</a> · Archivado en <a href="{{ url('admin/articles/tagged', $article->tags->first()->name) }}">{{ $article->tags->first()->name }}</a>
+        | Por <a href="{{ url('admin/articles/author', $article->user->slug) }}">{{ $article->user->name }}</a> · Archivado en <a href="{{ url('admin/articles/tagged', $article->tags->first()->slug) }}">{{ $article->tags->first()->name }}</a>
     ul.options
         li.option
-            | {!! Form::open(['url' => url('admin/articles', $article->id), 'method' => 'DELETE']) !!}
+            | {!! Form::open(['url' => url('admin/articles', $article->slug), 'method' => 'DELETE']) !!}
             button.link.delete(type="submit")
                 | Eliminar
             | {!! Form::close() !!}
         li.option
-            a.link.edit(href!="{{ url('admin/articles/' . $article->id . '/edit') }}")
+            a.link.edit(href!="{{ url('admin/articles/' . $article->slug . '/edit') }}")
                 | Editar

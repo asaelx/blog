@@ -4,9 +4,24 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Carbon\Carbon;
+use Cviebrock\EloquentSluggable\SluggableInterface;
+use Cviebrock\EloquentSluggable\SluggableTrait;
 
-class Article extends Model
+class Article extends Model implements SluggableInterface
 {
+
+    use SluggableTrait;
+
+    /**
+     * Sluggable columns
+     *
+     * @var array
+     */
+    protected $sluggable = [
+        'build_from' => 'title',
+        'save_to'    => 'slug',
+    ];
+
     /**
      * Fillable columns
      *

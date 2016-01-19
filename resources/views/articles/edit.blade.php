@@ -22,7 +22,7 @@
         </ul>
 @endif
 
-    <div class="content">{!! Form::model($article, ['url' => url('admin/articles', $article->id), 'method' => 'PATCH', 'class' => 'form', 'files' => true]) !!}
+    <div class="content">{!! Form::model($article, ['url' => url('admin/articles', $article->slug), 'method' => 'PATCH', 'class' => 'form', 'files' => true]) !!}
 @include('partials.form', ['submitButtonText' => 'Actualizar'])
 {!! Form::close() !!}
     </div>

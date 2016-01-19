@@ -36,13 +36,12 @@ class UsersController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  User $user
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, $id)
+    public function update(UserRequest $request, User $user)
     {
-        $user = User::findOrFail($id);
-        $user->update($request->all());
+        $user->update($request->only(['name', 'email']));
 
         session()->flash('flash_message', 'Se han actualizado los datos de perfil');
 

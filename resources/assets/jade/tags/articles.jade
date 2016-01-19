@@ -5,6 +5,6 @@ block title
     
 block content
     .content
-        h1.title Artículos archivados en <a href="{{ url('articles/tagged', $tag->name) }}" class="link">{{ $tag->name }}</a>
+        h1.title Artículos archivados en <a href="{{ url('articles/tagged', $tag->slug) }}" class="link">{{ $tag->name }}</a>
         include ../partials/list
             

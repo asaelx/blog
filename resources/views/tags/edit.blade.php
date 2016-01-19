@@ -23,7 +23,7 @@
             </ul>
 @endif
 
-      <h1 class="title">Editar etiqueta {{ $tag->name }}</h1>{!! Form::model($tag, ['url' => url('admin/tags', $tag->name), 'method' => 'PATCH', 'class' => 'form settings-form']) !!}
+      <h1 class="title">Editar etiqueta {{ $tag->name }}</h1>{!! Form::model($tag, ['url' => url('admin/tags', $tag->slug), 'method' => 'PATCH', 'class' => 'form settings-form']) !!}
       <div class="group">
         {!! Form::label('name', 'Nombre', ['class' => 'label']) !!}
         {!! Form::text('name', null, ['class' => 'input']) !!}

@@ -146,6 +146,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Illuminate\Html\HtmlServiceProvider::class,
+        Cviebrock\EloquentSluggable\SluggableServiceProvider::class
 
     ],
 

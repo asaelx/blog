@@ -25,12 +25,12 @@
 
 @foreach($tags as $tag)
    
-                    <li class="item"><a href="{{ url('admin/tags/' . $tag->name . '/edit') }}" class="title">{{ $tag->name }}</a>
+                    <li class="item"><a href="{{ url('admin/tags/' . $tag->slug . '/edit') }}" class="title">{{ $tag->name }}</a>
                       <div class="details">
 @if($tag->articles->count() > 1)
-<a href="{{ url('admin/articles/tagged', $tag->name) }}">Hay {{ $tag->articles->count() }} artículos archivados en esta etiqueta</a>
+<a href="{{ url('admin/articles/tagged', $tag->slug) }}">Hay {{ $tag->articles->count() }} artículos archivados en esta etiqueta</a>
 @elseif($tag->articles->count() == 1)
-<a href="{{ url('admin/articles/tagged', $tag->name) }}">Hay 1 artículo archivado en esta etiqueta</a>
+<a href="{{ url('admin/articles/tagged', $tag->slug) }}">Hay 1 artículo archivado en esta etiqueta</a>
 @else
 No hay artículos archivados en esta etiqueta
 @endif
@@ -39,12 +39,12 @@ No hay artículos archivados en esta etiqueta
                       <ul class="options">
 @if(!$tag->articles->count())
 
-                              <li class="option">{!! Form::open(['url' => url('admin/tags', $tag->name), 'method' => 'DELETE']) !!}
+                              <li class="option">{!! Form::open(['url' => url('admin/tags', $tag->slug), 'method' => 'DELETE']) !!}
                                 <button type="submit" class="link delete">Eliminar</button>{!! Form::close() !!}
                               </li>
 @endif
 
-                        <li class="option"><a href="{{ url('admin/tags/' . $tag->name . '/edit') }}" class="link edit">Editar</a>
+                        <li class="option"><a href="{{ url('admin/tags/' . $tag->slug . '/edit') }}" class="link edit">Editar</a>
                         </li>
                       </ul>
                     </li>
@@ -63,7 +63,7 @@ No hay artículos archivados en esta etiqueta
 @else
 
                     <div class="empty"><i class="twa twa-persevere"></i>
-                      <h4 class="legend">Aún no hay etiquetas</h4><a href="{{ url('admin/articles/create') }}" class="btn blue">Escribe tu primer artículo</a>
+                      <h4 class="legend">Aún no hay etiquetas</h4><a href="{{ url('admin/articles/create') }}" class="btn blue">Escribe un artículo</a>
                     </div>
 @endif
 

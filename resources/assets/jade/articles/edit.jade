@@ -6,7 +6,7 @@ block title
 block content
     include ../partials/errors
     .content
-        | {!! Form::model($article, ['url' => url('admin/articles', $article->id), 'method' => 'PATCH', 'class' => 'form', 'files' => true]) !!}
+        | {!! Form::model($article, ['url' => url('admin/articles', $article->slug), 'method' => 'PATCH', 'class' => 'form', 'files' => true]) !!}
         include ../mixins/blade
         +include("partials.form", "['submitButtonText' => 'Actualizar']")
         | {!! Form::close() !!}

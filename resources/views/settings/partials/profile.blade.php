@@ -1,5 +1,5 @@
 
-<div id="profile" class="tabbed {{ (!is_null($current) && $current == 'profile') ? 'active' : '' }}">{!! Form::model($user, ['url' => url('admin/users', $user->id), 'class' => 'form settings-form', 'method' => 'PATCH','files' => true]) !!}
+<div id="profile" class="tabbed {{ (!is_null($current) && $current == 'profile') ? 'active' : '' }}">{!! Form::model($user, ['url' => url('admin/users', $user->slug), 'class' => 'form settings-form', 'method' => 'PATCH','files' => true]) !!}
   <div class="group">
     {!! Form::label('name', 'Nombre', ['class' => 'label']) !!}
     {!! Form::text('name', null, ['class' => 'input']) !!}
