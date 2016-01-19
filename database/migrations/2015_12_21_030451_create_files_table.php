@@ -32,6 +32,20 @@ class CreateFilesTable extends Migration
 
             $table->timestamps();
         });
+
+        Schema::create('file_user', function(Blueprint $table) {
+            $table->integer('file_id')->unsigned()->index();
+            $table->foreign('file_id')
+                    ->references('id')
+                    ->on('files');
+
+            $table->integer('user_id')->unsigned()->index();
+            $table->foreign('user_id')
+                    ->references('id')
+                    ->on('users');
+
+            $table->timestamps();
+        });
     }
 
     /**
@@ -46,7 +60,13 @@ class CreateFilesTable extends Migration
             $table->dropForeign(['file_id']);
         });
 
+        Schema::table('file_user', function(Blueprint $table) {
+            $table->dropForeign(['file_id']);
+            $table->dropForeign(['user_id']);
+        });
+
         Schema::drop('article_file');
+        Schema::drop('file_user');
         Schema::drop('files');
     }
 }

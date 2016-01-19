@@ -10,8 +10,7 @@
                     | {!! Form::file('cover', ['class' => 'file img']) !!}
                     include ../mixins/blade
                     +if("!is_null($article->files()->first())")
-                        .preview
-                            img.img-preview(src!="{{ url('/') . $article->files()->first()->url }}", alt!="{{ $article->files()->first()->original_name }}")
+                        .preview.wide(style!="background: url({{ url('/') . $article->files()->first()->url }}) no-repeat; background-size: cover;")
                 .group
                     | {!! Form::label('tags', 'Etiquetas', ['class' => 'label']) !!}
                     | {!! Form::select('tag_list[]', $tags, null, ['multiple', 'class' => 'select2']) !!}

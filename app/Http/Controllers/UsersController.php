@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
 use App\User;
+use App\File;
 
 class UsersController extends Controller
 {
@@ -43,8 +44,35 @@ class UsersController extends Controller
     {
         $user->update($request->only(['name', 'email']));
 
+        if($request->hasFile('profile_pic'))
+            $this->uploadFile($user, $request->file('profile_pic'));
+
         session()->flash('flash_message', 'Se han actualizado los datos de perfil');
 
         return redirect('admin/settings?tab=profile');
+    }
+
+    /**
+     * Upload File with Request
+     *
+     * @param  User $user
+     * @param  \Illuminate\Http\Request::file() $file
+     */
+    private function uploadFile($user, $file)
+    {
+        $client_original_name = $file->getClientOriginalName();
+        $fileName = time() . '_' . $client_original_name;
+        $destinationPath = 'uploads';
+        $file->move($destinationPath, $fileName);
+
+        $path = '/' . $destinationPath . '/' . $fileName;
+        $original_name = pathinfo($client_original_name, PATHINFO_FILENAME);
+
+        $file = File::create([
+            'url' => $path,
+            'original_name' => $original_name
+        ]);
+
+        $user->files()->attach($file->id);
     }
 }

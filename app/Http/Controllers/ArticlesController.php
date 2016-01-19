@@ -92,7 +92,6 @@ class ArticlesController extends Controller
      */
     public function update(UpdateArticleRequest $request, Article $article)
     {
-
         $article->update($request->all());
 
         $this->syncTags($article, $request->input('tag_list'));

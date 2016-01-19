@@ -4,7 +4,7 @@ include ../mixins/blade
         .profile
             .details
                 .photo
-                    img.img(src="{{ asset('img/1f47d.svg') }}", width="36", height="36")
+                    img.img(src!="{{ (!is_null($currentUser->files()->first())) ? url($currentUser->files()->first()->url) : asset('img/1f47d.svg') }}", width="36", height="36")
                 .title(title!="{{ $setting->title }}") {{ str_limit($setting->title, 16) }}
                 .name {{ $currentUser->name }}
                 span.typcn.typcn-arrow-sorted-down.drop-trigger(data-drop="profile-settings")

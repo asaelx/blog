@@ -1,6 +1,10 @@
 #profile(class!="tabbed {{ (!is_null($current) && $current == 'profile') ? 'active' : '' }}")
     | {!! Form::model($user, ['url' => url('admin/users', $user->slug), 'class' => 'form settings-form', 'method' => 'PATCH','files' => true]) !!}
     .group
+        | {!! Form::label('profile_pic', 'Foto de perfil', ['class' => 'label']) !!}
+        | {!! Form::file('profile_pic', ['class' => 'file img']) !!}
+        .preview.square(style!="background: url({{ (!is_null($user->files()->first())) ? $user->files()->first()->url : asset('img/1f47d.svg') }}) no-repeat center center; background-size: cover;")
+    .group
         | {!! Form::label('name', 'Nombre', ['class' => 'label']) !!}
         | {!! Form::text('name', null, ['class' => 'input']) !!}
     //- .group

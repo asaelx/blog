@@ -61,19 +61,16 @@ $(function(){
     if(file_img.length){
 
         function getImgPreview(input) {
-            var $img = $('<img>', {
-                    class: 'img-preview',
-                    src: ''
-                }),
-                $preview = $('<div>', {
+            var $preview = $('<div>', {
                     class: 'preview'
-                });
+                }),
+                style = 'background: url(%data%) no-repeat center center; background-size: cover;';
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
 
                 reader.onload = function (e) {
-                    $img.attr('src', e.target.result);
-                    $img.appendTo($preview);
+                    var background = style.replace('%data%', e.target.result);
+                    $preview.attr('style', background);
                 }
 
                 reader.readAsDataURL(input.files[0]);

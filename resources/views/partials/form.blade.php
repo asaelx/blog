@@ -9,7 +9,7 @@
           {!! Form::file('cover', ['class' => 'file img']) !!}
 @if(!is_null($article->files()->first()))
 
-                    <div class="preview"><img src="{{ url('/') . $article->files()->first()->url }}" alt="{{ $article->files()->first()->original_name }}" class="img-preview"/></div>
+                    <div style="background: url({{ url('/') . $article->files()->first()->url }}) no-repeat; background-size: cover;" class="preview wide"></div>
 @endif
 
         </div>

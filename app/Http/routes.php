@@ -36,5 +36,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
     Route::patch('settings/{id}', 'SettingsController@update');
 
     // Users
-    Route::patch('users/{id}', 'UsersController@update');
+    Route::patch('users/{users}', 'UsersController@update');
 });
