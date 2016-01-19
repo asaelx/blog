@@ -62,7 +62,7 @@ No hay artículos archivados en esta etiqueta
               </div>
 @else
 
-                    <div class="empty"><i class="fa fa-frown-o"></i>
+                    <div class="empty"><i class="twa twa-persevere"></i>
                       <h4 class="legend">Aún no hay etiquetas</h4><a href="{{ url('admin/articles/create') }}" class="btn blue">Escribe tu primer artículo</a>
                     </div>
 @endif

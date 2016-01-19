@@ -1,7 +1,8 @@
 var elixir     = require('laravel-elixir'),
     jade       = require('laravel-elixir-jade'),
     livereload = require('laravel-elixir-livereload'),
-    bw = '../../../public/bower/';
+    bw = '../../../public/bower/',
+    rs = '../../../resources/assets/';
 
 elixir.config.sourcemaps = false;
 
@@ -21,9 +22,10 @@ elixir(function(mix) {
         bw + 'medium-editor/dist/css/medium-editor.min.css',
         bw + 'medium-editor/dist/css/themes/default.min.css',
         bw + 'medium-editor-insert-plugin/dist/css/medium-editor-insert-plugin.min.css',
-        '../../../resources/assets/css/dropdowns.css',
+        rs + 'css/dropdowns.css',
         bw + 'bootstrap-datepicker/dist/css/bootstrap-datepicker3.css',
         bw + 'select2/src/scss/core.scss',
+        rs + 'scss/twemoji-awesome.scss',
         'admin/admin.sass'
     ], 'public/css/admin.css');
 });

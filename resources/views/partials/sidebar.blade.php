@@ -1,8 +1,10 @@
 
+@if(!request()->is('auth/*'))
+
 <aside class="sidebar">
   <div class="profile">
     <div class="details">
-      <div class="photo"><img src="https://s3.amazonaws.com/uifaces/faces/twitter/allisongrayce/48.jpg" class="img"/></div>
+      <div class="photo"><img src="{{ asset('img/1f47d.svg') }}" width="36" height="36" class="img"/></div>
       <div title="{{ $setting->title }}" class="title">{{ str_limit($setting->title, 16) }}</div>
       <div class="name">{{ $currentUser->name }}</div><span data-drop="profile-settings" class="typcn typcn-arrow-sorted-down drop-trigger"></span>
       <div id="profile-settings" class="settings drop">
@@ -22,3 +24,4 @@
     </ul>
   </nav>
 </aside>
+@endif

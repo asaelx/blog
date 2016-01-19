@@ -59,7 +59,7 @@
               </div>
 @else
 
-                    <div class="empty"><i class="fa fa-frown-o"></i>
+                    <div class="empty"><i class="twa twa-hushed"></i>
                       <h4 class="legend">Aún no tienes artículos publicados</h4><a href="{{ url('admin/articles/create') }}" class="btn blue">Escribe tu primer artículo</a>
                     </div>
 @endif
@@ -94,7 +94,7 @@
               </div>
 @else
 
-                    <div class="empty"><i class="fa fa-meh-o"></i>
+                    <div class="empty"><i class="twa twa-neutral-face"></i>
                       <h4 class="legend">No tienes artículos pendientes por publicar</h4><a href="{{ url('admin/articles/create') }}" class="btn blue">Escribe un artículo</a>
                     </div>
 @endif

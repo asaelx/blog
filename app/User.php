@@ -10,6 +10,9 @@ use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 
+use App\Article;
+use App\File;
+
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
                                     CanResetPasswordContract
@@ -48,7 +51,7 @@ class User extends Model implements AuthenticatableContract,
     }
 
     /**
-     * Get the published articles associated by the given tag
+     * Get the published articles associated by the given user
      *
      * @return Scope
      */
@@ -58,12 +61,23 @@ class User extends Model implements AuthenticatableContract,
     }
 
     /**
-     * Get the unpublished articles associated by the given tag
+     * Get the unpublished articles associated by the given user
      *
      * @return Scope
      */
     public function unpublishedArticles()
     {
         return $this->articles()->unpublished();
+    }
+
+    /**
+     * Get the files associated to the given user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function files()
+    {
+        return $this->belongsToMany('App\File')
+                    ->withTimestamps();
     }
 }

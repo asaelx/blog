@@ -12,7 +12,7 @@ ul.list.active.tabbed#published
             | {!! $published->render() !!}
         +else
             .empty
-                i.fa.fa-frown-o
+                i.twa.twa-hushed
                 h4.legend Aún no tienes artículos publicados
                 a.btn.blue(href="{{ url('admin/articles/create') }}") Escribe tu primer artículo
                     
@@ -29,6 +29,6 @@ ul.list.tabbed#unpublished
             | {!! $unpublished->render() !!}
         +else
             .empty
-                i.fa.fa-meh-o
+                i.twa.twa-neutral-face
                 h4.legend No tienes artículos pendientes por publicar
                 a.btn.blue(href="{{ url('admin/articles/create') }}") Escribe un artículo

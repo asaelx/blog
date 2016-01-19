@@ -1,32 +1,34 @@
-aside.sidebar
-    .profile
-        .details
-            .photo
-                img.img(src="https://s3.amazonaws.com/uifaces/faces/twitter/allisongrayce/48.jpg")
-            .title(title!="{{ $setting->title }}") {{ str_limit($setting->title, 16) }}
-            .name {{ $currentUser->name }}
-            span.typcn.typcn-arrow-sorted-down.drop-trigger(data-drop="profile-settings")
-            #profile-settings.settings.drop
-                ul.options
-                    li.option
-                        a.link(href="#") Editar perfil
-                    li.option
-                        a.link(href="{{ url('auth/logout') }}") Cerrar sesión
-    nav.nav
-        ul.options
-            li.option
-                a(href="{{ url('admin/articles/create') }}", class!="link {{ (request()->is('admin/articles/create')) ? 'active' : '' }}")
-                    span.typcn.typcn-pen
-                    | Nuevo artículo
-            li.option
-                a(href="{{ url('admin/articles') }}", class!="link {{ (request()->is('admin/articles') || request()->is('admin/articles/*') && !request()->is('admin/articles/create')) ? 'active' : '' }}")
-                    span.typcn.typcn-document-text
-                    | Contentido
-            li.option
-                a(href="{{ url('admin/tags') }}", class!="link {{ (request()->is('admin/tags') || request()->is('admin/tags/*')) ? 'active' : '' }}")
-                    span.typcn.typcn-tags
-                    | Etiquetas
-            li.option
-                a.link(href="{{ url('admin/settings') }}", class!="link {{ (request()->is('admin/settings') || request()->is('admin/settings/*')) ? 'active' : '' }}") 
-                    span.typcn.typcn-cog
-                    | Ajustes
+include ../mixins/blade
++if("!request()->is('auth/*')")
+    aside.sidebar
+        .profile
+            .details
+                .photo
+                    img.img(src="{{ asset('img/1f47d.svg') }}", width="36", height="36")
+                .title(title!="{{ $setting->title }}") {{ str_limit($setting->title, 16) }}
+                .name {{ $currentUser->name }}
+                span.typcn.typcn-arrow-sorted-down.drop-trigger(data-drop="profile-settings")
+                #profile-settings.settings.drop
+                    ul.options
+                        li.option
+                            a.link(href="#") Editar perfil
+                        li.option
+                            a.link(href="{{ url('auth/logout') }}") Cerrar sesión
+        nav.nav
+            ul.options
+                li.option
+                    a(href="{{ url('admin/articles/create') }}", class!="link {{ (request()->is('admin/articles/create')) ? 'active' : '' }}")
+                        span.typcn.typcn-pen
+                        | Nuevo artículo
+                li.option
+                    a(href="{{ url('admin/articles') }}", class!="link {{ (request()->is('admin/articles') || request()->is('admin/articles/*') && !request()->is('admin/articles/create')) ? 'active' : '' }}")
+                        span.typcn.typcn-document-text
+                        | Contentido
+                li.option
+                    a(href="{{ url('admin/tags') }}", class!="link {{ (request()->is('admin/tags') || request()->is('admin/tags/*')) ? 'active' : '' }}")
+                        span.typcn.typcn-tags
+                        | Etiquetas
+                li.option
+                    a.link(href="{{ url('admin/settings') }}", class!="link {{ (request()->is('admin/settings') || request()->is('admin/settings/*')) ? 'active' : '' }}") 
+                        span.typcn.typcn-cog
+                        | Ajustes
