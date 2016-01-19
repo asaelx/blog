@@ -2,8 +2,8 @@
 <div class="editor">
   <div class="title">
     <div class="options">
-      <div data-drop="settings" class="btn blue publish drop-trigger">{{ $submitButtonText }}<span class="typcn typcn-arrow-sorted-down"></span></div>
-      <div id="settings" class="settings drop">
+      <div data-drop="article-settings" class="btn blue publish drop-trigger">{{ $submitButtonText }}<span class="typcn typcn-arrow-sorted-down"></span></div>
+      <div id="article-settings" class="settings drop">
         <div class="group">
           {!! Form::label('cover', 'Imagen de portada', ['class' => 'label']) !!}
           {!! Form::file('cover', ['class' => 'file img']) !!}

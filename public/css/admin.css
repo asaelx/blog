@@ -5654,6 +5654,28 @@ html {
         font-size: 20px;
         font-size: 1.4285714286rem;
         color: #6A8AAA; }
+        .sidebar .profile .details .typcn:hover {
+          cursor: pointer;
+          color: #3498DB; }
+        .sidebar .profile .details .typcn .settings {
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 10.7142857143rem; }
+          .sidebar .profile .details .typcn .settings .options .option {
+            border-bottom: 1px solid #ECF0F1; }
+            .sidebar .profile .details .typcn .settings .options .option:last-child {
+              border-bottom: none; }
+            .sidebar .profile .details .typcn .settings .options .option .link {
+              display: block;
+              font-size: 14px;
+              font-size: 1rem;
+              color: #34495E;
+              padding: 1em 1.5em; }
+              .sidebar .profile .details .typcn .settings .options .option .link:hover {
+                background: #3498DB;
+                color: #FFFFFF;
+                transition: all 0.3s ease; }
       .sidebar .profile .details .title {
         font-size: 14px;
         font-size: 1rem;
@@ -5764,7 +5786,7 @@ html {
   background: #FFFFFF;
   border-radius: 0.2142857143rem;
   box-shadow: 0 0px 10px 3px rgba(0, 0, 0, 0.2);
-  padding: 2rem;
+  overflow: hidden;
   z-index: 10; }
   .drop.visible {
     -webkit-animation: drop-in 0.3s forwards ease;
@@ -6075,7 +6097,7 @@ html {
         position: absolute;
         top: 100%;
         right: 0;
-        background: white; }
+        padding: 2rem; }
         .editor .title .options .settings .btn {
           float: right; }
     .editor .title #input-title {

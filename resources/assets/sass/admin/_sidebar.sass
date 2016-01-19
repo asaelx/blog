@@ -33,6 +33,28 @@ $sidebar-width: em(240px)
                 transform: translateY(-50%)
                 +font-size(20px)
                 color: $light
+                &:hover
+                    cursor: pointer
+                    color: $blue
+                .settings
+                    position: absolute
+                    top: 100%
+                    left: 0
+                    width: rem(150px)
+                    .options
+                        .option
+                            border-bottom: 1px solid $clouds
+                            &:last-child
+                                border-bottom: none
+                            .link
+                                display: block
+                                +font-size(14px)
+                                color: $dark
+                                padding: 1em 1.5em
+                                &:hover
+                                    background: $blue
+                                    color: $white
+                                    transition: all 0.3s ease
             .title
                 +font-size(14px)
                 color: $dark

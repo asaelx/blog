@@ -1,10 +1,10 @@
 .editor
     .title
         .options
-            .btn.blue.publish.drop-trigger(data-drop="settings")
+            .btn.blue.publish.drop-trigger(data-drop="article-settings")
                 | {{ $submitButtonText }}
                 span.typcn.typcn-arrow-sorted-down
-            #settings.settings.drop
+            #article-settings.settings.drop
                 .group
                     | {!! Form::label('cover', 'Imagen de portada', ['class' => 'label']) !!}
                     | {!! Form::file('cover', ['class' => 'file img']) !!}

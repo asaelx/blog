@@ -5,7 +5,13 @@ aside.sidebar
                 img.img(src="https://s3.amazonaws.com/uifaces/faces/twitter/allisongrayce/48.jpg")
             .title Personal Blog
             .name Brenda Graham
-            span.typcn.typcn-arrow-sorted-down
+            span.typcn.typcn-arrow-sorted-down.drop-trigger(data-drop="profile-settings")
+                #profile-settings.settings.drop
+                    ul.options
+                        li.option
+                            a.link(href="#") Editar perfil
+                        li.option
+                            a.link(href="{{ url('auth/logout') }}") Cerrar sesión
     nav.nav
         ul.options
             li.option
