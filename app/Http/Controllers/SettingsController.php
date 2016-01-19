@@ -6,20 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Auth;
 use App\Setting;
 
 class SettingsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        // return view('settings.index');
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -44,17 +35,6 @@ class SettingsController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
      * @param  Setting  $setting
@@ -63,7 +43,8 @@ class SettingsController extends Controller
     public function edit()
     {
         $setting = Setting::latest()->first();
-        return view('settings.index', compact('setting'));
+        $user = Auth::user();
+        return view('settings.index', compact('setting', 'user'));
     }
 
     /**
@@ -77,17 +58,9 @@ class SettingsController extends Controller
     {
         $setting = Setting::findOrFail($id);
         $setting->update($request->all());
-        return redirect('admin/settings');
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        session()->flash('flash_message', 'Se han actualizado los datos del Blog');
+
+        return redirect('admin/settings?tab=blog');
     }
 }

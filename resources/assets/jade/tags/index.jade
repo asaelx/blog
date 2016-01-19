@@ -44,7 +44,7 @@ block content
                         .count Hay {{ $tags->total() }} etiquetas en total
                         +else
                             .count Solo hay {{ $tags->total() }} etiqueta
-                    {!! $tags->render() !!}
+                    | {!! $tags->render() !!}
                 +else
                     .empty
                         i.twa.twa-persevere

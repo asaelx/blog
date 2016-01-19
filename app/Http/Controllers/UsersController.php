@@ -30,4 +30,21 @@ class UsersController extends Controller
         $unpublished = $user->unpublishedArticles()->paginate(10, ['*'], 'unpublished_page');
         return view('user.articles', compact('published', 'unpublished', 'user'));
     }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->update($request->all());
+
+        session()->flash('flash_message', 'Se han actualizado los datos de perfil');
+
+        return redirect('admin/settings');
+    }
 }

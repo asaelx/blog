@@ -6,8 +6,5 @@ block title
 block content
     .content
         h1.title Artículos escritos por <a href="{{ url('articles/author', $user->name) }}" class="link">{{ $user->name }}</a>
-        include ../partials/tools
-        
-        // Posts list
         include ../partials/list
             

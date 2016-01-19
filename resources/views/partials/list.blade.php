@@ -1,5 +1,18 @@
 
-<ul id="published" class="list active tabbed">
+<?php $tabs = ['published' => 'Publicados', 'unpublished' => 'Por publicar']; ?>
+<div class="tools">
+  <ul class="tabs">
+<?php $current = (!is_null(request()->get('tab')) && array_key_exists(request()->get('tab'), $tabs)) ? request()->get('tab') : null ?>
+<?php $i = 0; ?>
+@foreach($tabs as $tab => $title)
+
+      <li class="tab"><a href="#" data-tab="{{ $tab }}" class="link {{ ($current == $tab || (is_null($current) && $i === 0)) ? 'active' : '' }}">{{ $title }}</a></li>
+<?php $i++; ?>
+@endforeach
+
+  </ul>
+</div>
+<ul id="published" class="list tabbed {{ (is_null($current) || $current == 'published') ? 'active' : '' }}">
 @if(!$published->isEmpty())
 
 @foreach($published as $article)
@@ -34,7 +47,7 @@
 @endif
 
 </ul>
-<ul id="unpublished" class="list tabbed">       
+<ul id="unpublished" class="list tabbed {{ (!is_null($current) && $current == 'unpublished') ? 'active' : '' }}">
 @if(!$unpublished->isEmpty())
 
 @foreach($unpublished as $article)

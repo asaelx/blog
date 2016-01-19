@@ -1,0 +1,16 @@
+include ../mixins/blade
+ul#unpublished(class!="list tabbed {{ (!is_null($current) && $current == 'unpublished') ? 'active' : '' }}")
+    +if('!$unpublished->isEmpty()')
+        +foreach('$unpublished as $article')    
+            include post
+        .list-footer
+            +if('$unpublished->total() > 1')
+                .count Hay {{ $unpublished->total() }} artículos en total
+                +else
+                    .count Solo hay {{ $unpublished->total() }} artículo
+            | {!! $unpublished->render() !!}
+        +else
+            .empty
+                i.twa.twa-neutral-face
+                h4.legend No tienes artículos pendientes por publicar
+                a.btn.blue(href="{{ url('admin/articles/create') }}") Escribe un artículo

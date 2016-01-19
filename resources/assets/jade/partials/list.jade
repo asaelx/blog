@@ -1,34 +1,7 @@
 include ../mixins/blade
-//- Published
-ul.list.active.tabbed#published
-    +if('!$published->isEmpty()')
-        +foreach('$published as $article')    
-            include ../partials/post
-        .list-footer
-            +if('$published->total() > 1')
-                .count Hay {{ $published->total() }} artículos en total
-                +else
-                    .count Solo hay {{ $published->total() }} artículo
-            | {!! $published->render() !!}
-        +else
-            .empty
-                i.twa.twa-hushed
-                h4.legend Aún no tienes artículos publicados
-                a.btn.blue(href="{{ url('admin/articles/create') }}") Escribe tu primer artículo
-                    
-//- Drafts
-ul.list.tabbed#unpublished        
-    +if('!$unpublished->isEmpty()')
-        +foreach('$unpublished as $article')    
-            include ../partials/post
-        .list-footer
-            +if('$unpublished->total() > 1')
-                .count Hay {{ $unpublished->total() }} artículos en total
-                +else
-                    .count Solo hay {{ $unpublished->total() }} artículo
-            | {!! $unpublished->render() !!}
-        +else
-            .empty
-                i.twa.twa-neutral-face
-                h4.legend No tienes artículos pendientes por publicar
-                a.btn.blue(href="{{ url('admin/articles/create') }}") Escribe un artículo
++php("$tabs = ['published' => 'Publicados', 'unpublished' => 'Por publicar'];")
+.tools
+    include tabs
+
+include published
+include unpublished

@@ -11,7 +11,7 @@ include ../mixins/blade
                 #profile-settings.settings.drop
                     ul.options
                         li.option
-                            a.link(href="#") Editar perfil
+                            a.link(href="{{ url('admin/settings?tab=profile') }}") Editar perfil
                         li.option
                             a.link(href="{{ url('auth/logout') }}") Cerrar sesión
         nav.nav

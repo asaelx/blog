@@ -5,19 +5,15 @@ block title
     
 block content
     include ../partials/errors
+    include ../partials/flash
     .content
         h1.title Ajustes
         
-        | {!! Form::model($setting, ['url' => url('admin/settings', $setting->id), 'class' => 'form settings-form', 'method' => 'PATCH','files' => true]) !!}
-        fieldset.fieldset
-            legend.legend Datos del blog
-            .group
-                | {!! Form::label('title', 'Título', ['class' => 'label']) !!}
-                | {!! Form::text('title', null, ['class' => 'input']) !!}
-            .group
-                | {!! Form::label('description', 'Descripción', ['class' => 'label']) !!}
-                | {!! Form::textarea('description', null, ['class' => 'input autosize', 'size' => '50x3']) !!}
-        .group
-            | {!! Form::submit('Guardar', ['class' => 'btn blue submit-right']) !!}
-        | {!! Form::close() !!}
+        +php("$tabs = ['blog' => 'Blog', 'profile' => 'Perfil', 'networks' => 'Redes Sociales'];")
+        .tools
+            include ../partials/tabs
+        
+        include partials/blog
+        include partials/profile
+        include partials/networks
             
