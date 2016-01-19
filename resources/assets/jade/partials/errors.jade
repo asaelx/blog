@@ -1,0 +1,8 @@
+include ../mixins/blade
++if('$errors->any()')
+    ul.notifications
+        +foreach('$errors->all() as $error')
+            li.notification.error
+                .message
+                    span.typcn.typcn-warning
+                    |  {{ $error }}

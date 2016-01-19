@@ -10,6 +10,7 @@ block sidebar
     include ../partials/sidebar
     
 block content
+    include ../partials/errors
     .content
         | {!! Form::model($article = new \App\Article, ['url' => url('admin/articles'), 'class' => 'form', 'files' => true]) !!}
         include ../mixins/blade

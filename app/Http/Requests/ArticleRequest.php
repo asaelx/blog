@@ -30,4 +30,19 @@ class ArticleRequest extends Request
             'cover'        => 'required'
         ];
     }
+
+    /**
+     * Custom validation messages
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'title.required' => 'No le has puesto título a tu artículo',
+            'body.required' => 'No has escrito tu artículo',
+            'published_at.required' => 'No le has puesto una fecha de publicación a tu artículo',
+            'cover.required' => 'No le has puesto una imagen de portada a tu artículo'
+        ];
+    }
 }

@@ -60,6 +60,8 @@ class ArticlesController extends Controller
 
         $article->files()->attach($file->id);
 
+        session()->flash('flash_message', 'Se ha publicado tu artículo');
+
         return redirect('admin/articles');
     }
 
@@ -102,6 +104,8 @@ class ArticlesController extends Controller
 
         $this->syncTags($article, $request->input('tag_list'));
 
+        session()->flash('flash_message', 'Se ha actualizado tu artículo');
+
         return redirect('admin/articles');
     }
 
@@ -113,8 +117,11 @@ class ArticlesController extends Controller
      */
     public function destroy(Article $article)
     {
-        $this->syncTags($article, []);
+        $article->tags()->sync([]);
+        $article->files()->sync([]);
         $article->delete();
+
+        session()->flash('flash_message', 'Se ha eliminado tu artículo');
 
         return redirect('admin/articles');
     }

@@ -7,32 +7,33 @@ block styles
     link(rel="stylesheet", href="{{ asset('css/admin.css') }}")
     
 block content
-        | {!! Form::open(['url' => url('auth/register'), 'class' => 'form sign-form']) !!}
-        fieldset.fieldset
-            legend.legend Datos personales
-            .group
-                | {!! Form::label('name', 'Nombre', ['class' => 'label']) !!}
-                | {!! Form::text('name', old('name'), ['class' => 'input']) !!}
-            .group
-                | {!! Form::label('email', 'Correo electrónico', ['class' => 'label']) !!}
-                | {!! Form::text('email', old('email'), ['class' => 'input']) !!}
-            .group
-                | {!! Form::label('password', 'Contraseña', ['class' => 'label']) !!}
-                | {!! Form::password('password', ['class' => 'input']) !!}
-            .group
-                | {!! Form::label('password_confirmation]', 'Confirmar contraseña', ['class' => 'label']) !!}
-                | {!! Form::password('password_confirmation', ['class' => 'input']) !!}
-        fieldset.fieldset
-            legend.legend Datos del blog
-            .group
-                | {!! Form::label('setting[title]', 'Título', ['class' => 'label']) !!}
-                | {!! Form::text('setting[title]', old('setting[title]'), ['class' => 'input']) !!}
-            .group
-                | {!! Form::label('setting[description]', 'Descripción', ['class' => 'label']) !!}
-                | {!! Form::textarea('setting[description]', old('setting[description]'), ['class' => 'input autosize', 'size' => '50x3']) !!}
+    include ../partials/errors
+    | {!! Form::open(['url' => url('auth/register'), 'class' => 'form sign-form']) !!}
+    fieldset.fieldset
+        legend.legend Datos personales
         .group
-            | {!! Form::submit('Registrar', ['class' => 'btn blue submit-right']) !!}
-        | {!! Form::close() !!}
+            | {!! Form::label('name', 'Nombre', ['class' => 'label']) !!}
+            | {!! Form::text('name', old('name'), ['class' => 'input']) !!}
+        .group
+            | {!! Form::label('email', 'Correo electrónico', ['class' => 'label']) !!}
+            | {!! Form::text('email', old('email'), ['class' => 'input']) !!}
+        .group
+            | {!! Form::label('password', 'Contraseña', ['class' => 'label']) !!}
+            | {!! Form::password('password', ['class' => 'input']) !!}
+        .group
+            | {!! Form::label('password_confirmation]', 'Confirmar contraseña', ['class' => 'label']) !!}
+            | {!! Form::password('password_confirmation', ['class' => 'input']) !!}
+    fieldset.fieldset
+        legend.legend Datos del blog
+        .group
+            | {!! Form::label('setting[title]', 'Título', ['class' => 'label']) !!}
+            | {!! Form::text('setting[title]', old('setting[title]'), ['class' => 'input']) !!}
+        .group
+            | {!! Form::label('setting[description]', 'Descripción', ['class' => 'label']) !!}
+            | {!! Form::textarea('setting[description]', old('setting[description]'), ['class' => 'input autosize', 'size' => '50x3']) !!}
+    .group
+        | {!! Form::submit('Registrar', ['class' => 'btn blue submit-right']) !!}
+    | {!! Form::close() !!}
 
 block scripts
     script(src="{{ asset('js/admin.js') }}")

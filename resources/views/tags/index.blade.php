@@ -24,6 +24,15 @@
         </ul>
       </nav>
     </aside>
+@if(session()->has('flash_message'))
+
+        <ul class="notifications">
+          <li class="notification success">
+            <div class="message"><span class="typcn typcn-tick"></span> {{ session('flash_message') }}</div>
+          </li>
+        </ul>
+@endif
+
     <div class="content">
       <h1 class="title">Etiquetas</h1>
       <ul id="tags" class="list active">

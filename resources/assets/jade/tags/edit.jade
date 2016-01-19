@@ -11,6 +11,7 @@ block sidebar
     
 block content
     .content
+        include ../partials/errors
         h1.title Editar etiqueta {{ $tag->name }}
         
         | {!! Form::model($tag, ['url' => url('admin/tags', $tag->name), 'method' => 'PATCH', 'class' => 'form']) !!}

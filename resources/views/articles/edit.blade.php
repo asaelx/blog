@@ -24,6 +24,19 @@
         </ul>
       </nav>
     </aside>
+@if($errors->any())
+
+        <ul class="notifications">
+@foreach($errors->all() as $error)
+
+              <li class="notification error">
+                <div class="message"><span class="typcn typcn-warning"></span> {{ $error }}</div>
+              </li>
+@endforeach
+
+        </ul>
+@endif
+
     <div class="content">{!! Form::model($article, ['url' => url('admin/articles', $article->id), 'method' => 'PATCH', 'class' => 'form', 'files' => true]) !!}
 @include('partials.form', ['submitButtonText' => 'Actualizar'])
 {!! Form::close() !!}

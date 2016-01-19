@@ -55,6 +55,9 @@ class TagsController extends Controller
     public function update(TagRequest $request, Tag $tag)
     {
         $tag->update($request->all());
+
+        session()->flash('flash_message', 'Se ha actualizado el nombre de la etiqueta');
+
         return redirect('admin/tags');
     }
 
@@ -67,6 +70,9 @@ class TagsController extends Controller
     public function destroy(Tag $tag)
     {
         $tag->delete();
+
+        session()->flash('flash_message', 'Se ha eliminado la etiqueta');
+
         return redirect('admin/tags');
     }
 }

@@ -7,3 +7,19 @@
         visibility: visible
         +opacity(1)
         transform: translateY(0)
+
+@keyframes right-in
+    from
+        +opacity(0)
+        transform: translateX(3rem)
+    to
+        +opacity(1)
+        transform: translateX(0)
+
+@keyframes notification-away
+    from
+        +opacity(1)
+        transform: translateX(0)
+    to
+        +opacity(0)
+        transform: translateX(100%)

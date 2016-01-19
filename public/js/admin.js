@@ -8232,4 +8232,18 @@ $(function(){
         });
     }
 
+    /* Notifications */
+    var notifications = $('.notification');
+    if(notifications.length){
+        setTimeout(function(){
+            $.each(notifications, function(i, e){
+                var delay_time = 5000 * i,
+                    $this = $(this);
+                setTimeout(function(){
+                    $this.addClass('go-away').delay(800).slideUp(300);
+                }, delay_time);
+            });
+        }, 5800);
+    }
+
 });

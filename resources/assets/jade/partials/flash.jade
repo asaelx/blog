@@ -1,0 +1,7 @@
+include ../mixins/blade
++if("session()->has('flash_message')")
+    ul.notifications
+        li.notification.success
+            .message
+                span.typcn.typcn-tick
+                |  {{ session('flash_message') }}

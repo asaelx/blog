@@ -27,4 +27,16 @@ class TagRequest extends Request
             'name' => 'required'
         ];
     }
+
+    /**
+     * Custom validation messages
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'name.required' => 'No puedes dejar la etiqueta sin nombre'
+        ];
+    }
 }

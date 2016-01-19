@@ -1,0 +1,29 @@
+.notifications
+    position: fixed
+    top: 6rem
+    right: 1rem
+    z-index: 10
+    .notification
+        +opacity(0)
+        text-align: right
+        margin-bottom: 1rem
+        @for $i from 1 through 10
+            &:nth-child(#{$i})
+                animation: right-in 0.8s #{0.1s * $i} forwards ease
+        .message
+            display: inline-block
+            padding: 1rem
+            border-radius: rem(3px)
+            box-shadow: 0 0px 10px 3px rgba($black, 0.2)
+            .typcn
+                +font-size(20px)
+        &.go-away
+            animation: notification-away 0.8s forwards ease
+        &.error
+            .message
+                background: rgba($red, 0.95)
+                color: $white
+        &.success
+            .message
+                background: rgba($green, 0.95)
+                color: $white

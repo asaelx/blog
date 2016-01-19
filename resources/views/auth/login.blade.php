@@ -6,7 +6,20 @@
     <title>Instalación</title>
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
   </head>
-  <body>{!! Form::open(['url' => url('auth/login'), 'class' => 'form sign-form']) !!}
+  <body>
+@if($errors->any())
+
+        <ul class="notifications">
+@foreach($errors->all() as $error)
+
+              <li class="notification error">
+                <div class="message"><span class="typcn typcn-warning"></span> {{ $error }}</div>
+              </li>
+@endforeach
+
+        </ul>
+@endif
+{!! Form::open(['url' => url('auth/login'), 'class' => 'form sign-form']) !!}
     <fieldset class="fieldset">
       <legend class="legend">Iniciar sesión</legend>
       <div class="group">
