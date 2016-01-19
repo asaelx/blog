@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SettingRequest;
 use Auth;
 use App\Setting;
 
@@ -54,7 +55,7 @@ class SettingsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(SettingRequest $request, $id)
     {
         $setting = Setting::findOrFail($id);
         $setting->update($request->all());

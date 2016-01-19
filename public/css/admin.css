@@ -8173,7 +8173,8 @@ html {
   height: 100%;
   position: fixed;
   top: 0;
-  left: 0; }
+  left: 0;
+  z-index: 10; }
   .sidebar .profile {
     content: " ";
     display: table;
@@ -8385,11 +8386,21 @@ html {
 .form .file {
   margin-top: 0.5em; }
 
-.form .img-preview {
+.form .preview {
   width: 100%;
+  height: 7.1428571429rem;
+  overflow: hidden;
+  position: relative;
+  margin-top: 1rem;
   border-radius: 0.2142857143rem;
-  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.2);
-  margin-top: 1em; }
+  box-shadow: 0 0 3px 1px rgba(0, 0, 0, 0.2); }
+  .form .preview .img-preview {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%); }
 
 .form .onoffswitch-styled {
   float: right;

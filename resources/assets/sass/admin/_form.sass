@@ -33,11 +33,20 @@
             transition: all 0.3s ease
     .file
         margin-top: 0.5em
-    .img-preview
+    .preview
         width: 100%
+        height: rem(100px)
+        overflow: hidden
+        position: relative
+        margin-top: 1rem
         border-radius: rem(3px)
         box-shadow: 0 0 3px 1px rgba(black, 0.2)
-        margin-top: 1em
+        .img-preview
+            width: 100%
+            position: absolute
+            top: 50%
+            left: 0
+            transform: translateY(-50%)
 
     .onoffswitch-styled
         float: right

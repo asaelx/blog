@@ -62,27 +62,31 @@ $(function(){
 
         function getImgPreview(input) {
             var $img = $('<img>', {
-                class: 'img-preview',
-                src: ''
-            });
+                    class: 'img-preview',
+                    src: ''
+                }),
+                $preview = $('<div>', {
+                    class: 'preview'
+                });
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
 
                 reader.onload = function (e) {
                     $img.attr('src', e.target.result);
+                    $img.appendTo($preview);
                 }
 
                 reader.readAsDataURL(input.files[0]);
 
-                return $img;
+                return $preview;
             }
         }
 
         file_img.change(function(){
             var preview = getImgPreview(this),
-                img = file_img.next('.img-preview');
-            if(img.length){
-                img.remove();
+                existent = file_img.next('.preview');
+            if(existent.length){
+                existent.remove();
             }
             file_img.after(preview);
         });

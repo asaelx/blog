@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ArticleRequest;
+use App\Http\Requests\UpdateArticleRequest;
 use Auth;
 use App\Article;
 use App\Tag;
@@ -45,20 +46,12 @@ class ArticlesController extends Controller
      */
     public function store(ArticleRequest $request)
     {
-        if($request->hasFile('cover')):
-            $path = $this->uploadFile($request->file('cover'));
-            $file = File::create([
-                'url' => $path,
-                'original_name' => pathinfo($request->file('cover')->getClientOriginalName(), PATHINFO_FILENAME)
-            ]);
-        endif;
-
-
         $article = Auth::user()->articles()->create($request->all());
 
         $this->syncTags($article, $request->input('tag_list'));
 
-        $article->files()->attach($file->id);
+        if($request->hasFile('cover'))
+            $this->uploadFile($article, $request->file('cover'));
 
         session()->flash('flash_message', 'Se ha publicado tu artículo');
 
@@ -94,15 +87,18 @@ class ArticlesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  Article  $article
+     * @param  UpdateArticleRequest  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(ArticleRequest $request, Article $article)
+    public function update(UpdateArticleRequest $request, Article $article)
     {
 
         $article->update($request->all());
 
         $this->syncTags($article, $request->input('tag_list'));
+
+        if($request->hasFile('cover'))
+            $this->uploadFile($article, $request->file('cover'));
 
         session()->flash('flash_message', 'Se ha actualizado tu artículo');
 
@@ -150,17 +146,24 @@ class ArticlesController extends Controller
     /**
      * Upload File with Request
      *
+     * @param  Article $article
      * @param  \Illuminate\Http\Request::file() $file
-     * @return string  $path
      */
-    private function uploadFile($file)
+    private function uploadFile($article, $file)
     {
-        $fileName = time() . '_' . $file->getClientOriginalName();
+        $client_original_name = $file->getClientOriginalName();
+        $fileName = time() . '_' . $client_original_name;
         $destinationPath = 'uploads';
         $file->move($destinationPath, $fileName);
 
-        $path = $destinationPath . '/' . $fileName;
+        $path = '/' . $destinationPath . '/' . $fileName;
+        $original_name = pathinfo($client_original_name, PATHINFO_FILENAME);
 
-        return $path;
+        $file = File::create([
+            'url' => $path,
+            'original_name' => $original_name
+        ]);
+
+        $article->files()->attach($file->id);
     }
 }

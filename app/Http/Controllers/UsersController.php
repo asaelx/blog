@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UserRequest;
 use App\User;
 
 class UsersController extends Controller
@@ -38,13 +39,13 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
         $user = User::findOrFail($id);
         $user->update($request->all());
 
         session()->flash('flash_message', 'Se han actualizado los datos de perfil');
 
-        return redirect('admin/settings');
+        return redirect('admin/settings?tab=profile');
     }
 }

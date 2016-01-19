@@ -7,6 +7,11 @@
         <div class="group">
           {!! Form::label('cover', 'Imagen de portada', ['class' => 'label']) !!}
           {!! Form::file('cover', ['class' => 'file img']) !!}
+@if(!is_null($article->files()->first()))
+
+                    <div class="preview"><img src="{{ url('/') . $article->files()->first()->url }}" alt="{{ $article->files()->first()->original_name }}" class="img-preview"/></div>
+@endif
+
         </div>
         <div class="group">
           {!! Form::label('tags', 'Etiquetas', ['class' => 'label']) !!}

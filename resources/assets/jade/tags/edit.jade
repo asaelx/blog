@@ -8,13 +8,10 @@ block content
         include ../partials/errors
         h1.title Editar etiqueta {{ $tag->name }}
         
-        | {!! Form::model($tag, ['url' => url('admin/tags', $tag->name), 'method' => 'PATCH', 'class' => 'form']) !!}
-        fieldset.fieldset
-            //- legend.legend General
-            .group
-                | {!! Form::label('name', 'Nombre', ['class' => 'label']) !!}
-                | {!! Form::text('name', null, ['class' => 'input']) !!}
-        fieldset.fieldset
-            .group
-                | {!! Form::submit('Actualizar', ['class' => 'btn blue submit-right']) !!}
+        | {!! Form::model($tag, ['url' => url('admin/tags', $tag->name), 'method' => 'PATCH', 'class' => 'form settings-form']) !!}
+        .group
+            | {!! Form::label('name', 'Nombre', ['class' => 'label']) !!}
+            | {!! Form::text('name', null, ['class' => 'input']) !!}
+        .group
+            | {!! Form::submit('Actualizar', ['class' => 'btn blue submit-right']) !!}
         | {!! Form::close() !!}
