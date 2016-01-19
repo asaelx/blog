@@ -3,15 +3,15 @@ aside.sidebar
         .details
             .photo
                 img.img(src="https://s3.amazonaws.com/uifaces/faces/twitter/allisongrayce/48.jpg")
-            .title Personal Blog
-            .name Brenda Graham
+            .title(title!="{{ $setting->title }}") {{ str_limit($setting->title, 16) }}
+            .name {{ $currentUser->name }}
             span.typcn.typcn-arrow-sorted-down.drop-trigger(data-drop="profile-settings")
-                #profile-settings.settings.drop
-                    ul.options
-                        li.option
-                            a.link(href="#") Editar perfil
-                        li.option
-                            a.link(href="{{ url('auth/logout') }}") Cerrar sesión
+            #profile-settings.settings.drop
+                ul.options
+                    li.option
+                        a.link(href="#") Editar perfil
+                    li.option
+                        a.link(href="{{ url('auth/logout') }}") Cerrar sesión
     nav.nav
         ul.options
             li.option

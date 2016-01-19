@@ -3,14 +3,14 @@
   <div class="profile">
     <div class="details">
       <div class="photo"><img src="https://s3.amazonaws.com/uifaces/faces/twitter/allisongrayce/48.jpg" class="img"/></div>
-      <div class="title">Personal Blog</div>
-      <div class="name">Brenda Graham</div><span data-drop="profile-settings" class="typcn typcn-arrow-sorted-down drop-trigger">
-        <div id="profile-settings" class="settings drop">
-          <ul class="options">
-            <li class="option"><a href="#" class="link">Editar perfil</a></li>
-            <li class="option"><a href="{{ url('auth/logout') }}" class="link">Cerrar sesión</a></li>
-          </ul>
-        </div></span>
+      <div title="{{ $setting->title }}" class="title">{{ str_limit($setting->title, 16) }}</div>
+      <div class="name">{{ $currentUser->name }}</div><span data-drop="profile-settings" class="typcn typcn-arrow-sorted-down drop-trigger"></span>
+      <div id="profile-settings" class="settings drop">
+        <ul class="options">
+          <li class="option"><a href="#" class="link">Editar perfil</a></li>
+          <li class="option"><a href="{{ url('auth/logout') }}" class="link">Cerrar sesión</a></li>
+        </ul>
+      </div>
     </div>
   </div>
   <nav class="nav">

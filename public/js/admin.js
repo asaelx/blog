@@ -8216,11 +8216,8 @@ $(function(){
 
         $(document).on('click', function(e){
             var $target = $(e.target);
-            if(!$target.hasClass('drop') &&
-                !$target.hasClass('drop-trigger') &&
-                !$target.closest('.drop').length &&
-                !$target.closest('.select2-container').length
-            ){
+            if(!$target.hasClass('drop-trigger') && !$target.closest('.drop').length && !$target.hasClass('select2-selection__choice__remove'))
+            {
                 drops.removeClass('visible');
             }
         });

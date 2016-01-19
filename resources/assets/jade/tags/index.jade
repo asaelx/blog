@@ -1,13 +1,7 @@
-extend ../layout/base
+extend ../layout/admin
 
 block title
-    title Ajustes
-    
-block styles
-    link(rel="stylesheet", href="{{ asset('css/admin.css') }}")
-    
-block sidebar
-    include ../partials/sidebar
+    title Etiquetas
     
 block content
     include ../partials/flash
@@ -56,7 +50,4 @@ block content
                         i.fa.fa-frown-o
                         h4.legend Aún no hay etiquetas
                         a.btn.blue(href="{{ url('admin/articles/create') }}") Escribe tu primer artículo
-                    
-block scripts
-    script(src="{{asset('js/admin.js')}}")
             

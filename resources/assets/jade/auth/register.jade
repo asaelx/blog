@@ -1,10 +1,7 @@
-extend ../layout/base
+extend ../layout/admin
 
 block title
     title Instalación
-    
-block styles
-    link(rel="stylesheet", href="{{ asset('css/admin.css') }}")
     
 block content
     include ../partials/errors
@@ -34,6 +31,3 @@ block content
     .group
         | {!! Form::submit('Registrar', ['class' => 'btn blue submit-right']) !!}
     | {!! Form::close() !!}
-
-block scripts
-    script(src="{{ asset('js/admin.js') }}")

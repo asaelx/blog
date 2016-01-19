@@ -1,13 +1,7 @@
-extend ../layout/base
+extend ../layout/admin
 
 block title
     title Nuevo Artículo
-    
-block styles
-    link(rel="stylesheet", href="{{ asset('css/admin.css') }}")
-    
-block sidebar
-    include ../partials/sidebar
     
 block content
     include ../partials/errors
@@ -16,6 +10,3 @@ block content
         include ../mixins/blade
         +include("partials.form", "['submitButtonText' => 'Publicar']")
         | {!! Form::close() !!}
-
-block scripts
-    script(src="{{ asset('js/admin.js') }}")

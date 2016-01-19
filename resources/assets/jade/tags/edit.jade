@@ -1,13 +1,7 @@
-extend ../layout/base
+extend ../layout/admin
 
 block title
     title Actualizar Etiqueta - {{ $tag->name }}
-    
-block styles
-    link(rel="stylesheet", href="{{ asset('css/admin.css') }}")
-    
-block sidebar
-    include ../partials/sidebar
     
 block content
     .content
@@ -24,6 +18,3 @@ block content
             .group
                 | {!! Form::submit('Actualizar', ['class' => 'btn blue submit-right']) !!}
         | {!! Form::close() !!}
-
-block scripts
-    script(src="{{ asset('js/admin.js') }}")

@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
   </head>
   <body>
+@include('partials.sidebar')
+
 @if($errors->any())
 
         <ul class="notifications">
