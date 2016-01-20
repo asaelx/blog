@@ -67,10 +67,12 @@ class AuthController extends Controller
             'password' => bcrypt($data['password']),
         ]);
 
-        Setting::create([
+        $setting = Setting::create([
             'title'       => $data['setting']['title'],
             'description' => $data['setting']['description']
         ]);
+
+        $setting->users()->sync([$user->id]);
 
         return $user;
     }

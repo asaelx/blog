@@ -10,6 +10,7 @@ elixir.config.sourcemaps = false;
 elixir(function(mix) {
     mix.sass([
         '../../../node_modules/select2/dist/css/select2.min.css',
+        rs + 'scss/twemoji-awesome.scss',
         'master.sass'
     ], 'public/css/master.css');
 });

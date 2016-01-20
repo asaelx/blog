@@ -11,7 +11,9 @@
 |
 */
 
+// Theme
 Route::get('/', 'HomeController@index');
+Route::get('{slug}', 'HomeController@show');
 
 // Authentication routes
 Route::get('auth/login', 'Auth\AuthController@getLogin');
@@ -26,7 +28,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
     // Index
     Route::get('/', function(){
-        return redirect('admin/articles');
+        return redirect('admin/articles'); // Fix this
     });
 
     // Tags

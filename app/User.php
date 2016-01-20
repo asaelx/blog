@@ -15,6 +15,7 @@ use Cviebrock\EloquentSluggable\SluggableTrait;
 
 use App\Article;
 use App\File;
+use App\Setting;
 
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
@@ -101,6 +102,17 @@ class User extends Model implements AuthenticatableContract,
     public function files()
     {
         return $this->belongsToMany('App\File')
+                    ->withTimestamps();
+    }
+
+    /**
+     * Get the settings associated to the given user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function settings()
+    {
+        return $this->belongsToMany('App\Setting')
                     ->withTimestamps();
     }
 }
