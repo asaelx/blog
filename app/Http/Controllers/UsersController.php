@@ -73,6 +73,6 @@ class UsersController extends Controller
             'original_name' => $original_name
         ]);
 
-        $user->files()->attach($file->id);
+        $user->files()->sync([$file->id]);
     }
 }

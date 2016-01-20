@@ -8200,7 +8200,16 @@ $(function(){
     if(selects2.length){
         selects2.select2({
             width: '100%',
-            tags: true
+            tags: true,
+            tokenSeparators: [","],
+            "language": {
+                "noResults": function(){
+                    return "Aún no hay etiquetas, escribe una...";
+                }
+            },
+            escapeMarkup: function (markup) {
+                return markup;
+            }
         });
     }
 
@@ -8217,7 +8226,7 @@ $(function(){
 
         $(document).on('click', function(e){
             var $target = $(e.target);
-            if(!$target.hasClass('drop-trigger') && !$target.closest('.drop').length && !$target.hasClass('select2-selection__choice__remove'))
+            if(!$target.hasClass('drop-trigger') && !$target.closest('.drop').length && !$target.hasClass('select2-selection__choice__remove') && !$target.closest('.select2-container').length)
             {
                 drops.removeClass('visible');
             }

@@ -24,8 +24,9 @@ class UserRequest extends Request
     public function rules()
     {
         return [
-            'name'  => 'required',
-            'email' => 'required|email'
+            'name'        => 'required',
+            'email'       => 'required|email',
+            'profile_pic' => 'image|max:2048'
         ];
     }
 
@@ -39,7 +40,9 @@ class UserRequest extends Request
         return [
             'name.required' => 'No puedes dejar tu perfil sin nombre',
             'email.required' => 'No puedes dejar tu perfil sin correo electrónico',
-            'email.email' => 'El formato del correo electrónico está incorrecto'
+            'email.email' => 'El formato del correo electrónico está incorrecto',
+            'profile_pic.image' => 'El archivo tiene que ser una imagen',
+            'profile_pic.max' => 'La foto no puede ser mayor de 2MB'
         ];
     }
 }
