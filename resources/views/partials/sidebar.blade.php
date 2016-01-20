@@ -10,6 +10,7 @@
       <div id="profile-settings" class="settings drop">
         <ul class="options">
           <li class="option"><a href="{{ url('admin/settings?tab=profile') }}" class="link">Editar perfil</a></li>
+          <li class="option"><a href="{{ url('/') }}" class="link">Ver blog</a></li>
           <li class="option"><a href="{{ url('auth/logout') }}" class="link">Cerrar sesión</a></li>
         </ul>
       </div>
