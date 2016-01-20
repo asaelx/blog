@@ -16,8 +16,13 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('slug');
+            $table->string('bio');
             $table->string('email')->unique();
             $table->string('password', 60);
+            $table->string('twitter');
+            $table->string('facebook');
+            $table->string('instagram');
+            $table->string('youtube');
             $table->rememberToken();
             $table->timestamps();
         });

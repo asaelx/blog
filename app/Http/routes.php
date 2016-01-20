@@ -23,6 +23,12 @@ Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
+
+    // Index
+    Route::get('/', function(){
+        return redirect('admin/articles');
+    });
+
     // Tags
     Route::get('articles/tagged/{tags}', 'TagsController@show');
     Route::resource('tags', 'TagsController');
@@ -37,4 +43,5 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
     // Users
     Route::patch('users/{users}', 'UsersController@update');
+    Route::patch('networks/{users}', 'UsersController@networks');
 });

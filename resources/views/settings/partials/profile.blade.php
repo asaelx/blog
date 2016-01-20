@@ -10,6 +10,10 @@
     {!! Form::text('name', null, ['class' => 'input']) !!}
   </div>
   <div class="group">
+    {!! Form::label('bio', 'Biografía', ['class' => 'label']) !!}
+    {!! Form::textarea('bio', null, ['class' => 'input autosize', 'size' => '50x3']) !!}
+  </div>
+  <div class="group">
     {!! Form::label('email', 'Correo electrónico', ['class' => 'label']) !!}
     {!! Form::text('email', null, ['class' => 'input']) !!}
   </div>

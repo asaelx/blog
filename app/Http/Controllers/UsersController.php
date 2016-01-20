@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserNetworksRequest;
 use App\User;
 use App\File;
 
@@ -42,7 +43,7 @@ class UsersController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
-        $user->update($request->only(['name', 'email']));
+        $user->update($request->only(['name', 'bio', 'email']));
 
         if($request->hasFile('profile_pic'))
             $this->uploadFile($user, $request->file('profile_pic'));
@@ -50,6 +51,22 @@ class UsersController extends Controller
         session()->flash('flash_message', 'Se han actualizado los datos de perfil');
 
         return redirect('admin/settings?tab=profile');
+    }
+
+    /**
+     * Update the social networks url
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  User $user
+     * @return \Illuminate\Http\Response
+     */
+    public function networks(UserNetworksRequest $request, User $user)
+    {
+        $user->update($request->only(['twitter', 'facebook', 'instagram', 'youtube']));
+
+        session()->flash('flash_message', 'Se han actualizado tus redes sociales');
+
+        return redirect('admin/settings?tab=networks');
     }
 
     /**
