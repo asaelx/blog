@@ -22,16 +22,31 @@ $(function(){
             }
         });
 
+        var csrf_token = $('input[name="_token"]').val();
         editable.mediumInsert({
             editor: editor,
             addons: {
                 images: {
                     label: '<span class="typcn typcn-camera"></span>',
-                    // fileUploadOptions: { // (object) File upload configuration. See https://github.com/blueimp/jQuery-File-Upload/wiki/Options
-                    //     url: 'uploadFile', // (string) A relative path to an upload script
-                    //     acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i // (regexp) Regexp of accepted file types
-                    // },
-                    // deleteScript: 'delete.php',
+                    fileUploadOptions: { // (object) File upload configuration. See https://github.com/blueimp/jQuery-File-Upload/wiki/Options
+                        headers: {
+                            'X-CSRF-Token': csrf_token
+                        },
+                        url: 'http://' + window.location.hostname + '/admin/editorUpload', // (string) A relative path to an upload script
+                        acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i, // (regexp) Regexp of accepted file types
+                        dataType: 'json'
+                        // done: function (e, data) {
+                        //
+                        // }
+                    },
+                    deleteScript: 'http://' + window.location.hostname + '/admin/editorDelete',
+                    deleteMethod: 'POST',
+                    fileDeleteOptions: {
+                        headers: {
+                            'X-CSRF-TOKEN': csrf_token
+                        }
+                        // deleteScript: 'http://' + window.location.hostname + '/admin/editorDelete'
+                    }
                 }
             }
         });

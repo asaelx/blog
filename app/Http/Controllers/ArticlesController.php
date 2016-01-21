@@ -92,7 +92,7 @@ class ArticlesController extends Controller
      */
     public function update(UpdateArticleRequest $request, Article $article)
     {
-        $article->update($request->all());
+        $article->update($request->except('published_at'));
 
         $this->syncTags($article, $request->input('tag_list'));
 
@@ -164,5 +164,39 @@ class ArticlesController extends Controller
         ]);
 
         $article->files()->attach($file->id);
+    }
+
+    /**
+     * Upload images from Medium Editor
+     *
+     * @param  Request $request
+     * @return Json Response
+     */
+    public function editorUpload(Request $request)
+    {
+        $file = $request->file('files')[0];
+
+        $client_original_name = $file->getClientOriginalName();
+        $fileName = time() . '_' . $client_original_name;
+        $destinationPath = 'uploads';
+        $file->move($destinationPath, $fileName);
+
+        $path = '/' . $destinationPath . '/' . $fileName;
+        $original_name = pathinfo($client_original_name, PATHINFO_FILENAME);
+
+        $files = array();
+        $files[] = array('url' => $path);
+        $response = array('files' => $files);
+
+        return response()->json($response);
+    }
+
+    public function editorDelete(Request $request)
+    {
+        $url = $request->input('file');
+        $path = str_replace(url('/'), '', $url);
+        $relative_path = ltrim($path, '/');
+        unlink($relative_path);
+        return response()->json('success', 200);
     }
 }

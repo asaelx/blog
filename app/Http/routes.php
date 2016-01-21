@@ -33,6 +33,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
         return redirect('admin/articles'); // Fix this
     });
 
+    // Medium Editor
+    Route::post('editorUpload', 'ArticlesController@editorUpload');
+    Route::post('editorDelete', 'ArticlesController@editorDelete');
+
     // Tags
     Route::get('articles/tagged/{tags}', 'TagsController@show');
     Route::resource('tags', 'TagsController');

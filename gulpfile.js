@@ -50,7 +50,7 @@ elixir(function(mix) {
         bw + 'blueimp-file-upload/js/vendor/jquery.ui.widget.js',
         bw + 'blueimp-file-upload/js/jquery.iframe-transport.js',
         bw + 'blueimp-file-upload/js/jquery.fileupload.js',
-        bw + 'medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin.min.js',
+        bw + 'medium-editor-insert-plugin/dist/js/medium-editor-insert-plugin.js',
         bw + 'date.format/date.format.js',
         bw + 'bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',
         bw + 'select2/dist/js/select2.js',
