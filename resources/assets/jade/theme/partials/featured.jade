@@ -5,7 +5,7 @@ include ../../mixins/blade
         h2.title {{ $featured->title }}
         .excerpt
             // excerpt
-            p Tousled food truck polaroid, salvia bespoke small batch Pinterest Marfa. Fingerstache authentic craft beer, food truck Banksy Carles kale chips hoodie. Trust fund artisan master cleanse fingerstache post-ironic.
+            p {{ $featured->excerpt }}
         .details
             .date {{ ucfirst(Date::parse($featured->published_at)->toFormattedDateString()) }}
             a.comments(href!="{{ url($featured->slug . '#disqus_thread') }}")

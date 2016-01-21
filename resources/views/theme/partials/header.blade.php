@@ -33,7 +33,7 @@
                   <h2 class="title">{{ $featured->title }}</h2>
                   <div class="excerpt">
                     <!-- excerpt-->
-                    <p>Tousled food truck polaroid, salvia bespoke small batch Pinterest Marfa. Fingerstache authentic craft beer, food truck Banksy Carles kale chips hoodie. Trust fund artisan master cleanse fingerstache post-ironic.</p>
+                    <p>{{ $featured->excerpt }}</p>
                   </div>
                   <div class="details">
                     <div class="date">{{ ucfirst(Date::parse($featured->published_at)->toFormattedDateString()) }}</div><a href="{{ url($featured->slug . '#disqus_thread') }}" class="comments"></a>

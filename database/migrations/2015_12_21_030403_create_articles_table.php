@@ -18,6 +18,7 @@ class CreateArticlesTable extends Migration
             $table->string('title');
             $table->string('slug');
             $table->text('body');
+            $table->text('excerpt');
             $table->timestamps();
             $table->timestamp('published_at');
 
