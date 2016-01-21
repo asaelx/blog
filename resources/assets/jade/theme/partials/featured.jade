@@ -7,7 +7,9 @@ article.article.featured.down-in
     .details
         .date {{ ucfirst(Date::parse($featured->published_at)->toFormattedDateString()) }}
         //- .comments 18 comentarios
-    .tag {{ $featured->tags()->first()->name }}
+    include ../../mixins/blade
+    +if('!is_null($featured->tags()->first())')
+        .tag {{ $featured->tags()->first()->name }}
     a.read.btn.green(href!="{{ url($featured->slug) }}") Leer
     .background
         img.img(src="{{ asset('img/bottom-bg.jpg') }}", alt="featured_bg")

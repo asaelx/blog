@@ -125,9 +125,9 @@ class ArticlesController extends Controller
      * Sync up the list of tags in the database
      *
      * @param  Article $article
-     * @param  array $tags
+     * @param  array|null $tags
      */
-    private function syncTags($article, array $tags)
+    private function syncTags($article, $tags)
     {
         if(!is_null($tags)):
             $currentTags = array_filter($tags, 'is_numeric');

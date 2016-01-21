@@ -8,12 +8,11 @@
   </head>
   <body>
     <nav class="nav">
-      <div class="wrapper"><a href="#" class="logo"><img src="{{ asset('img/asael_logo.svg') }}" alt="Asael Logo" class="img"><span class="subtitle">Las aventuras de Asael</span></a>
+      <div class="wrapper"><a href="{{ url('/') }}" class="logo"><img src="{{ asset('img/asael_logo.svg') }}" height="32" alt="{{ $setting->title }}" class="img"><span class="subtitle">{{ $setting->title }}</span></a>
         <label for="toggle-menu" class="toggle-menu"><img src="{{ asset('img/menu.svg') }}" alt="menu" class="img">
           <input id="toggle-menu" type="checkbox">
           <ul class="tags">
-            <li class="option"><img src="{{ asset('img/close.svg') }}" alt="close">
-            </li>
+            <li class="option"><img src="{{ asset('img/close.svg') }}" alt="close"></li>
             <li class="option"><a href="" class="link">Diseño</a></li>
             <li class="option"><a href="" class="link">Web</a></li>
             <li class="option"><a href="" class="link">Fotografía</a></li>
@@ -39,8 +38,7 @@
         <div class="row">
           <div class="col-3">
             <div class="profile down-in">
-              <div style="background: url(https://pbs.twimg.com/profile_banners/53294337/1447581003/600x200) no-repeat center center; background-size: cover;" class="cover">
-              </div>
+              <div style="background: url(https://pbs.twimg.com/profile_banners/53294337/1447581003/600x200) no-repeat center center; background-size: cover;" class="cover"></div>
               <div style="background: url(https://pbs.twimg.com/profile_images/665827494986018817/WJ4VdDNn_bigger.jpg) no-repeat center center; background-size: cover;" class="photo"></div>
               <div class="name">{{ $admin->name }}</div>
               <div class="job">Diseñador Web</div>
@@ -74,7 +72,11 @@
               <div class="details">
                 <div class="date">{{ ucfirst(Date::parse($featured->published_at)->toFormattedDateString()) }}</div>
               </div>
-              <div class="tag">{{ $featured->tags()->first()->name }}</div><a href="{{ url($featured->slug) }}" class="read btn green">Leer</a>
+@if(!is_null($featured->tags()->first()))
+
+                            <div class="tag">{{ $featured->tags()->first()->name }}</div>
+@endif
+<a href="{{ url($featured->slug) }}" class="read btn green">Leer</a>
               <div class="background"><img src="{{ asset('img/bottom-bg.jpg') }}" alt="featured_bg" class="img"></div>
             </article>
           </div>
@@ -96,7 +98,11 @@
                                   <div class="details">
                                     <div class="date">{{ ucfirst(Date::parse($article->published_at)->toFormattedDateString()) }}</div>
                                   </div>
-                                  <div class="tag">{{ $article->tags()->first()->name }}</div><a href="{{ url($article->slug) }}" class="read btn white">Leer</a>
+@if(!is_null($article->tags()->first()))
+
+                                            <div class="tag">{{ $article->tags()->first()->name }}</div>
+@endif
+<a href="{{ url($article->slug) }}" class="read btn white">Leer</a>
                                 </article>
                               </div>
 @endforeach

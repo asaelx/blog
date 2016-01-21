@@ -11,8 +11,7 @@
     <div class="row">
       <div class="col-3">
         <div class="profile down-in">
-          <div style="background: url(https://pbs.twimg.com/profile_banners/53294337/1447581003/600x200) no-repeat center center; background-size: cover;" class="cover">
-          </div>
+          <div style="background: url(https://pbs.twimg.com/profile_banners/53294337/1447581003/600x200) no-repeat center center; background-size: cover;" class="cover"></div>
           <div style="background: url(https://pbs.twimg.com/profile_images/665827494986018817/WJ4VdDNn_bigger.jpg) no-repeat center center; background-size: cover;" class="photo"></div>
           <div class="name">{{ $admin->name }}</div>
           <div class="job">Diseñador Web</div>
@@ -46,7 +45,11 @@
           <div class="details">
             <div class="date">{{ ucfirst(Date::parse($featured->published_at)->toFormattedDateString()) }}</div>
           </div>
-          <div class="tag">{{ $featured->tags()->first()->name }}</div><a href="{{ url($featured->slug) }}" class="read btn green">Leer</a>
+@if(!is_null($featured->tags()->first()))
+
+                    <div class="tag">{{ $featured->tags()->first()->name }}</div>
+@endif
+<a href="{{ url($featured->slug) }}" class="read btn green">Leer</a>
           <div class="background"><img src="{{ asset('img/bottom-bg.jpg') }}" alt="featured_bg" class="img"/></div>
         </article>
       </div>

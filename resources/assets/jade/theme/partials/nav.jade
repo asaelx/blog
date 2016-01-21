@@ -1,15 +1,14 @@
 nav.nav
     .wrapper
-        a.logo(href="#")
-            img.img(src="{{ asset('img/asael_logo.svg') }}", alt="Asael Logo")
-            span.subtitle Las aventuras de Asael
+        a.logo(href="{{ url('/') }}")
+            img.img(src="{{ asset('img/asael_logo.svg') }}", height="32" alt!="{{ $setting->title }}")
+            span.subtitle {{ $setting->title }}
         label.toggle-menu(for="toggle-menu")
             img.img(src="{{ asset('img/menu.svg') }}", alt="menu")
             input#toggle-menu(type="checkbox")
             ul.tags
                 li.option
                     img(src="{{ asset('img/close.svg') }}", alt="close")
-                    //- |  Esconder menú
                 li.option: a.link(href="") Diseño
                 li.option: a.link(href="") Web
                 li.option: a.link(href="") Fotografía

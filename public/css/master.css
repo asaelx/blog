@@ -5059,7 +5059,6 @@ img {
       .header .featured .details .date, .header .featured .details .comments {
         display: inline; }
       .header .featured .details .date {
-        border-right: 1px solid #95A5A6;
         padding-right: 0.5em; }
     .header .featured .tag {
       font-family: 'Varela';

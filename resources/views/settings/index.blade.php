@@ -68,6 +68,10 @@
           {!! Form::text('name', null, ['class' => 'input']) !!}
         </div>
         <div class="group">
+          {!! Form::label('occupation', 'Ocupación', ['class' => 'label']) !!}
+          {!! Form::text('occupation', null, ['class' => 'input']) !!}
+        </div>
+        <div class="group">
           {!! Form::label('bio', 'Biografía', ['class' => 'label']) !!}
           {!! Form::textarea('bio', null, ['class' => 'input autosize', 'size' => '50x3']) !!}
         </div>

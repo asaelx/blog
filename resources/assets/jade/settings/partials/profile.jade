@@ -8,6 +8,9 @@
         | {!! Form::label('name', 'Nombre', ['class' => 'label']) !!}
         | {!! Form::text('name', null, ['class' => 'input']) !!}
     .group
+        | {!! Form::label('occupation', 'Ocupación', ['class' => 'label']) !!}
+        | {!! Form::text('occupation', null, ['class' => 'input']) !!}
+    .group
         | {!! Form::label('bio', 'Biografía', ['class' => 'label']) !!}
         | {!! Form::textarea('bio', null, ['class' => 'input autosize', 'size' => '50x3']) !!}
     .group

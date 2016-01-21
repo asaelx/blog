@@ -2,7 +2,10 @@ li.item
     .date {{ \Carbon\Carbon::parse($article->published_at)->diffForHumans() }}
     a.title(href!="{{ url('admin/articles/' . $article->slug . '/edit') }}") {{ $article->title }}
     .details
-        | Por <a href="{{ url('admin/articles/author', $article->user->slug) }}">{{ $article->user->name }}</a> · Archivado en <a href="{{ url('admin/articles/tagged', $article->tags->first()->slug) }}">{{ $article->tags->first()->name }}</a>
+        | Por <a href="{{ url('admin/articles/author', $article->user->slug) }}">{{ $article->user->name }}</a>
+        include ../mixins/blade
+        +if('!is_null($article->tags()->first())')
+            |  · Archivado en <a href="{{ url('admin/articles/tagged', $article->tags()->first()->slug) }}">{{ $article->tags()->first()->name }}</a>
     ul.options
         li.option
             | {!! Form::open(['url' => url('admin/articles', $article->slug), 'method' => 'DELETE']) !!}

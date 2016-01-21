@@ -14,7 +14,11 @@
                       <div class="details">
                         <div class="date">{{ ucfirst(Date::parse($article->published_at)->toFormattedDateString()) }}</div>
                       </div>
-                      <div class="tag">{{ $article->tags()->first()->name }}</div><a href="{{ url($article->slug) }}" class="read btn white">Leer</a>
+@if(!is_null($article->tags()->first()))
+
+                            <div class="tag">{{ $article->tags()->first()->name }}</div>
+@endif
+<a href="{{ url($article->slug) }}" class="read btn white">Leer</a>
                     </article>
                   </div>
 @endforeach

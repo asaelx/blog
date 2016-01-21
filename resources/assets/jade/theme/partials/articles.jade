@@ -12,7 +12,8 @@
                             .details
                                 .date {{ ucfirst(Date::parse($article->published_at)->toFormattedDateString()) }}
                                 //- .comments 18 comentarios
-                            .tag {{ $article->tags()->first()->name }}
+                            +if('!is_null($article->tags()->first())')
+                                .tag {{ $article->tags()->first()->name }}
                             a.read.btn.white(href!="{{ url($article->slug) }}") Leer
         .row.pagination
             +if('!is_null($articles->previousPageUrl())')

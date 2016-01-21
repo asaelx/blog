@@ -43,7 +43,7 @@ class UsersController extends Controller
      */
     public function update(UserRequest $request, User $user)
     {
-        $user->update($request->only(['name', 'bio', 'email']));
+        $user->update($request->only(['name', 'occupation', 'bio', 'email']));
 
         if($request->hasFile('profile_pic'))
             $this->uploadFile($user, $request->file('profile_pic'));
