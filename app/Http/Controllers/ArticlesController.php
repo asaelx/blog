@@ -178,7 +178,7 @@ class ArticlesController extends Controller
 
         $client_original_name = $file->getClientOriginalName();
         $fileName = time() . '_' . $client_original_name;
-        $destinationPath = 'uploads';
+        $destinationPath = 'uploads/articles';
         $file->move($destinationPath, $fileName);
 
         $path = '/' . $destinationPath . '/' . $fileName;

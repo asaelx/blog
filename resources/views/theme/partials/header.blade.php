@@ -12,7 +12,7 @@
       <div class="col-3">
         <div class="profile down-in">
           <div style="background: url(https://pbs.twimg.com/profile_banners/53294337/1447581003/600x200) no-repeat center center; background-size: cover;" class="cover"></div>
-          <div style="background: url({{ url($admin->files()->first()->url) }}) no-repeat center center; background-size: cover;" class="photo"></div>
+          <div style="background: url({{ (!is_null($admin->files()->first())) ? url($admin->files()->first()->url) : asset('img/1f47d.svg')  }}) no-repeat center center; background-size: cover;" class="photo"></div>
           <div class="name">{{ $admin->name }}</div>
           <div class="job">{{ $admin->occupation }}</div>
           <ul id="instafeed" class="instagram"></ul>
@@ -26,22 +26,26 @@
         </div>
       </div>
       <div class="col-9">
-        <article class="article featured down-in">
-          <div style="background: url({{ url($featured->files()->first()->url) }}) no-repeat center center; background-size: cover;" class="cover"></div>
-          <h2 class="title">{{ $featured->title }}</h2>
-          <div class="excerpt">
-            <!-- excerpt-->
-            <p>Tousled food truck polaroid, salvia bespoke small batch Pinterest Marfa. Fingerstache authentic craft beer, food truck Banksy Carles kale chips hoodie. Trust fund artisan master cleanse fingerstache post-ironic.</p>
-          </div>
-          <div class="details">
-            <div class="date">{{ ucfirst(Date::parse($featured->published_at)->toFormattedDateString()) }}</div><a href="{{ url($featured->slug . '#disqus_thread') }}" class="comments"></a>
-          </div>
+@if(!is_null($featured))
+
+                <article class="article featured down-in">
+                  <div style="background: url({{ url($featured->files()->first()->url) }}) no-repeat center center; background-size: cover;" class="cover"></div>
+                  <h2 class="title">{{ $featured->title }}</h2>
+                  <div class="excerpt">
+                    <!-- excerpt-->
+                    <p>Tousled food truck polaroid, salvia bespoke small batch Pinterest Marfa. Fingerstache authentic craft beer, food truck Banksy Carles kale chips hoodie. Trust fund artisan master cleanse fingerstache post-ironic.</p>
+                  </div>
+                  <div class="details">
+                    <div class="date">{{ ucfirst(Date::parse($featured->published_at)->toFormattedDateString()) }}</div><a href="{{ url($featured->slug . '#disqus_thread') }}" class="comments"></a>
+                  </div>
 @if(!is_null($featured->tags()->first()))
 <a href="{{ url('tagged', $featured->tags()->first()->slug) }}" class="tag">{{ $featured->tags()->first()->name }}</a>
 @endif
 <a href="{{ url($featured->slug) }}" class="read btn green">Leer</a>
-          <div class="background"><img src="{{ asset('img/bottom-bg.jpg') }}" alt="featured_bg" class="img"/></div>
-        </article>
+                  <div class="background"><img src="{{ asset('img/bottom-bg.jpg') }}" alt="featured_bg" class="img"/></div>
+                </article>
+@endif
+
       </div>
     </div>
   </div>

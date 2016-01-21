@@ -12,7 +12,7 @@ class Setting extends Model
      *
      * @var array
      */
-    protected $fillable = ['title', 'description'];
+    protected $fillable = ['title', 'description', 'footer'];
 
     /**
      * Get the users associated by the settings

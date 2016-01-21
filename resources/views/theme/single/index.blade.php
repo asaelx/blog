@@ -82,7 +82,7 @@
       <div id="disqus_thread"></div>
     </article>
     <footer class="footer down-in">
-      <p>Diseño y códigos hechos con <i class="twa twa-heart"></i> por @asaelx | Todos los derechos reservados | México, 2016</p>
+      <p>{!! $setting->footer !!}</p>
     </footer>
     <script src="{{ asset('js/magic.js') }}"></script>
     <script id="dsq-count-scr" src="//nerdgambino.disqus.com/count.js" async></script>

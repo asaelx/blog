@@ -1,6 +1,6 @@
 .profile.down-in
     .cover(style="background: url(https://pbs.twimg.com/profile_banners/53294337/1447581003/600x200) no-repeat center center; background-size: cover;")
-    .photo(style!="background: url({{ url($admin->files()->first()->url) }}) no-repeat center center; background-size: cover;")
+    .photo(style!="background: url({{ (!is_null($admin->files()->first())) ? url($admin->files()->first()->url) : asset('img/1f47d.svg')  }}) no-repeat center center; background-size: cover;")
     .name {{ $admin->name }}
     .job {{ $admin->occupation }}
     ul.instagram#instafeed

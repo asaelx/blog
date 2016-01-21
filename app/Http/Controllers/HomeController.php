@@ -27,7 +27,11 @@ class HomeController extends Controller
         if(is_null($this->data['setting']))
             return redirect('auth/register');
         $this->getGeneral();
-        $this->data['articles'] = Article::where('id', '!=', $this->data['featured']->id)->latest()->published()->simplePaginate(8);
+        if(!is_null($this->data['featured'])):
+            $this->data['articles'] = Article::where('id', '!=', $this->data['featured']->id)->latest()->published()->simplePaginate(8);
+        else:
+            $this->data['articles'] = null;
+        endif;
         return view('theme.index', $this->data);
     }
 
@@ -75,7 +79,7 @@ class HomeController extends Controller
      * Get General data and set variables for views
      * Maybe I should pass this to a view composer
      *
-     * @return [type] [description]
+     * @return void
      */
     private function getGeneral()
     {
@@ -89,7 +93,7 @@ class HomeController extends Controller
     /**
      * Get Setting data and set variable
      *
-     * @return [type] [description]
+     * @return void
      */
     private function getSetting()
     {

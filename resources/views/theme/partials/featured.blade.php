@@ -1,4 +1,6 @@
 
+@if(!is_null($featured))
+
 <article class="article featured down-in">
   <div style="background: url({{ url($featured->files()->first()->url) }}) no-repeat center center; background-size: cover;" class="cover"></div>
   <h2 class="title">{{ $featured->title }}</h2>
@@ -15,3 +17,4 @@
 <a href="{{ url($featured->slug) }}" class="read btn green">Leer</a>
   <div class="background"><img src="{{ asset('img/bottom-bg.jpg') }}" alt="featured_bg" class="img"/></div>
 </article>
+@endif

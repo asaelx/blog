@@ -5606,6 +5606,8 @@ img {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
     position: relative;
     z-index: 1; }
+    .footer p a {
+      color: #FFFFFF; }
   .footer:before {
     pointer-events: none;
     content: "";

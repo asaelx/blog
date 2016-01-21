@@ -1,36 +1,33 @@
-.articles
-    .wrapper
-        .row
-            include ../../mixins/blade
-            h3.section-title
-                +if("request()->is('tagged/*')")
-                    | Artículos archivados en <a href="{{ url('tagged', $currentTag->slug) }}">{{ $currentTag->name }}</a>
-                +if("request()->is('author/*')")
-                    | Artículos escritos por <a href="{{ url('author', $currentAuthor->slug) }}">{{ $currentAuthor->name }}</a>
-                +if("request()->is('/')")
-                    | Últimos artículos
-            +if('!$articles->isEmpty()')
-                +foreach('$articles as $article')
-                    .col-3.show-in
-                        article.article
-                            .cover(style!="background: url({{ url($article->files()->first()->url) }}) no-repeat center center; background-size: cover;")
-                            h2.title {{ $article->title }}
-                            .details
-                                .date {{ ucfirst(Date::parse($article->published_at)->toFormattedDateString()) }}
-                                a.comments(href!="{{ url($article->slug . '#disqus_thread') }}")
-                            +if('!is_null($article->tags()->first())')
-                                a.tag(href!="{{ url('tagged', $article->tags()->first()->slug) }}") {{ $article->tags()->first()->name }}
-                            a.read.btn.white(href!="{{ url($article->slug) }}") Leer
-                +else
-                    .col-12
-                        .empty
-                            | No hay artículos para mostrar
-        .row.pagination
-            +if('!is_null($articles->previousPageUrl())')
-                a.btn.blue.previous(href!="{{ $articles->previousPageUrl() }}")
-                    span.typcn.typcn-chevron-left
-                    |  Anterior
-            +if('!is_null($articles->nextPageUrl())')
-                a.btn.blue.next(href!="{{ $articles->nextPageUrl() }}")
-                    | Siguiente 
-                    span.typcn.typcn-chevron-right
+include ../../mixins/blade
++if('!is_null($articles)')
+    .articles
+        .wrapper
+            .row
+                h3.section-title
+                    +if("request()->is('tagged/*')")
+                        | Artículos archivados en <a href="{{ url('tagged', $currentTag->slug) }}">{{ $currentTag->name }}</a>
+                    +if("request()->is('author/*')")
+                        | Artículos escritos por <a href="{{ url('author', $currentAuthor->slug) }}">{{ $currentAuthor->name }}</a>
+                    +if("request()->is('/')")
+                        | Últimos artículos
+                +if('!$articles->isEmpty())')
+                    +foreach('$articles as $article')
+                        .col-3.show-in
+                            article.article
+                                .cover(style!="background: url({{ url($article->files()->first()->url) }}) no-repeat center center; background-size: cover;")
+                                h2.title {{ $article->title }}
+                                .details
+                                    .date {{ ucfirst(Date::parse($article->published_at)->toFormattedDateString()) }}
+                                    a.comments(href!="{{ url($article->slug . '#disqus_thread') }}")
+                                +if('!is_null($article->tags()->first())')
+                                    a.tag(href!="{{ url('tagged', $article->tags()->first()->slug) }}") {{ $article->tags()->first()->name }}
+                                a.read.btn.white(href!="{{ url($article->slug) }}") Leer
+            .row.pagination
+                +if('!is_null($articles->previousPageUrl())')
+                    a.btn.blue.previous(href!="{{ $articles->previousPageUrl() }}")
+                        span.typcn.typcn-chevron-left
+                        |  Anterior
+                +if('!is_null($articles->nextPageUrl())')
+                    a.btn.blue.next(href!="{{ $articles->nextPageUrl() }}")
+                        | Siguiente 
+                        span.typcn.typcn-chevron-right

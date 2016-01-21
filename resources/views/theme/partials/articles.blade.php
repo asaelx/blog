@@ -1,4 +1,6 @@
 
+@if(!is_null($articles))
+
 <div class="articles">
   <div class="wrapper">
     <div class="row">
@@ -16,30 +18,25 @@ Artículos escritos por <a href="{{ url('author', $currentAuthor->slug) }}">{{ $
 @endif
 
       </h3>
-@if(!$articles->isEmpty())
+@if(!$articles->isEmpty()))
 
 @foreach($articles as $article)
 
-                  <div class="col-3 show-in">
-                    <article class="article">
-                      <div style="background: url({{ url($article->files()->first()->url) }}) no-repeat center center; background-size: cover;" class="cover"></div>
-                      <h2 class="title">{{ $article->title }}</h2>
-                      <div class="details">
-                        <div class="date">{{ ucfirst(Date::parse($article->published_at)->toFormattedDateString()) }}</div><a href="{{ url($article->slug . '#disqus_thread') }}" class="comments"></a>
-                      </div>
+      <div class="col-3 show-in">
+        <article class="article">
+          <div style="background: url({{ url($article->files()->first()->url) }}) no-repeat center center; background-size: cover;" class="cover"></div>
+          <h2 class="title">{{ $article->title }}</h2>
+          <div class="details">
+            <div class="date">{{ ucfirst(Date::parse($article->published_at)->toFormattedDateString()) }}</div><a href="{{ url($article->slug . '#disqus_thread') }}" class="comments"></a>
+          </div>
 @if(!is_null($article->tags()->first()))
 <a href="{{ url('tagged', $article->tags()->first()->slug) }}" class="tag">{{ $article->tags()->first()->name }}</a>
 @endif
 <a href="{{ url($article->slug) }}" class="read btn white">Leer</a>
-                    </article>
-                  </div>
+        </article>
+      </div>
 @endforeach
 
-@else
-
-                  <div class="col-12">
-                    <div class="empty">No hay artículos para mostrar</div>
-                  </div>
 @endif
 
     </div>
@@ -55,3 +52,4 @@ Artículos escritos por <a href="{{ url('author', $currentAuthor->slug) }}">{{ $
     </div>
   </div>
 </div>
+@endif
