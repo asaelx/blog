@@ -10,7 +10,7 @@
     <div class="date">{{ ucfirst(Date::parse($featured->published_at)->toFormattedDateString()) }}</div>
   </div>
 @if(!is_null($featured->tags()->first()))
-<a href="{{ $featured->tags()->first()->slug }}" class="tag">{{ $featured->tags()->first()->name }}</a>
+<a href="{{ url('tagged', $featured->tags()->first()->slug) }}" class="tag">{{ $featured->tags()->first()->name }}</a>
 @endif
 <a href="{{ url($featured->slug) }}" class="read btn green">Leer</a>
   <div class="background"><img src="{{ asset('img/bottom-bg.jpg') }}" alt="featured_bg" class="img"/></div>

@@ -1,8 +1,14 @@
 .articles
     .wrapper
         .row
-            h3.section-title Últimos artículos
             include ../../mixins/blade
+            h3.section-title
+                +if("request()->is('tagged/*')")
+                    | Artículos archivados en <a href="{{ url('tagged', $currentTag->slug) }}">{{ $currentTag->name }}</a>
+                +if("request()->is('author/*')")
+                    | Artículos escritos por <a href="{{ url('author', $currentAuthor->slug) }}">{{ $currentAuthor->name }}</a>
+                +if("request()->is('/')")
+                    | Últimos artículos
             +if('!$articles->isEmpty()')
                 +foreach('$articles as $article')
                     .col-3.show-in
@@ -13,8 +19,12 @@
                                 .date {{ ucfirst(Date::parse($article->published_at)->toFormattedDateString()) }}
                                 //- .comments 18 comentarios
                             +if('!is_null($article->tags()->first())')
-                                .tag {{ $article->tags()->first()->name }}
+                                a.tag(href!="{{ url('tagged', $article->tags()->first()->slug) }}") {{ $article->tags()->first()->name }}
                             a.read.btn.white(href!="{{ url($article->slug) }}") Leer
+                +else
+                    .col-12
+                        .empty
+                            | No hay artículos para mostrar
         .row.pagination
             +if('!is_null($articles->previousPageUrl())')
                 a.btn.blue.previous(href!="{{ $articles->previousPageUrl() }}")

@@ -15,8 +15,7 @@
           <div style="background: url(https://pbs.twimg.com/profile_images/665827494986018817/WJ4VdDNn_bigger.jpg) no-repeat center center; background-size: cover;" class="photo"></div>
           <div class="name">{{ $admin->name }}</div>
           <div class="job">{{ $admin->occupation }}</div>
-          <ul id="instafeed" class="instagram">
-          </ul>
+          <ul id="instafeed" class="instagram"></ul>
           <ul class="social">
             <li class="network"><a href="{{ $admin->twitter }}" target="_blank" class="link"><img src="{{ asset('img/twitter.svg') }}" alt="twitter" class="img"/></a></li>
             <li class="network"><a href="{{ $admin->facebook }}" target="_blank" class="link"><img src="{{ asset('img/facebook.svg') }}" alt="facebook" class="img"/></a></li>
@@ -38,7 +37,7 @@
             <div class="date">{{ ucfirst(Date::parse($featured->published_at)->toFormattedDateString()) }}</div>
           </div>
 @if(!is_null($featured->tags()->first()))
-<a href="{{ $featured->tags()->first()->slug }}" class="tag">{{ $featured->tags()->first()->name }}</a>
+<a href="{{ url('tagged', $featured->tags()->first()->slug) }}" class="tag">{{ $featured->tags()->first()->name }}</a>
 @endif
 <a href="{{ url($featured->slug) }}" class="read btn green">Leer</a>
           <div class="background"><img src="{{ asset('img/bottom-bg.jpg') }}" alt="featured_bg" class="img"/></div>

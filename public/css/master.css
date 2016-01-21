@@ -5066,6 +5066,7 @@ img {
       font-size: 0.9285714286rem;
       color: #FFFFFF;
       letter-spacing: 0.1em;
+      text-transform: uppercase;
       position: absolute;
       bottom: 1rem;
       left: 1rem; }
@@ -5152,6 +5153,8 @@ img {
   text-transform: uppercase;
   border-bottom: 1px solid #ECF0F1;
   margin: 1rem 1rem 0 1rem; }
+  .articles .section-title a {
+    color: #16A085; }
 
 .articles .article {
   position: relative;

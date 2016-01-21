@@ -2,7 +2,20 @@
 <div class="articles">
   <div class="wrapper">
     <div class="row">
-      <h3 class="section-title">Últimos artículos</h3>
+      <h3 class="section-title">
+@if(request()->is('tagged/*'))
+Artículos archivados en <a href="{{ url('tagged', $currentTag->slug) }}">{{ $currentTag->name }}</a>
+@endif
+
+@if(request()->is('author/*'))
+Artículos escritos por <a href="{{ url('author', $currentAuthor->slug) }}">{{ $currentAuthor->name }}</a>
+@endif
+
+@if(request()->is('/'))
+Últimos artículos
+@endif
+
+      </h3>
 @if(!$articles->isEmpty())
 
 @foreach($articles as $article)
@@ -15,14 +28,18 @@
                         <div class="date">{{ ucfirst(Date::parse($article->published_at)->toFormattedDateString()) }}</div>
                       </div>
 @if(!is_null($article->tags()->first()))
-
-                            <div class="tag">{{ $article->tags()->first()->name }}</div>
+<a href="{{ url('tagged', $article->tags()->first()->slug) }}" class="tag">{{ $article->tags()->first()->name }}</a>
 @endif
 <a href="{{ url($article->slug) }}" class="read btn white">Leer</a>
                     </article>
                   </div>
 @endforeach
 
+@else
+
+                  <div class="col-12">
+                    <div class="empty">No hay artículos para mostrar</div>
+                  </div>
 @endif
 
     </div>

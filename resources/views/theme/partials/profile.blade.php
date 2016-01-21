@@ -4,8 +4,7 @@
   <div style="background: url(https://pbs.twimg.com/profile_images/665827494986018817/WJ4VdDNn_bigger.jpg) no-repeat center center; background-size: cover;" class="photo"></div>
   <div class="name">{{ $admin->name }}</div>
   <div class="job">{{ $admin->occupation }}</div>
-  <ul id="instafeed" class="instagram">
-  </ul>
+  <ul id="instafeed" class="instagram"></ul>
   <ul class="social">
     <li class="network"><a href="{{ $admin->twitter }}" target="_blank" class="link"><img src="{{ asset('img/twitter.svg') }}" alt="twitter" class="img"/></a></li>
     <li class="network"><a href="{{ $admin->facebook }}" target="_blank" class="link"><img src="{{ asset('img/facebook.svg') }}" alt="facebook" class="img"/></a></li>

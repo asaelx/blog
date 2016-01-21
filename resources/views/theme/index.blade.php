@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>Blog</title>
+    <title>{{ $setting->title }}</title>
     <link rel="stylesheet" href="{{ asset('css/master.css') }}">
   </head>
   <body>
@@ -43,8 +43,7 @@
               <div style="background: url(https://pbs.twimg.com/profile_images/665827494986018817/WJ4VdDNn_bigger.jpg) no-repeat center center; background-size: cover;" class="photo"></div>
               <div class="name">{{ $admin->name }}</div>
               <div class="job">{{ $admin->occupation }}</div>
-              <ul id="instafeed" class="instagram">
-              </ul>
+              <ul id="instafeed" class="instagram"></ul>
               <ul class="social">
                 <li class="network"><a href="{{ $admin->twitter }}" target="_blank" class="link"><img src="{{ asset('img/twitter.svg') }}" alt="twitter" class="img"></a></li>
                 <li class="network"><a href="{{ $admin->facebook }}" target="_blank" class="link"><img src="{{ asset('img/facebook.svg') }}" alt="facebook" class="img"></a></li>
@@ -66,7 +65,7 @@
                 <div class="date">{{ ucfirst(Date::parse($featured->published_at)->toFormattedDateString()) }}</div>
               </div>
 @if(!is_null($featured->tags()->first()))
-<a href="{{ $featured->tags()->first()->slug }}" class="tag">{{ $featured->tags()->first()->name }}</a>
+<a href="{{ url('tagged', $featured->tags()->first()->slug) }}" class="tag">{{ $featured->tags()->first()->name }}</a>
 @endif
 <a href="{{ url($featured->slug) }}" class="read btn green">Leer</a>
               <div class="background"><img src="{{ asset('img/bottom-bg.jpg') }}" alt="featured_bg" class="img"></div>
@@ -78,7 +77,20 @@
     <div class="articles">
       <div class="wrapper">
         <div class="row">
-          <h3 class="section-title">Últimos artículos</h3>
+          <h3 class="section-title">
+@if(request()->is('tagged/*'))
+Artículos archivados en <a href="{{ url('tagged', $currentTag->slug) }}">{{ $currentTag->name }}</a>
+@endif
+
+@if(request()->is('author/*'))
+Artículos escritos por <a href="{{ url('author', $currentAuthor->slug) }}">{{ $currentAuthor->name }}</a>
+@endif
+
+@if(request()->is('/'))
+Últimos artículos
+@endif
+
+          </h3>
 @if(!$articles->isEmpty())
 
 @foreach($articles as $article)
@@ -91,14 +103,18 @@
                                     <div class="date">{{ ucfirst(Date::parse($article->published_at)->toFormattedDateString()) }}</div>
                                   </div>
 @if(!is_null($article->tags()->first()))
-
-                                            <div class="tag">{{ $article->tags()->first()->name }}</div>
+<a href="{{ url('tagged', $article->tags()->first()->slug) }}" class="tag">{{ $article->tags()->first()->name }}</a>
 @endif
 <a href="{{ url($article->slug) }}" class="read btn white">Leer</a>
                                 </article>
                               </div>
 @endforeach
 
+@else
+
+                              <div class="col-12">
+                                <div class="empty">No hay artículos para mostrar</div>
+                              </div>
 @endif
 
         </div>

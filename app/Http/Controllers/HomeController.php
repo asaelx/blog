@@ -13,6 +13,9 @@ use App\Tag;
 
 class HomeController extends Controller
 {
+
+    protected $data = [];
+
     /**
      * Display a listing of the resource.
      *
@@ -20,14 +23,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $setting = Setting::latest()->first();
-        $admin = User::latest()->first();
-        $tags = Tag::all();
-        $featured = Article::latest()->published()->first();
-        $articles = Article::where('id', '!=', $featured->id)->latest()->published()->simplePaginate(8);
-        if(is_null($setting))
+        $this->getGeneral();
+        $this->data['articles'] = Article::where('id', '!=', $this->data['featured']->id)->latest()->published()->simplePaginate(8);
+        if(is_null($this->data['setting']))
             return redirect('auth/register');
-        return view('theme.index', compact('setting', 'tags', 'admin', 'featured', 'articles'));
+        return view('theme.index', $this->data);
     }
 
     /**
@@ -38,10 +38,44 @@ class HomeController extends Controller
      */
     public function show(Article $article)
     {
-        $setting = Setting::latest()->first();
-        $tags = Tag::all();
-        $readings = Article::orderByRaw('RAND()')->take(2)->get();
-        return view('theme.single.index', compact('setting', 'tags', 'article', 'readings'));
+        $this->getGeneral();
+        $this->data['article'] = $article;
+        $this->data['readings'] = Article::where('id', '!=', $article->id)->orderByRaw('RAND()')->take(2)->get();
+        return view('theme.single.index', $this->data);
+    }
+
+    /**
+     * Display a listing of the articles associated to the tag.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function tagged(Tag $tag)
+    {
+        $this->getGeneral();
+        $this->data['currentTag'] = $tag;
+        $this->data['articles'] = $tag->publishedArticles()->simplePaginate(8);
+        return view('theme.index', $this->data);
+    }
+
+    /**
+     * Display a listing of the articles associated to the user.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function author(User $user)
+    {
+        $this->getGeneral();
+        $this->data['currentAuthor'] = $user;
+        $this->data['articles'] = $user->publishedArticles()->simplePaginate(8);
+        return view('theme.index', $this->data);
+    }
+
+    private function getGeneral()
+    {
+        $this->data['setting'] = Setting::latest()->first();
+        $this->data['admin']= User::latest()->first();
+        $this->data['tags'] = Tag::all();
+        $this->data['featured'] = Article::latest()->published()->first();
     }
 
 }

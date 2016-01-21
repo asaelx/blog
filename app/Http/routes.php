@@ -14,6 +14,8 @@
 // Theme
 Route::get('/', 'HomeController@index');
 Route::get('{articles}', 'HomeController@show');
+Route::get('tagged/{tags}', 'HomeController@tagged');
+Route::get('author/{users}', 'HomeController@author');
 
 // Authentication routes
 Route::get('auth/login', 'Auth\AuthController@getLogin');
