@@ -129,17 +129,18 @@ class ArticlesController extends Controller
      */
     private function syncTags($article, $tags)
     {
-        if(!is_null($tags)):
-            $currentTags = array_filter($tags, 'is_numeric');
-            $newTags = array_diff($tags, $currentTags);
+        if(is_null($tags))
+            $tags = ['General'];
 
-            foreach($newTags as $newTag):
-                if($tag = Tag::create(['name' => $newTag]))
-                    $currentTags[] = $tag->id;
-            endforeach;
+        $currentTags = array_filter($tags, 'is_numeric');
+        $newTags = array_diff($tags, $currentTags);
 
-            $article->tags()->sync($currentTags);
-        endif;
+        foreach($newTags as $newTag):
+            if($tag = Tag::create(['name' => $newTag]))
+                $currentTags[] = $tag->id;
+        endforeach;
+
+        $article->tags()->sync($currentTags);
     }
 
     /**
