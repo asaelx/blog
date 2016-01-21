@@ -32,7 +32,7 @@
         <div class="row">
           <div class="col-12">
             <div class="welcome up-in">
-              <h1>{{ $setting->users()->first()->bio }}</h1>
+              <h1>{{ $admin->bio }}</h1>
             </div>
           </div>
         </div>
@@ -42,7 +42,7 @@
               <div style="background: url(https://pbs.twimg.com/profile_banners/53294337/1447581003/600x200) no-repeat center center; background-size: cover;" class="cover">
               </div>
               <div style="background: url(https://pbs.twimg.com/profile_images/665827494986018817/WJ4VdDNn_bigger.jpg) no-repeat center center; background-size: cover;" class="photo"></div>
-              <div class="name">Asael Jaimes</div>
+              <div class="name">{{ $admin->name }}</div>
               <div class="job">Diseñador Web</div>
               <ul class="instagram">
                 <li class="insta"><a href="#" class="link glassy"><img src="http://lorempixel.com/36/36/people/9" alt="" class="img"></a></li>
@@ -55,27 +55,27 @@
                 <li class="insta"><a href="#" class="link glassy"><img src="http://lorempixel.com/36/36/people/8" alt="" class="img"></a></li>
               </ul>
               <ul class="social">
-                <li class="network"><a href="#" class="link"><img src="{{ asset('img/twitter.svg') }}" alt="twitter" class="img"></a></li>
-                <li class="network"><a href="#" class="link"><img src="{{ asset('img/facebook.svg') }}" alt="facebook" class="img"></a></li>
-                <li class="network"><a href="#" class="link"><img src="{{ asset('img/instagram.svg') }}" alt="instagram" class="img"></a></li>
-                <li class="network"><a href="#" class="link"><img src="{{ asset('img/youtube.svg') }}" alt="youtube" class="img"></a></li>
+                <li class="network"><a href="{{ $admin->twitter }}" target="_blank" class="link"><img src="{{ asset('img/twitter.svg') }}" alt="twitter" class="img"></a></li>
+                <li class="network"><a href="{{ $admin->facebook }}" target="_blank" class="link"><img src="{{ asset('img/facebook.svg') }}" alt="facebook" class="img"></a></li>
+                <li class="network"><a href="{{ $admin->instagram }}" target="_blank" class="link"><img src="{{ asset('img/instagram.svg') }}" alt="instagram" class="img"></a></li>
+                <li class="network"><a href="{{ $admin->youtube }}" target="_blank" class="link"><img src="{{ asset('img/youtube.svg') }}" alt="youtube" class="img"></a></li>
               </ul>
               <div class="background"><img src="{{ asset('img/profile-bg.jpg') }}" alt="sea" class="img"></div>
             </div>
           </div>
           <div class="col-9">
             <article class="article featured down-in">
-              <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
-              <h2 class="title">It's not about the destination</h2>
+              <div style="background: url({{ url($featured->files()->first()->url) }}) no-repeat center center; background-size: cover;" class="cover"></div>
+              <h2 class="title">{{ $featured->title }}</h2>
               <div class="excerpt">
+                <!-- excerpt-->
                 <p>Tousled food truck polaroid, salvia bespoke small batch Pinterest Marfa. Fingerstache authentic craft beer, food truck Banksy Carles kale chips hoodie. Trust fund artisan master cleanse fingerstache post-ironic.</p>
               </div>
               <div class="details">
-                <div class="date">Enero 15, 2016</div>
-                <div class="comments">18 comentarios</div>
+                <div class="date">{{ ucfirst(Date::parse($featured->published_at)->toFormattedDateString()) }}</div>
               </div>
-              <div class="tag">#VIAJES</div><a href="#" class="read btn green">Leer</a>
-              <div class="background"><img src="{{ asset('img/bottom-bg.jpg') }}" alt="cover" class="img"></div>
+              <div class="tag">{{ $featured->tags()->first()->name }}</div><a href="{{ url($featured->slug) }}" class="read btn green">Leer</a>
+              <div class="background"><img src="{{ asset('img/bottom-bg.jpg') }}" alt="featured_bg" class="img"></div>
             </article>
           </div>
         </div>
@@ -85,86 +85,34 @@
       <div class="wrapper">
         <div class="row">
           <h3 class="section-title">Últimos artículos</h3>
-          <div class="col-3 show-in">
-            <article class="article">
-              <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
-              <h2 class="title">My trip to Taiwan</h2>
-              <div class="details">
-                <div class="date">Enero 15, 2016</div>
-                <div class="comments">18 comentarios</div>
-              </div>
-              <div class="tag">#VIAJES</div><a href="#" class="read btn white">Leer</a>
-            </article>
-          </div>
-          <div class="col-3 show-in">
-            <article class="article">
-              <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
-              <h2 class="title">The amazing Spider-Man</h2>
-              <div class="details">
-                <div class="date">Enero 15, 2016</div>
-                <div class="comments">18 comentarios</div>
-              </div>
-              <div class="tag">#VIAJES</div><a href="#" class="read btn white">Leer</a>
-            </article>
-          </div>
-          <div class="col-3 show-in">
-            <article class="article">
-              <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
-              <h2 class="title">My trip to Taiwan</h2>
-              <div class="details">
-                <div class="date">Enero 15, 2016</div>
-                <div class="comments">18 comentarios</div>
-              </div>
-              <div class="tag">#VIAJES</div><a href="#" class="read btn white">Leer</a>
-            </article>
-          </div>
-          <div class="col-3 show-in">
-            <article class="article">
-              <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
-              <h2 class="title">My trip to Taiwan</h2>
-              <div class="details">
-                <div class="date">Enero 15, 2016</div>
-                <div class="comments">18 comentarios</div>
-              </div>
-              <div class="tag">#VIAJES</div><a href="#" class="read btn white">Leer</a>
-            </article>
-          </div>
-          <div class="col-3 show-in">
-            <article class="article">
-              <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
-              <h2 class="title">My trip to Taiwan</h2>
-              <div class="details">
-                <div class="date">Enero 15, 2016</div>
-                <div class="comments">18 comentarios</div>
-              </div>
-              <div class="tag">#VIAJES</div><a href="#" class="read btn white">Leer</a>
-            </article>
-          </div>
-          <div class="col-3 show-in">
-            <article class="article">
-              <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
-              <h2 class="title">My trip to Taiwan</h2>
-              <div class="details">
-                <div class="date">Enero 15, 2016</div>
-                <div class="comments">18 comentarios</div>
-              </div>
-              <div class="tag">#VIAJES</div><a href="#" class="read btn white">Leer</a>
-            </article>
-          </div>
-          <div class="col-3 show-in">
-            <article class="article">
-              <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
-              <h2 class="title">My trip to Taiwan</h2>
-              <div class="details">
-                <div class="date">Enero 15, 2016</div>
-                <div class="comments">18 comentarios</div>
-              </div>
-              <div class="tag">#VIAJES</div><a href="#" class="read btn white">Leer</a>
-            </article>
-          </div>
+@if(!$articles->isEmpty())
+
+@foreach($articles as $article)
+
+                              <div class="col-3 show-in">
+                                <article class="article">
+                                  <div style="background: url({{ url($article->files()->first()->url) }}) no-repeat center center; background-size: cover;" class="cover"></div>
+                                  <h2 class="title">{{ $article->title }}</h2>
+                                  <div class="details">
+                                    <div class="date">{{ ucfirst(Date::parse($article->published_at)->toFormattedDateString()) }}</div>
+                                  </div>
+                                  <div class="tag">{{ $article->tags()->first()->name }}</div><a href="{{ url($article->slug) }}" class="read btn white">Leer</a>
+                                </article>
+                              </div>
+@endforeach
+
+@endif
+
         </div>
-        <div class="row load-more">
-          <button class="btn blue">Cargar más</button>
+        <div class="row pagination">
+@if(!is_null($articles->previousPageUrl()))
+<a href="{{ $articles->previousPageUrl() }}" class="btn blue previous"><span class="typcn typcn-chevron-left"></span> Anterior</a>
+@endif
+
+@if(!is_null($articles->nextPageUrl()))
+<a href="{{ $articles->nextPageUrl() }}" class="btn blue next">Siguiente <span class="typcn typcn-chevron-right"></span></a>
+@endif
+
         </div>
       </div>
     </div>

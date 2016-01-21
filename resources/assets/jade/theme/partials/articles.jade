@@ -2,69 +2,24 @@
     .wrapper
         .row
             h3.section-title Últimos artículos
-            .col-3.show-in
-                article.article
-                    .cover(style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;")
-                    h2.title My trip to Taiwan
-                    .details
-                        .date Enero 15, 2016
-                        .comments 18 comentarios
-                    .tag #VIAJES
-                    a.read.btn.white(href="#") Leer
-            .col-3.show-in
-                article.article
-                    .cover(style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;")
-                    h2.title The amazing Spider-Man
-                    .details
-                        .date Enero 15, 2016
-                        .comments 18 comentarios
-                    .tag #VIAJES
-                    a.read.btn.white(href="#") Leer
-            .col-3.show-in
-                article.article
-                    .cover(style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;")
-                    h2.title My trip to Taiwan
-                    .details
-                        .date Enero 15, 2016
-                        .comments 18 comentarios
-                    .tag #VIAJES
-                    a.read.btn.white(href="#") Leer
-            .col-3.show-in
-                article.article
-                    .cover(style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;")
-                    h2.title My trip to Taiwan
-                    .details
-                        .date Enero 15, 2016
-                        .comments 18 comentarios
-                    .tag #VIAJES
-                    a.read.btn.white(href="#") Leer
-            .col-3.show-in
-                article.article
-                    .cover(style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;")
-                    h2.title My trip to Taiwan
-                    .details
-                        .date Enero 15, 2016
-                        .comments 18 comentarios
-                    .tag #VIAJES
-                    a.read.btn.white(href="#") Leer
-            .col-3.show-in
-                article.article
-                    .cover(style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;")
-                    h2.title My trip to Taiwan
-                    .details
-                        .date Enero 15, 2016
-                        .comments 18 comentarios
-                    .tag #VIAJES
-                    a.read.btn.white(href="#") Leer
-            .col-3.show-in
-                article.article
-                    .cover(style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;")
-                    h2.title My trip to Taiwan
-                    .details
-                        .date Enero 15, 2016
-                        .comments 18 comentarios
-                    .tag #VIAJES
-                    a.read.btn.white(href="#") Leer
-                    
-        .row.load-more
-            button.btn.blue Cargar más
+            include ../../mixins/blade
+            +if('!$articles->isEmpty()')
+                +foreach('$articles as $article')
+                    .col-3.show-in
+                        article.article
+                            .cover(style!="background: url({{ url($article->files()->first()->url) }}) no-repeat center center; background-size: cover;")
+                            h2.title {{ $article->title }}
+                            .details
+                                .date {{ ucfirst(Date::parse($article->published_at)->toFormattedDateString()) }}
+                                //- .comments 18 comentarios
+                            .tag {{ $article->tags()->first()->name }}
+                            a.read.btn.white(href!="{{ url($article->slug) }}") Leer
+        .row.pagination
+            +if('!is_null($articles->previousPageUrl())')
+                a.btn.blue.previous(href!="{{ $articles->previousPageUrl() }}")
+                    span.typcn.typcn-chevron-left
+                    |  Anterior
+            +if('!is_null($articles->nextPageUrl())')
+                a.btn.blue.next(href!="{{ $articles->nextPageUrl() }}")
+                    | Siguiente 
+                    span.typcn.typcn-chevron-right

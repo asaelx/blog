@@ -10,9 +10,11 @@ include ../mixins/blade
                 #profile-settings.settings.drop
                     ul.options
                         li.option
+                            a.link(href="{{ url('/') }}") Ver blog
+                        li.option
                             a.link(href="{{ url('admin/settings?tab=profile') }}") Editar perfil
                         li.option
-                            a.link(href="{{ url('/') }}") Ver blog
+                            a.link(href="{{ url('admin/settings?tab=networks') }}") Editar redes sociales
                         li.option
                             a.link(href="{{ url('auth/logout') }}") Cerrar sesión
         nav.nav

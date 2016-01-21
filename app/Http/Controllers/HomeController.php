@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Setting;
+use App\User;
+use App\Article;
 
 class HomeController extends Controller
 {
@@ -15,12 +17,16 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $setting = Setting::latest()->first();
+        $admin = User::latest()->first();
+        $featured = Article::latest()->first();
+        $count = Article::count();
+        $articles = Article::latest()->simplePaginate(1);
         if(is_null($setting))
             return redirect('auth/register');
-        return view('theme.index', compact('setting'));
+        return view('theme.index', compact('setting', 'admin', 'featured', 'articles'));
     }
 
     /**

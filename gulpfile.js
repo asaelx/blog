@@ -9,6 +9,7 @@ elixir.config.sourcemaps = false;
 // Theme
 elixir(function(mix) {
     mix.sass([
+        bw + 'typicons.font/src/font/typicons.css',
         '../../../node_modules/select2/dist/css/select2.min.css',
         rs + 'scss/twemoji-awesome.scss',
         'master.sass'

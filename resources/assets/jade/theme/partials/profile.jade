@@ -2,7 +2,7 @@
     .cover(style="background: url(https://pbs.twimg.com/profile_banners/53294337/1447581003/600x200) no-repeat center center; background-size: cover;")
         //- img.img(src="", alt="cover")
     .photo(style="background: url(https://pbs.twimg.com/profile_images/665827494986018817/WJ4VdDNn_bigger.jpg) no-repeat center center; background-size: cover;")
-    .name Asael Jaimes
+    .name {{ $admin->name }}
     .job Diseñador Web
     ul.instagram
         li.insta
@@ -31,16 +31,16 @@
                 img.img(src="http://lorempixel.com/36/36/people/8", alt="")
     ul.social
         li.network
-            a.link(href="#")
+            a.link(href!="{{ $admin->twitter }}", target="_blank")
                 img.img(src="{{ asset('img/twitter.svg') }}", alt="twitter")
         li.network
-            a.link(href="#")
+            a.link(href!="{{ $admin->facebook }}", target="_blank")
                 img.img(src="{{ asset('img/facebook.svg') }}", alt="facebook")
         li.network
-            a.link(href="#")
+            a.link(href!="{{ $admin->instagram }}", target="_blank")
                 img.img(src="{{ asset('img/instagram.svg') }}", alt="instagram")
         li.network
-            a.link(href="#")
+            a.link(href!="{{ $admin->youtube }}", target="_blank")
                 img.img(src="{{ asset('img/youtube.svg') }}", alt="youtube")
     .background
         img.img(src="{{ asset('img/profile-bg.jpg') }}", alt="sea")

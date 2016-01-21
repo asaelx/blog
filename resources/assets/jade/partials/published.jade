@@ -1,7 +1,7 @@
 include ../mixins/blade
 ul#published(class!="list tabbed {{ (is_null($current) || $current == 'published') ? 'active' : '' }}")
     +if('!$published->isEmpty()')
-        +foreach('$published as $article')    
+        +foreach('$published as $article')
             include post
         .list-footer
             +if('$published->total() > 1')

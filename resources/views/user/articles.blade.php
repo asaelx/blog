@@ -28,7 +28,7 @@
 @if(!$published->isEmpty())
 
 @foreach($published as $article)
-   
+
                     <li class="item">
                       <div class="date">{{ \Carbon\Carbon::parse($article->published_at)->diffForHumans() }}</div><a href="{{ url('admin/articles/' . $article->slug . '/edit') }}" class="title">{{ $article->title }}</a>
                       <div class="details">Por <a href="{{ url('admin/articles/author', $article->user->slug) }}">{{ $article->user->name }}</a> · Archivado en <a href="{{ url('admin/articles/tagged', $article->tags->first()->slug) }}">{{ $article->tags->first()->name }}</a></div>

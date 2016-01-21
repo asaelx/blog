@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "d080c53c99787bee77b7aa002acec0cf",
-    "content-hash": "83f10787e1cc7cf30eb6483f50f8834f",
+    "hash": "4cfa67bbe0963db4b56a67239366dae9",
+    "content-hash": "e64dc77b85923a3997bf547f3500f3a8",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -462,6 +462,63 @@
                 }
             ],
             "time": "2015-04-20 18:58:01"
+        },
+        {
+            "name": "jenssegers/date",
+            "version": "v3.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jenssegers/date.git",
+                "reference": "0fac566c8bc34a095b5bf418db888fdf11632a96"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jenssegers/date/zipball/0fac566c8bc34a095b5bf418db888fdf11632a96",
+                "reference": "0fac566c8bc34a095b5bf418db888fdf11632a96",
+                "shasum": ""
+            },
+            "require": {
+                "nesbot/carbon": "^1.0",
+                "php": ">=5.3.3",
+                "symfony/translation": "^2.0|^3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.0|^5.0",
+                "satooshi/php-coveralls": "^0.6"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Jenssegers\\Date\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jens Segers",
+                    "homepage": "https://jenssegers.com"
+                }
+            ],
+            "description": "A date library to help you work with dates in different languages",
+            "homepage": "https://github.com/jenssegers/date",
+            "keywords": [
+                "carbon",
+                "date",
+                "datetime",
+                "i18n",
+                "laravel",
+                "time",
+                "translation"
+            ],
+            "time": "2015-12-11 22:19:37"
         },
         {
             "name": "jeremeamia/SuperClosure",
