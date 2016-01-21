@@ -13,14 +13,15 @@
           <input id="toggle-menu" type="checkbox">
           <ul class="tags">
             <li class="option"><img src="{{ asset('img/close.svg') }}" alt="close"></li>
-            <li class="option"><a href="" class="link">Diseño</a></li>
-            <li class="option"><a href="" class="link">Web</a></li>
-            <li class="option"><a href="" class="link">Fotografía</a></li>
-            <li class="option"><a href="" class="link">Cine</a></li>
-            <li class="option"><a href="" class="link">Libros</a></li>
-            <li class="option"><a href="" class="link">Viajes</a></li>
-            <li class="option"><a href="" class="link">¿Quién es Asael?</a></li>
-            <li class="option"><a href="" class="link">Contáctame</a></li>
+@if(!$tags->isEmpty())
+
+@foreach($tags as $tag)
+
+                                    <li class="option"><a href="{{ url('tagged', $tag->slug) }}" class="link">{{ $tag->name }}</a></li>
+@endforeach
+
+@endif
+
           </ul>
         </label>
       </div>
@@ -41,16 +42,8 @@
               <div style="background: url(https://pbs.twimg.com/profile_banners/53294337/1447581003/600x200) no-repeat center center; background-size: cover;" class="cover"></div>
               <div style="background: url(https://pbs.twimg.com/profile_images/665827494986018817/WJ4VdDNn_bigger.jpg) no-repeat center center; background-size: cover;" class="photo"></div>
               <div class="name">{{ $admin->name }}</div>
-              <div class="job">Diseñador Web</div>
-              <ul class="instagram">
-                <li class="insta"><a href="#" class="link glassy"><img src="http://lorempixel.com/36/36/people/9" alt="" class="img"></a></li>
-                <li class="insta"><a href="#" class="link glassy"><img src="http://lorempixel.com/36/36/people/2" alt="" class="img"></a></li>
-                <li class="insta"><a href="#" class="link glassy"><img src="http://lorempixel.com/36/36/people/3" alt="" class="img"></a></li>
-                <li class="insta"><a href="#" class="link glassy"><img src="http://lorempixel.com/36/36/people/4" alt="" class="img"></a></li>
-                <li class="insta"><a href="#" class="link glassy"><img src="http://lorempixel.com/36/36/people/5" alt="" class="img"></a></li>
-                <li class="insta"><a href="#" class="link glassy"><img src="http://lorempixel.com/36/36/people/6" alt="" class="img"></a></li>
-                <li class="insta"><a href="#" class="link glassy"><img src="http://lorempixel.com/36/36/people/7" alt="" class="img"></a></li>
-                <li class="insta"><a href="#" class="link glassy"><img src="http://lorempixel.com/36/36/people/8" alt="" class="img"></a></li>
+              <div class="job">{{ $admin->occupation }}</div>
+              <ul id="instafeed" class="instagram">
               </ul>
               <ul class="social">
                 <li class="network"><a href="{{ $admin->twitter }}" target="_blank" class="link"><img src="{{ asset('img/twitter.svg') }}" alt="twitter" class="img"></a></li>
@@ -73,8 +66,7 @@
                 <div class="date">{{ ucfirst(Date::parse($featured->published_at)->toFormattedDateString()) }}</div>
               </div>
 @if(!is_null($featured->tags()->first()))
-
-                            <div class="tag">{{ $featured->tags()->first()->name }}</div>
+<a href="{{ $featured->tags()->first()->slug }}" class="tag">{{ $featured->tags()->first()->name }}</a>
 @endif
 <a href="{{ url($featured->slug) }}" class="read btn green">Leer</a>
               <div class="background"><img src="{{ asset('img/bottom-bg.jpg') }}" alt="featured_bg" class="img"></div>
@@ -123,7 +115,7 @@
       </div>
     </div>
     <footer class="footer down-in">
-      <p>Diseño y códigos hechos con ❤️ por @asaelx | Todos los derechos reservados | México, 2016</p>
+      <p>Diseño y códigos hechos con <i class="twa twa-heart"></i> por @asaelx | Todos los derechos reservados | México, 2016</p>
     </footer>
     <script src="{{ asset('js/magic.js') }}"></script>
   </body>

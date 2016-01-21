@@ -16,6 +16,14 @@ elixir(function(mix) {
     ], 'public/css/master.css');
 });
 
+elixir(function(mix) {
+    mix.scripts([
+        bw + 'jquery/dist/jquery.min.js',
+        bw + 'instafeed.js/instafeed.js',
+        'magic.js'
+    ], 'public/js/magic.js');
+});
+
 // Admin
 elixir(function(mix) {
     mix.sass([

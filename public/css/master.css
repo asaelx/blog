@@ -4573,10 +4573,10 @@ img {
       opacity: 0.8;
       filter: alpha(opacity=80); }
   .btn.green {
-    border: 2px solid #1ABC9C;
-    color: #1ABC9C; }
+    border: 2px solid #16A085;
+    color: #16A085; }
     .btn.green:hover {
-      background: #1ABC9C;
+      background: #16A085;
       color: #FFFFFF; }
   .btn.blue {
     background: none;
@@ -4802,7 +4802,7 @@ img {
             display: none; }
           .nav .wrapper .toggle-menu .tags .option .link {
             display: block;
-            color: #1ABC9C;
+            color: #16A085;
             font-family: 'Varela', sans-serif;
             font-size: 12px;
             font-size: 0.8571428571rem;
@@ -4810,7 +4810,7 @@ img {
             position: relative; }
             .nav .wrapper .toggle-menu .tags .option .link:before, .nav .wrapper .toggle-menu .tags .option .link:after {
               content: "";
-              background: #1ABC9C;
+              background: #16A085;
               width: 100%;
               height: 1px;
               position: absolute;
@@ -4924,7 +4924,7 @@ img {
       box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5); }
     .header .profile .name {
       text-align: center;
-      color: #1ABC9C;
+      color: #16A085;
       font-family: 'Varela';
       font-size: 16px;
       font-size: 1.1428571429rem;
@@ -5005,7 +5005,7 @@ img {
       .header .profile .cover {
         height: 5.7142857143rem; }
       .header .profile .name {
-        color: #1ABC9C; }
+        color: #16A085; }
       .header .profile .job {
         color: #95A5A6; } }
   .header .featured {
@@ -5039,7 +5039,7 @@ img {
       font-weight: bold;
       font-size: 25px;
       font-size: 1.7857142857rem;
-      color: #1ABC9C;
+      color: #16A085;
       text-transform: uppercase;
       margin-bottom: 0.5em; }
     .header .featured .excerpt {
@@ -5113,7 +5113,7 @@ img {
           position: relative;
           left: 0;
           bottom: 0;
-          color: #1ABC9C; }
+          color: #16A085; }
         .header .featured .read {
           bottom: 1rem; }
         .header .featured .background {
@@ -5247,11 +5247,15 @@ img {
     display: block;
     margin: 0 auto;
     width: 48.5714285714rem;
-    padding-top: 20rem; }
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%); }
     @media only screen and (max-width: 680px) {
       .single > .cover .heading {
         width: 100%;
-        padding: 20rem 1rem 0 1rem; } }
+        padding: 0 1rem; } }
     .single > .cover .heading .title {
       font-family: 'Montserrat';
       font-weight: bold;
@@ -5264,6 +5268,8 @@ img {
       font-size: 14px;
       font-size: 1rem;
       color: rgba(255, 255, 255, 0.9); }
+      .single > .cover .heading .details a {
+        color: #FFFFFF; }
 
 .single .body {
   margin-top: 2rem; }
@@ -5344,8 +5350,6 @@ img {
       width: 5.1428571429rem;
       box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
       float: left; }
-      .single .more-footer .profile .photo .img {
-        width: 100%; }
     .single .more-footer .profile .bio {
       font-family: 'Varela';
       font-size: 14px;
@@ -5394,6 +5398,9 @@ img {
         color: #95A5A6;
         line-height: 1.5714285714rem;
         margin-bottom: 1rem; }
+        .single .more-footer .thanks .like p .twa {
+          font-size: 24px;
+          font-size: 1.7142857143rem; }
       .single .more-footer .thanks .like .share {
         font-family: 'Lato';
         font-size: 14px;

@@ -5,14 +5,15 @@
       <input id="toggle-menu" type="checkbox"/>
       <ul class="tags">
         <li class="option"><img src="{{ asset('img/close.svg') }}" alt="close"/></li>
-        <li class="option"><a href="" class="link">Diseño</a></li>
-        <li class="option"><a href="" class="link">Web</a></li>
-        <li class="option"><a href="" class="link">Fotografía</a></li>
-        <li class="option"><a href="" class="link">Cine</a></li>
-        <li class="option"><a href="" class="link">Libros</a></li>
-        <li class="option"><a href="" class="link">Viajes</a></li>
-        <li class="option"><a href="" class="link">¿Quién es Asael?</a></li>
-        <li class="option"><a href="" class="link">Contáctame</a></li>
+@if(!$tags->isEmpty())
+
+@foreach($tags as $tag)
+
+                        <li class="option"><a href="{{ url('tagged', $tag->slug) }}" class="link">{{ $tag->name }}</a></li>
+@endforeach
+
+@endif
+
       </ul>
     </label>
   </div>

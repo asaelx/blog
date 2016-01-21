@@ -13,50 +13,37 @@
           <input id="toggle-menu" type="checkbox">
           <ul class="tags">
             <li class="option"><img src="{{ asset('img/close.svg') }}" alt="close"></li>
-            <li class="option"><a href="" class="link">Diseño</a></li>
-            <li class="option"><a href="" class="link">Web</a></li>
-            <li class="option"><a href="" class="link">Fotografía</a></li>
-            <li class="option"><a href="" class="link">Cine</a></li>
-            <li class="option"><a href="" class="link">Libros</a></li>
-            <li class="option"><a href="" class="link">Viajes</a></li>
-            <li class="option"><a href="" class="link">¿Quién es Asael?</a></li>
-            <li class="option"><a href="" class="link">Contáctame</a></li>
+@if(!$tags->isEmpty())
+
+@foreach($tags as $tag)
+
+                                    <li class="option"><a href="{{ url('tagged', $tag->slug) }}" class="link">{{ $tag->name }}</a></li>
+@endforeach
+
+@endif
+
           </ul>
         </label>
       </div>
     </nav>
     <article class="single">
-      <div style="background: url({{ asset('img/hero.jpg') }}) bottom center; background-size: cover;" class="cover">
+      <div style="background: url({{ url($article->files()->first()->url) }}) center center; background-size: cover;" class="cover">
         <div class="heading">
-          <h1 class="title">Pretty cool places in the world</h1>
-          <div class="details">Por Asael Jaimes · Enero 2, 2016 · 14 comentarios · #VIAJES</div>
+          <h1 class="title">{{ $article->title }}</h1>
+          <div class="details">Por <a href="{{ url('author', $article->user()->first()->slug) }}">{{ $article->user()->first()->name }}</a> · {{ ucfirst(Date::parse($article->published_at)->toFormattedDateString()) }} · <a href="{{ url('tagged', $article->tags()->first()->slug) }}">{{ $article->tags()->first()->name }}</a></div>
         </div>
       </div>
-      <div class="body">
-        <p>Durante el último año he elegido ‘debes’ una y otra vez y fue petrificante. A veces fue oscuro. Pero nunca, jamás, cambiaría el año pasado por nada. Este ensayo reúne mis tres puntos clave sobre la experiencia. Es para cualquiera que esté pensando en dar el salto desde ‘deberías’ hasta ‘debes’. Cualquiera que quiera seguir la energía que está en lo más profundo de su pecho, pero no esté muy seguro de cómo hacerlo.</p>
-        <p>‘Deberías’ es cómo los demás quieren que nos mostremos al mundo: cómo se supone que debemos pensar, lo que podríamos decir, lo que debemos o no debemos hacer. Es la gran variedad de expectativas que los demás tienen sobre nosotros. Cuando elegimos ‘deberías’ el viaje es suave y el riesgo es mínimo.</p>
-        <p>‘Deberías’ es cómo los demás quieren que nos mostremos al mundo: cómo se supone que debemos pensar, lo que podríamos decir, lo que debemos o no debemos hacer. Es la gran variedad de expectativas que los demás tienen sobre nosotros. Cuando elegimos ‘deberías’ el viaje es suave y el riesgo es mínimo.</p><img src="{{ asset('img/hero.jpg') }}" alt="" class="full">
-        <p>‘Deberías’ es cómo los demás quieren que nos mostremos al mundo: cómo se supone que debemos pensar, lo que podríamos decir, lo que debemos o no debemos hacer. Es la gran variedad de expectativas que los demás tienen sobre nosotros. Cuando elegimos ‘deberías’ el viaje es suave y el riesgo es mínimo.</p>
-        <p>‘Deberías’ es cómo los demás quieren que nos mostremos al mundo: cómo se supone que debemos pensar, lo que podríamos decir, lo que debemos o no debemos hacer. Es la gran variedad de expectativas que los demás tienen sobre nosotros. Cuando elegimos ‘deberías’ el viaje es suave y el riesgo es mínimo.</p><img src="{{ asset('img/hero.jpg') }}" alt="" class="medium">
-        <div class="caption">This is a single caption</div>
-        <p>‘Deberías’ es cómo los demás quieren que nos mostremos al mundo: cómo se supone que debemos pensar, lo que podríamos decir, lo que debemos o no debemos hacer. Es la gran variedad de expectativas que los demás tienen sobre nosotros. Cuando elegimos ‘deberías’ el viaje es suave y el riesgo es mínimo.</p>
-        <p>‘Deberías’ es cómo los demás quieren que nos mostremos al mundo: cómo se supone que debemos pensar, lo que podríamos decir, lo que debemos o no debemos hacer. Es la gran variedad de expectativas que los demás tienen sobre nosotros. Cuando elegimos ‘deberías’ el viaje es suave y el riesgo es mínimo.</p>
-        <blockquote>
-           
-          Si no te gusta, cámbialo. Nadie lo va ha hacer por ti.
-        </blockquote>
-        <p>Durante el último año he elegido ‘debes’ una y otra vez y fue petrificante. A veces fue oscuro. Pero nunca, jamás, cambiaría el año pasado por nada. Este ensayo reúne mis tres puntos clave sobre la experiencia. Es para cualquiera que esté pensando en dar el salto desde ‘deberías’ hasta ‘debes’. Cualquiera que quiera seguir la energía que está en lo más profundo de su pecho, pero no esté muy seguro de cómo hacerlo.</p>
-      </div>
+      <div class="body">{!! $article->body !!}</div>
       <footer class="more-footer">
         <div class="profile">
-          <div class="photo glassy"><img src="https://pbs.twimg.com/profile_images/665827494986018817/WJ4VdDNn_bigger.jpg" alt="" class="img"></div>
-          <div class="bio">Hola, soy Asael Jaimes y me gusta hacer cosas para internet. Soy diseñador web, desarrollador, nómada digital, aventurero, bloguero, youtuber, minimalista y entusiasta de la fotografía, entre otras cosas.</div>
+          <div style="background: url({{ (!is_null($article->user()->first()->files()->first())) ? url($article->user()->first()->files()->first()->url) : asset('img/1f47d.svg')  }}) bottom center; background-size: cover;" class="photo"></div>
+          <div class="bio">{{ $article->user()->first()->bio }}</div>
           <div class="find-me">Encuéntrame en:
             <ul class="social">
-              <li class="network"><a href="#" class="link"><img src="{{ asset('img/twitter.svg') }}" alt="twitter" class="img"></a></li>
-              <li class="network"><a href="#" class="link"><img src="{{ asset('img/facebook.svg') }}" alt="facebook" class="img"></a></li>
-              <li class="network"><a href="#" class="link"><img src="{{ asset('img/instagram.svg') }}" alt="instagram" class="img"></a></li>
-              <li class="network"><a href="#" class="link"><img src="{{ asset('img/youtube.svg') }}" alt="youtube" class="img"></a></li>
+              <li class="network"><a href="{{ $article->user()->first()->twitter }}" class="link"><img src="{{ asset('img/twitter.svg') }}" alt="twitter" class="img"></a></li>
+              <li class="network"><a href="{{ $article->user()->first()->facebook }}" class="link"><img src="{{ asset('img/facebook.svg') }}" alt="facebook" class="img"></a></li>
+              <li class="network"><a href="{{ $article->user()->first()->instagram }}" class="link"><img src="{{ asset('img/instagram.svg') }}" alt="instagram" class="img"></a></li>
+              <li class="network"><a href="{{ $article->user()->first()->youtube }}" class="link"><img src="{{ asset('img/youtube.svg') }}" alt="youtube" class="img"></a></li>
             </ul>
           </div>
         </div>
@@ -64,42 +51,37 @@
           <div class="like">
             <p>Si te gustó el artículo, por favor compártelo en tus redes sociales.</p>
             <p>Tampoco te olvides de dejarme un saludo o comentario aquí o en mi twitter y facebook.</p>
-            <p>Así me ayudas a crear más contenido todos los días. ¡Gracias! 😁</p>
+            <p>Así me ayudas a crear más contenido todos los días. ¡Gracias! <i class="twa twa-stuck-out-tongue-winking-eye"></i></p>
             <div class="share">Compartir en:
               <ul class="options">
-                <li class="option"><a href="#" class="link"><img src="{{ asset('img/twitter.svg') }}" alt="twitter" class="img"></a></li>
-                <li class="option"><a href="#" class="link"><img src="{{ asset('img/facebook.svg') }}" alt="facebook" class="img"></a></li>
-                <li class="option"><a href="#" class="link"><img src="{{ asset('img/instagram.svg') }}" alt="instagram" class="img"></a></li>
-                <li class="option"><a href="#" class="link"><img src="{{ asset('img/youtube.svg') }}" alt="youtube" class="img"></a></li>
+                <li class="option"><a href="http://twitter.com/share?text={{ $article->title }}&url={{ url($article->slug) }}&hashtags={{ str_replace(' ', '', $article->tags()->first()->name) }}" class="link"><img src="{{ asset('img/twitter.svg') }}" alt="twitter" class="img"></a></li>
+                <li class="option"><a href="https://www.facebook.com/sharer/sharer.php?u={{ url($article->slug) }}" target="_blank" class="link"><img src="{{ asset('img/facebook.svg') }}" alt="facebook" class="img"></a></li>
               </ul>
             </div>
           </div>
           <div class="more-articles">
             <div>¿Ganas de más? Aquí hay otros artículos...</div>
-            <article class="article">
-              <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
-              <h2 class="title">My trip to Taiwan</h2>
-              <div class="details">
-                <div class="date">Enero 15, 2016</div>
-                <div class="comments">18 comentarios</div>
-              </div>
-              <div class="tag">#VIAJES</div><a href="#" class="read btn white">Leer</a>
-            </article>
-            <article class="article">
-              <div style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;" class="cover"></div>
-              <h2 class="title">My trip to Taiwan</h2>
-              <div class="details">
-                <div class="date">Enero 15, 2016</div>
-                <div class="comments">18 comentarios</div>
-              </div>
-              <div class="tag">#VIAJES</div><a href="#" class="read btn white">Leer</a>
-            </article>
+@if(!$readings->isEmpty())
+
+@foreach($readings as $reading)
+
+                                    <article class="article">
+                                      <div style="background: url({{ url($reading->files()->first()->url) }}) no-repeat center center; background-size: cover;" class="cover"></div>
+                                      <h2 class="title">{{ $reading->title }}</h2>
+                                      <div class="details">
+                                        <div class="date">{{ ucfirst(Date::parse($reading->published_at)->toFormattedDateString()) }}</div>
+                                      </div><a href="{{ $reading->tags()->first()->slug }}" class="tag">{{ $reading->tags()->first()->name }}</a><a href="{{ url($reading->slug) }}" class="read btn white">Leer</a>
+                                    </article>
+@endforeach
+
+@endif
+
           </div>
         </div>
       </footer>
     </article>
     <footer class="footer down-in">
-      <p>Diseño y códigos hechos con ❤️ por @asaelx | Todos los derechos reservados | México, 2016</p>
+      <p>Diseño y códigos hechos con <i class="twa twa-heart"></i> por @asaelx | Todos los derechos reservados | México, 2016</p>
     </footer>
     <script src="{{ asset('js/magic.js') }}"></script>
   </body>

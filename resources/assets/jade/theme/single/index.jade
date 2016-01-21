@@ -6,82 +6,58 @@ block title
 block content
     include ../partials/nav
     article.single
-        .cover(style="background: url({{ asset('img/hero.jpg') }}) bottom center; background-size: cover;")
+        .cover(style!="background: url({{ url($article->files()->first()->url) }}) center center; background-size: cover;")
             .heading
-                h1.title Pretty cool places in the world
-                .details Por Asael Jaimes · Enero 2, 2016 · 14 comentarios · #VIAJES
+                h1.title {{ $article->title }}
+                .details Por <a href="{{ url('author', $article->user()->first()->slug) }}">{{ $article->user()->first()->name }}</a> · {{ ucfirst(Date::parse($article->published_at)->toFormattedDateString()) }} · <a href="{{ url('tagged', $article->tags()->first()->slug) }}">{{ $article->tags()->first()->name }}</a>
         .body
-            p Durante el último año he elegido ‘debes’ una y otra vez y fue petrificante. A veces fue oscuro. Pero nunca, jamás, cambiaría el año pasado por nada. Este ensayo reúne mis tres puntos clave sobre la experiencia. Es para cualquiera que esté pensando en dar el salto desde ‘deberías’ hasta ‘debes’. Cualquiera que quiera seguir la energía que está en lo más profundo de su pecho, pero no esté muy seguro de cómo hacerlo.
-            p ‘Deberías’ es cómo los demás quieren que nos mostremos al mundo: cómo se supone que debemos pensar, lo que podríamos decir, lo que debemos o no debemos hacer. Es la gran variedad de expectativas que los demás tienen sobre nosotros. Cuando elegimos ‘deberías’ el viaje es suave y el riesgo es mínimo.
-            p ‘Deberías’ es cómo los demás quieren que nos mostremos al mundo: cómo se supone que debemos pensar, lo que podríamos decir, lo que debemos o no debemos hacer. Es la gran variedad de expectativas que los demás tienen sobre nosotros. Cuando elegimos ‘deberías’ el viaje es suave y el riesgo es mínimo.
-            img.full(src="{{ asset('img/hero.jpg') }}", alt="")
-            p ‘Deberías’ es cómo los demás quieren que nos mostremos al mundo: cómo se supone que debemos pensar, lo que podríamos decir, lo que debemos o no debemos hacer. Es la gran variedad de expectativas que los demás tienen sobre nosotros. Cuando elegimos ‘deberías’ el viaje es suave y el riesgo es mínimo.
-            p ‘Deberías’ es cómo los demás quieren que nos mostremos al mundo: cómo se supone que debemos pensar, lo que podríamos decir, lo que debemos o no debemos hacer. Es la gran variedad de expectativas que los demás tienen sobre nosotros. Cuando elegimos ‘deberías’ el viaje es suave y el riesgo es mínimo.
-            img.medium(src="{{ asset('img/hero.jpg') }}", alt="")
-            .caption This is a single caption
-            p ‘Deberías’ es cómo los demás quieren que nos mostremos al mundo: cómo se supone que debemos pensar, lo que podríamos decir, lo que debemos o no debemos hacer. Es la gran variedad de expectativas que los demás tienen sobre nosotros. Cuando elegimos ‘deberías’ el viaje es suave y el riesgo es mínimo.
-            p ‘Deberías’ es cómo los demás quieren que nos mostremos al mundo: cómo se supone que debemos pensar, lo que podríamos decir, lo que debemos o no debemos hacer. Es la gran variedad de expectativas que los demás tienen sobre nosotros. Cuando elegimos ‘deberías’ el viaje es suave y el riesgo es mínimo.
-            blockquote 
-                | Si no te gusta, cámbialo. Nadie lo va ha hacer por ti.
-            p Durante el último año he elegido ‘debes’ una y otra vez y fue petrificante. A veces fue oscuro. Pero nunca, jamás, cambiaría el año pasado por nada. Este ensayo reúne mis tres puntos clave sobre la experiencia. Es para cualquiera que esté pensando en dar el salto desde ‘deberías’ hasta ‘debes’. Cualquiera que quiera seguir la energía que está en lo más profundo de su pecho, pero no esté muy seguro de cómo hacerlo.
+            | {!! $article->body !!}
         footer.more-footer
             .profile
-                .photo.glassy
-                    img.img(src="https://pbs.twimg.com/profile_images/665827494986018817/WJ4VdDNn_bigger.jpg", alt="")
-                .bio Hola, soy Asael Jaimes y me gusta hacer cosas para internet. Soy diseñador web, desarrollador, nómada digital, aventurero, bloguero, youtuber, minimalista y entusiasta de la fotografía, entre otras cosas.
+                .photo(style!="background: url({{ (!is_null($article->user()->first()->files()->first())) ? url($article->user()->first()->files()->first()->url) : asset('img/1f47d.svg')  }}) bottom center; background-size: cover;")
+                .bio {{ $article->user()->first()->bio }}
                 .find-me
                     | Encuéntrame en:
                     ul.social
                         li.network
-                            a.link(href="#")
+                            a.link(href!="{{ $article->user()->first()->twitter }}")
                                 img.img(src="{{ asset('img/twitter.svg') }}", alt="twitter")
                         li.network
-                            a.link(href="#")
+                            a.link(href!="{{ $article->user()->first()->facebook }}")
                                 img.img(src="{{ asset('img/facebook.svg') }}", alt="facebook")
                         li.network
-                            a.link(href="#")
+                            a.link(href!="{{ $article->user()->first()->instagram }}")
                                 img.img(src="{{ asset('img/instagram.svg') }}", alt="instagram")
                         li.network
-                            a.link(href="#")
+                            a.link(href!="{{ $article->user()->first()->youtube }}")
                                 img.img(src="{{ asset('img/youtube.svg') }}", alt="youtube")
             .thanks
                 .like
                     p Si te gustó el artículo, por favor compártelo en tus redes sociales.
                     p Tampoco te olvides de dejarme un saludo o comentario aquí o en mi twitter y facebook.
-                    p Así me ayudas a crear más contenido todos los días. ¡Gracias! 😁
+                    p Así me ayudas a crear más contenido todos los días. ¡Gracias! <i class="twa twa-stuck-out-tongue-winking-eye"></i>
                     .share
                         | Compartir en:
                         ul.options
                             li.option
-                                a.link(href="#")
+                                a.link(href!="http://twitter.com/share?text={{ $article->title }}&url={{ url($article->slug) }}&hashtags={{ str_replace(' ', '', $article->tags()->first()->name) }}")
                                     img.img(src="{{ asset('img/twitter.svg') }}", alt="twitter")
                             li.option
-                                a.link(href="#")
+                                a.link(href!="https://www.facebook.com/sharer/sharer.php?u={{ url($article->slug) }}", target="_blank")
                                     img.img(src="{{ asset('img/facebook.svg') }}", alt="facebook")
-                            li.option
-                                a.link(href="#")
-                                    img.img(src="{{ asset('img/instagram.svg') }}", alt="instagram")
-                            li.option
-                                a.link(href="#")
-                                    img.img(src="{{ asset('img/youtube.svg') }}", alt="youtube")
                 .more-articles
                     div ¿Ganas de más? Aquí hay otros artículos...
-                    article.article
-                        .cover(style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;")
-                        h2.title My trip to Taiwan
-                        .details
-                            .date Enero 15, 2016
-                            .comments 18 comentarios
-                        .tag #VIAJES
-                        a.read.btn.white(href="#") Leer
-                    article.article
-                        .cover(style="background: url({{ asset('img/cover.jpg') }}) no-repeat center center; background-size: cover;")
-                        h2.title My trip to Taiwan
-                        .details
-                            .date Enero 15, 2016
-                            .comments 18 comentarios
-                        .tag #VIAJES
-                        a.read.btn.white(href="#") Leer
+                    include ../../mixins/blade
+                    +if('!$readings->isEmpty()')
+                        +foreach('$readings as $reading')
+                            article.article
+                                .cover(style!="background: url({{ url($reading->files()->first()->url) }}) no-repeat center center; background-size: cover;")
+                                h2.title {{ $reading->title }}
+                                .details
+                                    .date {{ ucfirst(Date::parse($reading->published_at)->toFormattedDateString()) }}
+                                    //- .comments 18 comentarios
+                                a.tag(href!="{{ $reading->tags()->first()->slug }}") {{ $reading->tags()->first()->name }}
+                                a.read.btn.white(href!="{{ url($reading->slug) }}") Leer
                 
     
 block footer

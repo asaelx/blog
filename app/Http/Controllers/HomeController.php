@@ -9,6 +9,7 @@ use App\Http\Controllers\Controller;
 use App\Setting;
 use App\User;
 use App\Article;
+use App\Tag;
 
 class HomeController extends Controller
 {
@@ -17,27 +18,30 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         $setting = Setting::latest()->first();
         $admin = User::latest()->first();
-        $featured = Article::latest()->first();
-        $count = Article::count();
-        $articles = Article::latest()->simplePaginate(1);
+        $tags = Tag::all();
+        $featured = Article::latest()->published()->first();
+        $articles = Article::where('id', '!=', $featured->id)->latest()->published()->simplePaginate(8);
         if(is_null($setting))
             return redirect('auth/register');
-        return view('theme.index', compact('setting', 'admin', 'featured', 'articles'));
+        return view('theme.index', compact('setting', 'tags', 'admin', 'featured', 'articles'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $slug
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Article $article)
     {
-        //
+        $setting = Setting::latest()->first();
+        $tags = Tag::all();
+        $readings = Article::orderByRaw('RAND()')->take(2)->get();
+        return view('theme.single.index', compact('setting', 'tags', 'article', 'readings'));
     }
 
 }

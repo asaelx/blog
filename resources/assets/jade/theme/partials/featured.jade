@@ -9,7 +9,7 @@ article.article.featured.down-in
         //- .comments 18 comentarios
     include ../../mixins/blade
     +if('!is_null($featured->tags()->first())')
-        .tag {{ $featured->tags()->first()->name }}
+        a.tag(href!="{{ $featured->tags()->first()->slug }}") {{ $featured->tags()->first()->name }}
     a.read.btn.green(href!="{{ url($featured->slug) }}") Leer
     .background
         img.img(src="{{ asset('img/bottom-bg.jpg') }}", alt="featured_bg")

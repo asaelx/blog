@@ -30,6 +30,7 @@ class Article extends Model implements SluggableInterface
     protected $fillable = [
         'title',
         'body',
+        'featured',
         'published_at'
     ];
 

@@ -9,11 +9,7 @@ nav.nav
             ul.tags
                 li.option
                     img(src="{{ asset('img/close.svg') }}", alt="close")
-                li.option: a.link(href="") Diseño
-                li.option: a.link(href="") Web
-                li.option: a.link(href="") Fotografía
-                li.option: a.link(href="") Cine
-                li.option: a.link(href="") Libros
-                li.option: a.link(href="") Viajes
-                li.option: a.link(href="") ¿Quién es Asael?
-                li.option: a.link(href="") Contáctame
+                include ../../mixins/blade
+                +if('!$tags->isEmpty()')
+                    +foreach('$tags as $tag')
+                        li.option: a.link(href!="{{ url('tagged', $tag->slug) }}") {{ $tag->name }}

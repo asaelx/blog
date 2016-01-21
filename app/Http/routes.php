@@ -13,7 +13,7 @@
 
 // Theme
 Route::get('/', 'HomeController@index');
-Route::get('{slug}', 'HomeController@show');
+Route::get('{articles}', 'HomeController@show');
 
 // Authentication routes
 Route::get('auth/login', 'Auth\AuthController@getLogin');
