@@ -1,7 +1,7 @@
 extend ../partials/base
 
 block title
-    title Single Article
+    title {{ $article->title }}
     
 block content
     include ../partials/nav
@@ -9,7 +9,7 @@ block content
         .cover(style!="background: url({{ url($article->files()->first()->url) }}) center center; background-size: cover;")
             .heading
                 h1.title {{ $article->title }}
-                .details Por <a href="{{ url('author', $article->user()->first()->slug) }}">{{ $article->user()->first()->name }}</a> · {{ ucfirst(Date::parse($article->published_at)->toFormattedDateString()) }} · <a href="{{ url('tagged', $article->tags()->first()->slug) }}">{{ $article->tags()->first()->name }}</a>
+                .details Por <a href="{{ url('author', $article->user()->first()->slug) }}">{{ $article->user()->first()->name }}</a> · {{ ucfirst(Date::parse($article->published_at)->toFormattedDateString()) }} · Archivado en <a href="{{ url('tagged', $article->tags()->first()->slug) }}">{{ $article->tags()->first()->name }}</a>
         .body
             | {!! $article->body !!}
         footer.more-footer

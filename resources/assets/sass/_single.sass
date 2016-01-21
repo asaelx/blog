@@ -37,45 +37,51 @@
                 a
                     color: $white
     .body
+        +reading-width
         margin-top: 2rem
-        p
-            font-family: 'Lora'
-            +font-size(20px)
-            color: $dark
-            line-height: rem(33px)
-            +reading-width
-            margin: 1.5rem auto 1.5rem auto
-            +breakpoint($small)
-                width: 100%
-                padding: 0 1rem
-            +breakpoint($xsmall)
-                +font-size(17px)
-                line-height: rem(26px)
-        .full
+        font-family: 'Merriweather'
+        +font-size(20px)
+        +breakpoint($small)
             width: 100%
-        .medium
-            border-radius: rem(3px)
-            +reading-width
-            margin: 1rem auto 1rem auto
-            +breakpoint($small)
-                width: 100%
-                padding: 0 1rem
-        .caption
-            font-family: 'Lato'
-            font-style: italic
-            +font-size(14px)
-            color: $gray
-            text-align: center
-            +reading-width
-            +breakpoint($small)
-                width: 100%
-                padding: 0 1rem
+            padding: 0 1rem
+        +breakpoint($xsmall)
+            +font-size(17px)
+            line-height: rem(26px)
+        +headings
+        p
+            color: $dark
+            line-height: rem(36px)
+            margin: 1.5rem auto 1.5rem auto
+        [class^="medium-insert-"]
+            margin: 1rem 0
+        a
+            color: $blue
+        ol, ul
+            padding-left: 1em
+            color: $dark
+        ol
+            list-style: decimal
+        ul
+            list-style: disc
+        figure
+            img
+                max-width: 100%
+                border-radius: rem(3px)
+            figcaption
+                font-style: italic
+                +font-size(14px)
+                color: $gray
+                text-align: center
+                padding-top: 0.5rem
+                +breakpoint($small)
+                    width: 100%
+                    padding: 0 1rem
         blockquote
             +reading-width
             color: $gray
-            +font-size(24px)
             padding-left: 1rem
-            border-left: 2px solid $thin
+            border-left: 3px solid $thin
+            font-style: italic
             +breakpoint($small)
                 width: 100%
                 padding: 0 1rem

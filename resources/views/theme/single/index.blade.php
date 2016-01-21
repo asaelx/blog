@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <title>Single Article</title>
+    <title>{{ $article->title }}</title>
     <link rel="stylesheet" href="{{ asset('css/master.css') }}">
   </head>
   <body>
@@ -30,7 +30,7 @@
       <div style="background: url({{ url($article->files()->first()->url) }}) center center; background-size: cover;" class="cover">
         <div class="heading">
           <h1 class="title">{{ $article->title }}</h1>
-          <div class="details">Por <a href="{{ url('author', $article->user()->first()->slug) }}">{{ $article->user()->first()->name }}</a> · {{ ucfirst(Date::parse($article->published_at)->toFormattedDateString()) }} · <a href="{{ url('tagged', $article->tags()->first()->slug) }}">{{ $article->tags()->first()->name }}</a></div>
+          <div class="details">Por <a href="{{ url('author', $article->user()->first()->slug) }}">{{ $article->user()->first()->name }}</a> · {{ ucfirst(Date::parse($article->published_at)->toFormattedDateString()) }} · Archivado en <a href="{{ url('tagged', $article->tags()->first()->slug) }}">{{ $article->tags()->first()->name }}</a></div>
         </div>
       </div>
       <div class="body">{!! $article->body !!}</div>

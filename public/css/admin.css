@@ -7970,6 +7970,7 @@ fieldset[disabled] .datepicker table tr td span.active.disabled:hover.focus {
 @import url(https://fonts.googleapis.com/css?family=Varela+Round);
 @import url(https://fonts.googleapis.com/css?family=Lato:400italic);
 @import url(https://fonts.googleapis.com/css?family=Lora:400,400italic,700,700italic);
+@import url(https://fonts.googleapis.com/css?family=Merriweather:400,400italic,700,700italic);
 *, *:before, *:after {
   margin: 0;
   padding: 0;
@@ -8680,48 +8681,68 @@ html {
       width: 100%;
       resize: none;
       color: #34495E;
-      font-family: 'Lora', Georgia, serif;
-      font-size: 18px;
-      font-size: 1.2857142857rem;
-      line-height: 1.5em; }
+      font-family: 'Merriweather', Georgia, serif;
+      font-size: 20px;
+      font-size: 1.4285714286rem;
+      line-height: 2.5714285714rem; }
       .editor .body .editable h1 {
         font-size: 2.39976rem;
-        margin: 0.5em 0;
-        line-height: 1.3; }
+        margin: 1.8em 0 0.5em 0;
+        line-height: 1.3;
+        color: #000000; }
       .editor .body .editable h2 {
         font-size: 1.9998rem;
-        margin: 0.5em 0;
-        line-height: 1.3; }
+        margin: 1.8em 0 0.5em 0;
+        line-height: 1.3;
+        color: #000000; }
       .editor .body .editable h3 {
         font-size: 1.59984rem;
-        margin: 0.5em 0;
-        line-height: 1.3; }
+        margin: 1.8em 0 0.5em 0;
+        line-height: 1.3;
+        color: #000000; }
       .editor .body .editable h4 {
         font-size: 1.19988rem;
-        margin: 0.5em 0;
-        line-height: 1.3; }
+        margin: 1.8em 0 0.5em 0;
+        line-height: 1.3;
+        color: #000000; }
       .editor .body .editable h5 {
         font-size: 0.79992rem;
-        margin: 0.5em 0;
-        line-height: 1.3; }
+        margin: 1.8em 0 0.5em 0;
+        line-height: 1.3;
+        color: #000000; }
       .editor .body .editable h6 {
         font-size: 0.39996rem;
-        margin: 0.5em 0;
-        line-height: 1.3; }
+        margin: 1.8em 0 0.5em 0;
+        line-height: 1.3;
+        color: #000000; }
       .editor .body .editable blockquote {
         color: #6A8AAA;
-        font-size: 20px;
-        font-size: 1.4285714286rem;
-        padding-left: 0.5em;
-        border-left: 3px solid #ECF0F1; }
+        padding-left: 1rem;
+        border-left: 3px solid #ECF0F1;
+        font-style: italic; }
+      .editor .body .editable a {
+        color: #3498DB; }
       .editor .body .editable ol, .editor .body .editable ul {
         padding-left: 1em; }
       .editor .body .editable ol {
         list-style: decimal; }
       .editor .body .editable ul {
         list-style: disc; }
-      .editor .body .editable p span[style] {
-        font-size: inherit !important;
-        line-height: inherit !important; }
+      .editor .body .editable p {
+        color: #34495E;
+        line-height: 2.5714285714rem;
+        margin: 1.5rem auto 1.5rem auto; }
+        .editor .body .editable p span[style] {
+          font-size: inherit !important;
+          line-height: inherit !important; }
+      .editor .body .editable figure img {
+        max-width: 100%;
+        border-radius: 0.2142857143rem; }
+      .editor .body .editable figure figcaption {
+        font-style: italic;
+        font-size: 14px;
+        font-size: 1rem;
+        color: #6A8AAA;
+        text-align: center; }
       .editor .body .editable:hover {
         cursor: text; }

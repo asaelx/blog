@@ -34,17 +34,20 @@
             width: 100%
             resize: none
             color: $dark
-            font-family: 'Lora', Georgia, serif
-            +font-size(18px)
-            line-height: 1.5em
+            font-family: 'Merriweather', Georgia, serif
+            +font-size(20px)
+            line-height: rem(36px)
             // Titles
             +headings
             // Blockquotes
             blockquote
                 color: $light
-                +font-size(20px)
-                padding-left: 0.5em
+                padding-left: 1rem
                 border-left: 3px solid $clouds
+                font-style: italic
+            // Anchors
+            a
+                color: $blue
             // Lists
             ol, ul
                 padding-left: 1em
@@ -54,8 +57,20 @@
                 list-style: disc
             // Fix spans
             p
+                color: $dark
+                line-height: rem(36px)
+                margin: 1.5rem auto 1.5rem auto
                 span[style]
                     font-size: inherit!important
                     line-height: inherit!important
+            figure
+                img
+                    max-width: 100%
+                    border-radius: rem(3px)
+                figcaption
+                    font-style: italic
+                    +font-size(14px)
+                    color: $light
+                    text-align: center
             &:hover
                 cursor: text
