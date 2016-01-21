@@ -11,12 +11,6 @@
 |
 */
 
-// Theme
-Route::get('/', 'HomeController@index');
-Route::get('{articles}', 'HomeController@show');
-Route::get('tagged/{tags}', 'HomeController@tagged');
-Route::get('author/{users}', 'HomeController@author');
-
 // Authentication routes
 Route::get('auth/login', 'Auth\AuthController@getLogin');
 Route::post('auth/login', 'Auth\AuthController@postLogin');
@@ -30,7 +24,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 
     // Index
     Route::get('/', function(){
-        return redirect('admin/articles'); // Fix this
+        return redirect('admin/articles');
     });
 
     // Medium Editor
@@ -53,3 +47,9 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
     Route::patch('users/{users}', 'UsersController@update');
     Route::patch('networks/{users}', 'UsersController@networks');
 });
+
+// Theme
+Route::get('/', 'HomeController@index');
+Route::get('{articles}', 'HomeController@show');
+Route::get('tagged/{tags}', 'HomeController@tagged');
+Route::get('author/{users}', 'HomeController@author');

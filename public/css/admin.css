@@ -8744,5 +8744,15 @@ html {
         font-size: 1rem;
         color: #6A8AAA;
         text-align: center; }
+      .editor .body .editable .medium-insert-buttons a {
+        color: #6A8AAA;
+        font-family: 'Lato', sans-serif; }
+        .editor .body .editable .medium-insert-buttons a:hover {
+          color: #3498DB; }
+        .editor .body .editable .medium-insert-buttons a:active {
+          color: #34495E; }
+        .editor .body .editable .medium-insert-buttons a span {
+          font-size: 20px;
+          font-size: 1.4285714286rem; }
       .editor .body .editable:hover {
         cursor: text; }

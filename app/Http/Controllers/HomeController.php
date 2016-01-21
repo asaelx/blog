@@ -23,10 +23,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $this->getGeneral();
-        $this->data['articles'] = Article::where('id', '!=', $this->data['featured']->id)->latest()->published()->simplePaginate(8);
+        $this->getSetting();
         if(is_null($this->data['setting']))
             return redirect('auth/register');
+        $this->getGeneral();
+        $this->data['articles'] = Article::where('id', '!=', $this->data['featured']->id)->latest()->published()->simplePaginate(8);
         return view('theme.index', $this->data);
     }
 
@@ -70,12 +71,29 @@ class HomeController extends Controller
         return view('theme.index', $this->data);
     }
 
+    /**
+     * Get General data and set variables for views
+     * Maybe I should pass this to a view composer
+     *
+     * @return [type] [description]
+     */
     private function getGeneral()
     {
-        $this->data['setting'] = Setting::latest()->first();
+        if(!isset($this->data['setting']))
+            $this->getSetting();
         $this->data['admin']= User::latest()->first();
         $this->data['tags'] = Tag::all();
         $this->data['featured'] = Article::latest()->published()->first();
+    }
+
+    /**
+     * Get Setting data and set variable
+     *
+     * @return [type] [description]
+     */
+    private function getSetting()
+    {
+        $this->data['setting'] = Setting::latest()->first();
     }
 
 }

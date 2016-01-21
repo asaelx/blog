@@ -28,6 +28,7 @@ $(function(){
             addons: {
                 images: {
                     label: '<span class="typcn typcn-camera"></span>',
+                    captionPlaceholder: 'Escribe un pie de foto (opcional)',
                     fileUploadOptions: { // (object) File upload configuration. See https://github.com/blueimp/jQuery-File-Upload/wiki/Options
                         headers: {
                             'X-CSRF-Token': csrf_token
@@ -47,6 +48,11 @@ $(function(){
                         }
                         // deleteScript: 'http://' + window.location.hostname + '/admin/editorDelete'
                     }
+                },
+                embeds: {
+                    label: '<span class="typcn typcn-social-youtube"></span>',
+                    placeholder: 'Pega un link de Youtube, Vimeo, Facebook, Twitter o Instagram y presiona Enter',
+                    captionPlaceholder: 'Escribe una leyenda (opcional)'
                 }
             }
         });

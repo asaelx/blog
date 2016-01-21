@@ -5061,7 +5061,7 @@ img {
       .header .featured .details .date {
         padding-right: 0.5em; }
       .header .featured .details .comments {
-        color: #FFFFFF; }
+        color: #16A085; }
     .header .featured .tag {
       font-family: 'Varela';
       font-size: 13px;
@@ -5204,7 +5204,7 @@ img {
     padding: 1rem;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); }
     .articles .article .details .comments {
-      color: #16A085; }
+      color: #FFFFFF; }
   .articles .article .tag {
     font-family: 'Varela';
     font-size: 13px;
