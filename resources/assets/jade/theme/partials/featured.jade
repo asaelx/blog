@@ -6,7 +6,7 @@ article.article.featured.down-in
         p Tousled food truck polaroid, salvia bespoke small batch Pinterest Marfa. Fingerstache authentic craft beer, food truck Banksy Carles kale chips hoodie. Trust fund artisan master cleanse fingerstache post-ironic.
     .details
         .date {{ ucfirst(Date::parse($featured->published_at)->toFormattedDateString()) }}
-        //- .comments 18 comentarios
+        a.comments(href!="{{ url($featured->slug . '#disqus_thread') }}")
     include ../../mixins/blade
     +if('!is_null($featured->tags()->first())')
         a.tag(href!="{{ url('tagged', $featured->tags()->first()->slug) }}") {{ $featured->tags()->first()->name }}

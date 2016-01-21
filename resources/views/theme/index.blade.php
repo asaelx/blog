@@ -62,7 +62,7 @@
                 <p>Tousled food truck polaroid, salvia bespoke small batch Pinterest Marfa. Fingerstache authentic craft beer, food truck Banksy Carles kale chips hoodie. Trust fund artisan master cleanse fingerstache post-ironic.</p>
               </div>
               <div class="details">
-                <div class="date">{{ ucfirst(Date::parse($featured->published_at)->toFormattedDateString()) }}</div>
+                <div class="date">{{ ucfirst(Date::parse($featured->published_at)->toFormattedDateString()) }}</div><a href="{{ url($featured->slug . '#disqus_thread') }}" class="comments"></a>
               </div>
 @if(!is_null($featured->tags()->first()))
 <a href="{{ url('tagged', $featured->tags()->first()->slug) }}" class="tag">{{ $featured->tags()->first()->name }}</a>
@@ -100,7 +100,7 @@ Artículos escritos por <a href="{{ url('author', $currentAuthor->slug) }}">{{ $
                                   <div style="background: url({{ url($article->files()->first()->url) }}) no-repeat center center; background-size: cover;" class="cover"></div>
                                   <h2 class="title">{{ $article->title }}</h2>
                                   <div class="details">
-                                    <div class="date">{{ ucfirst(Date::parse($article->published_at)->toFormattedDateString()) }}</div>
+                                    <div class="date">{{ ucfirst(Date::parse($article->published_at)->toFormattedDateString()) }}</div><a href="{{ url($article->slug . '#disqus_thread') }}" class="comments"></a>
                                   </div>
 @if(!is_null($article->tags()->first()))
 <a href="{{ url('tagged', $article->tags()->first()->slug) }}" class="tag">{{ $article->tags()->first()->name }}</a>
@@ -134,5 +134,6 @@ Artículos escritos por <a href="{{ url('author', $currentAuthor->slug) }}">{{ $
       <p>Diseño y códigos hechos con <i class="twa twa-heart"></i> por @asaelx | Todos los derechos reservados | México, 2016</p>
     </footer>
     <script src="{{ asset('js/magic.js') }}"></script>
+    <script id="dsq-count-scr" src="//nerdgambino.disqus.com/count.js" async></script>
   </body>
 </html>

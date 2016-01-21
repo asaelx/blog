@@ -25,7 +25,7 @@ Artículos escritos por <a href="{{ url('author', $currentAuthor->slug) }}">{{ $
                       <div style="background: url({{ url($article->files()->first()->url) }}) no-repeat center center; background-size: cover;" class="cover"></div>
                       <h2 class="title">{{ $article->title }}</h2>
                       <div class="details">
-                        <div class="date">{{ ucfirst(Date::parse($article->published_at)->toFormattedDateString()) }}</div>
+                        <div class="date">{{ ucfirst(Date::parse($article->published_at)->toFormattedDateString()) }}</div><a href="{{ url($article->slug . '#disqus_thread') }}" class="comments"></a>
                       </div>
 @if(!is_null($article->tags()->first()))
 <a href="{{ url('tagged', $article->tags()->first()->slug) }}" class="tag">{{ $article->tags()->first()->name }}</a>

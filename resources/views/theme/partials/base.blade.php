@@ -8,5 +8,6 @@
   </head>
   <body>
     <script src="{{ asset('js/magic.js') }}"></script>
+    <script id="dsq-count-scr" src="//nerdgambino.disqus.com/count.js" async></script>
   </body>
 </html>

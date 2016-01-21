@@ -55,10 +55,11 @@ block content
                                 h2.title {{ $reading->title }}
                                 .details
                                     .date {{ ucfirst(Date::parse($reading->published_at)->toFormattedDateString()) }}
-                                    //- .comments 18 comentarios
+                                    a.comments(href!="{{ url($reading->slug . '#disqus_thread') }}")
                                 a.tag(href!="{{ $reading->tags()->first()->slug }}") {{ $reading->tags()->first()->name }}
                                 a.read.btn.white(href!="{{ url($reading->slug) }}") Leer
-                
+                                
+        #disqus_thread
     
 block footer
     include ../partials/footer

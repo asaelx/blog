@@ -34,7 +34,7 @@
             <p>Tousled food truck polaroid, salvia bespoke small batch Pinterest Marfa. Fingerstache authentic craft beer, food truck Banksy Carles kale chips hoodie. Trust fund artisan master cleanse fingerstache post-ironic.</p>
           </div>
           <div class="details">
-            <div class="date">{{ ucfirst(Date::parse($featured->published_at)->toFormattedDateString()) }}</div>
+            <div class="date">{{ ucfirst(Date::parse($featured->published_at)->toFormattedDateString()) }}</div><a href="{{ url($featured->slug . '#disqus_thread') }}" class="comments"></a>
           </div>
 @if(!is_null($featured->tags()->first()))
 <a href="{{ url('tagged', $featured->tags()->first()->slug) }}" class="tag">{{ $featured->tags()->first()->name }}</a>

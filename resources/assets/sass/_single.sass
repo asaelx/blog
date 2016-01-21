@@ -52,6 +52,9 @@
             color: $dark
             line-height: rem(36px)
             margin: 1.5rem auto 1.5rem auto
+            +breakpoint($xsmall)
+                +font-size(17px)
+                line-height: rem(26px)
         [class^="medium-insert-"]
             margin: 1rem 0
         a
@@ -200,6 +203,8 @@
                         color: white
                         padding: 1rem
                         text-shadow: 0 2px 4px rgba(0,0,0,0.5)
+                        .comments
+                            color: $white
                     .tag
                         font-family: 'Varela'
                         +font-size(13px)
@@ -253,3 +258,10 @@
                 .more-articles
                     .article
                         width: 100%
+    // DISQUS
+    #disqus_thread
+        +reading-width
+        margin-top: 3rem
+        +breakpoint($small)
+            width: 100%
+            padding: 0 1rem

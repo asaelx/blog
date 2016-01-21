@@ -5060,6 +5060,8 @@ img {
         display: inline; }
       .header .featured .details .date {
         padding-right: 0.5em; }
+      .header .featured .details .comments {
+        color: #FFFFFF; }
     .header .featured .tag {
       font-family: 'Varela';
       font-size: 13px;
@@ -5201,6 +5203,8 @@ img {
     color: white;
     padding: 1rem;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); }
+    .articles .article .details .comments {
+      color: #16A085; }
   .articles .article .tag {
     font-family: 'Varela';
     font-size: 13px;
@@ -5325,6 +5329,11 @@ img {
     color: #34495E;
     line-height: 2.5714285714rem;
     margin: 1.5rem auto 1.5rem auto; }
+    @media only screen and (max-width: 480px) {
+      .single .body p {
+        font-size: 17px;
+        font-size: 1.2142857143rem;
+        line-height: 1.8571428571rem; } }
   .single .body [class^="medium-insert-"] {
     margin: 1rem 0; }
   .single .body a {
@@ -5506,6 +5515,8 @@ img {
           color: white;
           padding: 1rem;
           text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); }
+          .single .more-footer .thanks .more-articles .article .details .comments {
+            color: #FFFFFF; }
         .single .more-footer .thanks .more-articles .article .tag {
           font-family: 'Varela';
           font-size: 13px;
@@ -5559,6 +5570,16 @@ img {
   @media only screen and (max-width: 480px) {
     .single .more-footer .thanks .more-articles .article {
       width: 100%; } }
+
+.single #disqus_thread {
+  display: block;
+  margin: 0 auto;
+  width: 48.5714285714rem;
+  margin-top: 3rem; }
+  @media only screen and (max-width: 680px) {
+    .single #disqus_thread {
+      width: 100%;
+      padding: 0 1rem; } }
 
 .footer {
   background: url(../img/footer-bg.jpg) no-repeat bottom center;

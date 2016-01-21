@@ -69,7 +69,7 @@
                                       <div style="background: url({{ url($reading->files()->first()->url) }}) no-repeat center center; background-size: cover;" class="cover"></div>
                                       <h2 class="title">{{ $reading->title }}</h2>
                                       <div class="details">
-                                        <div class="date">{{ ucfirst(Date::parse($reading->published_at)->toFormattedDateString()) }}</div>
+                                        <div class="date">{{ ucfirst(Date::parse($reading->published_at)->toFormattedDateString()) }}</div><a href="{{ url($reading->slug . '#disqus_thread') }}" class="comments"></a>
                                       </div><a href="{{ $reading->tags()->first()->slug }}" class="tag">{{ $reading->tags()->first()->name }}</a><a href="{{ url($reading->slug) }}" class="read btn white">Leer</a>
                                     </article>
 @endforeach
@@ -79,10 +79,12 @@
           </div>
         </div>
       </footer>
+      <div id="disqus_thread"></div>
     </article>
     <footer class="footer down-in">
       <p>Diseño y códigos hechos con <i class="twa twa-heart"></i> por @asaelx | Todos los derechos reservados | México, 2016</p>
     </footer>
     <script src="{{ asset('js/magic.js') }}"></script>
+    <script id="dsq-count-scr" src="//nerdgambino.disqus.com/count.js" async></script>
   </body>
 </html>
