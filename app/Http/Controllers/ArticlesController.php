@@ -12,6 +12,7 @@ use Auth;
 use App\Article;
 use App\Tag;
 use App\File;
+use \Twitter;
 
 class ArticlesController extends Controller
 {
@@ -53,6 +54,9 @@ class ArticlesController extends Controller
 
         if($request->hasFile('cover'))
             $this->uploadFile($article, $request->file('cover'));
+
+        if($request->has('twitter'))
+            $this->tweet($article);
 
         session()->flash('flash_message', 'Se ha publicado tu artículo');
 
@@ -108,6 +112,9 @@ class ArticlesController extends Controller
 
         if($request->hasFile('cover'))
             $this->uploadFile($article, $request->file('cover'));
+
+        if($request->has('twitter'))
+            $this->tweet($article);
 
         session()->flash('flash_message', 'Se ha actualizado tu artículo');
 
@@ -203,6 +210,12 @@ class ArticlesController extends Controller
         return response()->json($response);
     }
 
+    /**
+     * Delete image file from Medium Editor
+     *
+     * @param  Request $request
+     * @return Json Response
+     */
     public function editorDelete(Request $request)
     {
         $url = $request->input('file');
@@ -210,5 +223,23 @@ class ArticlesController extends Controller
         $relative_path = ltrim($path, '/');
         unlink($relative_path);
         return response()->json('success', 200);
+    }
+
+    /**
+     * Post article to twitter with cover image
+     *
+     * @param  $article
+     * @return void
+     */
+    private function tweet($article)
+    {
+        $media = Twitter::uploadMedia([
+            'media' => file_get_contents($article->cover()->url)
+        ]);
+
+        Twitter::postTweet([
+            'status' => $article->title . ' ' . url($article->slug),
+            'media_ids' => $media->media_id_string
+        ]);
     }
 }
