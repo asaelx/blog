@@ -54,6 +54,9 @@ class TagsController extends Controller
      */
     public function update(TagRequest $request, Tag $tag)
     {
+        if(is_null($request->input('navigation')))
+            $request->request->add(['navigation' => 0]);
+            
         $tag->update($request->all());
 
         session()->flash('flash_message', 'Se ha actualizado el nombre de la etiqueta');

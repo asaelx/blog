@@ -16,7 +16,7 @@ class CreateTagsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('slug');
-            // $table->boolean('nav');
+            $table->boolean('navigation');
             $table->timestamps();
         });
 

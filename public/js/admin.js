@@ -10120,7 +10120,7 @@ $(function(){
     if(editable.length){
         var editor = new MediumEditor('.editable', {
             toolbar: {
-                buttons: ['bold', 'italic', 'underline', 'orderedlist', 'unorderedlist', 'anchor', 'h1', 'h2', 'quote']
+                buttons: ['bold', 'italic', 'underline', 'orderedlist', 'unorderedlist', 'anchor', 'h1', 'h2', 'quote', 'pre']
             },
             buttonLabels: 'fontawesome',
             targetBlank: true,

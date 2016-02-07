@@ -28,6 +28,10 @@
         {!! Form::label('name', 'Nombre', ['class' => 'label']) !!}
         {!! Form::text('name', null, ['class' => 'input']) !!}
       </div>
+      <div class="group">
+        {!! Form::label('navigation', 'Mostrar en navegación', ['class' => 'label']) !!}
+        {!! Form::checkbox('navigation', 1, null, ['class' => 'onoffswitch']) !!}
+      </div>
       <div class="group">{!! Form::submit('Actualizar', ['class' => 'btn blue submit-right']) !!}</div>{!! Form::close() !!}
     </div>
     <script src="{{ asset('js/admin.js') }}"></script>

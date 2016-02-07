@@ -25,7 +25,7 @@ class Tag extends Model implements SluggableInterface
      *
      * @var array
      */
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'navigation'];
 
     /**
      * Get the articles associated by the given tag

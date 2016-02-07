@@ -13,5 +13,8 @@ block content
             | {!! Form::label('name', 'Nombre', ['class' => 'label']) !!}
             | {!! Form::text('name', null, ['class' => 'input']) !!}
         .group
+            | {!! Form::label('navigation', 'Mostrar en navegación', ['class' => 'label']) !!}
+            | {!! Form::checkbox('navigation', 1, null, ['class' => 'onoffswitch']) !!}
+        .group
             | {!! Form::submit('Actualizar', ['class' => 'btn blue submit-right']) !!}
         | {!! Form::close() !!}
