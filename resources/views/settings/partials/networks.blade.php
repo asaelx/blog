@@ -1,15 +1,19 @@
 
 <div id="networks" class="tabbed {{ (!is_null($current) && $current == 'networks') ? 'active' : '' }}">{!! Form::model($user, ['url' => url('admin/networks', $user->slug), 'class' => 'form settings-form', 'method' => 'PATCH','files' => true]) !!}
-  <div class="group">
-    {!! Form::label('twitter', 'URL de Twitter', ['class' => 'label']) !!}
-    {!! Form::text('twitter', null, ['class' => 'input']) !!}
+  <div class="group"><a href="{{ url('admin/twitter/login') }}" class="btn blue"><span class="typcn typcn-social-twitter"></span>
+@if(!is_null($user->twitter))
+ Conectar otra vez con twitter
+@else
+ Conectar con twitter
+@endif
+</a>
   </div>
   <div class="group">
-    {!! Form::label('facebook', 'URL de Facebook', ['class' => 'label']) !!}
+    {!! Form::label('facebook', 'Usuario de Facebook', ['class' => 'label']) !!}
     {!! Form::text('facebook', null, ['class' => 'input']) !!}
   </div>
   <div class="group">
-    {!! Form::label('instagram', 'URL de Instagram', ['class' => 'label']) !!}
+    {!! Form::label('instagram', 'Usuario de Instagram', ['class' => 'label']) !!}
     {!! Form::text('instagram', null, ['class' => 'input']) !!}
   </div>
   <div class="group">

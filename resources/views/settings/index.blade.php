@@ -65,7 +65,7 @@
         <div class="group">
           {!! Form::label('profile_pic', 'Foto de perfil', ['class' => 'label']) !!}
           {!! Form::file('profile_pic', ['class' => 'file img']) !!}
-          <div style="background: url({{ (!is_null($user->files()->first())) ? $user->files()->first()->url : asset('img/1f47d.svg') }}) no-repeat center center; background-size: cover;" class="preview square"></div>
+          <div style="background: url({{ (!is_null($user->files()->first())) ? url($user->files()->first()->url) : asset('img/1f47d.svg') }}) no-repeat center center; background-size: cover;" class="preview square"></div>
         </div>
         <div class="group">
           {!! Form::label('name', 'Nombre', ['class' => 'label']) !!}
@@ -86,16 +86,20 @@
         <div class="group">{!! Form::submit('Guardar', ['class' => 'btn blue submit-right']) !!}</div>{!! Form::close() !!}
       </div>
       <div id="networks" class="tabbed {{ (!is_null($current) && $current == 'networks') ? 'active' : '' }}">{!! Form::model($user, ['url' => url('admin/networks', $user->slug), 'class' => 'form settings-form', 'method' => 'PATCH','files' => true]) !!}
-        <div class="group">
-          {!! Form::label('twitter', 'URL de Twitter', ['class' => 'label']) !!}
-          {!! Form::text('twitter', null, ['class' => 'input']) !!}
+        <div class="group"><a href="{{ url('admin/twitter/login') }}" class="btn blue"><span class="typcn typcn-social-twitter"></span>
+@if(!is_null($user->twitter))
+ Conectar otra vez con twitter
+@else
+ Conectar con twitter
+@endif
+</a>
         </div>
         <div class="group">
-          {!! Form::label('facebook', 'URL de Facebook', ['class' => 'label']) !!}
+          {!! Form::label('facebook', 'Usuario de Facebook', ['class' => 'label']) !!}
           {!! Form::text('facebook', null, ['class' => 'input']) !!}
         </div>
         <div class="group">
-          {!! Form::label('instagram', 'URL de Instagram', ['class' => 'label']) !!}
+          {!! Form::label('instagram', 'Usuario de Instagram', ['class' => 'label']) !!}
           {!! Form::text('instagram', null, ['class' => 'input']) !!}
         </div>
         <div class="group">

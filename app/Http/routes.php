@@ -46,6 +46,27 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
     // Users
     Route::patch('users/{users}', 'UsersController@update');
     Route::patch('networks/{users}', 'UsersController@networks');
+
+    // Twitter
+    Route::get('twitter/login', [
+        'as'   => 'twitter.login',
+        'uses' => 'TwitterController@login'
+    ]);
+
+    Route::get('twitter/callback', [
+        'as'   => 'twitter.callback',
+        'uses' => 'TwitterController@callback'
+    ]);
+
+    Route::get('twitter/error', [
+        'as'   => 'twitter.error',
+        'uses' => 'TwitterController@error'
+    ]);
+
+    Route::get('twitter/logout', [
+        'as'   => 'twitter.logout',
+        'uses' => 'TwitterController@logout'
+    ]);
 });
 
 // Theme

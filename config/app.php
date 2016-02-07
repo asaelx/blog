@@ -147,7 +147,8 @@ return [
 
         Illuminate\Html\HtmlServiceProvider::class,
         Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
-        Jenssegers\Date\DateServiceProvider::class
+        Jenssegers\Date\DateServiceProvider::class,
+        Thujohn\Twitter\TwitterServiceProvider::class
 
     ],
 
@@ -198,7 +199,8 @@ return [
         'View'            => Illuminate\Support\Facades\View::class,
         'Form'            => Illuminate\Html\FormFacade::class,
         'Html'            => Illuminate\Html\HtmlFacade::class,
-        'Date'            => Jenssegers\Date\Date::class
+        'Date'            => Jenssegers\Date\Date::class,
+        'Twitter'         => Thujohn\Twitter\Facades\Twitter::class
 
     ],
 

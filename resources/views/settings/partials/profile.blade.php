@@ -3,7 +3,7 @@
   <div class="group">
     {!! Form::label('profile_pic', 'Foto de perfil', ['class' => 'label']) !!}
     {!! Form::file('profile_pic', ['class' => 'file img']) !!}
-    <div style="background: url({{ (!is_null($user->files()->first())) ? $user->files()->first()->url : asset('img/1f47d.svg') }}) no-repeat center center; background-size: cover;" class="preview square"></div>
+    <div style="background: url({{ (!is_null($user->files()->first())) ? url($user->files()->first()->url) : asset('img/1f47d.svg') }}) no-repeat center center; background-size: cover;" class="preview square"></div>
   </div>
   <div class="group">
     {!! Form::label('name', 'Nombre', ['class' => 'label']) !!}
