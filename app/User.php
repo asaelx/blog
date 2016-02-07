@@ -16,6 +16,7 @@ use Cviebrock\EloquentSluggable\SluggableTrait;
 use App\Article;
 use App\File;
 use App\Setting;
+use App\Twitter;
 
 class User extends Model implements AuthenticatableContract,
                                     AuthorizableContract,
@@ -135,5 +136,15 @@ class User extends Model implements AuthenticatableContract,
     {
         return $this->belongsToMany('App\Setting')
                     ->withTimestamps();
+    }
+
+    /**
+     * Get the twitter access tokens associated by the given user
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function twitter_token()
+    {
+        return $this->hasOne('App\Twitter');
     }
 }

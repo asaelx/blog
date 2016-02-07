@@ -12,7 +12,8 @@ use Auth;
 use App\Article;
 use App\Tag;
 use App\File;
-use \Twitter;
+use \Twitter as Tweet;
+use App\Twitter;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class ArticlesController extends Controller
@@ -239,11 +240,16 @@ class ArticlesController extends Controller
      */
     private function tweet($article)
     {
-        $media = Twitter::uploadMedia([
+
+        Tweet::reconfig([
+            'token'  => Auth::user()->twitter_token->token,
+            'secret' => Auth::user()->twitter_token->secret
+        ]);
+        $media = Tweet::uploadMedia([
             'media' => file_get_contents($article->cover()->url)
         ]);
 
-        Twitter::postTweet([
+        Tweet::postTweet([
             'status' => $article->title . ' ' . url($article->slug),
             'media_ids' => $media->media_id_string
         ]);

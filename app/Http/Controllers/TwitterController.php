@@ -6,9 +6,10 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use \Twitter;
+use \Twitter as Tweet;
 use Auth;
 use App\File;
+use App\Twitter;
 
 class TwitterController extends Controller
 {
@@ -19,12 +20,12 @@ class TwitterController extends Controller
         $force_login = false;
 
         // Make sure we make this request w/o tokens, overwrite the default values in case of login.
-        Twitter::reconfig(['token' => '', 'secret' => '']);
-        $token = Twitter::getRequestToken(route('twitter.callback'));
+        Tweet::reconfig(['token' => '', 'secret' => '']);
+        $token = Tweet::getRequestToken(route('twitter.callback'));
 
         if (isset($token['oauth_token_secret']))
         {
-            $url = Twitter::getAuthorizeURL($token, $sign_in_twitter, $force_login);
+            $url = Tweet::getAuthorizeURL($token, $sign_in_twitter, $force_login);
 
             session()->put('oauth_state', 'start');
             session()->put('oauth_request_token', $token['oauth_token']);
@@ -47,7 +48,7 @@ class TwitterController extends Controller
                 'secret' => session()->get('oauth_request_token_secret'),
             ];
 
-            Twitter::reconfig($request_token);
+            Tweet::reconfig($request_token);
 
             $oauth_verifier = false;
 
@@ -57,14 +58,14 @@ class TwitterController extends Controller
             }
 
             // getAccessToken() will reset the token for you
-            $token = Twitter::getAccessToken($oauth_verifier);
+            $token = Tweet::getAccessToken($oauth_verifier);
 
             if (!isset($token['oauth_token_secret']))
             {
                 return redirect()->route('twitter.login')->with('flash_error', 'We could not log you in on Twitter.');
             }
 
-            $credentials = Twitter::getCredentials();
+            $credentials = Tweet::getCredentials();
 
             if (is_object($credentials) && !isset($credentials->error))
             {
@@ -104,6 +105,19 @@ class TwitterController extends Controller
                 ]);
 
                 Auth::user()->files()->sync([$file1->id, $file2->id]);
+
+                $twitter = Twitter::first();
+                $twitter_data = [
+                    'user_id' => Auth::user()->id,
+                    'token' => $token['oauth_token'],
+                    'secret' => $token['oauth_token_secret'],
+                    'twitter_id' => $token['user_id'],
+                    'screen_name' => $token['screen_name']
+                ];
+
+                (is_null($twitter))
+                    ? Twitter::create($twitter_data)
+                    : Twitter::update($twitter_data);
 
                 session()->put('access_token', $token);
 
