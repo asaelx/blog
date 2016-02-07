@@ -146,7 +146,7 @@ class ArticlesController extends Controller
         $newTags = array_diff($tags, $currentTags);
 
         foreach($newTags as $newTag):
-            if($tag = Tag::create(['name' => $newTag]))
+            if($tag = Tag::create(['name' => $newTag, 'navigation' => true]))
                 $currentTags[] = $tag->id;
         endforeach;
 

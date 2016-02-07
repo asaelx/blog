@@ -18,7 +18,7 @@ Artículos escritos por <a href="{{ url('author', $currentAuthor->slug) }}">{{ $
 @endif
 
       </h3>
-@if(!$articles->isEmpty()))
+@if(!$articles->isEmpty())
 
 @foreach($articles as $article)
 

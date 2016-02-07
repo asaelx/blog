@@ -10,7 +10,7 @@ include ../../../mixins/blade
                         | Artículos escritos por <a href="{{ url('author', $currentAuthor->slug) }}">{{ $currentAuthor->name }}</a>
                     +if("request()->is('/')")
                         | Últimos artículos
-                +if('!$articles->isEmpty())')
+                +if('!$articles->isEmpty()')
                     +foreach('$articles as $article')
                         .col-3.show-in
                             article.article
