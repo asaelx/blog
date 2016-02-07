@@ -13,6 +13,7 @@ use App\Article;
 use App\Tag;
 use App\File;
 use \Twitter;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class ArticlesController extends Controller
 {
@@ -169,11 +170,16 @@ class ArticlesController extends Controller
     private function uploadFile($article, $file)
     {
         $client_original_name = $file->getClientOriginalName();
-        $fileName = time() . '_' . $client_original_name;
+        $fileName = time() . '_' . $client_original_name; //?
         $destinationPath = 'uploads/articles';
-        $file->move($destinationPath, $fileName);
-
         $path = $destinationPath . '/' . $fileName;
+
+        $image = Image::make($file->getRealPath());
+        $image->resize(1440, null, function ($constraint) {
+            $constraint->aspectRatio();
+            $constraint->upsize();
+        })->save($path);
+
         $original_name = pathinfo($client_original_name, PATHINFO_FILENAME);
 
         $file = File::create([

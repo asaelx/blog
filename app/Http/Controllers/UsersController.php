@@ -10,6 +10,7 @@ use App\Http\Requests\UserRequest;
 use App\Http\Requests\UserNetworksRequest;
 use App\User;
 use App\File;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class UsersController extends Controller
 {
@@ -85,11 +86,26 @@ class UsersController extends Controller
     private function uploadFile($user, $file, $type)
     {
         $client_original_name = $file->getClientOriginalName();
-        $fileName = time() . '_' . $client_original_name;
+        $fileName = time() . '_' . $client_original_name; //?
         $destinationPath = 'uploads/profile';
-        $file->move($destinationPath, $fileName);
-
         $path = $destinationPath . '/' . $fileName;
+
+        $image = Image::make($file->getRealPath());
+
+        switch($type):
+            case 'profile_photo':
+                $image->fit(128, 128, function ($constraint) {
+                    $constraint->upsize();
+                })->save($path);
+                break;
+            case 'profile_cover':
+                $image->resize(1440, null, function ($constraint) {
+                    $constraint->aspectRatio();
+                    $constraint->upsize();
+                })->save($path);
+                break;
+        endswitch;
+
         $original_name = pathinfo($client_original_name, PATHINFO_FILENAME);
 
         $file = File::create([

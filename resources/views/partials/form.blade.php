@@ -9,7 +9,7 @@
           {!! Form::file('cover', ['class' => 'file img']) !!}
 @if(!is_null($article->cover()))
 
-                    <div style="background: url({{ url($article->cover()->url) }}) no-repeat; background-size: cover;" class="preview wide"></div>
+                    <div style="background: url({{ url($article->cover()->url) }}) no-repeat center center; background-size: cover;" class="preview wide"></div>
 @endif
 
         </div>

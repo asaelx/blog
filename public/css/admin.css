@@ -395,6 +395,11 @@ a {
   width: 100%; }
   .form .group:last-child {
     margin-bottom: 0; }
+  .form .group.half {
+    float: left;
+    width: 50%;
+    clear: none;
+    display: block; }
 
 .form .label {
   font-size: 13px;
