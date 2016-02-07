@@ -10208,12 +10208,13 @@ $(function(){
         }
 
         file_img.change(function(){
-            var preview = getImgPreview(this),
-                existent = file_img.next('.preview');
+            var $this = $(this),
+                preview = getImgPreview(this),
+                existent = $this.next('.preview');
             if(existent.length){
                 existent.remove();
             }
-            file_img.after(preview);
+            $this.after(preview);
         });
     }
 

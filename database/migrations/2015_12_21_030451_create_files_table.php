@@ -16,6 +16,15 @@ class CreateFilesTable extends Migration
             $table->increments('id');
             $table->string('url');
             $table->string('original_name');
+            $table->enum('type', [
+                'image',
+                'audio',
+                'video',
+                'document',
+                'profile_photo',
+                'profile_cover',
+                'article_cover'
+            ]);
             $table->timestamps();
         });
 

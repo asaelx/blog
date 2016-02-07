@@ -45,8 +45,15 @@ class UsersController extends Controller
     {
         $user->update($request->only(['name', 'occupation', 'bio', 'email']));
 
-        if($request->hasFile('profile_pic'))
-            $this->uploadFile($user, $request->file('profile_pic'));
+        $files_id[] = ($request->hasFile('photo'))
+            ? $this->uploadFile($user, $request->file('photo'), 'profile_photo')
+            : $request->input('photo_id');
+
+        $files_id[] = ($request->hasFile('cover'))
+            ? $this->uploadFile($user, $request->file('cover'), 'profile_cover')
+            : $request->input('cover_id');
+
+        $user->files()->sync($files_id);
 
         session()->flash('flash_message', 'Se han actualizado los datos de perfil');
 
@@ -75,21 +82,22 @@ class UsersController extends Controller
      * @param  User $user
      * @param  \Illuminate\Http\Request::file() $file
      */
-    private function uploadFile($user, $file)
+    private function uploadFile($user, $file, $type)
     {
         $client_original_name = $file->getClientOriginalName();
         $fileName = time() . '_' . $client_original_name;
-        $destinationPath = 'uploads';
+        $destinationPath = 'uploads/profile';
         $file->move($destinationPath, $fileName);
 
-        $path = '/' . $destinationPath . '/' . $fileName;
+        $path = $destinationPath . '/' . $fileName;
         $original_name = pathinfo($client_original_name, PATHINFO_FILENAME);
 
         $file = File::create([
             'url' => $path,
-            'original_name' => $original_name
+            'original_name' => $original_name,
+            'type' => $type
         ]);
 
-        $user->files()->sync([$file->id]);
+        return $file->id;
     }
 }

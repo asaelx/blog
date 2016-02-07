@@ -9,8 +9,8 @@
                     | {!! Form::label('cover', 'Imagen de portada', ['class' => 'label']) !!}
                     | {!! Form::file('cover', ['class' => 'file img']) !!}
                     include ../mixins/blade
-                    +if("!is_null($article->files()->first())")
-                        .preview.wide(style!="background: url({{ url('/') . $article->files()->first()->url }}) no-repeat; background-size: cover;")
+                    +if("!is_null($article->cover())")
+                        .preview.wide(style!="background: url({{ url($article->cover()->url) }}) no-repeat; background-size: cover;")
                 .group
                     | {!! Form::label('tags', 'Etiquetas', ['class' => 'label']) !!}
                     | {!! Form::select('tag_list[]', $tags, null, ['multiple', 'class' => 'select2']) !!}

@@ -85,6 +85,16 @@ class Article extends Model implements SluggableInterface
     }
 
     /**
+     * Get the article cover image associated by the given article
+     *
+     * @return Scope;
+     */
+    public function cover()
+    {
+        return $this->files()->where('type', 'article_cover')->first();
+    }
+
+    /**
      * Article is owned by a user
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

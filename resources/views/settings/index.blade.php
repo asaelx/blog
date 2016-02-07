@@ -63,9 +63,22 @@
       </div>
       <div id="profile" class="tabbed {{ (!is_null($current) && $current == 'profile') ? 'active' : '' }}">{!! Form::model($user, ['url' => url('admin/users', $user->slug), 'class' => 'form settings-form', 'method' => 'PATCH','files' => true]) !!}
         <div class="group">
-          {!! Form::label('profile_pic', 'Foto de perfil', ['class' => 'label']) !!}
-          {!! Form::file('profile_pic', ['class' => 'file img']) !!}
-          <div style="background: url({{ (!is_null($user->files()->first())) ? url($user->files()->first()->url) : asset('img/1f47d.svg') }}) no-repeat center center; background-size: cover;" class="preview square"></div>
+          {!! Form::label('cover', 'Foto de portada', ['class' => 'label']) !!}
+          {!! Form::file('cover', ['class' => 'file img']) !!}
+          <div style="background: url({{ (!is_null($user->cover())) ? url($user->cover()->url) : asset('img/1f47d.svg') }}) no-repeat center center; background-size: cover;" class="preview square"></div>
+@if(!is_null($user->cover()))
+{!! Form::hidden('cover_id', $user->cover()->id) !!}
+@endif
+
+        </div>
+        <div class="group">
+          {!! Form::label('photo', 'Foto de perfil', ['class' => 'label']) !!}
+          {!! Form::file('photo', ['class' => 'file img']) !!}
+          <div style="background: url({{ (!is_null($user->photo())) ? url($user->photo()->url) : asset('img/1f47d.svg') }}) no-repeat center center; background-size: cover;" class="preview square"></div>
+@if(!is_null($user->photo()))
+{!! Form::hidden('photo_id', $user->photo()->id) !!}
+@endif
+
         </div>
         <div class="group">
           {!! Form::label('name', 'Nombre', ['class' => 'label']) !!}
@@ -87,7 +100,7 @@
       </div>
       <div id="networks" class="tabbed {{ (!is_null($current) && $current == 'networks') ? 'active' : '' }}">{!! Form::model($user, ['url' => url('admin/networks', $user->slug), 'class' => 'form settings-form', 'method' => 'PATCH','files' => true]) !!}
         <div class="group"><a href="{{ url('admin/twitter/login') }}" class="btn blue"><span class="typcn typcn-social-twitter"></span>
-@if(!is_null($user->twitter))
+@if($user->twitter != '')
  Conectar otra vez con twitter
 @else
  Conectar con twitter

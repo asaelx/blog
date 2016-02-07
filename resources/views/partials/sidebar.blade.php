@@ -4,7 +4,7 @@
 <aside class="sidebar">
   <div class="profile">
     <div class="details">
-      <div style="background: url({{ (!is_null($currentUser->files()->first())) ? url($currentUser->files()->first()->url) : asset('img/1f47d.svg') }}) no-repeat center center; background-size: cover;" class="photo"></div>
+      <div style="background: url({{ (!is_null($currentUser->photo())) ? url($currentUser->photo()->url) : asset('img/1f47d.svg') }}) no-repeat center center; background-size: cover;" class="photo"></div>
       <div title="{{ $setting->title }}" class="title">{{ str_limit($setting->title, 16) }}</div>
       <div class="name">{{ $currentUser->name }}</div><span data-drop="profile-settings" class="typcn typcn-arrow-sorted-down drop-trigger"></span>
       <div id="profile-settings" class="settings drop">

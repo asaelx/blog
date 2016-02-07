@@ -163,18 +163,19 @@ class ArticlesController extends Controller
     {
         $client_original_name = $file->getClientOriginalName();
         $fileName = time() . '_' . $client_original_name;
-        $destinationPath = 'uploads';
+        $destinationPath = 'uploads/articles';
         $file->move($destinationPath, $fileName);
 
-        $path = '/' . $destinationPath . '/' . $fileName;
+        $path = $destinationPath . '/' . $fileName;
         $original_name = pathinfo($client_original_name, PATHINFO_FILENAME);
 
         $file = File::create([
             'url' => $path,
-            'original_name' => $original_name
+            'original_name' => $original_name,
+            'type' => 'article_cover'
         ]);
 
-        $article->files()->attach($file->id);
+        $article->files()->sync([$file->id]);
     }
 
     /**
@@ -192,7 +193,7 @@ class ArticlesController extends Controller
         $destinationPath = 'uploads/articles';
         $file->move($destinationPath, $fileName);
 
-        $path = '/' . $destinationPath . '/' . $fileName;
+        $path = $destinationPath . '/' . $fileName;
         $original_name = pathinfo($client_original_name, PATHINFO_FILENAME);
 
         $files = array();

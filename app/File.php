@@ -15,7 +15,8 @@ class File extends Model
      */
     protected $fillable = [
         'url',
-        'original_name'
+        'original_name',
+        'type'
     ];
 
     /**

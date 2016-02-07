@@ -6,7 +6,7 @@
         a.btn.blue(href="{{ url('admin/twitter/login') }}")
             span.typcn.typcn-social-twitter
             include ../../mixins/blade
-            +if('!is_null($user->twitter)')
+            +if("$user->twitter != ''")
                 |  Conectar otra vez con twitter
                 +else
                     |  Conectar con twitter

@@ -93,19 +93,21 @@ class TwitterController extends Controller
 
                 $file1 = File::create([
                     'url' => $profile_image,
-                    'original_name' => 'twitter_profile' . $credentials->screen_name
+                    'original_name' => 'twitter_profile_' . $credentials->screen_name,
+                    'type' => 'profile_photo'
                 ]);
 
                 $file2 = File::create([
                     'url' => $profile_banner,
-                    'original_name' => 'twitter_banner' . $credentials->screen_name
+                    'original_name' => 'twitter_banner_' . $credentials->screen_name,
+                    'type' => 'profile_cover'
                 ]);
 
                 Auth::user()->files()->sync([$file1->id, $file2->id]);
 
                 session()->put('access_token', $token);
 
-                return redirect('/')->with('flash_notice', 'Congrats! You\'ve successfully signed in!');
+                return redirect('admin/settings?tab=networks')->with('flash_notice', 'Congrats! You\'ve successfully signed in!');
             }
 
             return redirect()->route('twitter.error')->with('flash_error', 'Crab! Something went wrong while signing you up!');

@@ -1,7 +1,7 @@
 
 <div id="networks" class="tabbed {{ (!is_null($current) && $current == 'networks') ? 'active' : '' }}">{!! Form::model($user, ['url' => url('admin/networks', $user->slug), 'class' => 'form settings-form', 'method' => 'PATCH','files' => true]) !!}
   <div class="group"><a href="{{ url('admin/twitter/login') }}" class="btn blue"><span class="typcn typcn-social-twitter"></span>
-@if(!is_null($user->twitter))
+@if($user->twitter != '')
  Conectar otra vez con twitter
 @else
  Conectar con twitter

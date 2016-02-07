@@ -96,6 +96,26 @@ class User extends Model implements AuthenticatableContract,
     }
 
     /**
+     * Get the profile photo associated by the given user
+     *
+     * @return Scope;
+     */
+    public function photo()
+    {
+        return $this->files()->where('type', 'profile_photo')->first();
+    }
+
+    /**
+     * Get the profile photo associated by the given user
+     *
+     * @return Scope;
+     */
+    public function cover()
+    {
+        return $this->files()->where('type', 'profile_cover')->first();
+    }
+
+    /**
      * Get the files associated to the given user
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
