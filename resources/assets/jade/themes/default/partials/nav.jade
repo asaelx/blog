@@ -9,7 +9,7 @@ nav.nav
             ul.tags
                 li.option
                     img(src="{{ asset('img/close.svg') }}", alt="close")
-                include ../../mixins/blade
+                include ../../../mixins/blade
                 +if('!$tags->isEmpty()')
                     +foreach('$tags as $tag')
                         li.option: a.link(href!="{{ url('tagged', $tag->slug) }}") {{ $tag->name }}

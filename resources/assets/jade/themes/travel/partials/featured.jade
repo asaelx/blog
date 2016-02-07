@@ -1,0 +1,16 @@
+include ../../../mixins/blade
++if('!is_null($featured)')
+    article.article.featured.down-in
+        .cover(style!="background: url({{ url($featured->files()->first()->url) }}) no-repeat center center; background-size: cover;")
+        h2.title {{ $featured->title }}
+        .excerpt
+            // excerpt
+            p {{ $featured->excerpt }}
+        .details
+            .date {{ ucfirst(Date::parse($featured->published_at)->toFormattedDateString()) }}
+            a.comments(href!="{{ url($featured->slug . '#disqus_thread') }}")
+        +if('!is_null($featured->tags()->first())')
+            a.tag(href!="{{ url('tagged', $featured->tags()->first()->slug) }}") {{ $featured->tags()->first()->name }}
+        a.read.btn.green(href!="{{ url($featured->slug) }}") Leer
+        .background
+            img.img(src="{{ asset('img/bottom-bg.jpg') }}", alt="featured_bg")

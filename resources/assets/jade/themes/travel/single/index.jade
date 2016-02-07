@@ -1,0 +1,65 @@
+extend ../partials/base
+
+block title
+    title {{ $article->title }}
+    
+block content
+    include ../partials/nav
+    article.single
+        .cover(style!="background: url({{ url($article->files()->first()->url) }}) center center; background-size: cover;")
+            .heading
+                h1.title {{ $article->title }}
+                .details Por <a href="{{ url('author', $article->user()->first()->slug) }}">{{ $article->user()->first()->name }}</a> · {{ ucfirst(Date::parse($article->published_at)->toFormattedDateString()) }} · Archivado en <a href="{{ url('tagged', $article->tags()->first()->slug) }}">{{ $article->tags()->first()->name }}</a>
+        .body
+            | {!! $article->body !!}
+        footer.more-footer
+            .profile
+                .photo(style!="background: url({{ (!is_null($article->user()->first()->files()->first())) ? url($article->user()->first()->files()->first()->url) : asset('img/1f47d.svg')  }}) bottom center; background-size: cover;")
+                .bio {{ $article->user()->first()->bio }}
+                .find-me
+                    | Encuéntrame en:
+                    ul.social
+                        li.network
+                            a.link(href!="{{ $article->user()->first()->twitter }}")
+                                img.img(src="{{ asset('img/twitter.svg') }}", alt="twitter")
+                        li.network
+                            a.link(href!="{{ $article->user()->first()->facebook }}")
+                                img.img(src="{{ asset('img/facebook.svg') }}", alt="facebook")
+                        li.network
+                            a.link(href!="{{ $article->user()->first()->instagram }}")
+                                img.img(src="{{ asset('img/instagram.svg') }}", alt="instagram")
+                        li.network
+                            a.link(href!="{{ $article->user()->first()->youtube }}")
+                                img.img(src="{{ asset('img/youtube.svg') }}", alt="youtube")
+            .thanks
+                .like
+                    p Si te gustó el artículo, por favor compártelo en tus redes sociales.
+                    p Tampoco te olvides de dejarme un saludo o comentario aquí o en mi twitter y facebook.
+                    p Así me ayudas a crear más contenido todos los días. ¡Gracias! <i class="twa twa-stuck-out-tongue-winking-eye"></i>
+                    .share
+                        | Compartir en:
+                        ul.options
+                            li.option
+                                a.link(href!="http://twitter.com/share?text={{ $article->title }}&url={{ url($article->slug) }}&hashtags={{ str_replace(' ', '', $article->tags()->first()->name) }}")
+                                    img.img(src="{{ asset('img/twitter.svg') }}", alt="twitter")
+                            li.option
+                                a.link(href!="https://www.facebook.com/sharer/sharer.php?u={{ url($article->slug) }}", target="_blank")
+                                    img.img(src="{{ asset('img/facebook.svg') }}", alt="facebook")
+                .more-articles
+                    div ¿Ganas de más? Aquí hay otros artículos...
+                    include ../../../mixins/blade
+                    +if('!$readings->isEmpty()')
+                        +foreach('$readings as $reading')
+                            article.article
+                                .cover(style!="background: url({{ url($reading->files()->first()->url) }}) no-repeat center center; background-size: cover;")
+                                h2.title {{ $reading->title }}
+                                .details
+                                    .date {{ ucfirst(Date::parse($reading->published_at)->toFormattedDateString()) }}
+                                    a.comments(href!="{{ url($reading->slug . '#disqus_thread') }}")
+                                a.tag(href!="{{ $reading->tags()->first()->slug }}") {{ $reading->tags()->first()->name }}
+                                a.read.btn.white(href!="{{ url($reading->slug) }}") Leer
+                                
+        #disqus_thread
+    
+block footer
+    include ../partials/footer

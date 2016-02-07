@@ -1,0 +1,15 @@
+nav.nav
+    .wrapper
+        a.logo(href="{{ url('/') }}")
+            img.img(src="{{ asset('img/asael_logo.svg') }}", height="32" alt!="{{ $setting->title }}")
+            span.subtitle {{ $setting->title }}
+        label.toggle-menu(for="toggle-menu")
+            img.img(src="{{ asset('img/menu.svg') }}", alt="menu")
+            input#toggle-menu(type="checkbox")
+            ul.tags
+                li.option
+                    img(src="{{ asset('img/close.svg') }}", alt="close")
+                include ../../../mixins/blade
+                +if('!$tags->isEmpty()')
+                    +foreach('$tags as $tag')
+                        li.option: a.link(href!="{{ url('tagged', $tag->slug) }}") {{ $tag->name }}

@@ -1,0 +1,13 @@
+extend partials/base
+
+block title
+    title {{ $setting->title }}
+    
+block content
+    include partials/nav
+    .bg-top.up-in
+    include partials/header
+    include partials/articles
+    
+block footer
+    include partials/footer

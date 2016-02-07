@@ -47,7 +47,7 @@ block content
                                     img.img(src="{{ asset('img/facebook.svg') }}", alt="facebook")
                 .more-articles
                     div ¿Ganas de más? Aquí hay otros artículos...
-                    include ../../mixins/blade
+                    include ../../../mixins/blade
                     +if('!$readings->isEmpty()')
                         +foreach('$readings as $reading')
                             article.article

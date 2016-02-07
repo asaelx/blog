@@ -1,4 +1,4 @@
-include ../../mixins/blade
+include ../../../mixins/blade
 +if('!is_null($featured)')
     article.article.featured.down-in
         .cover(style!="background: url({{ url($featured->files()->first()->url) }}) no-repeat center center; background-size: cover;")

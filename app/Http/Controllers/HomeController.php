@@ -32,7 +32,7 @@ class HomeController extends Controller
         else:
             $this->data['articles'] = null;
         endif;
-        return view('theme.index', $this->data);
+        return view('themes.' . env('THEME') . '.index', $this->data);
     }
 
     /**
@@ -46,7 +46,7 @@ class HomeController extends Controller
         $this->getGeneral();
         $this->data['article'] = $article;
         $this->data['readings'] = Article::where('id', '!=', $article->id)->orderByRaw('RAND()')->take(2)->get();
-        return view('theme.single.index', $this->data);
+        return view('themes.' . env('THEME') . '.single.index', $this->data);
     }
 
     /**
@@ -59,7 +59,7 @@ class HomeController extends Controller
         $this->getGeneral();
         $this->data['currentTag'] = $tag;
         $this->data['articles'] = $tag->publishedArticles()->simplePaginate(8);
-        return view('theme.index', $this->data);
+        return view('themes.' . env('THEME') . '.index', $this->data);
     }
 
     /**
@@ -72,7 +72,7 @@ class HomeController extends Controller
         $this->getGeneral();
         $this->data['currentAuthor'] = $user;
         $this->data['articles'] = $user->publishedArticles()->simplePaginate(8);
-        return view('theme.index', $this->data);
+        return view('themes.' . env('THEME') . '.index', $this->data);
     }
 
     /**

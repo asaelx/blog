@@ -9,10 +9,10 @@ elixir.config.sourcemaps = false;
 // Theme
 elixir(function(mix) {
     mix.sass([
+        'master.sass',
         bw + 'typicons.font/src/font/typicons.css',
-        '../../../node_modules/select2/dist/css/select2.min.css',
-        rs + 'scss/twemoji-awesome.scss',
-        'master.sass'
+        bw + 'select2/dist/css/select2.min.css',
+        rs + 'scss/twemoji-awesome.scss'
     ], 'public/css/master.css');
 });
 
@@ -27,6 +27,7 @@ elixir(function(mix) {
 // Admin
 elixir(function(mix) {
     mix.sass([
+        'admin/admin.sass',
         bw + 'typicons.font/src/font/typicons.css',
         bw + 'font-awesome/css/font-awesome.css',
         bw + 'medium-editor/dist/css/medium-editor.min.css',
@@ -35,8 +36,7 @@ elixir(function(mix) {
         rs + 'css/dropdowns.css',
         bw + 'bootstrap-datepicker/dist/css/bootstrap-datepicker3.css',
         bw + 'select2/src/scss/core.scss',
-        rs + 'scss/twemoji-awesome.scss',
-        'admin/admin.sass'
+        rs + 'scss/twemoji-awesome.scss'
     ], 'public/css/admin.css');
 });
 
