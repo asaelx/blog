@@ -1,5 +1,7 @@
 .instagram
     padding: 1rem
+    +breakpoint($large)
+        display: none
     .title
         text-transform: uppercase
         font-family: 'Varela Round', Helvetica, Arial, sans-serif
@@ -10,7 +12,7 @@
         .icon
             position: relative
             top: rem(-2px)
-    #feed
+    #instafeed
         +clear
         .item
             float: left
@@ -24,11 +26,11 @@
                 &:nth-child(#{$i})
                     animation: show 0.8s #{0.1s * $i} forwards ease
             &:hover
-                transform: scale(1.1)
-                transition: all 0.1s ease
                 .link
                     .photo
+                        transform: scale(1.1)
                         box-shadow: 0 0 7px 4px rgba($black, 0.15)
+                        transition: all 0.1s ease
             .link
                 display: block
                 .photo
