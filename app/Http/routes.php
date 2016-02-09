@@ -70,7 +70,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 });
 
 // Theme
-Route::get('/', 'HomeController@index');
-Route::get('{articles}', 'HomeController@show');
-Route::get('tagged/{tags}', 'HomeController@tagged');
-Route::get('author/{users}', 'HomeController@author');
+Route::get('/', 'ThemeController@index');
+// Route::get('{articles}', 'ThemeController@show');
+// Route::get('tagged/{tags}', 'ThemeController@tagged');
+// Route::get('author/{users}', 'ThemeController@author');
