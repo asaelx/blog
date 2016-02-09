@@ -1,17 +1,38 @@
 $(function(){
 
-    var $body = $('body');
+    var $body = $('body'),
+        $window = $(window);
 
-    /* Instagram */
-    var feed = new Instafeed({
-        get: 'user',
-        userId: '371921',
-        clientId: 'bf65c4336d2c4278a76fc82fd6fc3a61',
-        limit: 12,
-        resolution: 'thumbnail',
-        template: '<li class="item"><a class="link" href="{{link}}" target="_blank"><img src="{{image}}" class="photo" width="60" height="60" /></a></li>'
-    });
-    feed.run();
+
+    /* Topbar */
+    var topbar = $('.topbar'),
+        background = $('.bg');
+    if(topbar.length){
+        $window.scroll(function(){
+            var scrollTop = $window.scrollTop();
+            if(scrollTop == 0){
+                if(topbar.hasClass('fixed'))
+                    topbar.removeClass('fixed');
+            }
+            if(scrollTop > 1){
+                if(!topbar.hasClass('fixed'))
+                    topbar.addClass('fixed');
+            }
+
+            var scale_val = 1 + (scrollTop * 0.0005),
+                blur_value = scrollTop * 0.009;
+            var bg_styles = "animation: none;"
+                          + "opacity: 0.35;"
+                          + "filter: alpha(opacity=35);"
+                          + "-webkit-transform: scale("+ scale_val +");"
+                          + "-moz-transform: scale("+ scale_val +");"
+                          + "-ms-transform: scale("+ scale_val +");"
+                          + "-o-transform: scale("+ scale_val +");"
+                          + "transform: scale("+ scale_val +");";
+
+            background.attr('style', bg_styles);
+        });
+    }
 
     // /* DISQUS */
     // /**
