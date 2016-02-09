@@ -1,0 +1,28 @@
+.instagram
+    padding: 1rem
+    .title
+        text-transform: uppercase
+        font-family: 'Varela Round', Helvetica, Arial, sans-serif
+        +font-size(14px)
+        color: $dark
+        margin-bottom: 0.5rem
+    #feed
+        +clear
+        .item
+            float: left
+            margin-right: 1rem
+            margin-bottom: 1rem
+            transition: all 0.1s ease
+            &:nth-child(4n+4)
+                margin-right: 0
+            &:hover
+                transform: scale(1.1)
+                transition: all 0.1s ease
+                .link
+                    .photo
+                        box-shadow: 0 0 7px 4px rgba($black, 0.15)
+            .link
+                display: block
+                .photo
+                    border-radius: rem(3px)
+                    +shadow

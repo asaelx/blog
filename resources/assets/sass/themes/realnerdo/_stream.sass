@@ -1,0 +1,39 @@
+.stream
+    margin-top: rem(52px)
+    padding-left: rem(320px)
+    width: 100%
+    .articles
+        +clear
+        .article
+            float: left
+            width: rem(550px)
+            .cover
+                .img
+                    border-radius: rem(3px)
+                    +shadow
+                    width: 100%
+            .content
+                padding-left: 0
+                font-family: 'Merriweather', Georgia, serif
+                .date
+                    +font-size(14px)
+                    color: $gray
+                .title
+                    +font-size(16px)
+                    margin-bottom: 0.5rem
+                    .link
+                        color: $dark
+                        &:hover
+                            color: $green
+                            transition: all 0.3s ease
+                .excerpt
+                    color: $dark
+                    font-style: italic
+                    +font-size(14px)
+                    margin-bottom: 0.5rem
+                .read
+                    color: $green
+                    font-family: 'Varela Round', Helvetica, Arial, sans-serif
+                    +font-size(14px)
+                    text-transform: uppercase
+                    letter-spacing: rem(1px)

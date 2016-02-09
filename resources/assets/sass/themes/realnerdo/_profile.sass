@@ -1,0 +1,31 @@
+.profile
+    +clear
+    .row
+        padding: 1rem
+        .photo
+            border-radius: 50%
+            overflow: hidden
+            width: rem(60px)
+            height: rem(60px)
+            +shadow
+            float: left
+        .networks
+            float: left
+            padding-left: 1.5rem
+            padding-top: 1.5rem
+            .network
+                float: left
+                margin-right: 1em
+    .bio
+        width: 100%
+        padding: 1rem
+        padding-top: 0
+        font-family: 'Merriweather', Georgia, serif
+        +font-size(16px)
+        color: $dark
+        line-height: 1.4em
+        .link
+            color: $green
+            &:hover
+                color: lighten($green, 10)
+                transition: all 0.3s ease

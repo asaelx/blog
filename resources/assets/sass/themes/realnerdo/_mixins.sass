@@ -7,10 +7,13 @@
     $opacity-ie: $opacity * 100
     filter: alpha(opacity=$opacity-ie)
 
-=clearfix
+=clear
     content: " "
     display: table
     clear: both
+
+=shadow
+    box-shadow: 0 0 6px 3px rgba($black, 0.15)
 
 =heading-size($size, $step-size-heading: 0.3333, $amplifier-heading: 1.2)
     font-size: $size * $step-size-heading * $amplifier-heading + rem
