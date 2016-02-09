@@ -6,12 +6,17 @@
     width: 100%
     .logo
         float: left
+        animation: show 0.8s forwards ease
         .img
     .options
         float: right
         .option
             float: left
             margin: 0 0.6em
+            +opacity(0)
+            @for $i from 1 through 12
+                &:nth-child(#{$i})
+                    animation: show 0.8s #{0.1s * $i} forwards ease
             .link
                 color: $green
                 font-family: 'Varela Round', Helvetica, Arial, sans-serif

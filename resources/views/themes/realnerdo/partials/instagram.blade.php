@@ -1,5 +1,8 @@
 <div class="instagram">
-    <h3 class="title">Instagram</h3>
+    <h3 class="title">
+        <img src="{{ asset('img/instagram.svg') }}" alt="Instagram Icon SVG" class="icon">
+        Mis últimas fotos
+    </h3>
     <ul id="feed">
         <li class="item">
             <a href="#" class="link">
