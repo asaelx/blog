@@ -1,42 +1,34 @@
 .profile
-    +clear
-    .row
-        padding: 1rem
-        .photo
-            border-radius: 50%
-            overflow: hidden
-            width: rem(60px)
-            height: rem(60px)
-            +shadow
+    margin: 0 auto
+    padding-top: calc(#{rem(80px)} + 1rem)
+    .photo
+        background: $soft
+        border-radius: 50%
+        overflow: hidden
+        width: rem(80px)
+        height: rem(80px)
+        margin: 0 auto
+        +shadow
+        animation: show 0.8s forwards ease
+    .networks
+        +clear
+        padding: 1rem 0
+        margin: 0 auto
+        .network
             float: left
-            animation: show 0.8s forwards ease
-        .networks
-            float: left
-            padding-left: 1.5rem
-            padding-top: 1.5rem
-            .network
-                float: left
-                margin-right: 1em
-                +opacity(0)
-                @for $i from 1 through 12
-                    &:nth-child(#{$i})
-                        animation: show 0.8s #{0.1s * $i} forwards ease
+            margin-right: 1em
+            +opacity(0)
+            @for $i from 1 through 12
+                &:nth-child(#{$i})
+                    animation: show 0.8s #{0.1s * $i} forwards ease
     .bio
-        width: 100%
         padding: 1rem
         padding-top: 0
         font-family: 'Merriweather', Georgia, serif
         +font-size(16px)
         color: $dark
+        text-align: center
         line-height: 1.4em
         animation: show 0.8s forwards ease
-        +breakpoint($large)
-            text-align: center
         .link
-            color: $green
-            display: inline-block
-            position: relative
-            +link-effect
-            &:hover
-                color: lighten($green, 10)
-                transition: all 0.3s ease
+            +link

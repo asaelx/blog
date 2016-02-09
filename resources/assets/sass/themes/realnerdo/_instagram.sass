@@ -20,9 +20,9 @@
             margin-bottom: 1rem
             transition: all 0.1s ease
             +opacity(0)
-            &:nth-child(4n+4)
+            &:last-child
                 margin-right: 0
-            @for $i from 1 through 12
+            @for $i from 1 through 8
                 &:nth-child(#{$i})
                     animation: show 0.8s #{0.1s * $i} forwards ease
             &:hover

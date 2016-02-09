@@ -1,89 +1,68 @@
 .stream
-    padding-top: rem(52px)
-    padding-left: rem(320px)
-    width: 100%
-    +breakpoint($large)
-        width: rem(550px)
-        padding-left: 0
-        margin: 0 auto
-    +breakpoint($medium)
-        width: 100%
-    .articles
-        +clear
-        .article
-            float: left
-            width: rem(550px)
-            +breakpoint($medium)
+    padding: 1rem 0
+    .article
+        +opacity(0)
+        @for $i from 1 through 5
+            &:nth-child(#{$i})
+                animation: show 0.8s #{0.1s * $i} forwards ease
+        .cover
+            .img
+                border-radius: rem(3px)
+                +shadow
                 width: 100%
-            +opacity(0)
-            @for $i from 1 through 8
-                &:nth-child(#{$i})
-                    animation: show 0.8s #{0.1s * $i} forwards ease
-            .cover
+            +breakpoint($small)
+                float: none
+                width: 100%
+                text-align: center
+                padding-bottom: 0
                 .img
-                    border-radius: rem(3px)
-                    +shadow
-                    width: 100%
-                +breakpoint($medium)
-                    float: none
-                    width: 100%
-                    text-align: center
-                    padding-bottom: 0
-                    .img
-                        width: rem(320px)
-                +breakpoint($small)
-                    .img
-                        width: 100%
-            .content
-                padding-left: 0
-                font-family: 'Merriweather', Georgia, serif
-                position: relative
-                +breakpoint($medium)
-                    float: none
                     width: rem(320px)
-                    padding-right: 0
-                    margin: 0 auto
-                    +clear
-                +breakpoint($small)
+            +breakpoint($xsmall)
+                .img
                     width: 100%
-                    padding-left: 1rem
-                    padding-right: 1rem
-                .date
-                    +font-size(14px)
-                    color: $gray
-                .title
-                    display: block
-                    +font-size(16px)
-                    margin-bottom: 0.5rem
-                    +breakpoint($medium)
-                        width: calc(100% - #{rem(70px)})
-                        float: left
-                    +breakpoint($small)
-
-                    .link
-                        color: $dark
-                        &:hover
-                            color: $green
-                            transition: all 0.3s ease
-                .excerpt
+        .content
+            padding-left: 0
+            font-family: 'Merriweather', Georgia, serif
+            +breakpoint($small)
+                float: none
+                width: rem(320px)
+                padding-top: 0.5rem
+                padding-right: 0
+                margin: 0 auto
+                text-align: center
+                +clear
+            +breakpoint($xsmall)
+                width: 100%
+                padding-left: 1rem
+                padding-right: 1rem
+            .date
+                +font-size(14px)
+                color: $gray
+                +breakpoint($small)
+                    text-align: left
+            .title
+                display: block
+                +font-size(16px)
+                margin-bottom: 0.5rem
+                +breakpoint($small)
+                    text-align: left
+                .link
                     color: $dark
-                    font-style: italic
-                    +font-size(14px)
-                    margin-bottom: 0.5rem
-                    +breakpoint($medium)
-                        display: none
-                .read
-                    color: $green
-                    font-family: 'Varela Round', Helvetica, Arial, sans-serif
-                    +font-size(14px)
-                    text-transform: uppercase
-                    letter-spacing: rem(1px)
-                    display: inline-block
-                    position: relative
-                    +link-effect
-                    +breakpoint($medium)
-                        float: right
-                        +font-size(18px)
                     &:hover
-                        color: lighten($green, 10)
+                        color: $green
                         transition: all 0.3s ease
+            .excerpt
+                color: $dark
+                font-style: italic
+                +font-size(14px)
+                margin-bottom: 0.5rem
+                +breakpoint($small)
+                    text-align: left
+            .read
+                font-family: 'Varela Round', Helvetica, Arial, sans-serif
+                +font-size(14px)
+                text-transform: uppercase
+                letter-spacing: rem(1px)
+                +link
+                +breakpoint($small)
+                    +font-size(18px)
