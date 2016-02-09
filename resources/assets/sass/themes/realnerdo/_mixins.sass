@@ -15,6 +15,25 @@
 =shadow
     box-shadow: 0 0 6px 3px rgba($black, 0.15)
 
+=link-effect
+    &:before, &:after
+        content: ""
+        background: $green
+        width: 100%
+        height: 1px
+        position: absolute
+        left: 0
+        +opacity(0)
+        transition: all 0.3s ease
+    &:before
+        bottom: rem(-3px)
+        transform: translateY(0.5rem)
+    &:hover
+        &:before
+            transform: translateX(0)
+            +opacity(1)
+            transition: all 0.3s ease
+
 =heading-size($size, $step-size-heading: 0.3333, $amplifier-heading: 1.2)
     font-size: $size * $step-size-heading * $amplifier-heading + rem
 

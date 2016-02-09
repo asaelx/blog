@@ -8,10 +8,15 @@
     padding: 1rem 0.5rem
     border-radius: rem(3px)
     animation: show 0.8s forwards ease
+    +breakpoint($large)
+        display: none
     .love
         color: $red
     .link
         color: $green
+        display: inline-block
+        position: relative
+        +link-effect
         &:hover
             color: lighten($green, 10)
             transition: all 0.3s ease

@@ -2,19 +2,17 @@ $(function(){
 
     var $body = $('body');
 
-    
+    /* Instagram */
+    var feed = new Instafeed({
+        get: 'user',
+        userId: '371921',
+        clientId: 'bf65c4336d2c4278a76fc82fd6fc3a61',
+        limit: 12,
+        resolution: 'thumbnail',
+        template: '<li class="item"><a class="link" href="{{link}}" target="_blank"><img src="{{image}}" class="photo" width="60" height="60" /></a></li>'
+    });
+    feed.run();
 
-    // /* Instagram */
-    // var feed = new Instafeed({
-    //     get: 'user',
-    //     userId: '371921',
-    //     clientId: 'bf65c4336d2c4278a76fc82fd6fc3a61',
-    //     limit: 8,
-    //     resolution: 'thumbnail',
-    //     template: '<li class="insta"><a class="link glassy" href="{{link}}" target="_blank"><img src="{{image}}" class="img" /></a></li>'
-    // });
-    // feed.run();
-    //
     // /* DISQUS */
     // /**
     // * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.

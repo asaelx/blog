@@ -30,8 +30,13 @@
         color: $dark
         line-height: 1.4em
         animation: show 0.8s forwards ease
+        +breakpoint($large)
+            text-align: center
         .link
             color: $green
+            display: inline-block
+            position: relative
+            +link-effect
             &:hover
                 color: lighten($green, 10)
                 transition: all 0.3s ease

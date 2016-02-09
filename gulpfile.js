@@ -14,6 +14,8 @@ elixir(function(mix) {
 
 elixir(function(mix) {
     mix.scripts([
+        bw + 'jquery/dist/jquery.js',
+        bw + 'instafeed.js/instafeed.js',
         'themes/realnerdo/magic.js'
     ], 'public/js/themes/realnerdo/magic.js');
 });
