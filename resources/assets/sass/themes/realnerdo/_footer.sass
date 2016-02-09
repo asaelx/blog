@@ -7,9 +7,13 @@
     margin: 0 1rem
     padding: 1rem 0.5rem
     border-radius: rem(3px)
+    animation: show 0.8s forwards ease
     .love
         color: $red
     .link
         color: $green
+        &:hover
+            color: lighten($green, 10)
+            transition: all 0.3s ease
     .img
         margin: 0.5rem 0

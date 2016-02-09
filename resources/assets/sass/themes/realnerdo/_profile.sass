@@ -9,6 +9,7 @@
             height: rem(60px)
             +shadow
             float: left
+            animation: show 0.8s forwards ease
         .networks
             float: left
             padding-left: 1.5rem
@@ -16,6 +17,10 @@
             .network
                 float: left
                 margin-right: 1em
+                +opacity(0)
+                @for $i from 1 through 12
+                    &:nth-child(#{$i})
+                        animation: show 0.8s #{0.1s * $i} forwards ease
     .bio
         width: 100%
         padding: 1rem
@@ -24,6 +29,7 @@
         +font-size(16px)
         color: $dark
         line-height: 1.4em
+        animation: show 0.8s forwards ease
         .link
             color: $green
             &:hover

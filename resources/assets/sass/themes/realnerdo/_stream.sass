@@ -1,5 +1,5 @@
 .stream
-    margin-top: rem(52px)
+    padding-top: rem(52px)
     padding-left: rem(320px)
     width: 100%
     .articles
@@ -7,6 +7,10 @@
         .article
             float: left
             width: rem(550px)
+            +opacity(0)
+            @for $i from 1 through 8
+                &:nth-child(#{$i})
+                    animation: show 0.8s #{0.1s * $i} forwards ease
             .cover
                 .img
                     border-radius: rem(3px)
@@ -37,3 +41,6 @@
                     +font-size(14px)
                     text-transform: uppercase
                     letter-spacing: rem(1px)
+                    &:hover
+                        color: lighten($green, 10)
+                        transition: all 0.3s ease

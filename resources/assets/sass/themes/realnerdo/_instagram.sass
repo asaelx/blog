@@ -5,7 +5,11 @@
         font-family: 'Varela Round', Helvetica, Arial, sans-serif
         +font-size(14px)
         color: $dark
-        margin-bottom: 0.5rem
+        margin-bottom: 0.8rem
+        animation: show 0.8s forwards ease
+        .icon
+            position: relative
+            top: rem(-2px)
     #feed
         +clear
         .item
@@ -13,8 +17,12 @@
             margin-right: 1rem
             margin-bottom: 1rem
             transition: all 0.1s ease
+            +opacity(0)
             &:nth-child(4n+4)
                 margin-right: 0
+            @for $i from 1 through 12
+                &:nth-child(#{$i})
+                    animation: show 0.8s #{0.1s * $i} forwards ease
             &:hover
                 transform: scale(1.1)
                 transition: all 0.1s ease
