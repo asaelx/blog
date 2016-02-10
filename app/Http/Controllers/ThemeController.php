@@ -14,7 +14,7 @@ class ThemeController extends Controller
 
     public function index()
     {
-        return view($this->theme() . '.home');
+        return view($this->theme() . 'home');
     }
 
     public function show()
@@ -29,6 +29,6 @@ class ThemeController extends Controller
      */
     private function theme()
     {
-        return $this->theme_path = 'themes.' . env('THEME');
+        return $this->theme_path = 'themes.' . env('THEME') . '.';
     }
 }
