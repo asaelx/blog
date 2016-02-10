@@ -32,7 +32,7 @@
         +opacity(0)
         transition: all 0.3s ease
     &:before
-        bottom: rem(-3px)
+        bottom: rem(-1px)
         transform: translateY(0.5rem)
     &:hover
         &:before
@@ -48,5 +48,6 @@
         h#{$i}
             +heading-size(7 - $i)
             margin: 1.8em 0 0.5em 0
-            line-height: 1.3
-            color: $black
+            line-height: 1.3em
+            color: darken($gray, 15)
+            font-family: 'Montserrat', Helvetica, Arial, sans-serif

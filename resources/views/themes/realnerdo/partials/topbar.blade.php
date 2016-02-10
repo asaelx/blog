@@ -1,7 +1,7 @@
 {{-- Topbar --}}
 <nav class="topbar">
     {{-- Logo --}}
-    <a href="#" class="logo">
+    <a href="{{ url('/') }}" class="logo">
         <img src="{{ asset('img/remixcode_logo.svg') }}" alt="RealNerdo Logo" class="img" height="24">
     </a>
     {{-- /Logo --}}

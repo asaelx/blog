@@ -10,5 +10,6 @@
         @include('themes.realnerdo.partials.topbar')
         @yield('content')
         <script type="text/javascript" src="{{ asset('js/themes/realnerdo/magic.js') }}"></script>
+        <script id="dsq-count-scr" src="//remixcodeblog.disqus.com/count.js" async></script>
     </body>
 </html>
