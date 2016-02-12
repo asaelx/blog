@@ -63,5 +63,3 @@
     </div>
 
 </article>
-
-<div id="disqus_thread"></div>

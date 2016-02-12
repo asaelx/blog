@@ -566,7 +566,13 @@ img {
             font-size: 18px;
             font-size: 1.2857142857rem; } }
 
+.wrapper.post .profile {
+  padding: 2rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid #ECF0F1; }
+
 .single {
+  border-bottom: 2px solid #ECF0F1;
   padding-top: calc(3rem + 5.7142857143rem);
   font-family: 'Merriweather', Georgia, serif; }
   @media only screen and (max-width: 600px) {
@@ -728,6 +734,57 @@ img {
         .single .body pre code {
           padding: 1rem; } }
 
+.share {
+  -webkit-animation: show 0.8s forwards ease;
+  animation: show 0.8s forwards ease;
+  border-bottom: 2px solid #ECF0F1;
+  padding: 1rem;
+  text-align: center;
+  line-height: 1.5em;
+  color: #34495E;
+  font-family: 'Merriweather', Georgia, serif;
+  font-style: italic;
+  font-size: 16px;
+  font-size: 1.1428571429rem; }
+  .share span {
+    font-style: normal; }
+  .share .networks {
+    content: " ";
+    display: table;
+    clear: both;
+    margin: 0 auto;
+    padding-top: 0.5rem; }
+    .share .networks .network {
+      float: left;
+      margin-right: 1rem; }
+      .share .networks .network .link {
+        display: inline-block;
+        color: #FFFFFF;
+        font-family: 'Varela Round', Helvetica, Arial, sans-serif;
+        font-style: normal;
+        font-size: 14px;
+        font-size: 1rem;
+        padding: 0.5em 1em;
+        border-radius: 0.2142857143rem; }
+        .share .networks .network .link.twitter {
+          background: #00aced;
+          position: relative; }
+          .share .networks .network .link.twitter:hover {
+            background: #21c2ff;
+            transition: all 0.3s ease; }
+        .share .networks .network .link.facebook {
+          background: #3b5998;
+          position: relative; }
+          .share .networks .network .link.facebook:hover {
+            background: #4c70ba;
+            transition: all 0.3s ease; }
+        .share .networks .network .link .logo {
+          position: relative;
+          top: 0.2142857143rem;
+          margin-right: 0.3rem; }
+          .share .networks .network .link .logo path {
+            fill: #FFFFFF; }
+
 .footer {
   background: rgba(255, 255, 255, 0.2);
   color: #4f6f8f;
@@ -773,86 +830,71 @@ img {
 
 /*
 
-Railscasts-like style (c) Visoft, Inc. (Damien White)
+Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-license.org/
 
 */
 .hljs {
   display: block;
   overflow-x: auto;
   padding: 0.5em;
-  background: #232323;
-  color: #e6e1dc; }
+  background: #23241f; }
 
-.hljs-comment,
-.hljs-quote {
-  color: #bc9458;
-  font-style: italic; }
+.hljs,
+.hljs-tag,
+.hljs-subst {
+  color: #f8f8f2; }
 
-.hljs-keyword,
-.hljs-selector-tag {
-  color: #c26230; }
+.hljs-strong,
+.hljs-emphasis {
+  color: #a8a8a2; }
 
-.hljs-string,
+.hljs-bullet,
+.hljs-quote,
 .hljs-number,
 .hljs-regexp,
-.hljs-variable,
-.hljs-template-variable {
-  color: #a5c261; }
-
-.hljs-subst {
-  color: #519f50; }
-
-.hljs-tag,
-.hljs-name {
-  color: #e8bf6a; }
-
-.hljs-type {
-  color: #da4939; }
-
-.hljs-symbol,
-.hljs-bullet,
-.hljs-built_in,
-.hljs-builtin-name,
-.hljs-attr,
+.hljs-literal,
 .hljs-link {
-  color: #6d9cbe; }
+  color: #ae81ff; }
 
-.hljs-params {
-  color: #d0d0ff; }
-
-.hljs-attribute {
-  color: #cda869; }
-
-.hljs-meta {
-  color: #9b859d; }
-
+.hljs-code,
 .hljs-title,
-.hljs-section {
-  color: #ffc66d; }
-
-.hljs-addition {
-  background-color: #144212;
-  color: #e6e1dc;
-  display: inline-block;
-  width: 100%; }
-
-.hljs-deletion {
-  background-color: #600;
-  color: #e6e1dc;
-  display: inline-block;
-  width: 100%; }
-
+.hljs-section,
 .hljs-selector-class {
-  color: #9b703f; }
-
-.hljs-selector-id {
-  color: #8b98ab; }
-
-.hljs-emphasis {
-  font-style: italic; }
+  color: #a6e22e; }
 
 .hljs-strong {
   font-weight: bold; }
 
-.hljs-link {
-  text-decoration: underline; }
+.hljs-emphasis {
+  font-style: italic; }
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-name,
+.hljs-attr {
+  color: #f92672; }
+
+.hljs-symbol,
+.hljs-attribute {
+  color: #66d9ef; }
+
+.hljs-params,
+.hljs-class .hljs-title {
+  color: #f8f8f2; }
+
+.hljs-string,
+.hljs-type,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-selector-id,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-addition,
+.hljs-variable,
+.hljs-template-variable {
+  color: #e6db74; }
+
+.hljs-comment,
+.hljs-deletion,
+.hljs-meta {
+  color: #75715e; }
