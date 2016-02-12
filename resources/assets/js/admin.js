@@ -13,12 +13,15 @@ $(function(){
     if(editable.length){
         var editor = new MediumEditor('.editable', {
             toolbar: {
-                buttons: ['bold', 'italic', 'underline', 'orderedlist', 'unorderedlist', 'anchor', 'h1', 'h2', 'quote', 'pre']
+                buttons: ['bold', 'italic', 'underline', 'orderedlist', 'unorderedlist', 'anchor', 'h1', 'h2', 'quote', 'code']
             },
             buttonLabels: 'fontawesome',
             targetBlank: true,
             placeholder: {
                 text: 'Empieza a escribir algo genial...'
+            },
+            extensions: {
+                'code':  new MediumButton({label:'<i class="fa fa-code fa-lg"></i>', start:'<pre><code>', end:'</code></pre>'})
             }
         });
 
