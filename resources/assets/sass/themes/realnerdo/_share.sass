@@ -1,0 +1,45 @@
+.share
+    animation: show 0.8s forwards ease
+    border-bottom: 2px solid $clouds
+    padding: 1rem
+    text-align: center
+    line-height: 1.5em
+    color: $dark
+    font-family: 'Merriweather', Georgia, serif
+    font-style: italic
+    +font-size(16px)
+    span
+        font-style: normal
+    .networks
+        +clear
+        margin: 0 auto
+        padding-top: 0.5rem
+        .network
+            float: left
+            margin-right: 1rem
+            .link
+                display: inline-block
+                color: $white
+                font-family: 'Varela Round', Helvetica, Arial, sans-serif
+                font-style: normal
+                +font-size(14px)
+                padding: 0.5em 1em
+                border-radius: rem(3px)
+                &.twitter
+                    background: $twitter
+                    position: relative
+                    &:hover
+                        background: lighten($twitter, 10)
+                        transition: all 0.3s ease
+                &.facebook
+                    background: $facebook
+                    position: relative
+                    &:hover
+                        background: lighten($facebook, 10)
+                        transition: all 0.3s ease
+                .logo
+                    position: relative
+                    top: rem(3px)
+                    margin-right: 0.3rem
+                    path
+                        fill: $white
