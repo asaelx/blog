@@ -43,7 +43,7 @@
     <div class="bio">
         Hola, soy Asael y me gusta hacer cosas para internet.
         <br>
-        Soy <a href="#" class="link">diseñador</a> y <a href="#" class="link">desarrollador</a> web.
+        Soy <a href="http://realnerdo.com/" class="link" target="_blank">diseñador</a> y <a href="https://github.com/realnerdo/" class="link" target="_blank">desarrollador</a> web.
     </div>
     {{-- /Bio --}}
 </div>

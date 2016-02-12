@@ -49,7 +49,7 @@ class ArticlesController extends Controller
      */
     public function store(ArticleRequest $request)
     {
-        $request->request->add(['excerpt' => str_limit(strip_tags($request->input('body')), 280)]);
+        $request->request->add(['excerpt' => str_limit(strip_tags($request->input('body')), 140)]);
         $article = Auth::user()->articles()->create($request->all());
 
         $this->syncTags($article, $request->input('tag_list'));
@@ -106,7 +106,7 @@ class ArticlesController extends Controller
                     strip_tags(
                         $request->input('body')
                     )
-                ), 280)
+                ), 140)
             ]);
         $article->update($request->except('published_at'));
 

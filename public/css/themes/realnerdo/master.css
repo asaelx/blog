@@ -727,12 +727,16 @@ img {
       color: #95A5A6;
       text-align: center;
       padding-top: 0.5rem; }
-    .single .body pre code {
-      border-radius: 0.2142857143rem;
-      padding: 2rem; }
-      @media only screen and (max-width: 320px) {
-        .single .body pre code {
-          padding: 1rem; } }
+    .single .body pre {
+      margin-bottom: 2rem; }
+      .single .body pre code {
+        border-radius: 0.2142857143rem;
+        padding: 2rem; }
+        @media only screen and (max-width: 320px) {
+          .single .body pre code {
+            padding: 1rem; } }
+    .single .body [class^="medium-insert-"] {
+      margin: 1rem 0; }
 
 .share {
   -webkit-animation: show 0.8s forwards ease;
