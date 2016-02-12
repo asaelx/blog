@@ -207,7 +207,7 @@ class ArticlesController extends Controller
         $destinationPath = 'uploads/articles';
         $file->move($destinationPath, $fileName);
 
-        $path = $destinationPath . '/' . $fileName;
+        $path = '/' . $destinationPath . '/' . $fileName;
         $original_name = pathinfo($client_original_name, PATHINFO_FILENAME);
 
         $files = array();
