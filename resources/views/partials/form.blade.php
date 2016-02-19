@@ -25,10 +25,14 @@
           {!! Form::label('published_at', 'Fecha de publicación', ['class' => 'label']) !!}
           {!! Form::text('published_at', \Carbon\Carbon::now()->tz('America/Mexico_City')->format('Y-m-d'), ['class' => 'datepicker input']) !!}
         </div>
-        <div class="group">
-          {!! Form::label('twitter', 'Publicar en twitter', ['class' => 'label']) !!}
-          {!! Form::checkbox('twitter', 1, null, ['class' => 'onoffswitch']) !!}
-        </div>
+@if($hasTwitter)
+
+                  <div class="group">
+                    {!! Form::label('twitter', 'Publicar en twitter', ['class' => 'label']) !!}
+                    {!! Form::checkbox('twitter', 1, null, ['class' => 'onoffswitch']) !!}
+                  </div>
+@endif
+
         <div class="group">{!! Form::submit($submitButtonText, ['class' => 'btn blue']) !!}</div>
       </div>
     </div>{!! Form::text('title', null, ['placeholder' => 'El título de tu artículo', 'id' => 'input-title']) !!}

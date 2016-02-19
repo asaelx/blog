@@ -6,6 +6,7 @@ var elixir     = require('laravel-elixir'),
 
 elixir.config.sourcemaps = false;
 
+// Theme
 elixir(function(mix) {
     mix.sass([
         'themes/realnerdo/master.sass',
@@ -18,6 +19,7 @@ elixir(function(mix) {
         bw + 'jquery/dist/jquery.js',
         bw + 'instafeed.js/instafeed.js',
         bw + 'highlightjs/highlight.pack.js',
+        bw + 'sharer.js/sharer.js',
         'themes/realnerdo/magic.js'
     ], 'public/js/themes/realnerdo/magic.js');
 });
@@ -48,7 +50,6 @@ elixir(function(mix) {
         'admin.js'
     ], 'public/js/admin.js');
 });
-
 
 elixir(function(mix) {
     mix.jade({

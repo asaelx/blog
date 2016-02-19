@@ -20,9 +20,10 @@
                 .group
                     | {!! Form::label('published_at', 'Fecha de publicación', ['class' => 'label']) !!}
                     | {!! Form::text('published_at', \Carbon\Carbon::now()->tz('America/Mexico_City')->format('Y-m-d'), ['class' => 'datepicker input']) !!}
-                .group
-                    | {!! Form::label('twitter', 'Publicar en twitter', ['class' => 'label']) !!}
-                    | {!! Form::checkbox('twitter', 1, null, ['class' => 'onoffswitch']) !!}
+                +if('$hasTwitter')
+                    .group
+                        | {!! Form::label('twitter', 'Publicar en twitter', ['class' => 'label']) !!}
+                        | {!! Form::checkbox('twitter', 1, null, ['class' => 'onoffswitch']) !!}
                 .group
                     | {!! Form::submit($submitButtonText, ['class' => 'btn blue']) !!}
         | {!! Form::text('title', null, ['placeholder' => 'El título de tu artículo', 'id' => 'input-title']) !!}
