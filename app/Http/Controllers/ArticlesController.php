@@ -200,7 +200,7 @@ class ArticlesController extends Controller
      */
     public function editorUpload(Request $request)
     {
-        $file = $request->file('files')[0];
+        $file = $request->file('file');
 
         $client_original_name = $file->getClientOriginalName();
         $fileName = time() . '_' . $client_original_name;
@@ -210,9 +210,15 @@ class ArticlesController extends Controller
         $path = '/' . $destinationPath . '/' . $fileName;
         $original_name = pathinfo($client_original_name, PATHINFO_FILENAME);
 
-        $files = array();
-        $files[] = array('url' => $path);
-        $response = array('files' => $files);
+        // $files = array();
+        // $files[] = array('url' => $path);
+        // $response = array('files' => $files);
+
+        $response = [
+            'type' => 'success',
+            'id' => $fileName,
+            'path' => $path
+        ];
 
         return response()->json($response);
     }

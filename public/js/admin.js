@@ -9,4510 +9,6 @@
 	http://www.jacklmoore.com/autosize
 */
 !function(e,t){if("function"==typeof define&&define.amd)define(["exports","module"],t);else if("undefined"!=typeof exports&&"undefined"!=typeof module)t(exports,module);else{var n={exports:{}};t(n.exports,n),e.autosize=n.exports}}(this,function(e,t){"use strict";function n(e){function t(){var t=window.getComputedStyle(e,null);p=t.overflowY,"vertical"===t.resize?e.style.resize="none":"both"===t.resize&&(e.style.resize="horizontal"),c="content-box"===t.boxSizing?-(parseFloat(t.paddingTop)+parseFloat(t.paddingBottom)):parseFloat(t.borderTopWidth)+parseFloat(t.borderBottomWidth),isNaN(c)&&(c=0),i()}function n(t){var n=e.style.width;e.style.width="0px",e.offsetWidth,e.style.width=n,p=t,f&&(e.style.overflowY=t),o()}function o(){var t=window.pageYOffset,n=document.body.scrollTop,o=e.style.height;e.style.height="auto";var i=e.scrollHeight+c;return 0===e.scrollHeight?void(e.style.height=o):(e.style.height=i+"px",v=e.clientWidth,document.documentElement.scrollTop=t,void(document.body.scrollTop=n))}function i(){var t=e.style.height;o();var i=window.getComputedStyle(e,null);if(i.height!==e.style.height?"visible"!==p&&n("visible"):"hidden"!==p&&n("hidden"),t!==e.style.height){var r=d("autosize:resized");e.dispatchEvent(r)}}var s=void 0===arguments[1]?{}:arguments[1],a=s.setOverflowX,l=void 0===a?!0:a,u=s.setOverflowY,f=void 0===u?!0:u;if(e&&e.nodeName&&"TEXTAREA"===e.nodeName&&!r.has(e)){var c=null,p=null,v=e.clientWidth,h=function(){e.clientWidth!==v&&i()},y=function(t){window.removeEventListener("resize",h,!1),e.removeEventListener("input",i,!1),e.removeEventListener("keyup",i,!1),e.removeEventListener("autosize:destroy",y,!1),e.removeEventListener("autosize:update",i,!1),r["delete"](e),Object.keys(t).forEach(function(n){e.style[n]=t[n]})}.bind(e,{height:e.style.height,resize:e.style.resize,overflowY:e.style.overflowY,overflowX:e.style.overflowX,wordWrap:e.style.wordWrap});e.addEventListener("autosize:destroy",y,!1),"onpropertychange"in e&&"oninput"in e&&e.addEventListener("keyup",i,!1),window.addEventListener("resize",h,!1),e.addEventListener("input",i,!1),e.addEventListener("autosize:update",i,!1),r.add(e),l&&(e.style.overflowX="hidden",e.style.wordWrap="break-word"),t()}}function o(e){if(e&&e.nodeName&&"TEXTAREA"===e.nodeName){var t=d("autosize:destroy");e.dispatchEvent(t)}}function i(e){if(e&&e.nodeName&&"TEXTAREA"===e.nodeName){var t=d("autosize:update");e.dispatchEvent(t)}}var r="function"==typeof Set?new Set:function(){var e=[];return{has:function(t){return Boolean(e.indexOf(t)>-1)},add:function(t){e.push(t)},"delete":function(t){e.splice(e.indexOf(t),1)}}}(),d=function(e){return new Event(e)};try{new Event("test")}catch(s){d=function(e){var t=document.createEvent("Event");return t.initEvent(e,!0,!1),t}}var a=null;"undefined"==typeof window||"function"!=typeof window.getComputedStyle?(a=function(e){return e},a.destroy=function(e){return e},a.update=function(e){return e}):(a=function(e,t){return e&&Array.prototype.forEach.call(e.length?e:[e],function(e){return n(e,t)}),e},a.destroy=function(e){return e&&Array.prototype.forEach.call(e.length?e:[e],o),e},a.update=function(e){return e&&Array.prototype.forEach.call(e.length?e:[e],i),e}),t.exports=a});
-"classList"in document.createElement("_")||!function(a){"use strict";if("Element"in a){var b="classList",c="prototype",d=a.Element[c],e=Object,f=String[c].trim||function(){return this.replace(/^\s+|\s+$/g,"")},g=Array[c].indexOf||function(a){for(var b=0,c=this.length;c>b;b++)if(b in this&&this[b]===a)return b;return-1},h=function(a,b){this.name=a,this.code=DOMException[a],this.message=b},i=function(a,b){if(""===b)throw new h("SYNTAX_ERR","An invalid or illegal string was specified");if(/\s/.test(b))throw new h("INVALID_CHARACTER_ERR","String contains an invalid character");return g.call(a,b)},j=function(a){for(var b=f.call(a.getAttribute("class")||""),c=b?b.split(/\s+/):[],d=0,e=c.length;e>d;d++)this.push(c[d]);this._updateClassName=function(){a.setAttribute("class",this.toString())}},k=j[c]=[],l=function(){return new j(this)};if(h[c]=Error[c],k.item=function(a){return this[a]||null},k.contains=function(a){return a+="",-1!==i(this,a)},k.add=function(){var a,b=arguments,c=0,d=b.length,e=!1;do a=b[c]+"",-1===i(this,a)&&(this.push(a),e=!0);while(++c<d);e&&this._updateClassName()},k.remove=function(){var a,b,c=arguments,d=0,e=c.length,f=!1;do for(a=c[d]+"",b=i(this,a);-1!==b;)this.splice(b,1),f=!0,b=i(this,a);while(++d<e);f&&this._updateClassName()},k.toggle=function(a,b){a+="";var c=this.contains(a),d=c?b!==!0&&"remove":b!==!1&&"add";return d&&this[d](a),b===!0||b===!1?b:!c},k.toString=function(){return this.join(" ")},e.defineProperty){var m={get:l,enumerable:!0,configurable:!0};try{e.defineProperty(d,b,m)}catch(n){-2146823252===n.number&&(m.enumerable=!1,e.defineProperty(d,b,m))}}else e[c].__defineGetter__&&d.__defineGetter__(b,l)}}(self),function(a){"use strict";if(a.URL=a.URL||a.webkitURL,a.Blob&&a.URL)try{return void new Blob}catch(b){}var c=a.BlobBuilder||a.WebKitBlobBuilder||a.MozBlobBuilder||function(a){var b=function(a){return Object.prototype.toString.call(a).match(/^\[object\s(.*)\]$/)[1]},c=function(){this.data=[]},d=function(a,b,c){this.data=a,this.size=a.length,this.type=b,this.encoding=c},e=c.prototype,f=d.prototype,g=a.FileReaderSync,h=function(a){this.code=this[this.name=a]},i="NOT_FOUND_ERR SECURITY_ERR ABORT_ERR NOT_READABLE_ERR ENCODING_ERR NO_MODIFICATION_ALLOWED_ERR INVALID_STATE_ERR SYNTAX_ERR".split(" "),j=i.length,k=a.URL||a.webkitURL||a,l=k.createObjectURL,m=k.revokeObjectURL,n=k,o=a.btoa,p=a.atob,q=a.ArrayBuffer,r=a.Uint8Array,s=/^[\w-]+:\/*\[?[\w\.:-]+\]?(?::[0-9]+)?/;for(d.fake=f.fake=!0;j--;)h.prototype[i[j]]=j+1;return k.createObjectURL||(n=a.URL=function(a){var b,c=document.createElementNS("http://www.w3.org/1999/xhtml","a");return c.href=a,"origin"in c||("data:"===c.protocol.toLowerCase()?c.origin=null:(b=a.match(s),c.origin=b&&b[1])),c}),n.createObjectURL=function(a){var b,c=a.type;return null===c&&(c="application/octet-stream"),a instanceof d?(b="data:"+c,"base64"===a.encoding?b+";base64,"+a.data:"URI"===a.encoding?b+","+decodeURIComponent(a.data):o?b+";base64,"+o(a.data):b+","+encodeURIComponent(a.data)):l?l.call(k,a):void 0},n.revokeObjectURL=function(a){"data:"!==a.substring(0,5)&&m&&m.call(k,a)},e.append=function(a){var c=this.data;if(r&&(a instanceof q||a instanceof r)){for(var e="",f=new r(a),i=0,j=f.length;j>i;i++)e+=String.fromCharCode(f[i]);c.push(e)}else if("Blob"===b(a)||"File"===b(a)){if(!g)throw new h("NOT_READABLE_ERR");var k=new g;c.push(k.readAsBinaryString(a))}else a instanceof d?"base64"===a.encoding&&p?c.push(p(a.data)):"URI"===a.encoding?c.push(decodeURIComponent(a.data)):"raw"===a.encoding&&c.push(a.data):("string"!=typeof a&&(a+=""),c.push(unescape(encodeURIComponent(a))))},e.getBlob=function(a){return arguments.length||(a=null),new d(this.data.join(""),a,"raw")},e.toString=function(){return"[object BlobBuilder]"},f.slice=function(a,b,c){var e=arguments.length;return 3>e&&(c=null),new d(this.data.slice(a,e>1?b:this.data.length),c,this.encoding)},f.toString=function(){return"[object Blob]"},f.close=function(){this.size=0,delete this.data},c}(a);a.Blob=function(a,b){var d=b?b.type||"":"",e=new c;if(a)for(var f=0,g=a.length;g>f;f++)Uint8Array&&a[f]instanceof Uint8Array?e.append(a[f].buffer):e.append(a[f]);var h=e.getBlob(d);return!h.slice&&h.webkitSlice&&(h.slice=h.webkitSlice),h};var d=Object.getPrototypeOf||function(a){return a.__proto__};a.Blob.prototype=d(new a.Blob)}("undefined"!=typeof self&&self||"undefined"!=typeof window&&window||this.content||this),function(a,b){"use strict";"object"==typeof module?module.exports=b:"function"==typeof define&&define.amd?define(function(){return b}):a.MediumEditor=b}(this,function(){"use strict";function a(a,b){return this.init(a,b)}return a.extensions={},function(b){function c(a,b){var c,d=Array.prototype.slice.call(arguments,2);b=b||{};for(var e=0;e<d.length;e++){var f=d[e];if(f)for(c in f)f.hasOwnProperty(c)&&"undefined"!=typeof f[c]&&(a||b.hasOwnProperty(c)===!1)&&(b[c]=f[c])}return b}var d=!1;try{var e=document.createElement("div"),f=document.createTextNode(" ");e.appendChild(f),d=e.contains(f)}catch(g){}var h={isIE:"Microsoft Internet Explorer"===navigator.appName||"Netscape"===navigator.appName&&null!==new RegExp("Trident/.*rv:([0-9]{1,}[.0-9]{0,})").exec(navigator.userAgent),isFF:navigator.userAgent.toLowerCase().indexOf("firefox")>-1,isMac:b.navigator.platform.toUpperCase().indexOf("MAC")>=0,keyCode:{BACKSPACE:8,TAB:9,ENTER:13,ESCAPE:27,SPACE:32,DELETE:46,K:75,M:77},isMetaCtrlKey:function(a){return h.isMac&&a.metaKey||!h.isMac&&a.ctrlKey?!0:!1},isKey:function(a,b){var c=h.getKeyCode(a);return!1===Array.isArray(b)?c===b:-1===b.indexOf(c)?!1:!0},getKeyCode:function(a){var b=a.which;return null===b&&(b=null!==a.charCode?a.charCode:a.keyCode),b},blockContainerElementNames:["p","h1","h2","h3","h4","h5","h6","blockquote","pre","ul","li","ol","address","article","aside","audio","canvas","dd","dl","dt","fieldset","figcaption","figure","footer","form","header","hgroup","main","nav","noscript","output","section","video","table","thead","tbody","tfoot","tr","th","td"],emptyElementNames:["br","col","colgroup","hr","img","input","source","wbr"],extend:function(){var a=[!0].concat(Array.prototype.slice.call(arguments));return c.apply(this,a)},defaults:function(){var a=[!1].concat(Array.prototype.slice.call(arguments));return c.apply(this,a)},createLink:function(a,b,c,d){var e=a.createElement("a");return h.moveTextRangeIntoElement(b[0],b[b.length-1],e),e.setAttribute("href",c),d&&e.setAttribute("target",d),e},findOrCreateMatchingTextNodes:function(a,b,c){for(var d=a.createTreeWalker(b,NodeFilter.SHOW_ALL,null,!1),e=[],f=0,g=!1,i=null,j=null;null!==(i=d.nextNode());)if(!(i.nodeType>3))if(3===i.nodeType){if(!g&&c.start<f+i.nodeValue.length&&(g=!0,j=h.splitStartNodeIfNeeded(i,c.start,f)),g&&h.splitEndNodeIfNeeded(i,j,c.end,f),g&&f===c.end)break;if(g&&f>c.end+1)throw new Error("PerformLinking overshot the target!");g&&e.push(j||i),f+=i.nodeValue.length,null!==j&&(f+=j.nodeValue.length,d.nextNode()),j=null}else"img"===i.tagName.toLowerCase()&&(!g&&c.start<=f&&(g=!0),g&&e.push(i));return e},splitStartNodeIfNeeded:function(a,b,c){return b!==c?a.splitText(b-c):null},splitEndNodeIfNeeded:function(a,b,c,d){var e,f;e=d+(b||a).nodeValue.length+(b?a.nodeValue.length:0)-1,f=(b||a).nodeValue.length-(e+1-c),e>=c&&d!==e&&0!==f&&(b||a).splitText(f)},splitByBlockElements:function(b){if(3!==b.nodeType&&1!==b.nodeType)return[];var c=[],d=a.util.blockContainerElementNames.join(",");if(3===b.nodeType||0===b.querySelectorAll(d).length)return[b];for(var e=0;e<b.childNodes.length;e++){var f=b.childNodes[e];if(3===f.nodeType)c.push(f);else if(1===f.nodeType){var g=f.querySelectorAll(d);0===g.length?c.push(f):c=c.concat(a.util.splitByBlockElements(f))}}return c},findAdjacentTextNodeWithContent:function(a,b,c){var d,e=!1,f=c.createNodeIterator(a,NodeFilter.SHOW_TEXT,null,!1);for(d=f.nextNode();d;){if(d===b)e=!0;else if(e&&3===d.nodeType&&d.nodeValue&&d.nodeValue.trim().length>0)break;d=f.nextNode()}return d},isDescendant:function(a,b,c){if(!a||!b)return!1;if(a===b)return!!c;if(1!==a.nodeType)return!1;if(d||3!==b.nodeType)return a.contains(b);for(var e=b.parentNode;null!==e;){if(e===a)return!0;e=e.parentNode}return!1},isElement:function(a){return!(!a||1!==a.nodeType)},throttle:function(a,b){var c,d,e,f=50,g=null,h=0,i=function(){h=Date.now(),g=null,e=a.apply(c,d),g||(c=d=null)};return b||0===b||(b=f),function(){var f=Date.now(),j=b-(f-h);return c=this,d=arguments,0>=j||j>b?(g&&(clearTimeout(g),g=null),h=f,e=a.apply(c,d),g||(c=d=null)):g||(g=setTimeout(i,j)),e}},traverseUp:function(a,b){if(!a)return!1;do{if(1===a.nodeType){if(b(a))return a;if(h.isMediumEditorElement(a))return!1}a=a.parentNode}while(a);return!1},htmlEntities:function(a){return String(a).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;")},insertHTMLCommand:function(a,b){var c,d,e,f,g,i,j;if(a.queryCommandSupported("insertHTML"))try{return a.execCommand("insertHTML",!1,b)}catch(k){}if(c=a.getSelection(),c.rangeCount){if(d=c.getRangeAt(0),j=d.commonAncestorContainer,h.isMediumEditorElement(j)&&!j.firstChild)d.selectNode(j.appendChild(a.createTextNode("")));else if(3===j.nodeType&&0===d.startOffset&&d.endOffset===j.nodeValue.length||3!==j.nodeType&&j.innerHTML===d.toString()){for(;!h.isMediumEditorElement(j)&&j.parentNode&&1===j.parentNode.childNodes.length&&!h.isMediumEditorElement(j.parentNode);)j=j.parentNode;d.selectNode(j)}for(d.deleteContents(),e=a.createElement("div"),e.innerHTML=b,f=a.createDocumentFragment();e.firstChild;)g=e.firstChild,i=f.appendChild(g);d.insertNode(f),i&&(d=d.cloneRange(),d.setStartAfter(i),d.collapse(!0),c.removeAllRanges(),c.addRange(d))}},execFormatBlock:function(b,c){var d,e=h.getTopBlockContainer(a.selection.getSelectionStart(b));if("blockquote"===c){if(e&&(d=Array.prototype.slice.call(e.childNodes),d.some(function(a){return h.isBlockContainer(a)})))return b.execCommand("outdent",!1,null);if(h.isIE)return b.execCommand("indent",!1,c)}if(e&&c===e.nodeName.toLowerCase()&&(c="p"),h.isIE&&(c="<"+c+">"),e&&"blockquote"===e.nodeName.toLowerCase()){if(h.isIE&&"<p>"===c)return b.execCommand("outdent",!1,c);if(h.isFF&&"p"===c)return d=Array.prototype.slice.call(e.childNodes),d.some(function(a){return!h.isBlockContainer(a)})&&b.execCommand("formatBlock",!1,c),b.execCommand("outdent",!1,c)}return b.execCommand("formatBlock",!1,c)},setTargetBlank:function(a,b){var c,d=b||!1;if("a"===a.nodeName.toLowerCase())a.target="_blank";else for(a=a.getElementsByTagName("a"),c=0;c<a.length;c+=1)(!1===d||d===a[c].attributes.href.value)&&(a[c].target="_blank")},addClassToAnchors:function(a,b){var c,d,e=b.split(" ");if("a"===a.nodeName.toLowerCase())for(d=0;d<e.length;d+=1)a.classList.add(e[d]);else for(a=a.getElementsByTagName("a"),c=0;c<a.length;c+=1)for(d=0;d<e.length;d+=1)a[c].classList.add(e[d])},isListItem:function(a){if(!a)return!1;if("li"===a.nodeName.toLowerCase())return!0;for(var b=a.parentNode,c=b.nodeName.toLowerCase();"li"===c||!h.isBlockContainer(b)&&"div"!==c;){if("li"===c)return!0;if(b=b.parentNode,!b)return!1;c=b.nodeName.toLowerCase()}return!1},cleanListDOM:function(b,c){if("li"===c.nodeName.toLowerCase()){var d=c.parentElement;"p"===d.parentElement.nodeName.toLowerCase()&&(h.unwrap(d.parentElement,b),a.selection.moveCursor(b,c.firstChild,c.firstChild.textContent.length))}},splitOffDOMTree:function(a,b,c){for(var d=b,e=null,f=!c;d!==a;){var g,h=d.parentNode,i=h.cloneNode(!1),j=f?d:h.firstChild;for(e&&(f?i.appendChild(e):g=e),e=i;j;){var k=j.nextSibling;j===d?(j.hasChildNodes()?j=j.cloneNode(!1):j.parentNode.removeChild(j),j.textContent&&e.appendChild(j),j=f?k:null):(j.parentNode.removeChild(j),(j.hasChildNodes()||j.textContent)&&e.appendChild(j),j=k)}g&&e.appendChild(g),d=h}return e},moveTextRangeIntoElement:function(a,b,c){if(!a||!b)return!1;var d=h.findCommonRoot(a,b);if(!d)return!1;if(b===a){var e=a.parentNode,f=a.nextSibling;return e.removeChild(a),c.appendChild(a),f?e.insertBefore(c,f):e.appendChild(c),c.hasChildNodes()}for(var g,i,j,k=[],l=0;l<d.childNodes.length;l++)if(j=d.childNodes[l],g){if(h.isDescendant(j,b,!0)){i=j;break}k.push(j)}else h.isDescendant(j,a,!0)&&(g=j);var m=i.nextSibling,n=d.ownerDocument.createDocumentFragment();return g===a?(g.parentNode.removeChild(g),n.appendChild(g)):n.appendChild(h.splitOffDOMTree(g,a)),k.forEach(function(a){a.parentNode.removeChild(a),n.appendChild(a)}),i===b?(i.parentNode.removeChild(i),n.appendChild(i)):n.appendChild(h.splitOffDOMTree(i,b,!0)),c.appendChild(n),i.parentNode===d?d.insertBefore(c,i):m?d.insertBefore(c,m):d.appendChild(c),c.hasChildNodes()},depthOfNode:function(a){for(var b=0,c=a;null!==c.parentNode;)c=c.parentNode,b++;return b},findCommonRoot:function(a,b){for(var c=h.depthOfNode(a),d=h.depthOfNode(b),e=a,f=b;c!==d;)c>d?(e=e.parentNode,c-=1):(f=f.parentNode,d-=1);for(;e!==f;)e=e.parentNode,f=f.parentNode;return e},isElementAtBeginningOfBlock:function(a){for(var b,c;!h.isBlockContainer(a)&&!h.isMediumEditorElement(a);){for(c=a;c=c.previousSibling;)if(b=3===c.nodeType?c.nodeValue:c.textContent,b.length>0)return!1;a=a.parentNode}return!0},isMediumEditorElement:function(a){return a&&a.getAttribute&&!!a.getAttribute("data-medium-editor-element")},getContainerEditorElement:function(a){return h.traverseUp(a,function(a){return h.isMediumEditorElement(a)})},isBlockContainer:function(a){return a&&3!==a.nodeType&&-1!==h.blockContainerElementNames.indexOf(a.nodeName.toLowerCase())},getClosestBlockContainer:function(a){return h.traverseUp(a,function(a){return h.isBlockContainer(a)})},getTopBlockContainer:function(a){var b=a;return h.traverseUp(a,function(a){return h.isBlockContainer(a)&&(b=a),!1}),b},getFirstSelectableLeafNode:function(a){for(;a&&a.firstChild;)a=a.firstChild;if(a=h.traverseUp(a,function(a){return-1===h.emptyElementNames.indexOf(a.nodeName.toLowerCase())}),"table"===a.nodeName.toLowerCase()){var b=a.querySelector("th, td");b&&(a=b)}return a},getFirstTextNode:function(a){if(3===a.nodeType)return a;for(var b=0;b<a.childNodes.length;b++){var c=h.getFirstTextNode(a.childNodes[b]);if(null!==c)return c}return null},ensureUrlHasProtocol:function(a){return-1===a.indexOf("://")?"http://"+a:a},warn:function(){void 0!==b.console&&"function"==typeof b.console.warn&&b.console.warn.apply(b.console,arguments)},deprecated:function(a,b,c){var d=a+" is deprecated, please use "+b+" instead.";c&&(d+=" Will be removed in "+c),h.warn(d)},deprecatedMethod:function(a,b,c,d){h.deprecated(a,b,d),"function"==typeof this[b]&&this[b].apply(this,c)},cleanupAttrs:function(a,b){b.forEach(function(b){a.removeAttribute(b)})},cleanupTags:function(a,b){b.forEach(function(b){a.nodeName.toLowerCase()===b&&a.parentNode.removeChild(a)})},getClosestTag:function(a,b){return h.traverseUp(a,function(a){return a.nodeName.toLowerCase()===b.toLowerCase()})},unwrap:function(a,b){for(var c=b.createDocumentFragment(),d=Array.prototype.slice.call(a.childNodes),e=0;e<d.length;e++)c.appendChild(d[e]);c.childNodes.length?a.parentNode.replaceChild(c,a):a.parentNode.removeChild(a)}};a.util=h}(window),function(){var b=function(b){a.util.extend(this,b)};b.extend=function(b){var c,d=this;c=b&&b.hasOwnProperty("constructor")?b.constructor:function(){return d.apply(this,arguments)},a.util.extend(c,d);var e=function(){this.constructor=c};return e.prototype=d.prototype,c.prototype=new e,b&&a.util.extend(c.prototype,b),c},b.prototype={init:function(){},base:void 0,name:void 0,checkState:void 0,destroy:void 0,queryCommandState:void 0,isActive:void 0,isAlreadyApplied:void 0,setActive:void 0,setInactive:void 0,window:void 0,document:void 0,getEditorElements:function(){return this.base.elements},getEditorId:function(){return this.base.id},getEditorOption:function(a){return this.base.options[a]}},["execAction","on","off","subscribe","trigger"].forEach(function(a){b.prototype[a]=function(){return this.base[a].apply(this.base,arguments)}}),a.Extension=b}(),function(){function b(b){return a.util.isBlockContainer(b)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_SKIP}var c={findMatchingSelectionParent:function(b,c){var d,e,f=c.getSelection();return 0===f.rangeCount?!1:(d=f.getRangeAt(0),e=d.commonAncestorContainer,a.util.traverseUp(e,b))},getSelectionElement:function(b){return this.findMatchingSelectionParent(function(b){return a.util.isMediumEditorElement(b)},b)},exportSelection:function(a,b){if(!a)return null;var c=null,d=b.getSelection();if(d.rangeCount>0){var e,f=d.getRangeAt(0),g=f.cloneRange();if(g.selectNodeContents(a),g.setEnd(f.startContainer,f.startOffset),e=g.toString().length,c={start:e,end:e+f.toString().length},0!==f.endOffset&&("img"===f.endContainer.nodeName.toLowerCase()||1===f.endContainer.nodeType&&f.endContainer.querySelector("img"))){var h=this.getTrailingImageCount(a,c,f.endContainer,f.endOffset);h&&(c.trailingImageCount=h)}if(0!==e){var i=this.getIndexRelativeToAdjacentEmptyBlocks(b,a,f.startContainer,f.startOffset);-1!==i&&(c.emptyBlocksIndex=i)}}return c},importSelection:function(a,b,c,d){if(a&&b){var e=c.createRange();e.setStart(b,0),e.collapse(!0);for(var f,g=b,h=[],i=0,j=!1,k=!1,l=0,m=!1;!m&&g;)if(!(g.nodeType>3)){if(3!==g.nodeType||k){if(a.trailingImageCount&&k&&("img"===g.nodeName.toLowerCase()&&l++,l===a.trailingImageCount)){for(var n=0;g.parentNode.childNodes[n]!==g;)n++;e.setEnd(g.parentNode,n+1),m=!0}if(!m&&1===g.nodeType)for(var o=g.childNodes.length-1;o>=0;)h.push(g.childNodes[o]),o-=1}else f=i+g.length,!j&&a.start>=i&&a.start<=f&&(e.setStart(g,a.start-i),j=!0),j&&a.end>=i&&a.end<=f&&(a.trailingImageCount?k=!0:(e.setEnd(g,a.end-i),m=!0)),i=f;m||(g=h.pop())}"undefined"!=typeof a.emptyBlocksIndex&&(e=this.importSelectionMoveCursorPastBlocks(c,b,a.emptyBlocksIndex,e)),d&&(e=this.importSelectionMoveCursorPastAnchor(a,e));var p=c.getSelection();p.removeAllRanges(),p.addRange(e)}},importSelectionMoveCursorPastAnchor:function(b,c){var d=function(a){return"a"===a.nodeName.toLowerCase()};if(b.start===b.end&&3===c.startContainer.nodeType&&c.startOffset===c.startContainer.nodeValue.length&&a.util.traverseUp(c.startContainer,d)){for(var e=c.startContainer,f=c.startContainer.parentNode;null!==f&&"a"!==f.nodeName.toLowerCase();)f.childNodes[f.childNodes.length-1]!==e?f=null:(e=f,f=f.parentNode);if(null!==f&&"a"===f.nodeName.toLowerCase()){for(var g=null,h=0;null===g&&h<f.parentNode.childNodes.length;h++)f.parentNode.childNodes[h]===f&&(g=h);c.setStart(f.parentNode,g+1),c.collapse(!0)}}return c},importSelectionMoveCursorPastBlocks:function(c,d,e,f){var g,h,i=c.createTreeWalker(d,NodeFilter.SHOW_ELEMENT,b,!1),j=f.startContainer,k=0;for(e=e||1,g=3===j.nodeType&&a.util.isBlockContainer(j.previousSibling)?j.previousSibling:a.util.getClosestBlockContainer(j);i.nextNode();)if(h){if(h=i.currentNode,k++,k===e)break;if(h.textContent.length>0)break}else g===i.currentNode&&(h=i.currentNode);return f.setStart(a.util.getFirstSelectableLeafNode(h),0),f},getIndexRelativeToAdjacentEmptyBlocks:function(c,d,e,f){if(e.textContent.length>0&&f>0)return-1;var g=e;if(3!==g.nodeType&&(g=e.childNodes[f]),g&&!a.util.isElementAtBeginningOfBlock(g))return-1;for(var h=a.util.getClosestBlockContainer(e),i=c.createTreeWalker(d,NodeFilter.SHOW_ELEMENT,b,!1),j=0;i.nextNode();){var k=""===i.currentNode.textContent;if((k||j>0)&&(j+=1),i.currentNode===h)return j;k||(j=0)}return j},getTrailingImageCount:function(a,b,c,d){for(var e=c.childNodes[d-1];e.hasChildNodes();)e=e.lastChild;for(var f,g=a,h=[],i=0,j=!1,k=!1,l=!1,m=0;!l&&g;)if(!(g.nodeType>3)){if(3!==g.nodeType||k){if("img"===g.nodeName.toLowerCase()&&m++,g===e)l=!0;else if(1===g.nodeType)for(var n=g.childNodes.length-1;n>=0;)h.push(g.childNodes[n]),n-=1}else m=0,f=i+g.length,!j&&b.start>=i&&b.start<=f&&(j=!0),j&&b.end>=i&&b.end<=f&&(k=!0),i=f;l||(g=h.pop())}return m},selectionContainsContent:function(a){var b=a.getSelection();if(!b||b.isCollapsed||!b.rangeCount)return!1;if(""!==b.toString().trim())return!0;var c=this.getSelectedParentElement(b.getRangeAt(0));return c&&("img"===c.nodeName.toLowerCase()||1===c.nodeType&&c.querySelector("img"))?!0:!1},selectionInContentEditableFalse:function(a){var b,c=this.findMatchingSelectionParent(function(a){var c=a&&a.getAttribute("contenteditable");return"true"===c&&(b=!0),"#text"!==a.nodeName&&"false"===c},a);return!b&&c},getSelectionHtml:function(a){var b,c,d,e="",f=a.getSelection();if(f.rangeCount){for(d=a.createElement("div"),b=0,c=f.rangeCount;c>b;b+=1)d.appendChild(f.getRangeAt(b).cloneContents());e=d.innerHTML}return e},getCaretOffsets:function(a,b){var c,d;return b||(b=window.getSelection().getRangeAt(0)),c=b.cloneRange(),d=b.cloneRange(),c.selectNodeContents(a),c.setEnd(b.endContainer,b.endOffset),d.selectNodeContents(a),d.setStart(b.endContainer,b.endOffset),{left:c.toString().length,right:d.toString().length}},rangeSelectsSingleNode:function(a){var b=a.startContainer;return b===a.endContainer&&b.hasChildNodes()&&a.endOffset===a.startOffset+1},getSelectedParentElement:function(a){return a?this.rangeSelectsSingleNode(a)&&3!==a.startContainer.childNodes[a.startOffset].nodeType?a.startContainer.childNodes[a.startOffset]:3===a.startContainer.nodeType?a.startContainer.parentNode:a.startContainer:null},getSelectedElements:function(a){var b,c,d,e=a.getSelection();if(!e.rangeCount||e.isCollapsed||!e.getRangeAt(0).commonAncestorContainer)return[];if(b=e.getRangeAt(0),3===b.commonAncestorContainer.nodeType){for(c=[],d=b.commonAncestorContainer;d.parentNode&&1===d.parentNode.childNodes.length;)c.push(d.parentNode),d=d.parentNode;return c}return[].filter.call(b.commonAncestorContainer.getElementsByTagName("*"),function(a){return"function"==typeof e.containsNode?e.containsNode(a,!0):!0})},selectNode:function(a,b){var c=b.createRange(),d=b.getSelection();c.selectNodeContents(a),d.removeAllRanges(),d.addRange(c)},select:function(a,b,c,d,e){a.getSelection().removeAllRanges();var f=a.createRange();return f.setStart(b,c),d?f.setEnd(d,e):f.collapse(!0),a.getSelection().addRange(f),f},moveCursor:function(a,b,c){this.select(a,b,c)},getSelectionRange:function(a){var b=a.getSelection();return 0===b.rangeCount?null:b.getRangeAt(0)},getSelectionStart:function(a){var b=a.getSelection().anchorNode,c=b&&3===b.nodeType?b.parentNode:b;return c}};a.selection=c}(),function(){var b=function(a){this.base=a,this.options=this.base.options,this.events=[],this.disabledEvents={},this.customEvents={},this.listeners={}};b.prototype={InputEventOnContenteditableSupported:!a.util.isIE,attachDOMEvent:function(a,b,c,d){a.addEventListener(b,c,d),this.events.push([a,b,c,d])},detachDOMEvent:function(a,b,c,d){var e,f=this.indexOfListener(a,b,c,d);-1!==f&&(e=this.events.splice(f,1)[0],e[0].removeEventListener(e[1],e[2],e[3]))},indexOfListener:function(a,b,c,d){var e,f,g;for(e=0,f=this.events.length;f>e;e+=1)if(g=this.events[e],g[0]===a&&g[1]===b&&g[2]===c&&g[3]===d)return e;return-1},detachAllDOMEvents:function(){for(var a=this.events.pop();a;)a[0].removeEventListener(a[1],a[2],a[3]),a=this.events.pop()},enableCustomEvent:function(a){void 0!==this.disabledEvents[a]&&delete this.disabledEvents[a]},disableCustomEvent:function(a){this.disabledEvents[a]=!0},attachCustomEvent:function(a,b){this.setupListener(a),this.customEvents[a]||(this.customEvents[a]=[]),this.customEvents[a].push(b)},detachCustomEvent:function(a,b){var c=this.indexOfCustomListener(a,b);-1!==c&&this.customEvents[a].splice(c,1)},indexOfCustomListener:function(a,b){return this.customEvents[a]&&this.customEvents[a].length?this.customEvents[a].indexOf(b):-1},detachAllCustomEvents:function(){this.customEvents={}},triggerCustomEvent:function(a,b,c){this.customEvents[a]&&!this.disabledEvents[a]&&this.customEvents[a].forEach(function(a){a(b,c)})},destroy:function(){this.detachAllDOMEvents(),this.detachAllCustomEvents(),this.detachExecCommand(),this.base.elements&&this.base.elements.forEach(function(a){a.removeAttribute("data-medium-focused")})},attachToExecCommand:function(){this.execCommandListener||(this.execCommandListener=function(a){this.handleDocumentExecCommand(a)}.bind(this),this.wrapExecCommand(),this.options.ownerDocument.execCommand.listeners.push(this.execCommandListener))},detachExecCommand:function(){var a=this.options.ownerDocument;if(this.execCommandListener&&a.execCommand.listeners){var b=a.execCommand.listeners.indexOf(this.execCommandListener);-1!==b&&a.execCommand.listeners.splice(b,1),a.execCommand.listeners.length||this.unwrapExecCommand()}},wrapExecCommand:function(){var a=this.options.ownerDocument;if(!a.execCommand.listeners){var b=function(b,c,d){var e=a.execCommand.orig.apply(this,arguments);if(!a.execCommand.listeners)return e;var f=Array.prototype.slice.call(arguments);return a.execCommand.listeners.forEach(function(a){a({command:b,value:d,args:f,result:e})}),e};b.orig=a.execCommand,b.listeners=[],a.execCommand=b}},unwrapExecCommand:function(){var a=this.options.ownerDocument;a.execCommand.orig&&(a.execCommand=a.execCommand.orig)},setupListener:function(a){if(!this.listeners[a]){switch(a){case"externalInteraction":this.attachDOMEvent(this.options.ownerDocument.body,"mousedown",this.handleBodyMousedown.bind(this),!0),this.attachDOMEvent(this.options.ownerDocument.body,"click",this.handleBodyClick.bind(this),!0),this.attachDOMEvent(this.options.ownerDocument.body,"focus",this.handleBodyFocus.bind(this),!0);break;case"blur":this.setupListener("externalInteraction");break;case"focus":this.setupListener("externalInteraction");break;case"editableInput":this.contentCache=[],this.base.elements.forEach(function(a){this.contentCache[a.getAttribute("medium-editor-index")]=a.innerHTML,this.InputEventOnContenteditableSupported&&this.attachDOMEvent(a,"input",this.handleInput.bind(this))}.bind(this)),this.InputEventOnContenteditableSupported||(this.setupListener("editableKeypress"),this.keypressUpdateInput=!0,this.attachDOMEvent(document,"selectionchange",this.handleDocumentSelectionChange.bind(this)),this.attachToExecCommand());break;case"editableClick":this.attachToEachElement("click",this.handleClick);break;case"editableBlur":this.attachToEachElement("blur",this.handleBlur);break;case"editableKeypress":this.attachToEachElement("keypress",this.handleKeypress);break;case"editableKeyup":this.attachToEachElement("keyup",this.handleKeyup);break;case"editableKeydown":this.attachToEachElement("keydown",this.handleKeydown);break;case"editableKeydownSpace":this.setupListener("editableKeydown");break;case"editableKeydownEnter":this.setupListener("editableKeydown");break;case"editableKeydownTab":this.setupListener("editableKeydown");break;case"editableKeydownDelete":this.setupListener("editableKeydown");break;case"editableMouseover":this.attachToEachElement("mouseover",this.handleMouseover);break;case"editableDrag":this.attachToEachElement("dragover",this.handleDragging),this.attachToEachElement("dragleave",this.handleDragging);break;case"editableDrop":this.attachToEachElement("drop",this.handleDrop);break;case"editablePaste":this.attachToEachElement("paste",this.handlePaste)}this.listeners[a]=!0}},attachToEachElement:function(a,b){this.base.elements.forEach(function(c){this.attachDOMEvent(c,a,b.bind(this))},this)},focusElement:function(a){a.focus(),this.updateFocus(a,{target:a,type:"focus"})},updateFocus:function(b,c){var d,e=this.base.getExtensionByName("toolbar"),f=e?e.getToolbarElement():null,g=this.base.getExtensionByName("anchor-preview"),h=g&&g.getPreviewElement?g.getPreviewElement():null,i=this.base.getFocusedElement();i&&"click"===c.type&&this.lastMousedownTarget&&(a.util.isDescendant(i,this.lastMousedownTarget,!0)||a.util.isDescendant(f,this.lastMousedownTarget,!0)||a.util.isDescendant(h,this.lastMousedownTarget,!0))&&(d=i),d||this.base.elements.some(function(c){return!d&&a.util.isDescendant(c,b,!0)&&(d=c),!!d},this);var j=!a.util.isDescendant(i,b,!0)&&!a.util.isDescendant(f,b,!0)&&!a.util.isDescendant(h,b,!0);d!==i&&(i&&j&&(i.removeAttribute("data-medium-focused"),this.triggerCustomEvent("blur",c,i)),d&&(d.setAttribute("data-medium-focused",!0),this.triggerCustomEvent("focus",c,d))),j&&this.triggerCustomEvent("externalInteraction",c)},updateInput:function(a,b){if(this.contentCache){var c=a.getAttribute("medium-editor-index");a.innerHTML!==this.contentCache[c]&&this.triggerCustomEvent("editableInput",b,a),this.contentCache[c]=a.innerHTML}},handleDocumentSelectionChange:function(b){if(b.currentTarget&&b.currentTarget.activeElement){var c,d=b.currentTarget.activeElement;this.base.elements.some(function(b){return a.util.isDescendant(b,d,!0)?(c=b,!0):!1},this),c&&this.updateInput(c,{target:d,currentTarget:c})}},handleDocumentExecCommand:function(){var a=this.base.getFocusedElement();a&&this.updateInput(a,{target:a,currentTarget:a})},handleBodyClick:function(a){this.updateFocus(a.target,a)},handleBodyFocus:function(a){this.updateFocus(a.target,a)},handleBodyMousedown:function(a){this.lastMousedownTarget=a.target},handleInput:function(a){this.updateInput(a.currentTarget,a)},handleClick:function(a){this.triggerCustomEvent("editableClick",a,a.currentTarget)},handleBlur:function(a){this.triggerCustomEvent("editableBlur",a,a.currentTarget)},handleKeypress:function(a){if(this.triggerCustomEvent("editableKeypress",a,a.currentTarget),this.keypressUpdateInput){var b={target:a.target,currentTarget:a.currentTarget};setTimeout(function(){this.updateInput(b.currentTarget,b)}.bind(this),0)}},handleKeyup:function(a){this.triggerCustomEvent("editableKeyup",a,a.currentTarget)},handleMouseover:function(a){this.triggerCustomEvent("editableMouseover",a,a.currentTarget)},handleDragging:function(a){this.triggerCustomEvent("editableDrag",a,a.currentTarget)},handleDrop:function(a){this.triggerCustomEvent("editableDrop",a,a.currentTarget)},handlePaste:function(a){this.triggerCustomEvent("editablePaste",a,a.currentTarget)},handleKeydown:function(b){return this.triggerCustomEvent("editableKeydown",b,b.currentTarget),a.util.isKey(b,a.util.keyCode.SPACE)?this.triggerCustomEvent("editableKeydownSpace",b,b.currentTarget):a.util.isKey(b,a.util.keyCode.ENTER)||b.ctrlKey&&a.util.isKey(b,a.util.keyCode.M)?this.triggerCustomEvent("editableKeydownEnter",b,b.currentTarget):a.util.isKey(b,a.util.keyCode.TAB)?this.triggerCustomEvent("editableKeydownTab",b,b.currentTarget):a.util.isKey(b,[a.util.keyCode.DELETE,a.util.keyCode.BACKSPACE])?this.triggerCustomEvent("editableKeydownDelete",b,b.currentTarget):void 0}},a.Events=b}(),function(){var b=a.Extension.extend({action:void 0,aria:void 0,tagNames:void 0,style:void 0,useQueryState:void 0,contentDefault:void 0,contentFA:void 0,classList:void 0,attrs:void 0,constructor:function(c){b.isBuiltInButton(c)?a.Extension.call(this,this.defaults[c]):a.Extension.call(this,c)},init:function(){a.Extension.prototype.init.apply(this,arguments),this.button=this.createButton(),this.on(this.button,"click",this.handleClick.bind(this))},getButton:function(){return this.button},getAction:function(){return"function"==typeof this.action?this.action(this.base.options):this.action},getAria:function(){return"function"==typeof this.aria?this.aria(this.base.options):this.aria},getTagNames:function(){return"function"==typeof this.tagNames?this.tagNames(this.base.options):this.tagNames},createButton:function(){var a=this.document.createElement("button"),b=this.contentDefault,c=this.getAria(),d=this.getEditorOption("buttonLabels");return a.classList.add("medium-editor-action"),a.classList.add("medium-editor-action-"+this.name),this.classList&&this.classList.forEach(function(b){a.classList.add(b)}),a.setAttribute("data-action",this.getAction()),c&&(a.setAttribute("title",c),a.setAttribute("aria-label",c)),this.attrs&&Object.keys(this.attrs).forEach(function(b){a.setAttribute(b,this.attrs[b])},this),"fontawesome"===d&&this.contentFA&&(b=this.contentFA),a.innerHTML=b,a},handleClick:function(a){a.preventDefault(),a.stopPropagation();var b=this.getAction();b&&this.execAction(b)},isActive:function(){return this.button.classList.contains(this.getEditorOption("activeButtonClass"))},setInactive:function(){this.button.classList.remove(this.getEditorOption("activeButtonClass")),delete this.knownState},setActive:function(){this.button.classList.add(this.getEditorOption("activeButtonClass")),
-delete this.knownState},queryCommandState:function(){var a=null;return this.useQueryState&&(a=this.base.queryCommandState(this.getAction())),a},isAlreadyApplied:function(a){var b,c,d=!1,e=this.getTagNames();return this.knownState===!1||this.knownState===!0?this.knownState:(e&&e.length>0&&(d=-1!==e.indexOf(a.nodeName.toLowerCase())),!d&&this.style&&(b=this.style.value.split("|"),c=this.window.getComputedStyle(a,null).getPropertyValue(this.style.prop),b.forEach(function(a){this.knownState||(d=-1!==c.indexOf(a),(d||"text-decoration"!==this.style.prop)&&(this.knownState=d))},this)),d)}});b.isBuiltInButton=function(b){return"string"==typeof b&&a.extensions.button.prototype.defaults.hasOwnProperty(b)},a.extensions.button=b}(),function(){a.extensions.button.prototype.defaults={bold:{name:"bold",action:"bold",aria:"bold",tagNames:["b","strong"],style:{prop:"font-weight",value:"700|bold"},useQueryState:!0,contentDefault:"<b>B</b>",contentFA:'<i class="fa fa-bold"></i>'},italic:{name:"italic",action:"italic",aria:"italic",tagNames:["i","em"],style:{prop:"font-style",value:"italic"},useQueryState:!0,contentDefault:"<b><i>I</i></b>",contentFA:'<i class="fa fa-italic"></i>'},underline:{name:"underline",action:"underline",aria:"underline",tagNames:["u"],style:{prop:"text-decoration",value:"underline"},useQueryState:!0,contentDefault:"<b><u>U</u></b>",contentFA:'<i class="fa fa-underline"></i>'},strikethrough:{name:"strikethrough",action:"strikethrough",aria:"strike through",tagNames:["strike"],style:{prop:"text-decoration",value:"line-through"},useQueryState:!0,contentDefault:"<s>A</s>",contentFA:'<i class="fa fa-strikethrough"></i>'},superscript:{name:"superscript",action:"superscript",aria:"superscript",tagNames:["sup"],contentDefault:"<b>x<sup>1</sup></b>",contentFA:'<i class="fa fa-superscript"></i>'},subscript:{name:"subscript",action:"subscript",aria:"subscript",tagNames:["sub"],contentDefault:"<b>x<sub>1</sub></b>",contentFA:'<i class="fa fa-subscript"></i>'},image:{name:"image",action:"image",aria:"image",tagNames:["img"],contentDefault:"<b>image</b>",contentFA:'<i class="fa fa-picture-o"></i>'},orderedlist:{name:"orderedlist",action:"insertorderedlist",aria:"ordered list",tagNames:["ol"],useQueryState:!0,contentDefault:"<b>1.</b>",contentFA:'<i class="fa fa-list-ol"></i>'},unorderedlist:{name:"unorderedlist",action:"insertunorderedlist",aria:"unordered list",tagNames:["ul"],useQueryState:!0,contentDefault:"<b>&bull;</b>",contentFA:'<i class="fa fa-list-ul"></i>'},indent:{name:"indent",action:"indent",aria:"indent",tagNames:[],contentDefault:"<b>&rarr;</b>",contentFA:'<i class="fa fa-indent"></i>'},outdent:{name:"outdent",action:"outdent",aria:"outdent",tagNames:[],contentDefault:"<b>&larr;</b>",contentFA:'<i class="fa fa-outdent"></i>'},justifyCenter:{name:"justifyCenter",action:"justifyCenter",aria:"center justify",tagNames:[],style:{prop:"text-align",value:"center"},contentDefault:"<b>C</b>",contentFA:'<i class="fa fa-align-center"></i>'},justifyFull:{name:"justifyFull",action:"justifyFull",aria:"full justify",tagNames:[],style:{prop:"text-align",value:"justify"},contentDefault:"<b>J</b>",contentFA:'<i class="fa fa-align-justify"></i>'},justifyLeft:{name:"justifyLeft",action:"justifyLeft",aria:"left justify",tagNames:[],style:{prop:"text-align",value:"left"},contentDefault:"<b>L</b>",contentFA:'<i class="fa fa-align-left"></i>'},justifyRight:{name:"justifyRight",action:"justifyRight",aria:"right justify",tagNames:[],style:{prop:"text-align",value:"right"},contentDefault:"<b>R</b>",contentFA:'<i class="fa fa-align-right"></i>'},removeFormat:{name:"removeFormat",aria:"remove formatting",action:"removeFormat",contentDefault:"<b>X</b>",contentFA:'<i class="fa fa-eraser"></i>'},quote:{name:"quote",action:"append-blockquote",aria:"blockquote",tagNames:["blockquote"],contentDefault:"<b>&ldquo;</b>",contentFA:'<i class="fa fa-quote-right"></i>'},pre:{name:"pre",action:"append-pre",aria:"preformatted text",tagNames:["pre"],contentDefault:"<b>0101</b>",contentFA:'<i class="fa fa-code fa-lg"></i>'},h1:{name:"h1",action:"append-h1",aria:"header type one",tagNames:["h1"],contentDefault:"<b>H1</b>",contentFA:'<i class="fa fa-header"><sup>1</sup>'},h2:{name:"h2",action:"append-h2",aria:"header type two",tagNames:["h2"],contentDefault:"<b>H2</b>",contentFA:'<i class="fa fa-header"><sup>2</sup>'},h3:{name:"h3",action:"append-h3",aria:"header type three",tagNames:["h3"],contentDefault:"<b>H3</b>",contentFA:'<i class="fa fa-header"><sup>3</sup>'},h4:{name:"h4",action:"append-h4",aria:"header type four",tagNames:["h4"],contentDefault:"<b>H4</b>",contentFA:'<i class="fa fa-header"><sup>4</sup>'},h5:{name:"h5",action:"append-h5",aria:"header type five",tagNames:["h5"],contentDefault:"<b>H5</b>",contentFA:'<i class="fa fa-header"><sup>5</sup>'},h6:{name:"h6",action:"append-h6",aria:"header type six",tagNames:["h6"],contentDefault:"<b>H6</b>",contentFA:'<i class="fa fa-header"><sup>6</sup>'}}}(),function(){var b=a.extensions.button.extend({init:function(){a.extensions.button.prototype.init.apply(this,arguments)},formSaveLabel:"&#10003;",formCloseLabel:"&times;",hasForm:!0,getForm:function(){},isDisplayed:function(){},hideForm:function(){},showToolbarDefaultActions:function(){var a=this.base.getExtensionByName("toolbar");a&&a.showToolbarDefaultActions()},hideToolbarDefaultActions:function(){var a=this.base.getExtensionByName("toolbar");a&&a.hideToolbarDefaultActions()},setToolbarPosition:function(){var a=this.base.getExtensionByName("toolbar");a&&a.setToolbarPosition()}});a.extensions.form=b}(),function(){var b=a.extensions.form.extend({customClassOption:null,customClassOptionText:"Button",linkValidation:!1,placeholderText:"Paste or type a link",targetCheckbox:!1,targetCheckboxText:"Open in new window",name:"anchor",action:"createLink",aria:"link",tagNames:["a"],contentDefault:"<b>#</b>",contentFA:'<i class="fa fa-link"></i>',init:function(){a.extensions.form.prototype.init.apply(this,arguments),this.subscribe("editableKeydown",this.handleKeydown.bind(this))},handleClick:function(b){b.preventDefault(),b.stopPropagation();var c=a.selection.getSelectionRange(this.document);return"a"===c.startContainer.nodeName.toLowerCase()||"a"===c.endContainer.nodeName.toLowerCase()||a.util.getClosestTag(a.selection.getSelectedParentElement(c),"a")?this.execAction("unlink"):(this.isDisplayed()||this.showForm(),!1)},handleKeydown:function(b){a.util.isKey(b,a.util.keyCode.K)&&a.util.isMetaCtrlKey(b)&&!b.shiftKey&&this.handleClick(b)},getForm:function(){return this.form||(this.form=this.createForm()),this.form},getTemplate:function(){var a=['<input type="text" class="medium-editor-toolbar-input" placeholder="',this.placeholderText,'">'];return a.push('<a href="#" class="medium-editor-toolbar-save">',"fontawesome"===this.getEditorOption("buttonLabels")?'<i class="fa fa-check"></i>':this.formSaveLabel,"</a>"),a.push('<a href="#" class="medium-editor-toolbar-close">',"fontawesome"===this.getEditorOption("buttonLabels")?'<i class="fa fa-times"></i>':this.formCloseLabel,"</a>"),this.targetCheckbox&&a.push('<div class="medium-editor-toolbar-form-row">','<input type="checkbox" class="medium-editor-toolbar-anchor-target">',"<label>",this.targetCheckboxText,"</label>","</div>"),this.customClassOption&&a.push('<div class="medium-editor-toolbar-form-row">','<input type="checkbox" class="medium-editor-toolbar-anchor-button">',"<label>",this.customClassOptionText,"</label>","</div>"),a.join("")},isDisplayed:function(){return"block"===this.getForm().style.display},hideForm:function(){this.getForm().style.display="none",this.getInput().value=""},showForm:function(a){var b=this.getInput(),c=this.getAnchorTargetCheckbox(),d=this.getAnchorButtonCheckbox();if(a=a||{url:""},"string"==typeof a&&(a={url:a}),this.base.saveSelection(),this.hideToolbarDefaultActions(),this.getForm().style.display="block",this.setToolbarPosition(),b.value=a.url,b.focus(),c&&(c.checked="_blank"===a.target),d){var e=a.buttonClass?a.buttonClass.split(" "):[];d.checked=-1!==e.indexOf(this.customClassOption)}},destroy:function(){return this.form?(this.form.parentNode&&this.form.parentNode.removeChild(this.form),void delete this.form):!1},getFormOpts:function(){var a=this.getAnchorTargetCheckbox(),b=this.getAnchorButtonCheckbox(),c={url:this.getInput().value.trim()};return this.linkValidation&&(c.url=this.checkLinkFormat(c.url)),c.target="_self",a&&a.checked&&(c.target="_blank"),b&&b.checked&&(c.buttonClass=this.customClassOption),c},doFormSave:function(){var a=this.getFormOpts();this.completeFormSave(a)},completeFormSave:function(a){this.base.restoreSelection(),this.execAction(this.action,a),this.base.checkSelection()},checkLinkFormat:function(a){var b=/^([a-z]+:)?\/\/|^(mailto|tel|maps):/i,c=/^\+?\s?\(?(?:\d\s?\-?\)?){3,20}$/;return c.test(a)?"tel:"+a:(b.test(a)?"":"http://")+a},doFormCancel:function(){this.base.restoreSelection(),this.base.checkSelection()},attachFormEvents:function(a){var b=a.querySelector(".medium-editor-toolbar-close"),c=a.querySelector(".medium-editor-toolbar-save"),d=a.querySelector(".medium-editor-toolbar-input");this.on(a,"click",this.handleFormClick.bind(this)),this.on(d,"keyup",this.handleTextboxKeyup.bind(this)),this.on(b,"click",this.handleCloseClick.bind(this)),this.on(c,"click",this.handleSaveClick.bind(this),!0)},createForm:function(){var a=this.document,b=a.createElement("div");return b.className="medium-editor-toolbar-form",b.id="medium-editor-toolbar-form-anchor-"+this.getEditorId(),b.innerHTML=this.getTemplate(),this.attachFormEvents(b),b},getInput:function(){return this.getForm().querySelector("input.medium-editor-toolbar-input")},getAnchorTargetCheckbox:function(){return this.getForm().querySelector(".medium-editor-toolbar-anchor-target")},getAnchorButtonCheckbox:function(){return this.getForm().querySelector(".medium-editor-toolbar-anchor-button")},handleTextboxKeyup:function(b){return b.keyCode===a.util.keyCode.ENTER?(b.preventDefault(),void this.doFormSave()):void(b.keyCode===a.util.keyCode.ESCAPE&&(b.preventDefault(),this.doFormCancel()))},handleFormClick:function(a){a.stopPropagation()},handleSaveClick:function(a){a.preventDefault(),this.doFormSave()},handleCloseClick:function(a){a.preventDefault(),this.doFormCancel()}});a.extensions.anchor=b}(),function(){var b=a.Extension.extend({name:"anchor-preview",hideDelay:500,previewValueSelector:"a",showWhenToolbarIsVisible:!1,init:function(){this.anchorPreview=this.createPreview(),this.getEditorOption("elementsContainer").appendChild(this.anchorPreview),this.attachToEditables()},getPreviewElement:function(){return this.anchorPreview},createPreview:function(){var a=this.document.createElement("div");return a.id="medium-editor-anchor-preview-"+this.getEditorId(),a.className="medium-editor-anchor-preview",a.innerHTML=this.getTemplate(),this.on(a,"click",this.handleClick.bind(this)),a},getTemplate:function(){return'<div class="medium-editor-toolbar-anchor-preview" id="medium-editor-toolbar-anchor-preview">    <a class="medium-editor-toolbar-anchor-preview-inner"></a></div>'},destroy:function(){this.anchorPreview&&(this.anchorPreview.parentNode&&this.anchorPreview.parentNode.removeChild(this.anchorPreview),delete this.anchorPreview)},hidePreview:function(){this.anchorPreview.classList.remove("medium-editor-anchor-preview-active"),this.activeAnchor=null},showPreview:function(a){return this.anchorPreview.classList.contains("medium-editor-anchor-preview-active")||a.getAttribute("data-disable-preview")?!0:(this.previewValueSelector&&(this.anchorPreview.querySelector(this.previewValueSelector).textContent=a.attributes.href.value,this.anchorPreview.querySelector(this.previewValueSelector).href=a.attributes.href.value),this.anchorPreview.classList.add("medium-toolbar-arrow-over"),this.anchorPreview.classList.remove("medium-toolbar-arrow-under"),this.anchorPreview.classList.contains("medium-editor-anchor-preview-active")||this.anchorPreview.classList.add("medium-editor-anchor-preview-active"),this.activeAnchor=a,this.positionPreview(),this.attachPreviewHandlers(),this)},positionPreview:function(a){a=a||this.activeAnchor;var b,c,d=this.anchorPreview.offsetHeight,e=a.getBoundingClientRect(),f=(e.left+e.right)/2,g=this.diffLeft,h=this.diffTop;b=this.anchorPreview.offsetWidth/2;var i=this.base.getExtensionByName("toolbar");i&&(g=i.diffLeft,h=i.diffTop),c=g-b,this.anchorPreview.style.top=Math.round(d+e.bottom-h+this.window.pageYOffset-this.anchorPreview.offsetHeight)+"px",b>f?this.anchorPreview.style.left=c+b+"px":this.window.innerWidth-f<b?this.anchorPreview.style.left=this.window.innerWidth+c-b+"px":this.anchorPreview.style.left=c+f+"px"},attachToEditables:function(){this.subscribe("editableMouseover",this.handleEditableMouseover.bind(this))},handleClick:function(a){var b=this.base.getExtensionByName("anchor"),c=this.activeAnchor;b&&c&&(a.preventDefault(),this.base.selectElement(this.activeAnchor),this.base.delay(function(){if(c){var a={url:c.attributes.href.value,target:c.getAttribute("target"),buttonClass:c.getAttribute("class")};b.showForm(a),c=null}}.bind(this))),this.hidePreview()},handleAnchorMouseout:function(){this.anchorToPreview=null,this.off(this.activeAnchor,"mouseout",this.instanceHandleAnchorMouseout),this.instanceHandleAnchorMouseout=null},handleEditableMouseover:function(b){var c=a.util.getClosestTag(b.target,"a");if(!1!==c){if(!/href=["']\S+["']/.test(c.outerHTML)||/href=["']#\S+["']/.test(c.outerHTML))return!0;var d=this.base.getExtensionByName("toolbar");if(!this.showWhenToolbarIsVisible&&d&&d.isDisplayed&&d.isDisplayed())return!0;this.activeAnchor&&this.activeAnchor!==c&&this.detachPreviewHandlers(),this.anchorToPreview=c,this.instanceHandleAnchorMouseout=this.handleAnchorMouseout.bind(this),this.on(this.anchorToPreview,"mouseout",this.instanceHandleAnchorMouseout),this.base.delay(function(){this.anchorToPreview&&this.showPreview(this.anchorToPreview)}.bind(this))}},handlePreviewMouseover:function(){this.lastOver=(new Date).getTime(),this.hovering=!0},handlePreviewMouseout:function(a){a.relatedTarget&&/anchor-preview/.test(a.relatedTarget.className)||(this.hovering=!1)},updatePreview:function(){if(this.hovering)return!0;var a=(new Date).getTime()-this.lastOver;a>this.hideDelay&&this.detachPreviewHandlers()},detachPreviewHandlers:function(){clearInterval(this.intervalTimer),this.instanceHandlePreviewMouseover&&(this.off(this.anchorPreview,"mouseover",this.instanceHandlePreviewMouseover),this.off(this.anchorPreview,"mouseout",this.instanceHandlePreviewMouseout),this.activeAnchor&&(this.off(this.activeAnchor,"mouseover",this.instanceHandlePreviewMouseover),this.off(this.activeAnchor,"mouseout",this.instanceHandlePreviewMouseout))),this.hidePreview(),this.hovering=this.instanceHandlePreviewMouseover=this.instanceHandlePreviewMouseout=null},attachPreviewHandlers:function(){this.lastOver=(new Date).getTime(),this.hovering=!0,this.instanceHandlePreviewMouseover=this.handlePreviewMouseover.bind(this),this.instanceHandlePreviewMouseout=this.handlePreviewMouseout.bind(this),this.intervalTimer=setInterval(this.updatePreview.bind(this),200),this.on(this.anchorPreview,"mouseover",this.instanceHandlePreviewMouseover),this.on(this.anchorPreview,"mouseout",this.instanceHandlePreviewMouseout),this.on(this.activeAnchor,"mouseover",this.instanceHandlePreviewMouseover),this.on(this.activeAnchor,"mouseout",this.instanceHandlePreviewMouseout)}});a.extensions.anchorPreview=b}(),function(){function b(b){return!a.util.getClosestTag(b,"a")}var c,d,e,f;c=[" ","	","\n","\r"," "," "," "," "," ","\u2028","\u2029"],d="com|net|org|edu|gov|mil|aero|asia|biz|cat|coop|info|int|jobs|mobi|museum|name|post|pro|tel|travel|xxx|ac|ad|ae|af|ag|ai|al|am|an|ao|aq|ar|as|at|au|aw|ax|az|ba|bb|bd|be|bf|bg|bh|bi|bj|bm|bn|bo|br|bs|bt|bv|bw|by|bz|ca|cc|cd|cf|cg|ch|ci|ck|cl|cm|cn|co|cr|cs|cu|cv|cx|cy|cz|dd|de|dj|dk|dm|do|dz|ec|ee|eg|eh|er|es|et|eu|fi|fj|fk|fm|fo|fr|ga|gb|gd|ge|gf|gg|gh|gi|gl|gm|gn|gp|gq|gr|gs|gt|gu|gw|gy|hk|hm|hn|hr|ht|hu|id|ie|il|im|in|io|iq|ir|is|it|je|jm|jo|jp|ke|kg|kh|ki|km|kn|kp|kr|kw|ky|kz|la|lb|lc|li|lk|lr|ls|lt|lu|lv|ly|ma|mc|md|me|mg|mh|mk|ml|mm|mn|mo|mp|mq|mr|ms|mt|mu|mv|mw|mx|my|mz|na|nc|ne|nf|ng|ni|nl|no|np|nr|nu|nz|om|pa|pe|pf|pg|ph|pk|pl|pm|pn|pr|ps|pt|pw|py|qa|re|ro|rs|ru|rw|sa|sb|sc|sd|se|sg|sh|si|sj|ja|sk|sl|sm|sn|so|sr|ss|st|su|sv|sx|sy|sz|tc|td|tf|tg|th|tj|tk|tl|tm|tn|to|tp|tr|tt|tv|tw|tz|ua|ug|uk|us|uy|uz|va|vc|ve|vg|vi|vn|vu|wf|ws|ye|yt|yu|za|zm|zw",e="(((?:(https?://|ftps?://|nntp://)|www\\d{0,3}[.]|[a-z0-9.\\-]+[.]("+d+")\\/)\\S+(?:[^\\s`!\\[\\]{};:'\".,?«»“”‘’])))|(([a-z0-9\\-]+\\.)?[a-z0-9\\-]+\\.("+d+"))",f=new RegExp("^("+d+")$","i");var g=a.Extension.extend({init:function(){a.Extension.prototype.init.apply(this,arguments),this.disableEventHandling=!1,this.subscribe("editableKeypress",this.onKeypress.bind(this)),this.subscribe("editableBlur",this.onBlur.bind(this)),this.document.execCommand("AutoUrlDetect",!1,!1)},destroy:function(){this.document.queryCommandSupported("AutoUrlDetect")&&this.document.execCommand("AutoUrlDetect",!1,!0)},onBlur:function(a,b){this.performLinking(b)},onKeypress:function(b){this.disableEventHandling||a.util.isKey(b,[a.util.keyCode.SPACE,a.util.keyCode.ENTER])&&(clearTimeout(this.performLinkingTimeout),this.performLinkingTimeout=setTimeout(function(){try{var a=this.base.exportSelection();this.performLinking(b.target)&&this.base.importSelection(a,!0)}catch(c){window.console&&window.console.error("Failed to perform linking",c),this.disableEventHandling=!0}}.bind(this),0))},performLinking:function(b){var c=a.util.splitByBlockElements(b),d=!1;0===c.length&&(c=[b]);for(var e=0;e<c.length;e++)d=this.removeObsoleteAutoLinkSpans(c[e])||d,d=this.performLinkingWithinElement(c[e])||d;return d},removeObsoleteAutoLinkSpans:function(c){if(!c||3===c.nodeType)return!1;for(var d=c.querySelectorAll('span[data-auto-link="true"]'),e=!1,f=0;f<d.length;f++){var g=d[f].textContent;if(-1===g.indexOf("://")&&(g=a.util.ensureUrlHasProtocol(g)),d[f].getAttribute("data-href")!==g&&b(d[f])){e=!0;var h=g.replace(/\s+$/,"");if(d[f].getAttribute("data-href")===h){var i=g.length-h.length,j=a.util.splitOffDOMTree(d[f],this.splitTextBeforeEnd(d[f],i));d[f].parentNode.insertBefore(j,d[f].nextSibling)}else a.util.unwrap(d[f],this.document)}}return e},splitTextBeforeEnd:function(a,b){for(var c=this.document.createTreeWalker(a,NodeFilter.SHOW_TEXT,null,!1),d=!0;d;)d=null!==c.lastChild();for(var e,f,g;b>0&&null!==g;)e=c.currentNode,f=e.nodeValue,f.length>b?(g=e.splitText(f.length-b),b=0):(g=c.previousNode(),b-=f.length);return g},performLinkingWithinElement:function(b){for(var c=this.findLinkableText(b),d=!1,e=0;e<c.length;e++){var f=a.util.findOrCreateMatchingTextNodes(this.document,b,c[e]);this.shouldNotLink(f)||this.createAutoLink(f,c[e].href)}return d},shouldNotLink:function(b){for(var c=!1,d=0;d<b.length&&c===!1;d++)c=!!a.util.traverseUp(b[d],function(a){return"a"===a.nodeName.toLowerCase()||a.getAttribute&&"true"===a.getAttribute("data-auto-link")});return c},findLinkableText:function(a){for(var b=new RegExp(e,"gi"),d=a.textContent,g=null,h=[];null!==(g=b.exec(d));){var i=!0,j=g.index+g[0].length;i=!(0!==g.index&&-1===c.indexOf(d[g.index-1])||j!==d.length&&-1===c.indexOf(d[j])),i=i&&(-1!==g[0].indexOf("/")||f.test(g[0].split(".").pop().split("?").shift())),i&&h.push({href:g[0],start:g.index,end:j})}return h},createAutoLink:function(b,c){c=a.util.ensureUrlHasProtocol(c);var d=a.util.createLink(this.document,b,c,this.getEditorOption("targetBlank")?"_blank":null),e=this.document.createElement("span");for(e.setAttribute("data-auto-link","true"),e.setAttribute("data-href",c),d.insertBefore(e,d.firstChild);d.childNodes.length>1;)e.appendChild(d.childNodes[1])}});a.extensions.autoLink=g}(),function(){function b(b){var d=a.util.getContainerEditorElement(b),e=Array.prototype.slice.call(d.parentElement.querySelectorAll("."+c));e.forEach(function(a){a.classList.remove(c)})}var c="medium-editor-dragover",d=a.Extension.extend({name:"fileDragging",allowedTypes:["image"],init:function(){a.Extension.prototype.init.apply(this,arguments),this.subscribe("editableDrag",this.handleDrag.bind(this)),this.subscribe("editableDrop",this.handleDrop.bind(this))},handleDrag:function(a){a.preventDefault(),a.dataTransfer.dropEffect="copy";var d=a.target.classList?a.target:a.target.parentElement;b(d),"dragover"===a.type&&d.classList.add(c)},handleDrop:function(a){a.preventDefault(),a.stopPropagation(),a.dataTransfer.files&&Array.prototype.slice.call(a.dataTransfer.files).forEach(function(a){this.isAllowedFile(a)&&a.type.match("image")&&this.insertImageFile(a)},this),b(a.target)},isAllowedFile:function(a){return this.allowedTypes.some(function(b){return!!a.type.match(b)})},insertImageFile:function(b){var c=new FileReader;c.readAsDataURL(b);var d="medium-img-"+ +new Date;a.util.insertHTMLCommand(this.document,'<img class="medium-editor-image-loading" id="'+d+'" />'),c.onload=function(){var a=this.document.getElementById(d);a&&(a.removeAttribute("id"),a.removeAttribute("class"),a.src=c.result)}.bind(this)}});a.extensions.fileDragging=d}(),function(){var b=a.Extension.extend({name:"keyboard-commands",commands:[{command:"bold",key:"B",meta:!0,shift:!1,alt:!1},{command:"italic",key:"I",meta:!0,shift:!1,alt:!1},{command:"underline",key:"U",meta:!0,shift:!1,alt:!1}],init:function(){a.Extension.prototype.init.apply(this,arguments),this.subscribe("editableKeydown",this.handleKeydown.bind(this)),this.keys={},this.commands.forEach(function(a){var b=a.key.charCodeAt(0);this.keys[b]||(this.keys[b]=[]),this.keys[b].push(a)},this)},handleKeydown:function(b){var c=a.util.getKeyCode(b);if(this.keys[c]){var d=a.util.isMetaCtrlKey(b),e=!!b.shiftKey,f=!!b.altKey;this.keys[c].forEach(function(a){a.meta!==d||a.shift!==e||a.alt!==f&&void 0!==a.alt||(b.preventDefault(),b.stopPropagation(),!1!==a.command&&this.execAction(a.command))},this)}}});a.extensions.keyboardCommands=b}(),function(){var b=a.extensions.form.extend({name:"fontname",action:"fontName",aria:"change font name",contentDefault:"&#xB1;",contentFA:'<i class="fa fa-font"></i>',fonts:["","Arial","Verdana","Times New Roman"],init:function(){a.extensions.form.prototype.init.apply(this,arguments)},handleClick:function(a){if(a.preventDefault(),a.stopPropagation(),!this.isDisplayed()){var b=this.document.queryCommandValue("fontName")+"";this.showForm(b)}return!1},getForm:function(){return this.form||(this.form=this.createForm()),this.form},isDisplayed:function(){return"block"===this.getForm().style.display},hideForm:function(){this.getForm().style.display="none",this.getSelect().value=""},showForm:function(a){var b=this.getSelect();this.base.saveSelection(),this.hideToolbarDefaultActions(),this.getForm().style.display="block",this.setToolbarPosition(),b.value=a||"",b.focus()},destroy:function(){return this.form?(this.form.parentNode&&this.form.parentNode.removeChild(this.form),void delete this.form):!1},doFormSave:function(){this.base.restoreSelection(),this.base.checkSelection()},doFormCancel:function(){this.base.restoreSelection(),this.clearFontName(),this.base.checkSelection()},createForm:function(){var a,b=this.document,c=b.createElement("div"),d=b.createElement("select"),e=b.createElement("a"),f=b.createElement("a");c.className="medium-editor-toolbar-form",c.id="medium-editor-toolbar-form-fontname-"+this.getEditorId(),this.on(c,"click",this.handleFormClick.bind(this));for(var g=0;g<this.fonts.length;g++)a=b.createElement("option"),a.innerHTML=this.fonts[g],a.value=this.fonts[g],d.appendChild(a);return d.className="medium-editor-toolbar-select",c.appendChild(d),this.on(d,"change",this.handleFontChange.bind(this)),f.setAttribute("href","#"),f.className="medium-editor-toobar-save",f.innerHTML="fontawesome"===this.getEditorOption("buttonLabels")?'<i class="fa fa-check"></i>':"&#10003;",c.appendChild(f),this.on(f,"click",this.handleSaveClick.bind(this),!0),e.setAttribute("href","#"),e.className="medium-editor-toobar-close",e.innerHTML="fontawesome"===this.getEditorOption("buttonLabels")?'<i class="fa fa-times"></i>':"&times;",c.appendChild(e),this.on(e,"click",this.handleCloseClick.bind(this)),c},getSelect:function(){return this.getForm().querySelector("select.medium-editor-toolbar-select")},clearFontName:function(){a.selection.getSelectedElements(this.document).forEach(function(a){"font"===a.nodeName.toLowerCase()&&a.hasAttribute("face")&&a.removeAttribute("face")})},handleFontChange:function(){var a=this.getSelect().value;""===a?this.clearFontName():this.execAction("fontName",{name:a})},handleFormClick:function(a){a.stopPropagation()},handleSaveClick:function(a){a.preventDefault(),this.doFormSave()},handleCloseClick:function(a){a.preventDefault(),this.doFormCancel()}});a.extensions.fontName=b}(),function(){var b=a.extensions.form.extend({name:"fontsize",action:"fontSize",aria:"increase/decrease font size",contentDefault:"&#xB1;",contentFA:'<i class="fa fa-text-height"></i>',init:function(){a.extensions.form.prototype.init.apply(this,arguments)},handleClick:function(a){if(a.preventDefault(),a.stopPropagation(),!this.isDisplayed()){var b=this.document.queryCommandValue("fontSize")+"";this.showForm(b)}return!1},getForm:function(){return this.form||(this.form=this.createForm()),this.form},isDisplayed:function(){return"block"===this.getForm().style.display},hideForm:function(){this.getForm().style.display="none",this.getInput().value=""},showForm:function(a){var b=this.getInput();this.base.saveSelection(),this.hideToolbarDefaultActions(),this.getForm().style.display="block",this.setToolbarPosition(),b.value=a||"",b.focus()},destroy:function(){return this.form?(this.form.parentNode&&this.form.parentNode.removeChild(this.form),void delete this.form):!1},doFormSave:function(){this.base.restoreSelection(),this.base.checkSelection()},doFormCancel:function(){this.base.restoreSelection(),this.clearFontSize(),this.base.checkSelection()},createForm:function(){var a=this.document,b=a.createElement("div"),c=a.createElement("input"),d=a.createElement("a"),e=a.createElement("a");return b.className="medium-editor-toolbar-form",b.id="medium-editor-toolbar-form-fontsize-"+this.getEditorId(),this.on(b,"click",this.handleFormClick.bind(this)),c.setAttribute("type","range"),c.setAttribute("min","1"),c.setAttribute("max","7"),c.className="medium-editor-toolbar-input",b.appendChild(c),this.on(c,"change",this.handleSliderChange.bind(this)),e.setAttribute("href","#"),e.className="medium-editor-toobar-save",e.innerHTML="fontawesome"===this.getEditorOption("buttonLabels")?'<i class="fa fa-check"></i>':"&#10003;",b.appendChild(e),this.on(e,"click",this.handleSaveClick.bind(this),!0),d.setAttribute("href","#"),d.className="medium-editor-toobar-close",d.innerHTML="fontawesome"===this.getEditorOption("buttonLabels")?'<i class="fa fa-times"></i>':"&times;",b.appendChild(d),this.on(d,"click",this.handleCloseClick.bind(this)),b},getInput:function(){return this.getForm().querySelector("input.medium-editor-toolbar-input")},clearFontSize:function(){a.selection.getSelectedElements(this.document).forEach(function(a){"font"===a.nodeName.toLowerCase()&&a.hasAttribute("size")&&a.removeAttribute("size")})},handleSliderChange:function(){var a=this.getInput().value;"4"===a?this.clearFontSize():this.execAction("fontSize",{size:a})},handleFormClick:function(a){a.stopPropagation()},handleSaveClick:function(a){a.preventDefault(),this.doFormSave()},handleCloseClick:function(a){a.preventDefault(),this.doFormCancel()}});a.extensions.fontSize=b}(),function(){function b(){return[[new RegExp(/<[^>]*docs-internal-guid[^>]*>/gi),""],[new RegExp(/<\/b>(<br[^>]*>)?$/gi),""],[new RegExp(/<span class="Apple-converted-space">\s+<\/span>/g)," "],[new RegExp(/<br class="Apple-interchange-newline">/g),"<br>"],[new RegExp(/<span[^>]*(font-style:italic;font-weight:bold|font-weight:bold;font-style:italic)[^>]*>/gi),'<span class="replace-with italic bold">'],[new RegExp(/<span[^>]*font-style:italic[^>]*>/gi),'<span class="replace-with italic">'],[new RegExp(/<span[^>]*font-weight:bold[^>]*>/gi),'<span class="replace-with bold">'],[new RegExp(/&lt;(\/?)(i|b|a)&gt;/gi),"<$1$2>"],[new RegExp(/&lt;a(?:(?!href).)+href=(?:&quot;|&rdquo;|&ldquo;|"|“|”)(((?!&quot;|&rdquo;|&ldquo;|"|“|”).)*)(?:&quot;|&rdquo;|&ldquo;|"|“|”)(?:(?!&gt;).)*&gt;/gi),'<a href="$1">'],[new RegExp(/<\/p>\n+/gi),"</p>"],[new RegExp(/\n+<p/gi),"<p"],[new RegExp(/<\/?o:[a-z]*>/gi),""],["<!--EndFragment-->",""],["<!--StartFragment-->",""]]}var c=a.Extension.extend({forcePlainText:!0,cleanPastedHTML:!1,cleanReplacements:[],cleanAttrs:["class","style","dir"],cleanTags:["meta"],init:function(){a.Extension.prototype.init.apply(this,arguments),(this.forcePlainText||this.cleanPastedHTML)&&this.subscribe("editablePaste",this.handlePaste.bind(this))},handlePaste:function(b,c){var d,e,f,g,h="",i="text/html",j="text/plain";if(this.window.clipboardData&&void 0===b.clipboardData&&(b.clipboardData=this.window.clipboardData,i="Text",j="Text"),b.clipboardData&&b.clipboardData.getData&&!b.defaultPrevented){if(b.preventDefault(),f=b.clipboardData.getData(i),g=b.clipboardData.getData(j),this.cleanPastedHTML&&f)return this.cleanPaste(f);if(this.getEditorOption("disableReturn")||c.getAttribute("data-disable-return"))h=a.util.htmlEntities(g);else if(d=g.split(/[\r\n]+/g),d.length>1)for(e=0;e<d.length;e+=1)""!==d[e]&&(h+="<p>"+a.util.htmlEntities(d[e])+"</p>");else h=a.util.htmlEntities(d[0]);a.util.insertHTMLCommand(this.document,h)}},cleanPaste:function(a){var c,d,e,f,g=/<p|<br|<div/.test(a),h=b().concat(this.cleanReplacements||[]);for(c=0;c<h.length;c+=1)a=a.replace(h[c][0],h[c][1]);if(!g)return this.pasteHTML(a);for(e=this.document.createElement("div"),e.innerHTML="<p>"+a.split("<br><br>").join("</p><p>")+"</p>",d=e.querySelectorAll("a,p,div,br"),c=0;c<d.length;c+=1)switch(f=d[c],f.innerHTML=f.innerHTML.replace(/\n/gi," "),f.nodeName.toLowerCase()){case"p":case"div":this.filterCommonBlocks(f);break;case"br":this.filterLineBreak(f)}this.pasteHTML(e.innerHTML)},pasteHTML:function(b,c){c=a.util.defaults({},c,{cleanAttrs:this.cleanAttrs,cleanTags:this.cleanTags});var d,e,f,g,h=this.document.createDocumentFragment();for(h.appendChild(this.document.createElement("body")),g=h.querySelector("body"),g.innerHTML=b,this.cleanupSpans(g),d=g.querySelectorAll("*"),f=0;f<d.length;f+=1)e=d[f],"a"===e.nodeName.toLowerCase()&&this.getEditorOption("targetBlank")&&a.util.setTargetBlank(e),a.util.cleanupAttrs(e,c.cleanAttrs),a.util.cleanupTags(e,c.cleanTags);a.util.insertHTMLCommand(this.document,g.innerHTML.replace(/&nbsp;/g," "))},isCommonBlock:function(a){return a&&("p"===a.nodeName.toLowerCase()||"div"===a.nodeName.toLowerCase())},filterCommonBlocks:function(a){/^\s*$/.test(a.textContent)&&a.parentNode&&a.parentNode.removeChild(a)},filterLineBreak:function(a){this.isCommonBlock(a.previousElementSibling)?this.removeWithParent(a):!this.isCommonBlock(a.parentNode)||a.parentNode.firstChild!==a&&a.parentNode.lastChild!==a?a.parentNode&&1===a.parentNode.childElementCount&&""===a.parentNode.textContent&&this.removeWithParent(a):this.removeWithParent(a)},removeWithParent:function(a){a&&a.parentNode&&(a.parentNode.parentNode&&1===a.parentNode.childElementCount?a.parentNode.parentNode.removeChild(a.parentNode):a.parentNode.removeChild(a))},cleanupSpans:function(b){var c,d,e,f=b.querySelectorAll(".replace-with"),g=function(a){return a&&"#text"!==a.nodeName&&"false"===a.getAttribute("contenteditable")};for(c=0;c<f.length;c+=1)d=f[c],e=this.document.createElement(d.classList.contains("bold")?"b":"i"),d.classList.contains("bold")&&d.classList.contains("italic")?e.innerHTML="<i>"+d.innerHTML+"</i>":e.innerHTML=d.innerHTML,d.parentNode.replaceChild(e,d);for(f=b.querySelectorAll("span"),c=0;c<f.length;c+=1){if(d=f[c],a.util.traverseUp(d,g))return!1;a.util.unwrap(d,this.document)}}});a.extensions.paste=c}(),function(){var b=a.Extension.extend({name:"placeholder",text:"Type your text",hideOnClick:!0,init:function(){a.Extension.prototype.init.apply(this,arguments),
-this.initPlaceholders(),this.attachEventHandlers()},initPlaceholders:function(){this.getEditorElements().forEach(function(a){a.getAttribute("data-placeholder")||a.setAttribute("data-placeholder",this.text),this.updatePlaceholder(a)},this)},destroy:function(){this.getEditorElements().forEach(function(a){a.getAttribute("data-placeholder")===this.text&&a.removeAttribute("data-placeholder")},this)},showPlaceholder:function(a){a&&a.classList.add("medium-editor-placeholder")},hidePlaceholder:function(a){a&&a.classList.remove("medium-editor-placeholder")},updatePlaceholder:function(a,b){return a.querySelector("img, blockquote, ul, ol")||""!==a.textContent.replace(/^\s+|\s+$/g,"")?this.hidePlaceholder(a):void(b||this.showPlaceholder(a))},attachEventHandlers:function(){this.hideOnClick&&this.subscribe("focus",this.handleFocus.bind(this)),this.subscribe("editableInput",this.handleInput.bind(this)),this.subscribe("blur",this.handleBlur.bind(this))},handleInput:function(a,b){var c=this.hideOnClick&&b===this.base.getFocusedElement();this.updatePlaceholder(b,c)},handleFocus:function(a,b){this.hidePlaceholder(b)},handleBlur:function(a,b){this.updatePlaceholder(b)}});a.extensions.placeholder=b}(),function(){var b=a.Extension.extend({name:"toolbar",align:"center",allowMultiParagraphSelection:!0,buttons:["bold","italic","underline","anchor","h2","h3","quote"],diffLeft:0,diffTop:-10,firstButtonClass:"medium-editor-button-first",lastButtonClass:"medium-editor-button-last",standardizeSelectionStart:!1,"static":!1,sticky:!1,updateOnEmptySelection:!1,relativeContainer:null,init:function(){a.Extension.prototype.init.apply(this,arguments),this.initThrottledMethods(),this.relativeContainer?this.relativeContainer.appendChild(this.getToolbarElement()):this.getEditorOption("elementsContainer").appendChild(this.getToolbarElement())},forEachExtension:function(a,b){return this.base.extensions.forEach(function(c){return c!==this?a.apply(b||this,arguments):void 0},this)},createToolbar:function(){var a=this.document.createElement("div");return a.id="medium-editor-toolbar-"+this.getEditorId(),a.className="medium-editor-toolbar",this["static"]?a.className+=" static-toolbar":this.relativeContainer?a.className+=" medium-editor-relative-toolbar":a.className+=" medium-editor-stalker-toolbar",a.appendChild(this.createToolbarButtons()),this.forEachExtension(function(b){b.hasForm&&a.appendChild(b.getForm())}),this.attachEventHandlers(),a},createToolbarButtons:function(){var b,c,d,e,f,g,h=this.document.createElement("ul");return h.id="medium-editor-toolbar-actions"+this.getEditorId(),h.className="medium-editor-toolbar-actions",h.style.display="block",this.buttons.forEach(function(d){"string"==typeof d?(f=d,g=null):(f=d.name,g=d),e=this.base.addBuiltInExtension(f,g),e&&"function"==typeof e.getButton&&(c=e.getButton(this.base),b=this.document.createElement("li"),a.util.isElement(c)?b.appendChild(c):b.innerHTML=c,h.appendChild(b))},this),d=h.querySelectorAll("button"),d.length>0&&(d[0].classList.add(this.firstButtonClass),d[d.length-1].classList.add(this.lastButtonClass)),h},destroy:function(){this.toolbar&&(this.toolbar.parentNode&&this.toolbar.parentNode.removeChild(this.toolbar),delete this.toolbar)},getToolbarElement:function(){return this.toolbar||(this.toolbar=this.createToolbar()),this.toolbar},getToolbarActionsElement:function(){return this.getToolbarElement().querySelector(".medium-editor-toolbar-actions")},initThrottledMethods:function(){this.throttledPositionToolbar=a.util.throttle(function(){this.base.isActive&&this.positionToolbarIfShown()}.bind(this))},attachEventHandlers:function(){this.subscribe("blur",this.handleBlur.bind(this)),this.subscribe("focus",this.handleFocus.bind(this)),this.subscribe("editableClick",this.handleEditableClick.bind(this)),this.subscribe("editableKeyup",this.handleEditableKeyup.bind(this)),this.on(this.document.documentElement,"mouseup",this.handleDocumentMouseup.bind(this)),this["static"]&&this.sticky&&this.on(this.window,"scroll",this.handleWindowScroll.bind(this),!0),this.on(this.window,"resize",this.handleWindowResize.bind(this))},handleWindowScroll:function(){this.positionToolbarIfShown()},handleWindowResize:function(){this.throttledPositionToolbar()},handleDocumentMouseup:function(b){return b&&b.target&&a.util.isDescendant(this.getToolbarElement(),b.target)?!1:void this.checkState()},handleEditableClick:function(){setTimeout(function(){this.checkState()}.bind(this),0)},handleEditableKeyup:function(){this.checkState()},handleBlur:function(){clearTimeout(this.hideTimeout),clearTimeout(this.delayShowTimeout),this.hideTimeout=setTimeout(function(){this.hideToolbar()}.bind(this),1)},handleFocus:function(){this.checkState()},isDisplayed:function(){return this.getToolbarElement().classList.contains("medium-editor-toolbar-active")},showToolbar:function(){clearTimeout(this.hideTimeout),this.isDisplayed()||(this.getToolbarElement().classList.add("medium-editor-toolbar-active"),this.trigger("showToolbar",{},this.base.getFocusedElement()))},hideToolbar:function(){this.isDisplayed()&&(this.getToolbarElement().classList.remove("medium-editor-toolbar-active"),this.trigger("hideToolbar",{},this.base.getFocusedElement()))},isToolbarDefaultActionsDisplayed:function(){return"block"===this.getToolbarActionsElement().style.display},hideToolbarDefaultActions:function(){this.isToolbarDefaultActionsDisplayed()&&(this.getToolbarActionsElement().style.display="none")},showToolbarDefaultActions:function(){this.hideExtensionForms(),this.isToolbarDefaultActionsDisplayed()||(this.getToolbarActionsElement().style.display="block"),this.delayShowTimeout=this.base.delay(function(){this.showToolbar()}.bind(this))},hideExtensionForms:function(){this.forEachExtension(function(a){a.hasForm&&a.isDisplayed()&&a.hideForm()})},multipleBlockElementsSelected:function(){var b=/<[^\/>][^>]*><\/[^>]+>/gim,c=new RegExp("<("+a.util.blockContainerElementNames.join("|")+")[^>]*>","g"),d=a.selection.getSelectionHtml(this.document).replace(b,""),e=d.match(c);return!!e&&e.length>1},modifySelection:function(){var b=this.window.getSelection(),c=b.getRangeAt(0);if(this.standardizeSelectionStart&&c.startContainer.nodeValue&&c.startOffset===c.startContainer.nodeValue.length){var d=a.util.findAdjacentTextNodeWithContent(a.selection.getSelectionElement(this.window),c.startContainer,this.document);if(d){for(var e=0;0===d.nodeValue.substr(e,1).trim().length;)e+=1;c=a.selection.select(this.document,d,e,c.endContainer,c.endOffset)}}},checkState:function(){if(!this.base.preventSelectionUpdates){if(!this.base.getFocusedElement()||a.selection.selectionInContentEditableFalse(this.window))return this.hideToolbar();var b=a.selection.getSelectionElement(this.window);return!b||-1===this.getEditorElements().indexOf(b)||b.getAttribute("data-disable-toolbar")?this.hideToolbar():this.updateOnEmptySelection&&this["static"]?this.showAndUpdateToolbar():!a.selection.selectionContainsContent(this.document)||this.allowMultiParagraphSelection===!1&&this.multipleBlockElementsSelected()?this.hideToolbar():void this.showAndUpdateToolbar()}},showAndUpdateToolbar:function(){this.modifySelection(),this.setToolbarButtonStates(),this.trigger("positionToolbar",{},this.base.getFocusedElement()),this.showToolbarDefaultActions(),this.setToolbarPosition()},setToolbarButtonStates:function(){this.forEachExtension(function(a){"function"==typeof a.isActive&&"function"==typeof a.setInactive&&a.setInactive()}),this.checkActiveButtons()},checkActiveButtons:function(){var b,c=[],d=null,e=a.selection.getSelectionRange(this.document),f=function(a){"function"==typeof a.checkState?a.checkState(b):"function"==typeof a.isActive&&"function"==typeof a.isAlreadyApplied&&"function"==typeof a.setActive&&!a.isActive()&&a.isAlreadyApplied(b)&&a.setActive()};if(e&&(this.forEachExtension(function(a){return"function"==typeof a.queryCommandState&&(d=a.queryCommandState(),null!==d)?void(d&&"function"==typeof a.setActive&&a.setActive()):void c.push(a)}),b=a.selection.getSelectedParentElement(e),this.getEditorElements().some(function(c){return a.util.isDescendant(c,b,!0)})))for(;b&&(c.forEach(f),!a.util.isMediumEditorElement(b));)b=b.parentNode},positionToolbarIfShown:function(){this.isDisplayed()&&this.setToolbarPosition()},setToolbarPosition:function(){var a,b=this.base.getFocusedElement(),c=this.window.getSelection();return b?(this["static"]&&!this.relativeContainer?(this.showToolbar(),this.positionStaticToolbar(b)):c.isCollapsed||(this.showToolbar(),this.relativeContainer||this.positionToolbar(c)),a=this.base.getExtensionByName("anchor-preview"),void(a&&"function"==typeof a.hidePreview&&a.hidePreview())):this},positionStaticToolbar:function(a){this.getToolbarElement().style.left="0";var b,c=this.document.documentElement&&this.document.documentElement.scrollTop||this.document.body.scrollTop,d=this.window.innerWidth,e=this.getToolbarElement(),f=a.getBoundingClientRect(),g=f.top+c,h=f.left+f.width/2,i=e.offsetHeight,j=e.offsetWidth,k=j/2;switch(this.sticky?c>g+a.offsetHeight-i?(e.style.top=g+a.offsetHeight-i+"px",e.classList.remove("medium-editor-sticky-toolbar")):c>g-i?(e.classList.add("medium-editor-sticky-toolbar"),e.style.top="0px"):(e.classList.remove("medium-editor-sticky-toolbar"),e.style.top=g-i+"px"):e.style.top=g-i+"px",this.align){case"left":b=f.left;break;case"right":b=f.right-j;break;case"center":b=h-k}0>b?b=0:b+j>d&&(b=d-Math.ceil(j)-1),e.style.left=b+"px"},positionToolbar:function(a){this.getToolbarElement().style.left="0";var b=a.getRangeAt(0),c=b.getBoundingClientRect();(!c||0===c.height&&0===c.width&&b.startContainer===b.endContainer)&&(c=1===b.startContainer.nodeType&&b.startContainer.querySelector("img")?b.startContainer.querySelector("img").getBoundingClientRect():b.startContainer.getBoundingClientRect());var d=this.window.innerWidth,e=(c.left+c.right)/2,f=this.getToolbarElement(),g=f.offsetHeight,h=f.offsetWidth,i=h/2,j=50,k=this.diffLeft-i;c.top<j?(f.classList.add("medium-toolbar-arrow-over"),f.classList.remove("medium-toolbar-arrow-under"),f.style.top=j+c.bottom-this.diffTop+this.window.pageYOffset-g+"px"):(f.classList.add("medium-toolbar-arrow-under"),f.classList.remove("medium-toolbar-arrow-over"),f.style.top=c.top+this.diffTop+this.window.pageYOffset-g+"px"),i>e?f.style.left=k+i+"px":i>d-e?f.style.left=d+k-i+"px":f.style.left=k+e+"px"}});a.extensions.toolbar=b}(),function(){var b=a.Extension.extend({init:function(){a.Extension.prototype.init.apply(this,arguments),this.subscribe("editableDrag",this.handleDrag.bind(this)),this.subscribe("editableDrop",this.handleDrop.bind(this))},handleDrag:function(a){var b="medium-editor-dragover";a.preventDefault(),a.dataTransfer.dropEffect="copy","dragover"===a.type?a.target.classList.add(b):"dragleave"===a.type&&a.target.classList.remove(b)},handleDrop:function(b){var c,d="medium-editor-dragover";b.preventDefault(),b.stopPropagation(),b.dataTransfer.files&&(c=Array.prototype.slice.call(b.dataTransfer.files,0),c.some(function(b){if(b.type.match("image")){var c,d;c=new FileReader,c.readAsDataURL(b),d="medium-img-"+ +new Date,a.util.insertHTMLCommand(this.document,'<img class="medium-editor-image-loading" id="'+d+'" />'),c.onload=function(){var a=this.document.getElementById(d);a&&(a.removeAttribute("id"),a.removeAttribute("class"),a.src=c.result)}.bind(this)}}.bind(this))),b.target.classList.remove(d)}});a.extensions.imageDragging=b}(),function(){function b(b){var c=a.selection.getSelectionStart(this.options.ownerDocument),d=c.textContent,e=a.selection.getCaretOffsets(c);(void 0===d[e.left-1]||""===d[e.left-1].trim())&&b.preventDefault()}function c(b,c){if(this.options.disableReturn||c.getAttribute("data-disable-return"))b.preventDefault();else if(this.options.disableDoubleReturn||c.getAttribute("data-disable-double-return")){var d=a.selection.getSelectionStart(this.options.ownerDocument);(d&&""===d.textContent.trim()&&"li"!==d.nodeName.toLowerCase()||d.previousElementSibling&&"br"!==d.previousElementSibling.nodeName.toLowerCase()&&""===d.previousElementSibling.textContent.trim())&&b.preventDefault()}}function d(b){var c=a.selection.getSelectionStart(this.options.ownerDocument),d=c&&c.nodeName.toLowerCase();"pre"===d&&(b.preventDefault(),a.util.insertHTMLCommand(this.options.ownerDocument,"    ")),a.util.isListItem(c)&&(b.preventDefault(),b.shiftKey?this.options.ownerDocument.execCommand("outdent",!1,null):this.options.ownerDocument.execCommand("indent",!1,null))}function e(b){var c,d=a.selection.getSelectionStart(this.options.ownerDocument),e=d.nodeName.toLowerCase(),f=/^(\s+|<br\/?>)?$/i,g=/h\d/i;a.util.isKey(b,[a.util.keyCode.BACKSPACE,a.util.keyCode.ENTER])&&d.previousElementSibling&&g.test(e)&&0===a.selection.getCaretOffsets(d).left?a.util.isKey(b,a.util.keyCode.BACKSPACE)&&f.test(d.previousElementSibling.innerHTML)?(d.previousElementSibling.parentNode.removeChild(d.previousElementSibling),b.preventDefault()):a.util.isKey(b,a.util.keyCode.ENTER)&&(c=this.options.ownerDocument.createElement("p"),c.innerHTML="<br>",d.previousElementSibling.parentNode.insertBefore(c,d),b.preventDefault()):a.util.isKey(b,a.util.keyCode.DELETE)&&d.nextElementSibling&&d.previousElementSibling&&!g.test(e)&&f.test(d.innerHTML)&&g.test(d.nextElementSibling.nodeName.toLowerCase())?(a.selection.moveCursor(this.options.ownerDocument,d.nextElementSibling),d.previousElementSibling.parentNode.removeChild(d),b.preventDefault()):a.util.isKey(b,a.util.keyCode.BACKSPACE)&&"li"===e&&f.test(d.innerHTML)&&!d.previousElementSibling&&!d.parentElement.previousElementSibling&&d.nextElementSibling&&"li"===d.nextElementSibling.nodeName.toLowerCase()?(c=this.options.ownerDocument.createElement("p"),c.innerHTML="<br>",d.parentElement.parentElement.insertBefore(c,d.parentElement),a.selection.moveCursor(this.options.ownerDocument,c),d.parentElement.removeChild(d),b.preventDefault()):a.util.isKey(b,a.util.keyCode.BACKSPACE)&&a.util.getClosestTag(d,"blockquote")!==!1&&0===a.selection.getCaretOffsets(d).left&&(b.preventDefault(),a.util.execFormatBlock(this.options.ownerDocument,"p"))}function f(b){var c,d=a.selection.getSelectionStart(this.options.ownerDocument);d&&(a.util.isMediumEditorElement(d)&&0===d.children.length&&this.options.ownerDocument.execCommand("formatBlock",!1,"p"),a.util.isKey(b,a.util.keyCode.ENTER)&&!a.util.isListItem(d)&&(c=d.nodeName.toLowerCase(),"a"===c?this.options.ownerDocument.execCommand("unlink",!1,null):b.shiftKey||b.ctrlKey||/h\d/.test(c)||this.options.ownerDocument.execCommand("formatBlock",!1,"p")))}function g(a){a._mediumEditors||(a._mediumEditors=[null]),this.id||(this.id=a._mediumEditors.length),a._mediumEditors[this.id]=this}function h(a){a._mediumEditors&&a._mediumEditors[this.id]&&(a._mediumEditors[this.id]=null)}function i(b){b||(b=[]),"string"==typeof b&&(b=this.options.ownerDocument.querySelectorAll(b)),a.util.isElement(b)&&(b=[b]);var c=Array.prototype.slice.apply(b);this.elements=[],c.forEach(function(a,b){"textarea"===a.nodeName.toLowerCase()?this.elements.push(s.call(this,a,b)):this.elements.push(a)},this)}function j(a,b){return Object.keys(b).forEach(function(c){void 0===a[c]&&(a[c]=b[c])}),a}function k(a,b,c){var d={window:c.options.contentWindow,document:c.options.ownerDocument,base:c};return a=j(a,d),"function"==typeof a.init&&a.init(),a.name||(a.name=b),a}function l(){return this.elements.every(function(a){return!!a.getAttribute("data-disable-toolbar")})?!1:this.options.toolbar!==!1}function m(){return l.call(this)?this.options.anchorPreview!==!1:!1}function n(){return this.options.placeholder!==!1}function o(){return this.options.autoLink!==!1}function p(){return this.options.imageDragging!==!1}function q(){return this.options.keyboardCommands!==!1}function r(){return!this.options.extensions.imageDragging}function s(a,b){for(var c=this.options.ownerDocument.createElement("div"),d=Date.now(),e="medium-editor-"+d+"-"+b,f=a.attributes;this.options.ownerDocument.getElementById(e);)d++,e="medium-editor-"+d+"-"+b;c.className=a.className,c.id=e,c.innerHTML=a.value,a.setAttribute("medium-editor-textarea-id",e);for(var g=0,h=f.length;h>g;g++)c.hasAttribute(f[g].nodeName)||c.setAttribute(f[g].nodeName,f[g].nodeValue);return a.classList.add("medium-editor-hidden"),a.parentNode.insertBefore(c,a),c}function t(){var a=!1;this.elements.forEach(function(b,c){this.options.disableEditing||b.getAttribute("data-disable-editing")||(b.setAttribute("contentEditable",!0),b.setAttribute("spellcheck",this.options.spellcheck)),b.setAttribute("data-medium-editor-element",!0),b.setAttribute("role","textbox"),b.setAttribute("aria-multiline",!0),b.setAttribute("medium-editor-index",c),b.hasAttribute("medium-editor-textarea-id")&&(a=!0)},this),a&&this.subscribe("editableInput",function(a,b){var c=b.parentNode.querySelector('textarea[medium-editor-textarea-id="'+b.getAttribute("medium-editor-textarea-id")+'"]');c&&(c.value=this.serialize()[b.id].value)}.bind(this))}function u(){var a;if(this.subscribe("editableKeydownTab",d.bind(this)),this.subscribe("editableKeydownDelete",e.bind(this)),this.subscribe("editableKeydownEnter",e.bind(this)),this.options.disableExtraSpaces&&this.subscribe("editableKeydownSpace",b.bind(this)),this.options.disableReturn||this.options.disableDoubleReturn)this.subscribe("editableKeydownEnter",c.bind(this));else for(a=0;a<this.elements.length;a+=1)if(this.elements[a].getAttribute("data-disable-return")||this.elements[a].getAttribute("data-disable-double-return")){this.subscribe("editableKeydownEnter",c.bind(this));break}this.options.disableReturn||this.elements.forEach(function(a){a.getAttribute("data-disable-return")||this.on(a,"keyup",f.bind(this))},this)}function v(){if(this.extensions=[],Object.keys(this.options.extensions).forEach(function(a){"toolbar"!==a&&this.options.extensions[a]&&this.extensions.push(k(this.options.extensions[a],a,this))},this),r.call(this)){var b=this.options.fileDragging;b||(b={},p.call(this)||(b.allowedTypes=[])),this.addBuiltInExtension("fileDragging",b)}var c={paste:!0,"anchor-preview":m.call(this),autoLink:o.call(this),keyboardCommands:q.call(this),placeholder:n.call(this)};Object.keys(c).forEach(function(a){c[a]&&this.addBuiltInExtension(a)},this);var d=this.options.extensions.toolbar;if(!d&&l.call(this)){var e=a.util.extend({},this.options.toolbar,{allowMultiParagraphSelection:this.options.allowMultiParagraphSelection});d=new a.extensions.toolbar(e)}d&&this.extensions.push(k(d,"toolbar",this))}function w(b,c){var d=[["allowMultiParagraphSelection","toolbar.allowMultiParagraphSelection"]];return c&&d.forEach(function(b){c.hasOwnProperty(b[0])&&void 0!==c[b[0]]&&a.util.deprecated(b[0],b[1],"v6.0.0")}),a.util.defaults({},c,b)}function x(b,c){var d,e=/^append-(.+)$/gi,f=/justify([A-Za-z]*)$/g;if(d=e.exec(b))return a.util.execFormatBlock(this.options.ownerDocument,d[1]);if("fontSize"===b)return this.options.ownerDocument.execCommand("fontSize",!1,c.size);if("fontName"===b)return this.options.ownerDocument.execCommand("fontName",!1,c.name);if("createLink"===b)return this.createLink(c);if("image"===b){var g=this.options.contentWindow.getSelection().toString().trim();return this.options.ownerDocument.execCommand("insertImage",!1,g)}if(f.exec(b)){var h=this.options.ownerDocument.execCommand(b,!1,null),i=a.selection.getSelectedParentElement(a.selection.getSelectionRange(this.options.ownerDocument));return i&&y.call(this,a.util.getTopBlockContainer(i)),h}return this.options.ownerDocument.execCommand(b,!1,null)}function y(b){if(b){var c,d=Array.prototype.slice.call(b.childNodes).filter(function(a){var b="div"===a.nodeName.toLowerCase();return b&&!c&&(c=a.style.textAlign),b});d.length&&(this.saveSelection(),d.forEach(function(b){if(b.style.textAlign===c){var d=b.lastChild;if(d){a.util.unwrap(b,this.options.ownerDocument);var e=this.options.ownerDocument.createElement("BR");d.parentNode.insertBefore(e,d.nextSibling)}}},this),b.style.textAlign=c,this.restoreSelection())}}a.prototype={init:function(a,b){return this.options=w.call(this,this.defaults,b),this.origElements=a,this.options.elementsContainer||(this.options.elementsContainer=this.options.ownerDocument.body),this.setup()},setup:function(){this.isActive||(i.call(this,this.origElements),0!==this.elements.length&&(this.isActive=!0,g.call(this,this.options.contentWindow),this.events=new a.Events(this),t.call(this),v.call(this),u.call(this)))},destroy:function(){this.isActive&&(this.isActive=!1,this.extensions.forEach(function(a){"function"==typeof a.destroy&&a.destroy()},this),this.events.destroy(),this.elements.forEach(function(a){if(this.options.spellcheck&&(a.innerHTML=a.innerHTML),a.removeAttribute("contentEditable"),a.removeAttribute("spellcheck"),a.removeAttribute("data-medium-editor-element"),a.removeAttribute("role"),a.removeAttribute("aria-multiline"),a.removeAttribute("medium-editor-index"),a.hasAttribute("medium-editor-textarea-id")){var b=a.parentNode.querySelector('textarea[medium-editor-textarea-id="'+a.getAttribute("medium-editor-textarea-id")+'"]');b&&b.classList.remove("medium-editor-hidden"),a.parentNode&&a.parentNode.removeChild(a)}},this),this.elements=[],h.call(this,this.options.contentWindow))},on:function(a,b,c,d){this.events.attachDOMEvent(a,b,c,d)},off:function(a,b,c,d){this.events.detachDOMEvent(a,b,c,d)},subscribe:function(a,b){this.events.attachCustomEvent(a,b)},unsubscribe:function(a,b){this.events.detachCustomEvent(a,b)},trigger:function(a,b,c){this.events.triggerCustomEvent(a,b,c)},delay:function(a){var b=this;return setTimeout(function(){b.isActive&&a()},this.options.delay)},serialize:function(){var a,b,c={};for(a=0;a<this.elements.length;a+=1)b=""!==this.elements[a].id?this.elements[a].id:"element-"+a,c[b]={value:this.elements[a].innerHTML.trim()};return c},getExtensionByName:function(a){var b;return this.extensions&&this.extensions.length&&this.extensions.some(function(c){return c.name===a?(b=c,!0):!1}),b},addBuiltInExtension:function(b,c){var d,e=this.getExtensionByName(b);if(e)return e;switch(b){case"anchor":d=a.util.extend({},this.options.anchor,c),e=new a.extensions.anchor(d);break;case"anchor-preview":e=new a.extensions.anchorPreview(this.options.anchorPreview);break;case"autoLink":e=new a.extensions.autoLink;break;case"fileDragging":e=new a.extensions.fileDragging(c);break;case"fontname":e=new a.extensions.fontName(this.options.fontName);break;case"fontsize":e=new a.extensions.fontSize(c);break;case"keyboardCommands":e=new a.extensions.keyboardCommands(this.options.keyboardCommands);break;case"paste":e=new a.extensions.paste(this.options.paste);break;case"placeholder":e=new a.extensions.placeholder(this.options.placeholder);break;default:a.extensions.button.isBuiltInButton(b)&&(c?(d=a.util.defaults({},c,a.extensions.button.prototype.defaults[b]),e=new a.extensions.button(d)):e=new a.extensions.button(b))}return e&&this.extensions.push(k(e,b,this)),e},stopSelectionUpdates:function(){this.preventSelectionUpdates=!0},startSelectionUpdates:function(){this.preventSelectionUpdates=!1},checkSelection:function(){var a=this.getExtensionByName("toolbar");return a&&a.checkState(),this},queryCommandState:function(a){var b,c=/^full-(.+)$/gi,d=null;b=c.exec(a),b&&(a=b[1]);try{d=this.options.ownerDocument.queryCommandState(a)}catch(e){d=null}return d},execAction:function(b,c){var d,e,f=/^full-(.+)$/gi;return d=f.exec(b),d?(this.saveSelection(),this.selectAllContents(),e=x.call(this,d[1],c),this.restoreSelection()):e=x.call(this,b,c),("insertunorderedlist"===b||"insertorderedlist"===b)&&a.util.cleanListDOM(this.options.ownerDocument,this.getSelectedParentElement()),this.checkSelection(),e},getSelectedParentElement:function(b){return void 0===b&&(b=this.options.contentWindow.getSelection().getRangeAt(0)),a.selection.getSelectedParentElement(b)},selectAllContents:function(){var b=a.selection.getSelectionElement(this.options.contentWindow);if(b){for(;1===b.children.length;)b=b.children[0];this.selectElement(b)}},selectElement:function(b){a.selection.selectNode(b,this.options.ownerDocument);var c=a.selection.getSelectionElement(this.options.contentWindow);c&&this.events.focusElement(c)},getFocusedElement:function(){var a;return this.elements.some(function(b){return!a&&b.getAttribute("data-medium-focused")&&(a=b),!!a},this),a},exportSelection:function(){var b=a.selection.getSelectionElement(this.options.contentWindow),c=this.elements.indexOf(b),d=null;return c>=0&&(d=a.selection.exportSelection(b,this.options.ownerDocument)),null!==d&&0!==c&&(d.editableElementIndex=c),d},saveSelection:function(){this.selectionState=this.exportSelection()},importSelection:function(b,c){if(b){var d=this.elements[b.editableElementIndex||0];a.selection.importSelection(b,d,this.options.ownerDocument,c)}},restoreSelection:function(){this.importSelection(this.selectionState)},createLink:function(b){var c=a.selection.getSelectionElement(this.options.contentWindow),d={};if(-1!==this.elements.indexOf(c)){try{if(this.events.disableCustomEvent("editableInput"),b.url&&b.url.trim().length>0){var e=this.options.contentWindow.getSelection();if(e){var f,g,h,i,j=e.getRangeAt(0),k=j.commonAncestorContainer;if(3===j.endContainer.nodeType&&3!==j.startContainer.nodeType&&0===j.startOffset&&j.startContainer.firstChild===j.endContainer&&(k=j.endContainer),g=a.util.getClosestBlockContainer(j.startContainer),h=a.util.getClosestBlockContainer(j.endContainer),3!==k.nodeType&&0!==k.textContent.length&&g===h){var l=g||c,m=this.options.ownerDocument.createDocumentFragment();this.execAction("unlink"),f=this.exportSelection(),m.appendChild(l.cloneNode(!0)),c===l?a.selection.select(this.options.ownerDocument,l.firstChild,0,l.lastChild,3===l.lastChild.nodeType?l.lastChild.nodeValue.length:l.lastChild.childNodes.length):a.selection.select(this.options.ownerDocument,l,0,l,l.childNodes.length);var n=this.exportSelection();i=a.util.findOrCreateMatchingTextNodes(this.options.ownerDocument,m,{start:f.start-n.start,end:f.end-n.start,editableElementIndex:f.editableElementIndex}),0===i.length&&(m=this.options.ownerDocument.createDocumentFragment(),m.appendChild(k.cloneNode(!0)),i=[m.firstChild.firstChild,m.firstChild.lastChild]),a.util.createLink(this.options.ownerDocument,i,b.url.trim());var o=(m.firstChild.innerHTML.match(/^\s+/)||[""])[0].length;a.util.insertHTMLCommand(this.options.ownerDocument,m.firstChild.innerHTML.replace(/^\s+/,"")),f.start-=o,f.end-=o,this.importSelection(f)}else this.options.ownerDocument.execCommand("createLink",!1,b.url);(this.options.targetBlank||"_blank"===b.target)&&a.util.setTargetBlank(a.selection.getSelectionStart(this.options.ownerDocument),b.url),b.buttonClass&&a.util.addClassToAnchors(a.selection.getSelectionStart(this.options.ownerDocument),b.buttonClass)}}if(this.options.targetBlank||"_blank"===b.target||b.buttonClass){d=this.options.ownerDocument.createEvent("HTMLEvents"),d.initEvent("input",!0,!0,this.options.contentWindow);for(var p=0;p<this.elements.length;p+=1)this.elements[p].dispatchEvent(d)}}finally{this.events.enableCustomEvent("editableInput")}this.events.triggerCustomEvent("editableInput",d,c)}},cleanPaste:function(a){this.getExtensionByName("paste").cleanPaste(a)},pasteHTML:function(a,b){this.getExtensionByName("paste").pasteHTML(a,b)},setContent:function(a,b){if(b=b||0,this.elements[b]){var c=this.elements[b];c.innerHTML=a,this.events.updateInput(c,{target:c,currentTarget:c})}}}}(),function(){a.prototype.defaults={activeButtonClass:"medium-editor-button-active",buttonLabels:!1,delay:0,disableReturn:!1,disableDoubleReturn:!1,disableExtraSpaces:!1,disableEditing:!1,autoLink:!1,elementsContainer:!1,contentWindow:window,ownerDocument:document,targetBlank:!1,extensions:{},spellcheck:!0}}(),a.parseVersionString=function(a){var b=a.split("-"),c=b[0].split("."),d=b.length>1?b[1]:"";return{major:parseInt(c[0],10),minor:parseInt(c[1],10),revision:parseInt(c[2],10),preRelease:d,toString:function(){return[c[0],c[1],c[2]].join(".")+(d?"-"+d:"")}}},a.version=a.parseVersionString.call(this,{version:"5.12.0"}.version),a}());
-/*!
-
- handlebars v4.0.5
-
-Copyright (C) 2011-2015 by Yehuda Katz
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-
-@license
-*/
-!function(a,b){"object"==typeof exports&&"object"==typeof module?module.exports=b():"function"==typeof define&&define.amd?define([],b):"object"==typeof exports?exports.Handlebars=b():a.Handlebars=b()}(this,function(){return function(a){function b(d){if(c[d])return c[d].exports;var e=c[d]={exports:{},id:d,loaded:!1};return a[d].call(e.exports,e,e.exports,b),e.loaded=!0,e.exports}var c={};return b.m=a,b.c=c,b.p="",b(0)}([function(a,b,c){"use strict";function d(){var a=new h.HandlebarsEnvironment;return n.extend(a,h),a.SafeString=j["default"],a.Exception=l["default"],a.Utils=n,a.escapeExpression=n.escapeExpression,a.VM=p,a.template=function(b){return p.template(b,a)},a}var e=c(1)["default"],f=c(2)["default"];b.__esModule=!0;var g=c(3),h=e(g),i=c(17),j=f(i),k=c(5),l=f(k),m=c(4),n=e(m),o=c(18),p=e(o),q=c(19),r=f(q),s=d();s.create=d,r["default"](s),s["default"]=s,b["default"]=s,a.exports=b["default"]},function(a,b){"use strict";b["default"]=function(a){if(a&&a.__esModule)return a;var b={};if(null!=a)for(var c in a)Object.prototype.hasOwnProperty.call(a,c)&&(b[c]=a[c]);return b["default"]=a,b},b.__esModule=!0},function(a,b){"use strict";b["default"]=function(a){return a&&a.__esModule?a:{"default":a}},b.__esModule=!0},function(a,b,c){"use strict";function d(a,b,c){this.helpers=a||{},this.partials=b||{},this.decorators=c||{},i.registerDefaultHelpers(this),j.registerDefaultDecorators(this)}var e=c(2)["default"];b.__esModule=!0,b.HandlebarsEnvironment=d;var f=c(4),g=c(5),h=e(g),i=c(6),j=c(14),k=c(16),l=e(k),m="4.0.5";b.VERSION=m;var n=7;b.COMPILER_REVISION=n;var o={1:"<= 1.0.rc.2",2:"== 1.0.0-rc.3",3:"== 1.0.0-rc.4",4:"== 1.x.x",5:"== 2.0.0-alpha.x",6:">= 2.0.0-beta.1",7:">= 4.0.0"};b.REVISION_CHANGES=o;var p="[object Object]";d.prototype={constructor:d,logger:l["default"],log:l["default"].log,registerHelper:function(a,b){if(f.toString.call(a)===p){if(b)throw new h["default"]("Arg not supported with multiple helpers");f.extend(this.helpers,a)}else this.helpers[a]=b},unregisterHelper:function(a){delete this.helpers[a]},registerPartial:function(a,b){if(f.toString.call(a)===p)f.extend(this.partials,a);else{if("undefined"==typeof b)throw new h["default"]('Attempting to register a partial called "'+a+'" as undefined');this.partials[a]=b}},unregisterPartial:function(a){delete this.partials[a]},registerDecorator:function(a,b){if(f.toString.call(a)===p){if(b)throw new h["default"]("Arg not supported with multiple decorators");f.extend(this.decorators,a)}else this.decorators[a]=b},unregisterDecorator:function(a){delete this.decorators[a]}};var q=l["default"].log;b.log=q,b.createFrame=f.createFrame,b.logger=l["default"]},function(a,b){"use strict";function c(a){return k[a]}function d(a){for(var b=1;b<arguments.length;b++)for(var c in arguments[b])Object.prototype.hasOwnProperty.call(arguments[b],c)&&(a[c]=arguments[b][c]);return a}function e(a,b){for(var c=0,d=a.length;d>c;c++)if(a[c]===b)return c;return-1}function f(a){if("string"!=typeof a){if(a&&a.toHTML)return a.toHTML();if(null==a)return"";if(!a)return a+"";a=""+a}return m.test(a)?a.replace(l,c):a}function g(a){return a||0===a?p(a)&&0===a.length?!0:!1:!0}function h(a){var b=d({},a);return b._parent=a,b}function i(a,b){return a.path=b,a}function j(a,b){return(a?a+".":"")+b}b.__esModule=!0,b.extend=d,b.indexOf=e,b.escapeExpression=f,b.isEmpty=g,b.createFrame=h,b.blockParams=i,b.appendContextPath=j;var k={"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#x27;","`":"&#x60;","=":"&#x3D;"},l=/[&<>"'`=]/g,m=/[&<>"'`=]/,n=Object.prototype.toString;b.toString=n;var o=function(a){return"function"==typeof a};o(/x/)&&(b.isFunction=o=function(a){return"function"==typeof a&&"[object Function]"===n.call(a)}),b.isFunction=o;var p=Array.isArray||function(a){return a&&"object"==typeof a?"[object Array]"===n.call(a):!1};b.isArray=p},function(a,b){"use strict";function c(a,b){var e=b&&b.loc,f=void 0,g=void 0;e&&(f=e.start.line,g=e.start.column,a+=" - "+f+":"+g);for(var h=Error.prototype.constructor.call(this,a),i=0;i<d.length;i++)this[d[i]]=h[d[i]];Error.captureStackTrace&&Error.captureStackTrace(this,c),e&&(this.lineNumber=f,this.column=g)}b.__esModule=!0;var d=["description","fileName","lineNumber","message","name","number","stack"];c.prototype=new Error,b["default"]=c,a.exports=b["default"]},function(a,b,c){"use strict";function d(a){g["default"](a),i["default"](a),k["default"](a),m["default"](a),o["default"](a),q["default"](a),s["default"](a)}var e=c(2)["default"];b.__esModule=!0,b.registerDefaultHelpers=d;var f=c(7),g=e(f),h=c(8),i=e(h),j=c(9),k=e(j),l=c(10),m=e(l),n=c(11),o=e(n),p=c(12),q=e(p),r=c(13),s=e(r)},function(a,b,c){"use strict";b.__esModule=!0;var d=c(4);b["default"]=function(a){a.registerHelper("blockHelperMissing",function(b,c){var e=c.inverse,f=c.fn;if(b===!0)return f(this);if(b===!1||null==b)return e(this);if(d.isArray(b))return b.length>0?(c.ids&&(c.ids=[c.name]),a.helpers.each(b,c)):e(this);if(c.data&&c.ids){var g=d.createFrame(c.data);g.contextPath=d.appendContextPath(c.data.contextPath,c.name),c={data:g}}return f(b,c)})},a.exports=b["default"]},function(a,b,c){"use strict";var d=c(2)["default"];b.__esModule=!0;var e=c(4),f=c(5),g=d(f);b["default"]=function(a){a.registerHelper("each",function(a,b){function c(b,c,f){j&&(j.key=b,j.index=c,j.first=0===c,j.last=!!f,k&&(j.contextPath=k+b)),i+=d(a[b],{data:j,blockParams:e.blockParams([a[b],b],[k+b,null])})}if(!b)throw new g["default"]("Must pass iterator to #each");var d=b.fn,f=b.inverse,h=0,i="",j=void 0,k=void 0;if(b.data&&b.ids&&(k=e.appendContextPath(b.data.contextPath,b.ids[0])+"."),e.isFunction(a)&&(a=a.call(this)),b.data&&(j=e.createFrame(b.data)),a&&"object"==typeof a)if(e.isArray(a))for(var l=a.length;l>h;h++)h in a&&c(h,h,h===a.length-1);else{var m=void 0;for(var n in a)a.hasOwnProperty(n)&&(void 0!==m&&c(m,h-1),m=n,h++);void 0!==m&&c(m,h-1,!0)}return 0===h&&(i=f(this)),i})},a.exports=b["default"]},function(a,b,c){"use strict";var d=c(2)["default"];b.__esModule=!0;var e=c(5),f=d(e);b["default"]=function(a){a.registerHelper("helperMissing",function(){if(1!==arguments.length)throw new f["default"]('Missing helper: "'+arguments[arguments.length-1].name+'"')})},a.exports=b["default"]},function(a,b,c){"use strict";b.__esModule=!0;var d=c(4);b["default"]=function(a){a.registerHelper("if",function(a,b){return d.isFunction(a)&&(a=a.call(this)),!b.hash.includeZero&&!a||d.isEmpty(a)?b.inverse(this):b.fn(this)}),a.registerHelper("unless",function(b,c){return a.helpers["if"].call(this,b,{fn:c.inverse,inverse:c.fn,hash:c.hash})})},a.exports=b["default"]},function(a,b){"use strict";b.__esModule=!0,b["default"]=function(a){a.registerHelper("log",function(){for(var b=[void 0],c=arguments[arguments.length-1],d=0;d<arguments.length-1;d++)b.push(arguments[d]);var e=1;null!=c.hash.level?e=c.hash.level:c.data&&null!=c.data.level&&(e=c.data.level),b[0]=e,a.log.apply(a,b)})},a.exports=b["default"]},function(a,b){"use strict";b.__esModule=!0,b["default"]=function(a){a.registerHelper("lookup",function(a,b){return a&&a[b]})},a.exports=b["default"]},function(a,b,c){"use strict";b.__esModule=!0;var d=c(4);b["default"]=function(a){a.registerHelper("with",function(a,b){d.isFunction(a)&&(a=a.call(this));var c=b.fn;if(d.isEmpty(a))return b.inverse(this);var e=b.data;return b.data&&b.ids&&(e=d.createFrame(b.data),e.contextPath=d.appendContextPath(b.data.contextPath,b.ids[0])),c(a,{data:e,blockParams:d.blockParams([a],[e&&e.contextPath])})})},a.exports=b["default"]},function(a,b,c){"use strict";function d(a){g["default"](a)}var e=c(2)["default"];b.__esModule=!0,b.registerDefaultDecorators=d;var f=c(15),g=e(f)},function(a,b,c){"use strict";b.__esModule=!0;var d=c(4);b["default"]=function(a){a.registerDecorator("inline",function(a,b,c,e){var f=a;return b.partials||(b.partials={},f=function(e,f){var g=c.partials;c.partials=d.extend({},g,b.partials);var h=a(e,f);return c.partials=g,h}),b.partials[e.args[0]]=e.fn,f})},a.exports=b["default"]},function(a,b,c){"use strict";b.__esModule=!0;var d=c(4),e={methodMap:["debug","info","warn","error"],level:"info",lookupLevel:function(a){if("string"==typeof a){var b=d.indexOf(e.methodMap,a.toLowerCase());a=b>=0?b:parseInt(a,10)}return a},log:function(a){if(a=e.lookupLevel(a),"undefined"!=typeof console&&e.lookupLevel(e.level)<=a){var b=e.methodMap[a];console[b]||(b="log");for(var c=arguments.length,d=Array(c>1?c-1:0),f=1;c>f;f++)d[f-1]=arguments[f];console[b].apply(console,d)}}};b["default"]=e,a.exports=b["default"]},function(a,b){"use strict";function c(a){this.string=a}b.__esModule=!0,c.prototype.toString=c.prototype.toHTML=function(){return""+this.string},b["default"]=c,a.exports=b["default"]},function(a,b,c){"use strict";function d(a){var b=a&&a[0]||1,c=r.COMPILER_REVISION;if(b!==c){if(c>b){var d=r.REVISION_CHANGES[c],e=r.REVISION_CHANGES[b];throw new q["default"]("Template was precompiled with an older version of Handlebars than the current runtime. Please update your precompiler to a newer version ("+d+") or downgrade your runtime to an older version ("+e+").")}throw new q["default"]("Template was precompiled with a newer version of Handlebars than the current runtime. Please update your runtime to a newer version ("+a[1]+").")}}function e(a,b){function c(c,d,e){e.hash&&(d=o.extend({},d,e.hash),e.ids&&(e.ids[0]=!0)),c=b.VM.resolvePartial.call(this,c,d,e);var f=b.VM.invokePartial.call(this,c,d,e);if(null==f&&b.compile&&(e.partials[e.name]=b.compile(c,a.compilerOptions,b),f=e.partials[e.name](d,e)),null!=f){if(e.indent){for(var g=f.split("\n"),h=0,i=g.length;i>h&&(g[h]||h+1!==i);h++)g[h]=e.indent+g[h];f=g.join("\n")}return f}throw new q["default"]("The partial "+e.name+" could not be compiled when running in runtime-only mode")}function d(b){function c(b){return""+a.main(e,b,e.helpers,e.partials,g,i,h)}var f=arguments.length<=1||void 0===arguments[1]?{}:arguments[1],g=f.data;d._setup(f),!f.partial&&a.useData&&(g=j(b,g));var h=void 0,i=a.useBlockParams?[]:void 0;return a.useDepths&&(h=f.depths?b!==f.depths[0]?[b].concat(f.depths):f.depths:[b]),(c=k(a.main,c,e,f.depths||[],g,i))(b,f)}if(!b)throw new q["default"]("No environment passed to template");if(!a||!a.main)throw new q["default"]("Unknown template object: "+typeof a);a.main.decorator=a.main_d,b.VM.checkRevision(a.compiler);var e={strict:function(a,b){if(!(b in a))throw new q["default"]('"'+b+'" not defined in '+a);return a[b]},lookup:function(a,b){for(var c=a.length,d=0;c>d;d++)if(a[d]&&null!=a[d][b])return a[d][b]},lambda:function(a,b){return"function"==typeof a?a.call(b):a},escapeExpression:o.escapeExpression,invokePartial:c,fn:function(b){var c=a[b];return c.decorator=a[b+"_d"],c},programs:[],program:function(a,b,c,d,e){var g=this.programs[a],h=this.fn(a);return b||e||d||c?g=f(this,a,h,b,c,d,e):g||(g=this.programs[a]=f(this,a,h)),g},data:function(a,b){for(;a&&b--;)a=a._parent;return a},merge:function(a,b){var c=a||b;return a&&b&&a!==b&&(c=o.extend({},b,a)),c},noop:b.VM.noop,compilerInfo:a.compiler};return d.isTop=!0,d._setup=function(c){c.partial?(e.helpers=c.helpers,e.partials=c.partials,e.decorators=c.decorators):(e.helpers=e.merge(c.helpers,b.helpers),a.usePartial&&(e.partials=e.merge(c.partials,b.partials)),(a.usePartial||a.useDecorators)&&(e.decorators=e.merge(c.decorators,b.decorators)))},d._child=function(b,c,d,g){if(a.useBlockParams&&!d)throw new q["default"]("must pass block params");if(a.useDepths&&!g)throw new q["default"]("must pass parent depths");return f(e,b,a[b],c,0,d,g)},d}function f(a,b,c,d,e,f,g){function h(b){var e=arguments.length<=1||void 0===arguments[1]?{}:arguments[1],h=g;return g&&b!==g[0]&&(h=[b].concat(g)),c(a,b,a.helpers,a.partials,e.data||d,f&&[e.blockParams].concat(f),h)}return h=k(c,h,a,g,d,f),h.program=b,h.depth=g?g.length:0,h.blockParams=e||0,h}function g(a,b,c){return a?a.call||c.name||(c.name=a,a=c.partials[a]):a="@partial-block"===c.name?c.data["partial-block"]:c.partials[c.name],a}function h(a,b,c){c.partial=!0,c.ids&&(c.data.contextPath=c.ids[0]||c.data.contextPath);var d=void 0;if(c.fn&&c.fn!==i&&(c.data=r.createFrame(c.data),d=c.data["partial-block"]=c.fn,d.partials&&(c.partials=o.extend({},c.partials,d.partials))),void 0===a&&d&&(a=d),void 0===a)throw new q["default"]("The partial "+c.name+" could not be found");return a instanceof Function?a(b,c):void 0}function i(){return""}function j(a,b){return b&&"root"in b||(b=b?r.createFrame(b):{},b.root=a),b}function k(a,b,c,d,e,f){if(a.decorator){var g={};b=a.decorator(b,g,c,d&&d[0],e,f,d),o.extend(b,g)}return b}var l=c(1)["default"],m=c(2)["default"];b.__esModule=!0,b.checkRevision=d,b.template=e,b.wrapProgram=f,b.resolvePartial=g,b.invokePartial=h,b.noop=i;var n=c(4),o=l(n),p=c(5),q=m(p),r=c(3)},function(a,b){(function(c){"use strict";b.__esModule=!0,b["default"]=function(a){var b="undefined"!=typeof c?c:window,d=b.Handlebars;a.noConflict=function(){return b.Handlebars===a&&(b.Handlebars=d),a}},a.exports=b["default"]}).call(b,function(){return this}())}])});
-!function(d,B,m,f){function v(a,b){var c=Math.max(0,a[0]-b[0],b[0]-a[1]),e=Math.max(0,a[2]-b[1],b[1]-a[3]);return c+e}function w(a,b,c,e){var k=a.length;e=e?"offset":"position";for(c=c||0;k--;){var g=a[k].el?a[k].el:d(a[k]),l=g[e]();l.left+=parseInt(g.css("margin-left"),10);l.top+=parseInt(g.css("margin-top"),10);b[k]=[l.left-c,l.left+g.outerWidth()+c,l.top-c,l.top+g.outerHeight()+c]}}function p(a,b){var c=b.offset();return{left:a.left-c.left,top:a.top-c.top}}function x(a,b,c){b=[b.left,b.top];c=
-c&&[c.left,c.top];for(var e,k=a.length,d=[];k--;)e=a[k],d[k]=[k,v(e,b),c&&v(e,c)];return d=d.sort(function(a,b){return b[1]-a[1]||b[2]-a[2]||b[0]-a[0]})}function q(a){this.options=d.extend({},n,a);this.containers=[];this.options.rootGroup||(this.scrollProxy=d.proxy(this.scroll,this),this.dragProxy=d.proxy(this.drag,this),this.dropProxy=d.proxy(this.drop,this),this.placeholder=d(this.options.placeholder),a.isValidTarget||(this.options.isValidTarget=f))}function t(a,b){this.el=a;this.options=d.extend({},
-z,b);this.group=q.get(this.options);this.rootGroup=this.options.rootGroup||this.group;this.handle=this.rootGroup.options.handle||this.rootGroup.options.itemSelector;var c=this.rootGroup.options.itemPath;this.target=c?this.el.find(c):this.el;this.target.on(r.start,this.handle,d.proxy(this.dragInit,this));this.options.drop&&this.group.containers.push(this)}var r,z={drag:!0,drop:!0,exclude:"",nested:!0,vertical:!0},n={afterMove:function(a,b,c){},containerPath:"",containerSelector:"ol, ul",distance:0,
-delay:0,handle:"",itemPath:"",itemSelector:"li",bodyClass:"dragging",draggedClass:"dragged",isValidTarget:function(a,b){return!0},onCancel:function(a,b,c,e){},onDrag:function(a,b,c,e){a.css(b)},onDragStart:function(a,b,c,e){a.css({height:a.outerHeight(),width:a.outerWidth()});a.addClass(b.group.options.draggedClass);d("body").addClass(b.group.options.bodyClass)},onDrop:function(a,b,c,e){a.removeClass(b.group.options.draggedClass).removeAttr("style");d("body").removeClass(b.group.options.bodyClass)},
-onMousedown:function(a,b,c){if(!c.target.nodeName.match(/^(input|select|textarea)$/i))return c.preventDefault(),!0},placeholderClass:"placeholder",placeholder:'<li class="placeholder"></li>',pullPlaceholder:!0,serialize:function(a,b,c){a=d.extend({},a.data());if(c)return[b];b[0]&&(a.children=b);delete a.subContainers;delete a.sortable;return a},tolerance:0},s={},y=0,A={left:0,top:0,bottom:0,right:0};r={start:"touchstart.sortable mousedown.sortable",drop:"touchend.sortable touchcancel.sortable mouseup.sortable",
-drag:"touchmove.sortable mousemove.sortable",scroll:"scroll.sortable"};q.get=function(a){s[a.group]||(a.group===f&&(a.group=y++),s[a.group]=new q(a));return s[a.group]};q.prototype={dragInit:function(a,b){this.$document=d(b.el[0].ownerDocument);var c=d(a.target).closest(this.options.itemSelector);c.length&&(this.item=c,this.itemContainer=b,!this.item.is(this.options.exclude)&&this.options.onMousedown(this.item,n.onMousedown,a)&&(this.setPointer(a),this.toggleListeners("on"),this.setupDelayTimer(),
-this.dragInitDone=!0))},drag:function(a){if(!this.dragging){if(!this.distanceMet(a)||!this.delayMet)return;this.options.onDragStart(this.item,this.itemContainer,n.onDragStart,a);this.item.before(this.placeholder);this.dragging=!0}this.setPointer(a);this.options.onDrag(this.item,p(this.pointer,this.item.offsetParent()),n.onDrag,a);a=this.getPointer(a);var b=this.sameResultBox,c=this.options.tolerance;(!b||b.top-c>a.top||b.bottom+c<a.top||b.left-c>a.left||b.right+c<a.left)&&!this.searchValidTarget()&&
-(this.placeholder.detach(),this.lastAppendedItem=f)},drop:function(a){this.toggleListeners("off");this.dragInitDone=!1;if(this.dragging){if(this.placeholder.closest("html")[0])this.placeholder.before(this.item).detach();else this.options.onCancel(this.item,this.itemContainer,n.onCancel,a);this.options.onDrop(this.item,this.getContainer(this.item),n.onDrop,a);this.clearDimensions();this.clearOffsetParent();this.lastAppendedItem=this.sameResultBox=f;this.dragging=!1}},searchValidTarget:function(a,b){a||
-(a=this.relativePointer||this.pointer,b=this.lastRelativePointer||this.lastPointer);for(var c=x(this.getContainerDimensions(),a,b),e=c.length;e--;){var d=c[e][0];if(!c[e][1]||this.options.pullPlaceholder)if(d=this.containers[d],!d.disabled){if(!this.$getOffsetParent()){var g=d.getItemOffsetParent();a=p(a,g);b=p(b,g)}if(d.searchValidTarget(a,b))return!0}}this.sameResultBox&&(this.sameResultBox=f)},movePlaceholder:function(a,b,c,e){var d=this.lastAppendedItem;if(e||!d||d[0]!==b[0])b[c](this.placeholder),
-this.lastAppendedItem=b,this.sameResultBox=e,this.options.afterMove(this.placeholder,a,b)},getContainerDimensions:function(){this.containerDimensions||w(this.containers,this.containerDimensions=[],this.options.tolerance,!this.$getOffsetParent());return this.containerDimensions},getContainer:function(a){return a.closest(this.options.containerSelector).data(m)},$getOffsetParent:function(){if(this.offsetParent===f){var a=this.containers.length-1,b=this.containers[a].getItemOffsetParent();if(!this.options.rootGroup)for(;a--;)if(b[0]!=
-this.containers[a].getItemOffsetParent()[0]){b=!1;break}this.offsetParent=b}return this.offsetParent},setPointer:function(a){a=this.getPointer(a);if(this.$getOffsetParent()){var b=p(a,this.$getOffsetParent());this.lastRelativePointer=this.relativePointer;this.relativePointer=b}this.lastPointer=this.pointer;this.pointer=a},distanceMet:function(a){a=this.getPointer(a);return Math.max(Math.abs(this.pointer.left-a.left),Math.abs(this.pointer.top-a.top))>=this.options.distance},getPointer:function(a){var b=
-a.originalEvent||a.originalEvent.touches&&a.originalEvent.touches[0];return{left:a.pageX||b.pageX,top:a.pageY||b.pageY}},setupDelayTimer:function(){var a=this;this.delayMet=!this.options.delay;this.delayMet||(clearTimeout(this._mouseDelayTimer),this._mouseDelayTimer=setTimeout(function(){a.delayMet=!0},this.options.delay))},scroll:function(a){this.clearDimensions();this.clearOffsetParent()},toggleListeners:function(a){var b=this;d.each(["drag","drop","scroll"],function(c,e){b.$document[a](r[e],b[e+
-"Proxy"])})},clearOffsetParent:function(){this.offsetParent=f},clearDimensions:function(){this.traverse(function(a){a._clearDimensions()})},traverse:function(a){a(this);for(var b=this.containers.length;b--;)this.containers[b].traverse(a)},_clearDimensions:function(){this.containerDimensions=f},_destroy:function(){s[this.options.group]=f}};t.prototype={dragInit:function(a){var b=this.rootGroup;!this.disabled&&!b.dragInitDone&&this.options.drag&&this.isValidDrag(a)&&b.dragInit(a,this)},isValidDrag:function(a){return 1==
-a.which||"touchstart"==a.type&&1==a.originalEvent.touches.length},searchValidTarget:function(a,b){var c=x(this.getItemDimensions(),a,b),e=c.length,d=this.rootGroup,g=!d.options.isValidTarget||d.options.isValidTarget(d.item,this);if(!e&&g)return d.movePlaceholder(this,this.target,"append"),!0;for(;e--;)if(d=c[e][0],!c[e][1]&&this.hasChildGroup(d)){if(this.getContainerGroup(d).searchValidTarget(a,b))return!0}else if(g)return this.movePlaceholder(d,a),!0},movePlaceholder:function(a,b){var c=d(this.items[a]),
-e=this.itemDimensions[a],k="after",g=c.outerWidth(),f=c.outerHeight(),h=c.offset(),h={left:h.left,right:h.left+g,top:h.top,bottom:h.top+f};this.options.vertical?b.top<=(e[2]+e[3])/2?(k="before",h.bottom-=f/2):h.top+=f/2:b.left<=(e[0]+e[1])/2?(k="before",h.right-=g/2):h.left+=g/2;this.hasChildGroup(a)&&(h=A);this.rootGroup.movePlaceholder(this,c,k,h)},getItemDimensions:function(){this.itemDimensions||(this.items=this.$getChildren(this.el,"item").filter(":not(."+this.group.options.placeholderClass+
-", ."+this.group.options.draggedClass+")").get(),w(this.items,this.itemDimensions=[],this.options.tolerance));return this.itemDimensions},getItemOffsetParent:function(){var a=this.el;return"relative"===a.css("position")||"absolute"===a.css("position")||"fixed"===a.css("position")?a:a.offsetParent()},hasChildGroup:function(a){return this.options.nested&&this.getContainerGroup(a)},getContainerGroup:function(a){var b=d.data(this.items[a],"subContainers");if(b===f){var c=this.$getChildren(this.items[a],
-"container"),b=!1;c[0]&&(b=d.extend({},this.options,{rootGroup:this.rootGroup,group:y++}),b=c[m](b).data(m).group);d.data(this.items[a],"subContainers",b)}return b},$getChildren:function(a,b){var c=this.rootGroup.options,e=c[b+"Path"],c=c[b+"Selector"];a=d(a);e&&(a=a.find(e));return a.children(c)},_serialize:function(a,b){var c=this,e=this.$getChildren(a,b?"item":"container").not(this.options.exclude).map(function(){return c._serialize(d(this),!b)}).get();return this.rootGroup.options.serialize(a,
-e,b)},traverse:function(a){d.each(this.items||[],function(b){(b=d.data(this,"subContainers"))&&b.traverse(a)});a(this)},_clearDimensions:function(){this.itemDimensions=f},_destroy:function(){var a=this;this.target.off(r.start,this.handle);this.el.removeData(m);this.options.drop&&(this.group.containers=d.grep(this.group.containers,function(b){return b!=a}));d.each(this.items||[],function(){d.removeData(this,"subContainers")})}};var u={enable:function(){this.traverse(function(a){a.disabled=!1})},disable:function(){this.traverse(function(a){a.disabled=
-!0})},serialize:function(){return this._serialize(this.el,!0)},refresh:function(){this.traverse(function(a){a._clearDimensions()})},destroy:function(){this.traverse(function(a){a._destroy()})}};d.extend(t.prototype,u);d.fn[m]=function(a){var b=Array.prototype.slice.call(arguments,1);return this.map(function(){var c=d(this),e=c.data(m);if(e&&u[a])return u[a].apply(e,b)||this;e||a!==f&&"object"!==typeof a||c.data(m,new t(c,a));return this})}}(jQuery,window,"sortable");
-
-/*! jQuery UI - v1.11.4+CommonJS - 2015-08-28
-* http://jqueryui.com
-* Includes: widget.js
-* Copyright 2015 jQuery Foundation and other contributors; Licensed MIT */
-
-(function( factory ) {
-	if ( typeof define === "function" && define.amd ) {
-
-		// AMD. Register as an anonymous module.
-		define([ "jquery" ], factory );
-
-	} else if ( typeof exports === "object" ) {
-
-		// Node/CommonJS
-		factory( require( "jquery" ) );
-
-	} else {
-
-		// Browser globals
-		factory( jQuery );
-	}
-}(function( $ ) {
-/*!
- * jQuery UI Widget 1.11.4
- * http://jqueryui.com
- *
- * Copyright jQuery Foundation and other contributors
- * Released under the MIT license.
- * http://jquery.org/license
- *
- * http://api.jqueryui.com/jQuery.widget/
- */
-
-
-var widget_uuid = 0,
-	widget_slice = Array.prototype.slice;
-
-$.cleanData = (function( orig ) {
-	return function( elems ) {
-		var events, elem, i;
-		for ( i = 0; (elem = elems[i]) != null; i++ ) {
-			try {
-
-				// Only trigger remove when necessary to save time
-				events = $._data( elem, "events" );
-				if ( events && events.remove ) {
-					$( elem ).triggerHandler( "remove" );
-				}
-
-			// http://bugs.jquery.com/ticket/8235
-			} catch ( e ) {}
-		}
-		orig( elems );
-	};
-})( $.cleanData );
-
-$.widget = function( name, base, prototype ) {
-	var fullName, existingConstructor, constructor, basePrototype,
-		// proxiedPrototype allows the provided prototype to remain unmodified
-		// so that it can be used as a mixin for multiple widgets (#8876)
-		proxiedPrototype = {},
-		namespace = name.split( "." )[ 0 ];
-
-	name = name.split( "." )[ 1 ];
-	fullName = namespace + "-" + name;
-
-	if ( !prototype ) {
-		prototype = base;
-		base = $.Widget;
-	}
-
-	// create selector for plugin
-	$.expr[ ":" ][ fullName.toLowerCase() ] = function( elem ) {
-		return !!$.data( elem, fullName );
-	};
-
-	$[ namespace ] = $[ namespace ] || {};
-	existingConstructor = $[ namespace ][ name ];
-	constructor = $[ namespace ][ name ] = function( options, element ) {
-		// allow instantiation without "new" keyword
-		if ( !this._createWidget ) {
-			return new constructor( options, element );
-		}
-
-		// allow instantiation without initializing for simple inheritance
-		// must use "new" keyword (the code above always passes args)
-		if ( arguments.length ) {
-			this._createWidget( options, element );
-		}
-	};
-	// extend with the existing constructor to carry over any static properties
-	$.extend( constructor, existingConstructor, {
-		version: prototype.version,
-		// copy the object used to create the prototype in case we need to
-		// redefine the widget later
-		_proto: $.extend( {}, prototype ),
-		// track widgets that inherit from this widget in case this widget is
-		// redefined after a widget inherits from it
-		_childConstructors: []
-	});
-
-	basePrototype = new base();
-	// we need to make the options hash a property directly on the new instance
-	// otherwise we'll modify the options hash on the prototype that we're
-	// inheriting from
-	basePrototype.options = $.widget.extend( {}, basePrototype.options );
-	$.each( prototype, function( prop, value ) {
-		if ( !$.isFunction( value ) ) {
-			proxiedPrototype[ prop ] = value;
-			return;
-		}
-		proxiedPrototype[ prop ] = (function() {
-			var _super = function() {
-					return base.prototype[ prop ].apply( this, arguments );
-				},
-				_superApply = function( args ) {
-					return base.prototype[ prop ].apply( this, args );
-				};
-			return function() {
-				var __super = this._super,
-					__superApply = this._superApply,
-					returnValue;
-
-				this._super = _super;
-				this._superApply = _superApply;
-
-				returnValue = value.apply( this, arguments );
-
-				this._super = __super;
-				this._superApply = __superApply;
-
-				return returnValue;
-			};
-		})();
-	});
-	constructor.prototype = $.widget.extend( basePrototype, {
-		// TODO: remove support for widgetEventPrefix
-		// always use the name + a colon as the prefix, e.g., draggable:start
-		// don't prefix for widgets that aren't DOM-based
-		widgetEventPrefix: existingConstructor ? (basePrototype.widgetEventPrefix || name) : name
-	}, proxiedPrototype, {
-		constructor: constructor,
-		namespace: namespace,
-		widgetName: name,
-		widgetFullName: fullName
-	});
-
-	// If this widget is being redefined then we need to find all widgets that
-	// are inheriting from it and redefine all of them so that they inherit from
-	// the new version of this widget. We're essentially trying to replace one
-	// level in the prototype chain.
-	if ( existingConstructor ) {
-		$.each( existingConstructor._childConstructors, function( i, child ) {
-			var childPrototype = child.prototype;
-
-			// redefine the child widget using the same prototype that was
-			// originally used, but inherit from the new version of the base
-			$.widget( childPrototype.namespace + "." + childPrototype.widgetName, constructor, child._proto );
-		});
-		// remove the list of existing child constructors from the old constructor
-		// so the old child constructors can be garbage collected
-		delete existingConstructor._childConstructors;
-	} else {
-		base._childConstructors.push( constructor );
-	}
-
-	$.widget.bridge( name, constructor );
-
-	return constructor;
-};
-
-$.widget.extend = function( target ) {
-	var input = widget_slice.call( arguments, 1 ),
-		inputIndex = 0,
-		inputLength = input.length,
-		key,
-		value;
-	for ( ; inputIndex < inputLength; inputIndex++ ) {
-		for ( key in input[ inputIndex ] ) {
-			value = input[ inputIndex ][ key ];
-			if ( input[ inputIndex ].hasOwnProperty( key ) && value !== undefined ) {
-				// Clone objects
-				if ( $.isPlainObject( value ) ) {
-					target[ key ] = $.isPlainObject( target[ key ] ) ?
-						$.widget.extend( {}, target[ key ], value ) :
-						// Don't extend strings, arrays, etc. with objects
-						$.widget.extend( {}, value );
-				// Copy everything else by reference
-				} else {
-					target[ key ] = value;
-				}
-			}
-		}
-	}
-	return target;
-};
-
-$.widget.bridge = function( name, object ) {
-	var fullName = object.prototype.widgetFullName || name;
-	$.fn[ name ] = function( options ) {
-		var isMethodCall = typeof options === "string",
-			args = widget_slice.call( arguments, 1 ),
-			returnValue = this;
-
-		if ( isMethodCall ) {
-			this.each(function() {
-				var methodValue,
-					instance = $.data( this, fullName );
-				if ( options === "instance" ) {
-					returnValue = instance;
-					return false;
-				}
-				if ( !instance ) {
-					return $.error( "cannot call methods on " + name + " prior to initialization; " +
-						"attempted to call method '" + options + "'" );
-				}
-				if ( !$.isFunction( instance[options] ) || options.charAt( 0 ) === "_" ) {
-					return $.error( "no such method '" + options + "' for " + name + " widget instance" );
-				}
-				methodValue = instance[ options ].apply( instance, args );
-				if ( methodValue !== instance && methodValue !== undefined ) {
-					returnValue = methodValue && methodValue.jquery ?
-						returnValue.pushStack( methodValue.get() ) :
-						methodValue;
-					return false;
-				}
-			});
-		} else {
-
-			// Allow multiple hashes to be passed on init
-			if ( args.length ) {
-				options = $.widget.extend.apply( null, [ options ].concat(args) );
-			}
-
-			this.each(function() {
-				var instance = $.data( this, fullName );
-				if ( instance ) {
-					instance.option( options || {} );
-					if ( instance._init ) {
-						instance._init();
-					}
-				} else {
-					$.data( this, fullName, new object( options, this ) );
-				}
-			});
-		}
-
-		return returnValue;
-	};
-};
-
-$.Widget = function( /* options, element */ ) {};
-$.Widget._childConstructors = [];
-
-$.Widget.prototype = {
-	widgetName: "widget",
-	widgetEventPrefix: "",
-	defaultElement: "<div>",
-	options: {
-		disabled: false,
-
-		// callbacks
-		create: null
-	},
-	_createWidget: function( options, element ) {
-		element = $( element || this.defaultElement || this )[ 0 ];
-		this.element = $( element );
-		this.uuid = widget_uuid++;
-		this.eventNamespace = "." + this.widgetName + this.uuid;
-
-		this.bindings = $();
-		this.hoverable = $();
-		this.focusable = $();
-
-		if ( element !== this ) {
-			$.data( element, this.widgetFullName, this );
-			this._on( true, this.element, {
-				remove: function( event ) {
-					if ( event.target === element ) {
-						this.destroy();
-					}
-				}
-			});
-			this.document = $( element.style ?
-				// element within the document
-				element.ownerDocument :
-				// element is window or document
-				element.document || element );
-			this.window = $( this.document[0].defaultView || this.document[0].parentWindow );
-		}
-
-		this.options = $.widget.extend( {},
-			this.options,
-			this._getCreateOptions(),
-			options );
-
-		this._create();
-		this._trigger( "create", null, this._getCreateEventData() );
-		this._init();
-	},
-	_getCreateOptions: $.noop,
-	_getCreateEventData: $.noop,
-	_create: $.noop,
-	_init: $.noop,
-
-	destroy: function() {
-		this._destroy();
-		// we can probably remove the unbind calls in 2.0
-		// all event bindings should go through this._on()
-		this.element
-			.unbind( this.eventNamespace )
-			.removeData( this.widgetFullName )
-			// support: jquery <1.6.3
-			// http://bugs.jquery.com/ticket/9413
-			.removeData( $.camelCase( this.widgetFullName ) );
-		this.widget()
-			.unbind( this.eventNamespace )
-			.removeAttr( "aria-disabled" )
-			.removeClass(
-				this.widgetFullName + "-disabled " +
-				"ui-state-disabled" );
-
-		// clean up events and states
-		this.bindings.unbind( this.eventNamespace );
-		this.hoverable.removeClass( "ui-state-hover" );
-		this.focusable.removeClass( "ui-state-focus" );
-	},
-	_destroy: $.noop,
-
-	widget: function() {
-		return this.element;
-	},
-
-	option: function( key, value ) {
-		var options = key,
-			parts,
-			curOption,
-			i;
-
-		if ( arguments.length === 0 ) {
-			// don't return a reference to the internal hash
-			return $.widget.extend( {}, this.options );
-		}
-
-		if ( typeof key === "string" ) {
-			// handle nested keys, e.g., "foo.bar" => { foo: { bar: ___ } }
-			options = {};
-			parts = key.split( "." );
-			key = parts.shift();
-			if ( parts.length ) {
-				curOption = options[ key ] = $.widget.extend( {}, this.options[ key ] );
-				for ( i = 0; i < parts.length - 1; i++ ) {
-					curOption[ parts[ i ] ] = curOption[ parts[ i ] ] || {};
-					curOption = curOption[ parts[ i ] ];
-				}
-				key = parts.pop();
-				if ( arguments.length === 1 ) {
-					return curOption[ key ] === undefined ? null : curOption[ key ];
-				}
-				curOption[ key ] = value;
-			} else {
-				if ( arguments.length === 1 ) {
-					return this.options[ key ] === undefined ? null : this.options[ key ];
-				}
-				options[ key ] = value;
-			}
-		}
-
-		this._setOptions( options );
-
-		return this;
-	},
-	_setOptions: function( options ) {
-		var key;
-
-		for ( key in options ) {
-			this._setOption( key, options[ key ] );
-		}
-
-		return this;
-	},
-	_setOption: function( key, value ) {
-		this.options[ key ] = value;
-
-		if ( key === "disabled" ) {
-			this.widget()
-				.toggleClass( this.widgetFullName + "-disabled", !!value );
-
-			// If the widget is becoming disabled, then nothing is interactive
-			if ( value ) {
-				this.hoverable.removeClass( "ui-state-hover" );
-				this.focusable.removeClass( "ui-state-focus" );
-			}
-		}
-
-		return this;
-	},
-
-	enable: function() {
-		return this._setOptions({ disabled: false });
-	},
-	disable: function() {
-		return this._setOptions({ disabled: true });
-	},
-
-	_on: function( suppressDisabledCheck, element, handlers ) {
-		var delegateElement,
-			instance = this;
-
-		// no suppressDisabledCheck flag, shuffle arguments
-		if ( typeof suppressDisabledCheck !== "boolean" ) {
-			handlers = element;
-			element = suppressDisabledCheck;
-			suppressDisabledCheck = false;
-		}
-
-		// no element argument, shuffle and use this.element
-		if ( !handlers ) {
-			handlers = element;
-			element = this.element;
-			delegateElement = this.widget();
-		} else {
-			element = delegateElement = $( element );
-			this.bindings = this.bindings.add( element );
-		}
-
-		$.each( handlers, function( event, handler ) {
-			function handlerProxy() {
-				// allow widgets to customize the disabled handling
-				// - disabled as an array instead of boolean
-				// - disabled class as method for disabling individual parts
-				if ( !suppressDisabledCheck &&
-						( instance.options.disabled === true ||
-							$( this ).hasClass( "ui-state-disabled" ) ) ) {
-					return;
-				}
-				return ( typeof handler === "string" ? instance[ handler ] : handler )
-					.apply( instance, arguments );
-			}
-
-			// copy the guid so direct unbinding works
-			if ( typeof handler !== "string" ) {
-				handlerProxy.guid = handler.guid =
-					handler.guid || handlerProxy.guid || $.guid++;
-			}
-
-			var match = event.match( /^([\w:-]*)\s*(.*)$/ ),
-				eventName = match[1] + instance.eventNamespace,
-				selector = match[2];
-			if ( selector ) {
-				delegateElement.delegate( selector, eventName, handlerProxy );
-			} else {
-				element.bind( eventName, handlerProxy );
-			}
-		});
-	},
-
-	_off: function( element, eventName ) {
-		eventName = (eventName || "").split( " " ).join( this.eventNamespace + " " ) +
-			this.eventNamespace;
-		element.unbind( eventName ).undelegate( eventName );
-
-		// Clear the stack to avoid memory leaks (#10056)
-		this.bindings = $( this.bindings.not( element ).get() );
-		this.focusable = $( this.focusable.not( element ).get() );
-		this.hoverable = $( this.hoverable.not( element ).get() );
-	},
-
-	_delay: function( handler, delay ) {
-		function handlerProxy() {
-			return ( typeof handler === "string" ? instance[ handler ] : handler )
-				.apply( instance, arguments );
-		}
-		var instance = this;
-		return setTimeout( handlerProxy, delay || 0 );
-	},
-
-	_hoverable: function( element ) {
-		this.hoverable = this.hoverable.add( element );
-		this._on( element, {
-			mouseenter: function( event ) {
-				$( event.currentTarget ).addClass( "ui-state-hover" );
-			},
-			mouseleave: function( event ) {
-				$( event.currentTarget ).removeClass( "ui-state-hover" );
-			}
-		});
-	},
-
-	_focusable: function( element ) {
-		this.focusable = this.focusable.add( element );
-		this._on( element, {
-			focusin: function( event ) {
-				$( event.currentTarget ).addClass( "ui-state-focus" );
-			},
-			focusout: function( event ) {
-				$( event.currentTarget ).removeClass( "ui-state-focus" );
-			}
-		});
-	},
-
-	_trigger: function( type, event, data ) {
-		var prop, orig,
-			callback = this.options[ type ];
-
-		data = data || {};
-		event = $.Event( event );
-		event.type = ( type === this.widgetEventPrefix ?
-			type :
-			this.widgetEventPrefix + type ).toLowerCase();
-		// the original event may come from any element
-		// so we need to reset the target on the new event
-		event.target = this.element[ 0 ];
-
-		// copy original event properties over to the new event
-		orig = event.originalEvent;
-		if ( orig ) {
-			for ( prop in orig ) {
-				if ( !( prop in event ) ) {
-					event[ prop ] = orig[ prop ];
-				}
-			}
-		}
-
-		this.element.trigger( event, data );
-		return !( $.isFunction( callback ) &&
-			callback.apply( this.element[0], [ event ].concat( data ) ) === false ||
-			event.isDefaultPrevented() );
-	}
-};
-
-$.each( { show: "fadeIn", hide: "fadeOut" }, function( method, defaultEffect ) {
-	$.Widget.prototype[ "_" + method ] = function( element, options, callback ) {
-		if ( typeof options === "string" ) {
-			options = { effect: options };
-		}
-		var hasOptions,
-			effectName = !options ?
-				method :
-				options === true || typeof options === "number" ?
-					defaultEffect :
-					options.effect || defaultEffect;
-		options = options || {};
-		if ( typeof options === "number" ) {
-			options = { duration: options };
-		}
-		hasOptions = !$.isEmptyObject( options );
-		options.complete = callback;
-		if ( options.delay ) {
-			element.delay( options.delay );
-		}
-		if ( hasOptions && $.effects && $.effects.effect[ effectName ] ) {
-			element[ method ]( options );
-		} else if ( effectName !== method && element[ effectName ] ) {
-			element[ effectName ]( options.duration, options.easing, callback );
-		} else {
-			element.queue(function( next ) {
-				$( this )[ method ]();
-				if ( callback ) {
-					callback.call( element[ 0 ] );
-				}
-				next();
-			});
-		}
-	};
-});
-
-var widget = $.widget;
-
-
-
-}));
-
-/*
- * jQuery Iframe Transport Plugin
- * https://github.com/blueimp/jQuery-File-Upload
- *
- * Copyright 2011, Sebastian Tschan
- * https://blueimp.net
- *
- * Licensed under the MIT license:
- * http://www.opensource.org/licenses/MIT
- */
-
-/* global define, require, window, document */
-
-(function (factory) {
-    'use strict';
-    if (typeof define === 'function' && define.amd) {
-        // Register as an anonymous AMD module:
-        define(['jquery'], factory);
-    } else if (typeof exports === 'object') {
-        // Node/CommonJS:
-        factory(require('jquery'));
-    } else {
-        // Browser globals:
-        factory(window.jQuery);
-    }
-}(function ($) {
-    'use strict';
-
-    // Helper variable to create unique names for the transport iframes:
-    var counter = 0;
-
-    // The iframe transport accepts four additional options:
-    // options.fileInput: a jQuery collection of file input fields
-    // options.paramName: the parameter name for the file form data,
-    //  overrides the name property of the file input field(s),
-    //  can be a string or an array of strings.
-    // options.formData: an array of objects with name and value properties,
-    //  equivalent to the return data of .serializeArray(), e.g.:
-    //  [{name: 'a', value: 1}, {name: 'b', value: 2}]
-    // options.initialIframeSrc: the URL of the initial iframe src,
-    //  by default set to "javascript:false;"
-    $.ajaxTransport('iframe', function (options) {
-        if (options.async) {
-            // javascript:false as initial iframe src
-            // prevents warning popups on HTTPS in IE6:
-            /*jshint scripturl: true */
-            var initialIframeSrc = options.initialIframeSrc || 'javascript:false;',
-            /*jshint scripturl: false */
-                form,
-                iframe,
-                addParamChar;
-            return {
-                send: function (_, completeCallback) {
-                    form = $('<form style="display:none;"></form>');
-                    form.attr('accept-charset', options.formAcceptCharset);
-                    addParamChar = /\?/.test(options.url) ? '&' : '?';
-                    // XDomainRequest only supports GET and POST:
-                    if (options.type === 'DELETE') {
-                        options.url = options.url + addParamChar + '_method=DELETE';
-                        options.type = 'POST';
-                    } else if (options.type === 'PUT') {
-                        options.url = options.url + addParamChar + '_method=PUT';
-                        options.type = 'POST';
-                    } else if (options.type === 'PATCH') {
-                        options.url = options.url + addParamChar + '_method=PATCH';
-                        options.type = 'POST';
-                    }
-                    // IE versions below IE8 cannot set the name property of
-                    // elements that have already been added to the DOM,
-                    // so we set the name along with the iframe HTML markup:
-                    counter += 1;
-                    iframe = $(
-                        '<iframe src="' + initialIframeSrc +
-                            '" name="iframe-transport-' + counter + '"></iframe>'
-                    ).bind('load', function () {
-                        var fileInputClones,
-                            paramNames = $.isArray(options.paramName) ?
-                                    options.paramName : [options.paramName];
-                        iframe
-                            .unbind('load')
-                            .bind('load', function () {
-                                var response;
-                                // Wrap in a try/catch block to catch exceptions thrown
-                                // when trying to access cross-domain iframe contents:
-                                try {
-                                    response = iframe.contents();
-                                    // Google Chrome and Firefox do not throw an
-                                    // exception when calling iframe.contents() on
-                                    // cross-domain requests, so we unify the response:
-                                    if (!response.length || !response[0].firstChild) {
-                                        throw new Error();
-                                    }
-                                } catch (e) {
-                                    response = undefined;
-                                }
-                                // The complete callback returns the
-                                // iframe content document as response object:
-                                completeCallback(
-                                    200,
-                                    'success',
-                                    {'iframe': response}
-                                );
-                                // Fix for IE endless progress bar activity bug
-                                // (happens on form submits to iframe targets):
-                                $('<iframe src="' + initialIframeSrc + '"></iframe>')
-                                    .appendTo(form);
-                                window.setTimeout(function () {
-                                    // Removing the form in a setTimeout call
-                                    // allows Chrome's developer tools to display
-                                    // the response result
-                                    form.remove();
-                                }, 0);
-                            });
-                        form
-                            .prop('target', iframe.prop('name'))
-                            .prop('action', options.url)
-                            .prop('method', options.type);
-                        if (options.formData) {
-                            $.each(options.formData, function (index, field) {
-                                $('<input type="hidden"/>')
-                                    .prop('name', field.name)
-                                    .val(field.value)
-                                    .appendTo(form);
-                            });
-                        }
-                        if (options.fileInput && options.fileInput.length &&
-                                options.type === 'POST') {
-                            fileInputClones = options.fileInput.clone();
-                            // Insert a clone for each file input field:
-                            options.fileInput.after(function (index) {
-                                return fileInputClones[index];
-                            });
-                            if (options.paramName) {
-                                options.fileInput.each(function (index) {
-                                    $(this).prop(
-                                        'name',
-                                        paramNames[index] || options.paramName
-                                    );
-                                });
-                            }
-                            // Appending the file input fields to the hidden form
-                            // removes them from their original location:
-                            form
-                                .append(options.fileInput)
-                                .prop('enctype', 'multipart/form-data')
-                                // enctype must be set as encoding for IE:
-                                .prop('encoding', 'multipart/form-data');
-                            // Remove the HTML5 form attribute from the input(s):
-                            options.fileInput.removeAttr('form');
-                        }
-                        form.submit();
-                        // Insert the file input fields at their original location
-                        // by replacing the clones with the originals:
-                        if (fileInputClones && fileInputClones.length) {
-                            options.fileInput.each(function (index, input) {
-                                var clone = $(fileInputClones[index]);
-                                // Restore the original name and form properties:
-                                $(input)
-                                    .prop('name', clone.prop('name'))
-                                    .attr('form', clone.attr('form'));
-                                clone.replaceWith(input);
-                            });
-                        }
-                    });
-                    form.append(iframe).appendTo(document.body);
-                },
-                abort: function () {
-                    if (iframe) {
-                        // javascript:false as iframe src aborts the request
-                        // and prevents warning popups on HTTPS in IE6.
-                        // concat is used to avoid the "Script URL" JSLint error:
-                        iframe
-                            .unbind('load')
-                            .prop('src', initialIframeSrc);
-                    }
-                    if (form) {
-                        form.remove();
-                    }
-                }
-            };
-        }
-    });
-
-    // The iframe transport returns the iframe content document as response.
-    // The following adds converters from iframe to text, json, html, xml
-    // and script.
-    // Please note that the Content-Type for JSON responses has to be text/plain
-    // or text/html, if the browser doesn't include application/json in the
-    // Accept header, else IE will show a download dialog.
-    // The Content-Type for XML responses on the other hand has to be always
-    // application/xml or text/xml, so IE properly parses the XML response.
-    // See also
-    // https://github.com/blueimp/jQuery-File-Upload/wiki/Setup#content-type-negotiation
-    $.ajaxSetup({
-        converters: {
-            'iframe text': function (iframe) {
-                return iframe && $(iframe[0].body).text();
-            },
-            'iframe json': function (iframe) {
-                return iframe && $.parseJSON($(iframe[0].body).text());
-            },
-            'iframe html': function (iframe) {
-                return iframe && $(iframe[0].body).html();
-            },
-            'iframe xml': function (iframe) {
-                var xmlDoc = iframe && iframe[0];
-                return xmlDoc && $.isXMLDoc(xmlDoc) ? xmlDoc :
-                        $.parseXML((xmlDoc.XMLDocument && xmlDoc.XMLDocument.xml) ||
-                            $(xmlDoc.body).html());
-            },
-            'iframe script': function (iframe) {
-                return iframe && $.globalEval($(iframe[0].body).text());
-            }
-        }
-    });
-
-}));
-
-/*
- * jQuery File Upload Plugin
- * https://github.com/blueimp/jQuery-File-Upload
- *
- * Copyright 2010, Sebastian Tschan
- * https://blueimp.net
- *
- * Licensed under the MIT license:
- * http://www.opensource.org/licenses/MIT
- */
-
-/* jshint nomen:false */
-/* global define, require, window, document, location, Blob, FormData */
-
-(function (factory) {
-    'use strict';
-    if (typeof define === 'function' && define.amd) {
-        // Register as an anonymous AMD module:
-        define([
-            'jquery',
-            'jquery.ui.widget'
-        ], factory);
-    } else if (typeof exports === 'object') {
-        // Node/CommonJS:
-        factory(
-            require('jquery'),
-            require('./vendor/jquery.ui.widget')
-        );
-    } else {
-        // Browser globals:
-        factory(window.jQuery);
-    }
-}(function ($) {
-    'use strict';
-
-    // Detect file input support, based on
-    // http://viljamis.com/blog/2012/file-upload-support-on-mobile/
-    $.support.fileInput = !(new RegExp(
-        // Handle devices which give false positives for the feature detection:
-        '(Android (1\\.[0156]|2\\.[01]))' +
-            '|(Windows Phone (OS 7|8\\.0))|(XBLWP)|(ZuneWP)|(WPDesktop)' +
-            '|(w(eb)?OSBrowser)|(webOS)' +
-            '|(Kindle/(1\\.0|2\\.[05]|3\\.0))'
-    ).test(window.navigator.userAgent) ||
-        // Feature detection for all other devices:
-        $('<input type="file">').prop('disabled'));
-
-    // The FileReader API is not actually used, but works as feature detection,
-    // as some Safari versions (5?) support XHR file uploads via the FormData API,
-    // but not non-multipart XHR file uploads.
-    // window.XMLHttpRequestUpload is not available on IE10, so we check for
-    // window.ProgressEvent instead to detect XHR2 file upload capability:
-    $.support.xhrFileUpload = !!(window.ProgressEvent && window.FileReader);
-    $.support.xhrFormDataFileUpload = !!window.FormData;
-
-    // Detect support for Blob slicing (required for chunked uploads):
-    $.support.blobSlice = window.Blob && (Blob.prototype.slice ||
-        Blob.prototype.webkitSlice || Blob.prototype.mozSlice);
-
-    // Helper function to create drag handlers for dragover/dragenter/dragleave:
-    function getDragHandler(type) {
-        var isDragOver = type === 'dragover';
-        return function (e) {
-            e.dataTransfer = e.originalEvent && e.originalEvent.dataTransfer;
-            var dataTransfer = e.dataTransfer;
-            if (dataTransfer && $.inArray('Files', dataTransfer.types) !== -1 &&
-                    this._trigger(
-                        type,
-                        $.Event(type, {delegatedEvent: e})
-                    ) !== false) {
-                e.preventDefault();
-                if (isDragOver) {
-                    dataTransfer.dropEffect = 'copy';
-                }
-            }
-        };
-    }
-
-    // The fileupload widget listens for change events on file input fields defined
-    // via fileInput setting and paste or drop events of the given dropZone.
-    // In addition to the default jQuery Widget methods, the fileupload widget
-    // exposes the "add" and "send" methods, to add or directly send files using
-    // the fileupload API.
-    // By default, files added via file input selection, paste, drag & drop or
-    // "add" method are uploaded immediately, but it is possible to override
-    // the "add" callback option to queue file uploads.
-    $.widget('blueimp.fileupload', {
-
-        options: {
-            // The drop target element(s), by the default the complete document.
-            // Set to null to disable drag & drop support:
-            dropZone: $(document),
-            // The paste target element(s), by the default undefined.
-            // Set to a DOM node or jQuery object to enable file pasting:
-            pasteZone: undefined,
-            // The file input field(s), that are listened to for change events.
-            // If undefined, it is set to the file input fields inside
-            // of the widget element on plugin initialization.
-            // Set to null to disable the change listener.
-            fileInput: undefined,
-            // By default, the file input field is replaced with a clone after
-            // each input field change event. This is required for iframe transport
-            // queues and allows change events to be fired for the same file
-            // selection, but can be disabled by setting the following option to false:
-            replaceFileInput: true,
-            // The parameter name for the file form data (the request argument name).
-            // If undefined or empty, the name property of the file input field is
-            // used, or "files[]" if the file input name property is also empty,
-            // can be a string or an array of strings:
-            paramName: undefined,
-            // By default, each file of a selection is uploaded using an individual
-            // request for XHR type uploads. Set to false to upload file
-            // selections in one request each:
-            singleFileUploads: true,
-            // To limit the number of files uploaded with one XHR request,
-            // set the following option to an integer greater than 0:
-            limitMultiFileUploads: undefined,
-            // The following option limits the number of files uploaded with one
-            // XHR request to keep the request size under or equal to the defined
-            // limit in bytes:
-            limitMultiFileUploadSize: undefined,
-            // Multipart file uploads add a number of bytes to each uploaded file,
-            // therefore the following option adds an overhead for each file used
-            // in the limitMultiFileUploadSize configuration:
-            limitMultiFileUploadSizeOverhead: 512,
-            // Set the following option to true to issue all file upload requests
-            // in a sequential order:
-            sequentialUploads: false,
-            // To limit the number of concurrent uploads,
-            // set the following option to an integer greater than 0:
-            limitConcurrentUploads: undefined,
-            // Set the following option to true to force iframe transport uploads:
-            forceIframeTransport: false,
-            // Set the following option to the location of a redirect url on the
-            // origin server, for cross-domain iframe transport uploads:
-            redirect: undefined,
-            // The parameter name for the redirect url, sent as part of the form
-            // data and set to 'redirect' if this option is empty:
-            redirectParamName: undefined,
-            // Set the following option to the location of a postMessage window,
-            // to enable postMessage transport uploads:
-            postMessage: undefined,
-            // By default, XHR file uploads are sent as multipart/form-data.
-            // The iframe transport is always using multipart/form-data.
-            // Set to false to enable non-multipart XHR uploads:
-            multipart: true,
-            // To upload large files in smaller chunks, set the following option
-            // to a preferred maximum chunk size. If set to 0, null or undefined,
-            // or the browser does not support the required Blob API, files will
-            // be uploaded as a whole.
-            maxChunkSize: undefined,
-            // When a non-multipart upload or a chunked multipart upload has been
-            // aborted, this option can be used to resume the upload by setting
-            // it to the size of the already uploaded bytes. This option is most
-            // useful when modifying the options object inside of the "add" or
-            // "send" callbacks, as the options are cloned for each file upload.
-            uploadedBytes: undefined,
-            // By default, failed (abort or error) file uploads are removed from the
-            // global progress calculation. Set the following option to false to
-            // prevent recalculating the global progress data:
-            recalculateProgress: true,
-            // Interval in milliseconds to calculate and trigger progress events:
-            progressInterval: 100,
-            // Interval in milliseconds to calculate progress bitrate:
-            bitrateInterval: 500,
-            // By default, uploads are started automatically when adding files:
-            autoUpload: true,
-
-            // Error and info messages:
-            messages: {
-                uploadedBytes: 'Uploaded bytes exceed file size'
-            },
-
-            // Translation function, gets the message key to be translated
-            // and an object with context specific data as arguments:
-            i18n: function (message, context) {
-                message = this.messages[message] || message.toString();
-                if (context) {
-                    $.each(context, function (key, value) {
-                        message = message.replace('{' + key + '}', value);
-                    });
-                }
-                return message;
-            },
-
-            // Additional form data to be sent along with the file uploads can be set
-            // using this option, which accepts an array of objects with name and
-            // value properties, a function returning such an array, a FormData
-            // object (for XHR file uploads), or a simple object.
-            // The form of the first fileInput is given as parameter to the function:
-            formData: function (form) {
-                return form.serializeArray();
-            },
-
-            // The add callback is invoked as soon as files are added to the fileupload
-            // widget (via file input selection, drag & drop, paste or add API call).
-            // If the singleFileUploads option is enabled, this callback will be
-            // called once for each file in the selection for XHR file uploads, else
-            // once for each file selection.
-            //
-            // The upload starts when the submit method is invoked on the data parameter.
-            // The data object contains a files property holding the added files
-            // and allows you to override plugin options as well as define ajax settings.
-            //
-            // Listeners for this callback can also be bound the following way:
-            // .bind('fileuploadadd', func);
-            //
-            // data.submit() returns a Promise object and allows to attach additional
-            // handlers using jQuery's Deferred callbacks:
-            // data.submit().done(func).fail(func).always(func);
-            add: function (e, data) {
-                if (e.isDefaultPrevented()) {
-                    return false;
-                }
-                if (data.autoUpload || (data.autoUpload !== false &&
-                        $(this).fileupload('option', 'autoUpload'))) {
-                    data.process().done(function () {
-                        data.submit();
-                    });
-                }
-            },
-
-            // Other callbacks:
-
-            // Callback for the submit event of each file upload:
-            // submit: function (e, data) {}, // .bind('fileuploadsubmit', func);
-
-            // Callback for the start of each file upload request:
-            // send: function (e, data) {}, // .bind('fileuploadsend', func);
-
-            // Callback for successful uploads:
-            // done: function (e, data) {}, // .bind('fileuploaddone', func);
-
-            // Callback for failed (abort or error) uploads:
-            // fail: function (e, data) {}, // .bind('fileuploadfail', func);
-
-            // Callback for completed (success, abort or error) requests:
-            // always: function (e, data) {}, // .bind('fileuploadalways', func);
-
-            // Callback for upload progress events:
-            // progress: function (e, data) {}, // .bind('fileuploadprogress', func);
-
-            // Callback for global upload progress events:
-            // progressall: function (e, data) {}, // .bind('fileuploadprogressall', func);
-
-            // Callback for uploads start, equivalent to the global ajaxStart event:
-            // start: function (e) {}, // .bind('fileuploadstart', func);
-
-            // Callback for uploads stop, equivalent to the global ajaxStop event:
-            // stop: function (e) {}, // .bind('fileuploadstop', func);
-
-            // Callback for change events of the fileInput(s):
-            // change: function (e, data) {}, // .bind('fileuploadchange', func);
-
-            // Callback for paste events to the pasteZone(s):
-            // paste: function (e, data) {}, // .bind('fileuploadpaste', func);
-
-            // Callback for drop events of the dropZone(s):
-            // drop: function (e, data) {}, // .bind('fileuploaddrop', func);
-
-            // Callback for dragover events of the dropZone(s):
-            // dragover: function (e) {}, // .bind('fileuploaddragover', func);
-
-            // Callback for the start of each chunk upload request:
-            // chunksend: function (e, data) {}, // .bind('fileuploadchunksend', func);
-
-            // Callback for successful chunk uploads:
-            // chunkdone: function (e, data) {}, // .bind('fileuploadchunkdone', func);
-
-            // Callback for failed (abort or error) chunk uploads:
-            // chunkfail: function (e, data) {}, // .bind('fileuploadchunkfail', func);
-
-            // Callback for completed (success, abort or error) chunk upload requests:
-            // chunkalways: function (e, data) {}, // .bind('fileuploadchunkalways', func);
-
-            // The plugin options are used as settings object for the ajax calls.
-            // The following are jQuery ajax settings required for the file uploads:
-            processData: false,
-            contentType: false,
-            cache: false,
-            timeout: 0
-        },
-
-        // A list of options that require reinitializing event listeners and/or
-        // special initialization code:
-        _specialOptions: [
-            'fileInput',
-            'dropZone',
-            'pasteZone',
-            'multipart',
-            'forceIframeTransport'
-        ],
-
-        _blobSlice: $.support.blobSlice && function () {
-            var slice = this.slice || this.webkitSlice || this.mozSlice;
-            return slice.apply(this, arguments);
-        },
-
-        _BitrateTimer: function () {
-            this.timestamp = ((Date.now) ? Date.now() : (new Date()).getTime());
-            this.loaded = 0;
-            this.bitrate = 0;
-            this.getBitrate = function (now, loaded, interval) {
-                var timeDiff = now - this.timestamp;
-                if (!this.bitrate || !interval || timeDiff > interval) {
-                    this.bitrate = (loaded - this.loaded) * (1000 / timeDiff) * 8;
-                    this.loaded = loaded;
-                    this.timestamp = now;
-                }
-                return this.bitrate;
-            };
-        },
-
-        _isXHRUpload: function (options) {
-            return !options.forceIframeTransport &&
-                ((!options.multipart && $.support.xhrFileUpload) ||
-                $.support.xhrFormDataFileUpload);
-        },
-
-        _getFormData: function (options) {
-            var formData;
-            if ($.type(options.formData) === 'function') {
-                return options.formData(options.form);
-            }
-            if ($.isArray(options.formData)) {
-                return options.formData;
-            }
-            if ($.type(options.formData) === 'object') {
-                formData = [];
-                $.each(options.formData, function (name, value) {
-                    formData.push({name: name, value: value});
-                });
-                return formData;
-            }
-            return [];
-        },
-
-        _getTotal: function (files) {
-            var total = 0;
-            $.each(files, function (index, file) {
-                total += file.size || 1;
-            });
-            return total;
-        },
-
-        _initProgressObject: function (obj) {
-            var progress = {
-                loaded: 0,
-                total: 0,
-                bitrate: 0
-            };
-            if (obj._progress) {
-                $.extend(obj._progress, progress);
-            } else {
-                obj._progress = progress;
-            }
-        },
-
-        _initResponseObject: function (obj) {
-            var prop;
-            if (obj._response) {
-                for (prop in obj._response) {
-                    if (obj._response.hasOwnProperty(prop)) {
-                        delete obj._response[prop];
-                    }
-                }
-            } else {
-                obj._response = {};
-            }
-        },
-
-        _onProgress: function (e, data) {
-            if (e.lengthComputable) {
-                var now = ((Date.now) ? Date.now() : (new Date()).getTime()),
-                    loaded;
-                if (data._time && data.progressInterval &&
-                        (now - data._time < data.progressInterval) &&
-                        e.loaded !== e.total) {
-                    return;
-                }
-                data._time = now;
-                loaded = Math.floor(
-                    e.loaded / e.total * (data.chunkSize || data._progress.total)
-                ) + (data.uploadedBytes || 0);
-                // Add the difference from the previously loaded state
-                // to the global loaded counter:
-                this._progress.loaded += (loaded - data._progress.loaded);
-                this._progress.bitrate = this._bitrateTimer.getBitrate(
-                    now,
-                    this._progress.loaded,
-                    data.bitrateInterval
-                );
-                data._progress.loaded = data.loaded = loaded;
-                data._progress.bitrate = data.bitrate = data._bitrateTimer.getBitrate(
-                    now,
-                    loaded,
-                    data.bitrateInterval
-                );
-                // Trigger a custom progress event with a total data property set
-                // to the file size(s) of the current upload and a loaded data
-                // property calculated accordingly:
-                this._trigger(
-                    'progress',
-                    $.Event('progress', {delegatedEvent: e}),
-                    data
-                );
-                // Trigger a global progress event for all current file uploads,
-                // including ajax calls queued for sequential file uploads:
-                this._trigger(
-                    'progressall',
-                    $.Event('progressall', {delegatedEvent: e}),
-                    this._progress
-                );
-            }
-        },
-
-        _initProgressListener: function (options) {
-            var that = this,
-                xhr = options.xhr ? options.xhr() : $.ajaxSettings.xhr();
-            // Accesss to the native XHR object is required to add event listeners
-            // for the upload progress event:
-            if (xhr.upload) {
-                $(xhr.upload).bind('progress', function (e) {
-                    var oe = e.originalEvent;
-                    // Make sure the progress event properties get copied over:
-                    e.lengthComputable = oe.lengthComputable;
-                    e.loaded = oe.loaded;
-                    e.total = oe.total;
-                    that._onProgress(e, options);
-                });
-                options.xhr = function () {
-                    return xhr;
-                };
-            }
-        },
-
-        _isInstanceOf: function (type, obj) {
-            // Cross-frame instanceof check
-            return Object.prototype.toString.call(obj) === '[object ' + type + ']';
-        },
-
-        _initXHRData: function (options) {
-            var that = this,
-                formData,
-                file = options.files[0],
-                // Ignore non-multipart setting if not supported:
-                multipart = options.multipart || !$.support.xhrFileUpload,
-                paramName = $.type(options.paramName) === 'array' ?
-                    options.paramName[0] : options.paramName;
-            options.headers = $.extend({}, options.headers);
-            if (options.contentRange) {
-                options.headers['Content-Range'] = options.contentRange;
-            }
-            if (!multipart || options.blob || !this._isInstanceOf('File', file)) {
-                options.headers['Content-Disposition'] = 'attachment; filename="' +
-                    encodeURI(file.name) + '"';
-            }
-            if (!multipart) {
-                options.contentType = file.type || 'application/octet-stream';
-                options.data = options.blob || file;
-            } else if ($.support.xhrFormDataFileUpload) {
-                if (options.postMessage) {
-                    // window.postMessage does not allow sending FormData
-                    // objects, so we just add the File/Blob objects to
-                    // the formData array and let the postMessage window
-                    // create the FormData object out of this array:
-                    formData = this._getFormData(options);
-                    if (options.blob) {
-                        formData.push({
-                            name: paramName,
-                            value: options.blob
-                        });
-                    } else {
-                        $.each(options.files, function (index, file) {
-                            formData.push({
-                                name: ($.type(options.paramName) === 'array' &&
-                                    options.paramName[index]) || paramName,
-                                value: file
-                            });
-                        });
-                    }
-                } else {
-                    if (that._isInstanceOf('FormData', options.formData)) {
-                        formData = options.formData;
-                    } else {
-                        formData = new FormData();
-                        $.each(this._getFormData(options), function (index, field) {
-                            formData.append(field.name, field.value);
-                        });
-                    }
-                    if (options.blob) {
-                        formData.append(paramName, options.blob, file.name);
-                    } else {
-                        $.each(options.files, function (index, file) {
-                            // This check allows the tests to run with
-                            // dummy objects:
-                            if (that._isInstanceOf('File', file) ||
-                                    that._isInstanceOf('Blob', file)) {
-                                formData.append(
-                                    ($.type(options.paramName) === 'array' &&
-                                        options.paramName[index]) || paramName,
-                                    file,
-                                    file.uploadName || file.name
-                                );
-                            }
-                        });
-                    }
-                }
-                options.data = formData;
-            }
-            // Blob reference is not needed anymore, free memory:
-            options.blob = null;
-        },
-
-        _initIframeSettings: function (options) {
-            var targetHost = $('<a></a>').prop('href', options.url).prop('host');
-            // Setting the dataType to iframe enables the iframe transport:
-            options.dataType = 'iframe ' + (options.dataType || '');
-            // The iframe transport accepts a serialized array as form data:
-            options.formData = this._getFormData(options);
-            // Add redirect url to form data on cross-domain uploads:
-            if (options.redirect && targetHost && targetHost !== location.host) {
-                options.formData.push({
-                    name: options.redirectParamName || 'redirect',
-                    value: options.redirect
-                });
-            }
-        },
-
-        _initDataSettings: function (options) {
-            if (this._isXHRUpload(options)) {
-                if (!this._chunkedUpload(options, true)) {
-                    if (!options.data) {
-                        this._initXHRData(options);
-                    }
-                    this._initProgressListener(options);
-                }
-                if (options.postMessage) {
-                    // Setting the dataType to postmessage enables the
-                    // postMessage transport:
-                    options.dataType = 'postmessage ' + (options.dataType || '');
-                }
-            } else {
-                this._initIframeSettings(options);
-            }
-        },
-
-        _getParamName: function (options) {
-            var fileInput = $(options.fileInput),
-                paramName = options.paramName;
-            if (!paramName) {
-                paramName = [];
-                fileInput.each(function () {
-                    var input = $(this),
-                        name = input.prop('name') || 'files[]',
-                        i = (input.prop('files') || [1]).length;
-                    while (i) {
-                        paramName.push(name);
-                        i -= 1;
-                    }
-                });
-                if (!paramName.length) {
-                    paramName = [fileInput.prop('name') || 'files[]'];
-                }
-            } else if (!$.isArray(paramName)) {
-                paramName = [paramName];
-            }
-            return paramName;
-        },
-
-        _initFormSettings: function (options) {
-            // Retrieve missing options from the input field and the
-            // associated form, if available:
-            if (!options.form || !options.form.length) {
-                options.form = $(options.fileInput.prop('form'));
-                // If the given file input doesn't have an associated form,
-                // use the default widget file input's form:
-                if (!options.form.length) {
-                    options.form = $(this.options.fileInput.prop('form'));
-                }
-            }
-            options.paramName = this._getParamName(options);
-            if (!options.url) {
-                options.url = options.form.prop('action') || location.href;
-            }
-            // The HTTP request method must be "POST" or "PUT":
-            options.type = (options.type ||
-                ($.type(options.form.prop('method')) === 'string' &&
-                    options.form.prop('method')) || ''
-                ).toUpperCase();
-            if (options.type !== 'POST' && options.type !== 'PUT' &&
-                    options.type !== 'PATCH') {
-                options.type = 'POST';
-            }
-            if (!options.formAcceptCharset) {
-                options.formAcceptCharset = options.form.attr('accept-charset');
-            }
-        },
-
-        _getAJAXSettings: function (data) {
-            var options = $.extend({}, this.options, data);
-            this._initFormSettings(options);
-            this._initDataSettings(options);
-            return options;
-        },
-
-        // jQuery 1.6 doesn't provide .state(),
-        // while jQuery 1.8+ removed .isRejected() and .isResolved():
-        _getDeferredState: function (deferred) {
-            if (deferred.state) {
-                return deferred.state();
-            }
-            if (deferred.isResolved()) {
-                return 'resolved';
-            }
-            if (deferred.isRejected()) {
-                return 'rejected';
-            }
-            return 'pending';
-        },
-
-        // Maps jqXHR callbacks to the equivalent
-        // methods of the given Promise object:
-        _enhancePromise: function (promise) {
-            promise.success = promise.done;
-            promise.error = promise.fail;
-            promise.complete = promise.always;
-            return promise;
-        },
-
-        // Creates and returns a Promise object enhanced with
-        // the jqXHR methods abort, success, error and complete:
-        _getXHRPromise: function (resolveOrReject, context, args) {
-            var dfd = $.Deferred(),
-                promise = dfd.promise();
-            context = context || this.options.context || promise;
-            if (resolveOrReject === true) {
-                dfd.resolveWith(context, args);
-            } else if (resolveOrReject === false) {
-                dfd.rejectWith(context, args);
-            }
-            promise.abort = dfd.promise;
-            return this._enhancePromise(promise);
-        },
-
-        // Adds convenience methods to the data callback argument:
-        _addConvenienceMethods: function (e, data) {
-            var that = this,
-                getPromise = function (args) {
-                    return $.Deferred().resolveWith(that, args).promise();
-                };
-            data.process = function (resolveFunc, rejectFunc) {
-                if (resolveFunc || rejectFunc) {
-                    data._processQueue = this._processQueue =
-                        (this._processQueue || getPromise([this])).pipe(
-                            function () {
-                                if (data.errorThrown) {
-                                    return $.Deferred()
-                                        .rejectWith(that, [data]).promise();
-                                }
-                                return getPromise(arguments);
-                            }
-                        ).pipe(resolveFunc, rejectFunc);
-                }
-                return this._processQueue || getPromise([this]);
-            };
-            data.submit = function () {
-                if (this.state() !== 'pending') {
-                    data.jqXHR = this.jqXHR =
-                        (that._trigger(
-                            'submit',
-                            $.Event('submit', {delegatedEvent: e}),
-                            this
-                        ) !== false) && that._onSend(e, this);
-                }
-                return this.jqXHR || that._getXHRPromise();
-            };
-            data.abort = function () {
-                if (this.jqXHR) {
-                    return this.jqXHR.abort();
-                }
-                this.errorThrown = 'abort';
-                that._trigger('fail', null, this);
-                return that._getXHRPromise(false);
-            };
-            data.state = function () {
-                if (this.jqXHR) {
-                    return that._getDeferredState(this.jqXHR);
-                }
-                if (this._processQueue) {
-                    return that._getDeferredState(this._processQueue);
-                }
-            };
-            data.processing = function () {
-                return !this.jqXHR && this._processQueue && that
-                    ._getDeferredState(this._processQueue) === 'pending';
-            };
-            data.progress = function () {
-                return this._progress;
-            };
-            data.response = function () {
-                return this._response;
-            };
-        },
-
-        // Parses the Range header from the server response
-        // and returns the uploaded bytes:
-        _getUploadedBytes: function (jqXHR) {
-            var range = jqXHR.getResponseHeader('Range'),
-                parts = range && range.split('-'),
-                upperBytesPos = parts && parts.length > 1 &&
-                    parseInt(parts[1], 10);
-            return upperBytesPos && upperBytesPos + 1;
-        },
-
-        // Uploads a file in multiple, sequential requests
-        // by splitting the file up in multiple blob chunks.
-        // If the second parameter is true, only tests if the file
-        // should be uploaded in chunks, but does not invoke any
-        // upload requests:
-        _chunkedUpload: function (options, testOnly) {
-            options.uploadedBytes = options.uploadedBytes || 0;
-            var that = this,
-                file = options.files[0],
-                fs = file.size,
-                ub = options.uploadedBytes,
-                mcs = options.maxChunkSize || fs,
-                slice = this._blobSlice,
-                dfd = $.Deferred(),
-                promise = dfd.promise(),
-                jqXHR,
-                upload;
-            if (!(this._isXHRUpload(options) && slice && (ub || mcs < fs)) ||
-                    options.data) {
-                return false;
-            }
-            if (testOnly) {
-                return true;
-            }
-            if (ub >= fs) {
-                file.error = options.i18n('uploadedBytes');
-                return this._getXHRPromise(
-                    false,
-                    options.context,
-                    [null, 'error', file.error]
-                );
-            }
-            // The chunk upload method:
-            upload = function () {
-                // Clone the options object for each chunk upload:
-                var o = $.extend({}, options),
-                    currentLoaded = o._progress.loaded;
-                o.blob = slice.call(
-                    file,
-                    ub,
-                    ub + mcs,
-                    file.type
-                );
-                // Store the current chunk size, as the blob itself
-                // will be dereferenced after data processing:
-                o.chunkSize = o.blob.size;
-                // Expose the chunk bytes position range:
-                o.contentRange = 'bytes ' + ub + '-' +
-                    (ub + o.chunkSize - 1) + '/' + fs;
-                // Process the upload data (the blob and potential form data):
-                that._initXHRData(o);
-                // Add progress listeners for this chunk upload:
-                that._initProgressListener(o);
-                jqXHR = ((that._trigger('chunksend', null, o) !== false && $.ajax(o)) ||
-                        that._getXHRPromise(false, o.context))
-                    .done(function (result, textStatus, jqXHR) {
-                        ub = that._getUploadedBytes(jqXHR) ||
-                            (ub + o.chunkSize);
-                        // Create a progress event if no final progress event
-                        // with loaded equaling total has been triggered
-                        // for this chunk:
-                        if (currentLoaded + o.chunkSize - o._progress.loaded) {
-                            that._onProgress($.Event('progress', {
-                                lengthComputable: true,
-                                loaded: ub - o.uploadedBytes,
-                                total: ub - o.uploadedBytes
-                            }), o);
-                        }
-                        options.uploadedBytes = o.uploadedBytes = ub;
-                        o.result = result;
-                        o.textStatus = textStatus;
-                        o.jqXHR = jqXHR;
-                        that._trigger('chunkdone', null, o);
-                        that._trigger('chunkalways', null, o);
-                        if (ub < fs) {
-                            // File upload not yet complete,
-                            // continue with the next chunk:
-                            upload();
-                        } else {
-                            dfd.resolveWith(
-                                o.context,
-                                [result, textStatus, jqXHR]
-                            );
-                        }
-                    })
-                    .fail(function (jqXHR, textStatus, errorThrown) {
-                        o.jqXHR = jqXHR;
-                        o.textStatus = textStatus;
-                        o.errorThrown = errorThrown;
-                        that._trigger('chunkfail', null, o);
-                        that._trigger('chunkalways', null, o);
-                        dfd.rejectWith(
-                            o.context,
-                            [jqXHR, textStatus, errorThrown]
-                        );
-                    });
-            };
-            this._enhancePromise(promise);
-            promise.abort = function () {
-                return jqXHR.abort();
-            };
-            upload();
-            return promise;
-        },
-
-        _beforeSend: function (e, data) {
-            if (this._active === 0) {
-                // the start callback is triggered when an upload starts
-                // and no other uploads are currently running,
-                // equivalent to the global ajaxStart event:
-                this._trigger('start');
-                // Set timer for global bitrate progress calculation:
-                this._bitrateTimer = new this._BitrateTimer();
-                // Reset the global progress values:
-                this._progress.loaded = this._progress.total = 0;
-                this._progress.bitrate = 0;
-            }
-            // Make sure the container objects for the .response() and
-            // .progress() methods on the data object are available
-            // and reset to their initial state:
-            this._initResponseObject(data);
-            this._initProgressObject(data);
-            data._progress.loaded = data.loaded = data.uploadedBytes || 0;
-            data._progress.total = data.total = this._getTotal(data.files) || 1;
-            data._progress.bitrate = data.bitrate = 0;
-            this._active += 1;
-            // Initialize the global progress values:
-            this._progress.loaded += data.loaded;
-            this._progress.total += data.total;
-        },
-
-        _onDone: function (result, textStatus, jqXHR, options) {
-            var total = options._progress.total,
-                response = options._response;
-            if (options._progress.loaded < total) {
-                // Create a progress event if no final progress event
-                // with loaded equaling total has been triggered:
-                this._onProgress($.Event('progress', {
-                    lengthComputable: true,
-                    loaded: total,
-                    total: total
-                }), options);
-            }
-            response.result = options.result = result;
-            response.textStatus = options.textStatus = textStatus;
-            response.jqXHR = options.jqXHR = jqXHR;
-            this._trigger('done', null, options);
-        },
-
-        _onFail: function (jqXHR, textStatus, errorThrown, options) {
-            var response = options._response;
-            if (options.recalculateProgress) {
-                // Remove the failed (error or abort) file upload from
-                // the global progress calculation:
-                this._progress.loaded -= options._progress.loaded;
-                this._progress.total -= options._progress.total;
-            }
-            response.jqXHR = options.jqXHR = jqXHR;
-            response.textStatus = options.textStatus = textStatus;
-            response.errorThrown = options.errorThrown = errorThrown;
-            this._trigger('fail', null, options);
-        },
-
-        _onAlways: function (jqXHRorResult, textStatus, jqXHRorError, options) {
-            // jqXHRorResult, textStatus and jqXHRorError are added to the
-            // options object via done and fail callbacks
-            this._trigger('always', null, options);
-        },
-
-        _onSend: function (e, data) {
-            if (!data.submit) {
-                this._addConvenienceMethods(e, data);
-            }
-            var that = this,
-                jqXHR,
-                aborted,
-                slot,
-                pipe,
-                options = that._getAJAXSettings(data),
-                send = function () {
-                    that._sending += 1;
-                    // Set timer for bitrate progress calculation:
-                    options._bitrateTimer = new that._BitrateTimer();
-                    jqXHR = jqXHR || (
-                        ((aborted || that._trigger(
-                            'send',
-                            $.Event('send', {delegatedEvent: e}),
-                            options
-                        ) === false) &&
-                        that._getXHRPromise(false, options.context, aborted)) ||
-                        that._chunkedUpload(options) || $.ajax(options)
-                    ).done(function (result, textStatus, jqXHR) {
-                        that._onDone(result, textStatus, jqXHR, options);
-                    }).fail(function (jqXHR, textStatus, errorThrown) {
-                        that._onFail(jqXHR, textStatus, errorThrown, options);
-                    }).always(function (jqXHRorResult, textStatus, jqXHRorError) {
-                        that._onAlways(
-                            jqXHRorResult,
-                            textStatus,
-                            jqXHRorError,
-                            options
-                        );
-                        that._sending -= 1;
-                        that._active -= 1;
-                        if (options.limitConcurrentUploads &&
-                                options.limitConcurrentUploads > that._sending) {
-                            // Start the next queued upload,
-                            // that has not been aborted:
-                            var nextSlot = that._slots.shift();
-                            while (nextSlot) {
-                                if (that._getDeferredState(nextSlot) === 'pending') {
-                                    nextSlot.resolve();
-                                    break;
-                                }
-                                nextSlot = that._slots.shift();
-                            }
-                        }
-                        if (that._active === 0) {
-                            // The stop callback is triggered when all uploads have
-                            // been completed, equivalent to the global ajaxStop event:
-                            that._trigger('stop');
-                        }
-                    });
-                    return jqXHR;
-                };
-            this._beforeSend(e, options);
-            if (this.options.sequentialUploads ||
-                    (this.options.limitConcurrentUploads &&
-                    this.options.limitConcurrentUploads <= this._sending)) {
-                if (this.options.limitConcurrentUploads > 1) {
-                    slot = $.Deferred();
-                    this._slots.push(slot);
-                    pipe = slot.pipe(send);
-                } else {
-                    this._sequence = this._sequence.pipe(send, send);
-                    pipe = this._sequence;
-                }
-                // Return the piped Promise object, enhanced with an abort method,
-                // which is delegated to the jqXHR object of the current upload,
-                // and jqXHR callbacks mapped to the equivalent Promise methods:
-                pipe.abort = function () {
-                    aborted = [undefined, 'abort', 'abort'];
-                    if (!jqXHR) {
-                        if (slot) {
-                            slot.rejectWith(options.context, aborted);
-                        }
-                        return send();
-                    }
-                    return jqXHR.abort();
-                };
-                return this._enhancePromise(pipe);
-            }
-            return send();
-        },
-
-        _onAdd: function (e, data) {
-            var that = this,
-                result = true,
-                options = $.extend({}, this.options, data),
-                files = data.files,
-                filesLength = files.length,
-                limit = options.limitMultiFileUploads,
-                limitSize = options.limitMultiFileUploadSize,
-                overhead = options.limitMultiFileUploadSizeOverhead,
-                batchSize = 0,
-                paramName = this._getParamName(options),
-                paramNameSet,
-                paramNameSlice,
-                fileSet,
-                i,
-                j = 0;
-            if (!filesLength) {
-                return false;
-            }
-            if (limitSize && files[0].size === undefined) {
-                limitSize = undefined;
-            }
-            if (!(options.singleFileUploads || limit || limitSize) ||
-                    !this._isXHRUpload(options)) {
-                fileSet = [files];
-                paramNameSet = [paramName];
-            } else if (!(options.singleFileUploads || limitSize) && limit) {
-                fileSet = [];
-                paramNameSet = [];
-                for (i = 0; i < filesLength; i += limit) {
-                    fileSet.push(files.slice(i, i + limit));
-                    paramNameSlice = paramName.slice(i, i + limit);
-                    if (!paramNameSlice.length) {
-                        paramNameSlice = paramName;
-                    }
-                    paramNameSet.push(paramNameSlice);
-                }
-            } else if (!options.singleFileUploads && limitSize) {
-                fileSet = [];
-                paramNameSet = [];
-                for (i = 0; i < filesLength; i = i + 1) {
-                    batchSize += files[i].size + overhead;
-                    if (i + 1 === filesLength ||
-                            ((batchSize + files[i + 1].size + overhead) > limitSize) ||
-                            (limit && i + 1 - j >= limit)) {
-                        fileSet.push(files.slice(j, i + 1));
-                        paramNameSlice = paramName.slice(j, i + 1);
-                        if (!paramNameSlice.length) {
-                            paramNameSlice = paramName;
-                        }
-                        paramNameSet.push(paramNameSlice);
-                        j = i + 1;
-                        batchSize = 0;
-                    }
-                }
-            } else {
-                paramNameSet = paramName;
-            }
-            data.originalFiles = files;
-            $.each(fileSet || files, function (index, element) {
-                var newData = $.extend({}, data);
-                newData.files = fileSet ? element : [element];
-                newData.paramName = paramNameSet[index];
-                that._initResponseObject(newData);
-                that._initProgressObject(newData);
-                that._addConvenienceMethods(e, newData);
-                result = that._trigger(
-                    'add',
-                    $.Event('add', {delegatedEvent: e}),
-                    newData
-                );
-                return result;
-            });
-            return result;
-        },
-
-        _replaceFileInput: function (data) {
-            var input = data.fileInput,
-                inputClone = input.clone(true),
-                restoreFocus = input.is(document.activeElement);
-            // Add a reference for the new cloned file input to the data argument:
-            data.fileInputClone = inputClone;
-            $('<form></form>').append(inputClone)[0].reset();
-            // Detaching allows to insert the fileInput on another form
-            // without loosing the file input value:
-            input.after(inputClone).detach();
-            // If the fileInput had focus before it was detached,
-            // restore focus to the inputClone.
-            if (restoreFocus) {
-                inputClone.focus();
-            }
-            // Avoid memory leaks with the detached file input:
-            $.cleanData(input.unbind('remove'));
-            // Replace the original file input element in the fileInput
-            // elements set with the clone, which has been copied including
-            // event handlers:
-            this.options.fileInput = this.options.fileInput.map(function (i, el) {
-                if (el === input[0]) {
-                    return inputClone[0];
-                }
-                return el;
-            });
-            // If the widget has been initialized on the file input itself,
-            // override this.element with the file input clone:
-            if (input[0] === this.element[0]) {
-                this.element = inputClone;
-            }
-        },
-
-        _handleFileTreeEntry: function (entry, path) {
-            var that = this,
-                dfd = $.Deferred(),
-                errorHandler = function (e) {
-                    if (e && !e.entry) {
-                        e.entry = entry;
-                    }
-                    // Since $.when returns immediately if one
-                    // Deferred is rejected, we use resolve instead.
-                    // This allows valid files and invalid items
-                    // to be returned together in one set:
-                    dfd.resolve([e]);
-                },
-                successHandler = function (entries) {
-                    that._handleFileTreeEntries(
-                        entries,
-                        path + entry.name + '/'
-                    ).done(function (files) {
-                        dfd.resolve(files);
-                    }).fail(errorHandler);
-                },
-                readEntries = function () {
-                    dirReader.readEntries(function (results) {
-                        if (!results.length) {
-                            successHandler(entries);
-                        } else {
-                            entries = entries.concat(results);
-                            readEntries();
-                        }
-                    }, errorHandler);
-                },
-                dirReader, entries = [];
-            path = path || '';
-            if (entry.isFile) {
-                if (entry._file) {
-                    // Workaround for Chrome bug #149735
-                    entry._file.relativePath = path;
-                    dfd.resolve(entry._file);
-                } else {
-                    entry.file(function (file) {
-                        file.relativePath = path;
-                        dfd.resolve(file);
-                    }, errorHandler);
-                }
-            } else if (entry.isDirectory) {
-                dirReader = entry.createReader();
-                readEntries();
-            } else {
-                // Return an empy list for file system items
-                // other than files or directories:
-                dfd.resolve([]);
-            }
-            return dfd.promise();
-        },
-
-        _handleFileTreeEntries: function (entries, path) {
-            var that = this;
-            return $.when.apply(
-                $,
-                $.map(entries, function (entry) {
-                    return that._handleFileTreeEntry(entry, path);
-                })
-            ).pipe(function () {
-                return Array.prototype.concat.apply(
-                    [],
-                    arguments
-                );
-            });
-        },
-
-        _getDroppedFiles: function (dataTransfer) {
-            dataTransfer = dataTransfer || {};
-            var items = dataTransfer.items;
-            if (items && items.length && (items[0].webkitGetAsEntry ||
-                    items[0].getAsEntry)) {
-                return this._handleFileTreeEntries(
-                    $.map(items, function (item) {
-                        var entry;
-                        if (item.webkitGetAsEntry) {
-                            entry = item.webkitGetAsEntry();
-                            if (entry) {
-                                // Workaround for Chrome bug #149735:
-                                entry._file = item.getAsFile();
-                            }
-                            return entry;
-                        }
-                        return item.getAsEntry();
-                    })
-                );
-            }
-            return $.Deferred().resolve(
-                $.makeArray(dataTransfer.files)
-            ).promise();
-        },
-
-        _getSingleFileInputFiles: function (fileInput) {
-            fileInput = $(fileInput);
-            var entries = fileInput.prop('webkitEntries') ||
-                    fileInput.prop('entries'),
-                files,
-                value;
-            if (entries && entries.length) {
-                return this._handleFileTreeEntries(entries);
-            }
-            files = $.makeArray(fileInput.prop('files'));
-            if (!files.length) {
-                value = fileInput.prop('value');
-                if (!value) {
-                    return $.Deferred().resolve([]).promise();
-                }
-                // If the files property is not available, the browser does not
-                // support the File API and we add a pseudo File object with
-                // the input value as name with path information removed:
-                files = [{name: value.replace(/^.*\\/, '')}];
-            } else if (files[0].name === undefined && files[0].fileName) {
-                // File normalization for Safari 4 and Firefox 3:
-                $.each(files, function (index, file) {
-                    file.name = file.fileName;
-                    file.size = file.fileSize;
-                });
-            }
-            return $.Deferred().resolve(files).promise();
-        },
-
-        _getFileInputFiles: function (fileInput) {
-            if (!(fileInput instanceof $) || fileInput.length === 1) {
-                return this._getSingleFileInputFiles(fileInput);
-            }
-            return $.when.apply(
-                $,
-                $.map(fileInput, this._getSingleFileInputFiles)
-            ).pipe(function () {
-                return Array.prototype.concat.apply(
-                    [],
-                    arguments
-                );
-            });
-        },
-
-        _onChange: function (e) {
-            var that = this,
-                data = {
-                    fileInput: $(e.target),
-                    form: $(e.target.form)
-                };
-            this._getFileInputFiles(data.fileInput).always(function (files) {
-                data.files = files;
-                if (that.options.replaceFileInput) {
-                    that._replaceFileInput(data);
-                }
-                if (that._trigger(
-                        'change',
-                        $.Event('change', {delegatedEvent: e}),
-                        data
-                    ) !== false) {
-                    that._onAdd(e, data);
-                }
-            });
-        },
-
-        _onPaste: function (e) {
-            var items = e.originalEvent && e.originalEvent.clipboardData &&
-                    e.originalEvent.clipboardData.items,
-                data = {files: []};
-            if (items && items.length) {
-                $.each(items, function (index, item) {
-                    var file = item.getAsFile && item.getAsFile();
-                    if (file) {
-                        data.files.push(file);
-                    }
-                });
-                if (this._trigger(
-                        'paste',
-                        $.Event('paste', {delegatedEvent: e}),
-                        data
-                    ) !== false) {
-                    this._onAdd(e, data);
-                }
-            }
-        },
-
-        _onDrop: function (e) {
-            e.dataTransfer = e.originalEvent && e.originalEvent.dataTransfer;
-            var that = this,
-                dataTransfer = e.dataTransfer,
-                data = {};
-            if (dataTransfer && dataTransfer.files && dataTransfer.files.length) {
-                e.preventDefault();
-                this._getDroppedFiles(dataTransfer).always(function (files) {
-                    data.files = files;
-                    if (that._trigger(
-                            'drop',
-                            $.Event('drop', {delegatedEvent: e}),
-                            data
-                        ) !== false) {
-                        that._onAdd(e, data);
-                    }
-                });
-            }
-        },
-
-        _onDragOver: getDragHandler('dragover'),
-
-        _onDragEnter: getDragHandler('dragenter'),
-
-        _onDragLeave: getDragHandler('dragleave'),
-
-        _initEventHandlers: function () {
-            if (this._isXHRUpload(this.options)) {
-                this._on(this.options.dropZone, {
-                    dragover: this._onDragOver,
-                    drop: this._onDrop,
-                    // event.preventDefault() on dragenter is required for IE10+:
-                    dragenter: this._onDragEnter,
-                    // dragleave is not required, but added for completeness:
-                    dragleave: this._onDragLeave
-                });
-                this._on(this.options.pasteZone, {
-                    paste: this._onPaste
-                });
-            }
-            if ($.support.fileInput) {
-                this._on(this.options.fileInput, {
-                    change: this._onChange
-                });
-            }
-        },
-
-        _destroyEventHandlers: function () {
-            this._off(this.options.dropZone, 'dragenter dragleave dragover drop');
-            this._off(this.options.pasteZone, 'paste');
-            this._off(this.options.fileInput, 'change');
-        },
-
-        _setOption: function (key, value) {
-            var reinit = $.inArray(key, this._specialOptions) !== -1;
-            if (reinit) {
-                this._destroyEventHandlers();
-            }
-            this._super(key, value);
-            if (reinit) {
-                this._initSpecialOptions();
-                this._initEventHandlers();
-            }
-        },
-
-        _initSpecialOptions: function () {
-            var options = this.options;
-            if (options.fileInput === undefined) {
-                options.fileInput = this.element.is('input[type="file"]') ?
-                        this.element : this.element.find('input[type="file"]');
-            } else if (!(options.fileInput instanceof $)) {
-                options.fileInput = $(options.fileInput);
-            }
-            if (!(options.dropZone instanceof $)) {
-                options.dropZone = $(options.dropZone);
-            }
-            if (!(options.pasteZone instanceof $)) {
-                options.pasteZone = $(options.pasteZone);
-            }
-        },
-
-        _getRegExp: function (str) {
-            var parts = str.split('/'),
-                modifiers = parts.pop();
-            parts.shift();
-            return new RegExp(parts.join('/'), modifiers);
-        },
-
-        _isRegExpOption: function (key, value) {
-            return key !== 'url' && $.type(value) === 'string' &&
-                /^\/.*\/[igm]{0,3}$/.test(value);
-        },
-
-        _initDataAttributes: function () {
-            var that = this,
-                options = this.options,
-                data = this.element.data();
-            // Initialize options set via HTML5 data-attributes:
-            $.each(
-                this.element[0].attributes,
-                function (index, attr) {
-                    var key = attr.name.toLowerCase(),
-                        value;
-                    if (/^data-/.test(key)) {
-                        // Convert hyphen-ated key to camelCase:
-                        key = key.slice(5).replace(/-[a-z]/g, function (str) {
-                            return str.charAt(1).toUpperCase();
-                        });
-                        value = data[key];
-                        if (that._isRegExpOption(key, value)) {
-                            value = that._getRegExp(value);
-                        }
-                        options[key] = value;
-                    }
-                }
-            );
-        },
-
-        _create: function () {
-            this._initDataAttributes();
-            this._initSpecialOptions();
-            this._slots = [];
-            this._sequence = this._getXHRPromise(true);
-            this._sending = this._active = 0;
-            this._initProgressObject(this);
-            this._initEventHandlers();
-        },
-
-        // This method is exposed to the widget API and allows to query
-        // the number of active uploads:
-        active: function () {
-            return this._active;
-        },
-
-        // This method is exposed to the widget API and allows to query
-        // the widget upload progress.
-        // It returns an object with loaded, total and bitrate properties
-        // for the running uploads:
-        progress: function () {
-            return this._progress;
-        },
-
-        // This method is exposed to the widget API and allows adding files
-        // using the fileupload API. The data parameter accepts an object which
-        // must have a files property and can contain additional options:
-        // .fileupload('add', {files: filesList});
-        add: function (data) {
-            var that = this;
-            if (!data || this.options.disabled) {
-                return;
-            }
-            if (data.fileInput && !data.files) {
-                this._getFileInputFiles(data.fileInput).always(function (files) {
-                    data.files = files;
-                    that._onAdd(null, data);
-                });
-            } else {
-                data.files = $.makeArray(data.files);
-                this._onAdd(null, data);
-            }
-        },
-
-        // This method is exposed to the widget API and allows sending files
-        // using the fileupload API. The data parameter accepts an object which
-        // must have a files or fileInput property and can contain additional options:
-        // .fileupload('send', {files: filesList});
-        // The method returns a Promise object for the file upload call.
-        send: function (data) {
-            if (data && !this.options.disabled) {
-                if (data.fileInput && !data.files) {
-                    var that = this,
-                        dfd = $.Deferred(),
-                        promise = dfd.promise(),
-                        jqXHR,
-                        aborted;
-                    promise.abort = function () {
-                        aborted = true;
-                        if (jqXHR) {
-                            return jqXHR.abort();
-                        }
-                        dfd.reject(null, 'abort', 'abort');
-                        return promise;
-                    };
-                    this._getFileInputFiles(data.fileInput).always(
-                        function (files) {
-                            if (aborted) {
-                                return;
-                            }
-                            if (!files.length) {
-                                dfd.reject();
-                                return;
-                            }
-                            data.files = files;
-                            jqXHR = that._onSend(null, data);
-                            jqXHR.then(
-                                function (result, textStatus, jqXHR) {
-                                    dfd.resolve(result, textStatus, jqXHR);
-                                },
-                                function (jqXHR, textStatus, errorThrown) {
-                                    dfd.reject(jqXHR, textStatus, errorThrown);
-                                }
-                            );
-                        }
-                    );
-                    return this._enhancePromise(promise);
-                }
-                data.files = $.makeArray(data.files);
-                if (data.files.length) {
-                    return this._onSend(null, data);
-                }
-            }
-            return this._getXHRPromise(false, data && data.context);
-        }
-
-    });
-
-}));
-
-/*!
- * medium-editor-insert-plugin v2.2.1 - jQuery insert plugin for MediumEditor
- *
- * https://github.com/orthes/medium-editor-insert-plugin
- *
- * Copyright (c) 2014 Pavel Linkesch (http://linkesch.sk)
- * Released under the MIT license
- */
-
-this["MediumInsert"] = this["MediumInsert"] || {};
-this["MediumInsert"]["Templates"] = this["MediumInsert"]["Templates"] || {};
-
-this["MediumInsert"]["Templates"]["src/js/templates/core-buttons.hbs"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
-    var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function";
-
-  return "            <li><a data-addon=\""
-    + container.escapeExpression(((helper = (helper = helpers.key || (data && data.key)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"key","hash":{},"data":data}) : helper)))
-    + "\" data-action=\"add\" class=\"medium-insert-action\">"
-    + ((stack1 = ((helper = (helper = helpers.label || (depth0 != null ? depth0.label : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"label","hash":{},"data":data}) : helper))) != null ? stack1 : "")
-    + "</a></li>\n";
-},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1;
-
-  return "<div class=\"medium-insert-buttons\" contenteditable=\"false\" style=\"display: none\">\n    <a class=\"medium-insert-buttons-show\">+</a>\n    <ul class=\"medium-insert-buttons-addons\" style=\"display: none\">\n"
-    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.addons : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "    </ul>\n</div>\n";
-},"useData":true});
-
-this["MediumInsert"]["Templates"]["src/js/templates/core-caption.hbs"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var helper;
-
-  return "<figcaption contenteditable=\"true\" class=\"medium-insert-caption-placeholder\" data-placeholder=\""
-    + container.escapeExpression(((helper = (helper = helpers.placeholder || (depth0 != null ? depth0.placeholder : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"placeholder","hash":{},"data":data}) : helper)))
-    + "\"></figcaption>";
-},"useData":true});
-
-this["MediumInsert"]["Templates"]["src/js/templates/core-empty-line.hbs"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<p><br></p>\n";
-},"useData":true});
-
-this["MediumInsert"]["Templates"]["src/js/templates/embeds-toolbar.hbs"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
-    var stack1;
-
-  return "    <div class=\"medium-insert-embeds-toolbar medium-editor-toolbar medium-toolbar-arrow-under medium-editor-toolbar-active\">\n        <ul class=\"medium-editor-toolbar-actions clearfix\">\n"
-    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.styles : depth0),{"name":"each","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "        </ul>\n    </div>\n";
-},"2":function(container,depth0,helpers,partials,data) {
-    var stack1;
-
-  return ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.label : depth0),{"name":"if","hash":{},"fn":container.program(3, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
-},"3":function(container,depth0,helpers,partials,data) {
-    var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function";
-
-  return "                    <li>\n                        <button class=\"medium-editor-action\" data-action=\""
-    + container.escapeExpression(((helper = (helper = helpers.key || (data && data.key)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"key","hash":{},"data":data}) : helper)))
-    + "\">"
-    + ((stack1 = ((helper = (helper = helpers.label || (depth0 != null ? depth0.label : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"label","hash":{},"data":data}) : helper))) != null ? stack1 : "")
-    + "</button>\n                    </li>\n";
-},"5":function(container,depth0,helpers,partials,data) {
-    var stack1;
-
-  return "    <div class=\"medium-insert-embeds-toolbar2 medium-editor-toolbar medium-editor-toolbar-active\">\n        <ul class=\"medium-editor-toolbar-actions clearfix\">\n"
-    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.actions : depth0),{"name":"each","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "        </ul>\n    </div>\n";
-},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1, alias1=depth0 != null ? depth0 : {};
-
-  return ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.styles : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "\n"
-    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.actions : depth0),{"name":"if","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
-},"useData":true});
-
-this["MediumInsert"]["Templates"]["src/js/templates/embeds-wrapper.hbs"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1, helper;
-
-  return "<div class=\"medium-insert-embeds\" contenteditable=\"false\">\n	<figure>\n		<div class=\"medium-insert-embed\">\n			"
-    + ((stack1 = ((helper = (helper = helpers.html || (depth0 != null ? depth0.html : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"html","hash":{},"data":data}) : helper))) != null ? stack1 : "")
-    + "\n		</div>\n	</figure>\n	<div class=\"medium-insert-embeds-overlay\"></div>\n</div>";
-},"useData":true});
-
-this["MediumInsert"]["Templates"]["src/js/templates/images-fileupload.hbs"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<input type=\"file\" multiple>";
-},"useData":true});
-
-this["MediumInsert"]["Templates"]["src/js/templates/images-image.hbs"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
-    return "        <div class=\"medium-insert-images-progress\"></div>\n";
-},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1, helper, alias1=depth0 != null ? depth0 : {};
-
-  return "<figure contenteditable=\"false\">\n    <img src=\""
-    + container.escapeExpression(((helper = (helper = helpers.img || (depth0 != null ? depth0.img : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(alias1,{"name":"img","hash":{},"data":data}) : helper)))
-    + "\" alt=\"\">\n"
-    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.progress : depth0),{"name":"if","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "</figure>";
-},"useData":true});
-
-this["MediumInsert"]["Templates"]["src/js/templates/images-progressbar.hbs"] = Handlebars.template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    return "<progress min=\"0\" max=\"100\" value=\"0\">0</progress>";
-},"useData":true});
-
-this["MediumInsert"]["Templates"]["src/js/templates/images-toolbar.hbs"] = Handlebars.template({"1":function(container,depth0,helpers,partials,data) {
-    var stack1;
-
-  return ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.label : depth0),{"name":"if","hash":{},"fn":container.program(2, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
-},"2":function(container,depth0,helpers,partials,data) {
-    var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function";
-
-  return "                <li>\n                    <button class=\"medium-editor-action\" data-action=\""
-    + container.escapeExpression(((helper = (helper = helpers.key || (data && data.key)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"key","hash":{},"data":data}) : helper)))
-    + "\">"
-    + ((stack1 = ((helper = (helper = helpers.label || (depth0 != null ? depth0.label : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"label","hash":{},"data":data}) : helper))) != null ? stack1 : "")
-    + "</button>\n                </li>\n";
-},"4":function(container,depth0,helpers,partials,data) {
-    var stack1;
-
-  return "	<div class=\"medium-insert-images-toolbar2 medium-editor-toolbar medium-editor-toolbar-active\">\n		<ul class=\"medium-editor-toolbar-actions clearfix\">\n"
-    + ((stack1 = helpers.each.call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.actions : depth0),{"name":"each","hash":{},"fn":container.program(5, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "    	</ul>\n    </div>\n";
-},"5":function(container,depth0,helpers,partials,data) {
-    var stack1;
-
-  return ((stack1 = helpers["if"].call(depth0 != null ? depth0 : {},(depth0 != null ? depth0.label : depth0),{"name":"if","hash":{},"fn":container.program(6, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
-},"6":function(container,depth0,helpers,partials,data) {
-    var stack1, helper, alias1=depth0 != null ? depth0 : {}, alias2=helpers.helperMissing, alias3="function";
-
-  return "        	        <li>\n        	            <button class=\"medium-editor-action\" data-action=\""
-    + container.escapeExpression(((helper = (helper = helpers.key || (data && data.key)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"key","hash":{},"data":data}) : helper)))
-    + "\">"
-    + ((stack1 = ((helper = (helper = helpers.label || (depth0 != null ? depth0.label : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"label","hash":{},"data":data}) : helper))) != null ? stack1 : "")
-    + "</button>\n        	        </li>\n";
-},"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var stack1, alias1=depth0 != null ? depth0 : {};
-
-  return "<div class=\"medium-insert-images-toolbar medium-editor-toolbar medium-toolbar-arrow-under medium-editor-toolbar-active\">\n    <ul class=\"medium-editor-toolbar-actions clearfix\">\n"
-    + ((stack1 = helpers.each.call(alias1,(depth0 != null ? depth0.styles : depth0),{"name":"each","hash":{},"fn":container.program(1, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "")
-    + "    </ul>\n</div>\n\n"
-    + ((stack1 = helpers["if"].call(alias1,(depth0 != null ? depth0.actions : depth0),{"name":"if","hash":{},"fn":container.program(4, data, 0),"inverse":container.noop,"data":data})) != null ? stack1 : "");
-},"useData":true});
-;(function ($, window, document, undefined) {
-
-    'use strict';
-
-    /** Default values */
-    var pluginName = 'mediumInsert',
-        defaults = {
-            editor: null,
-            enabled: true,
-            addons: {
-                images: true, // boolean or object containing configuration
-                embeds: true
-            }
-        };
-
-    /**
-     * Capitalize first character
-     *
-     * @param {string} str
-     * @return {string}
-     */
-
-    function ucfirst (str) {
-        return str.charAt(0).toUpperCase() + str.slice(1);
-    }
-
-    /**
-     * Core plugin's object
-     *
-     * Sets options, variables and calls init() function
-     *
-     * @constructor
-     * @param {DOM} el - DOM element to init the plugin on
-     * @param {object} options - Options to override defaults
-     * @return {void}
-     */
-
-    function Core (el, options) {
-        var editor;
-
-        this.el = el;
-        this.$el = $(el);
-        this.templates = window.MediumInsert.Templates;
-
-        if (options) {
-            // Fix #142
-            // Avoid deep copying editor object, because since v2.3.0 it contains circular references which causes jQuery.extend to break
-            // Instead copy editor object to this.options manually
-            editor = options.editor;
-            options.editor = null;
-        }
-        this.options = $.extend(true, {}, defaults, options);
-        this.options.editor = editor;
-
-        this._defaults = defaults;
-        this._name = pluginName;
-
-        // Extend editor's functions
-        if (this.options && this.options.editor) {
-            this.options.editor._serialize = this.options.editor.serialize;
-            this.options.editor._destroy = this.options.editor.destroy;
-            this.options.editor._setup = this.options.editor.setup;
-            this.options.editor._hideInsertButtons = this.hideButtons;
-
-            this.options.editor.serialize = this.editorSerialize;
-            this.options.editor.destroy = this.editorDestroy;
-            this.options.editor.setup = this.editorSetup;
-
-            this.options.editor.getExtensionByName('placeholder').updatePlaceholder = this.editorUpdatePlaceholder;
-        }
-    }
-
-    /**
-     * Initialization
-     *
-     * @return {void}
-     */
-
-    Core.prototype.init = function () {
-        this.$el.addClass('medium-editor-insert-plugin');
-
-        if (typeof this.options.addons !== 'object' || Object.keys(this.options.addons).length === 0) {
-            this.disable();
-        }
-
-        this.initAddons();
-        this.clean();
-        this.events();
-    };
-
-    /**
-     * Event listeners
-     *
-     * @return {void}
-     */
-
-    Core.prototype.events = function () {
-        var that = this;
-
-        this.$el
-            .on('dragover drop', function (e) {
-                e.preventDefault();
-            })
-            .on('keyup click', $.proxy(this, 'toggleButtons'))
-            .on('selectstart mousedown', '.medium-insert, .medium-insert-buttons', $.proxy(this, 'disableSelection'))
-            .on('click', '.medium-insert-buttons-show', $.proxy(this, 'toggleAddons'))
-            .on('click', '.medium-insert-action', $.proxy(this, 'addonAction'))
-            .on('paste', '.medium-insert-caption-placeholder', function (e) {
-                $.proxy(that, 'removeCaptionPlaceholder')($(e.target));
-            });
-
-        $(window).on('resize', $.proxy(this, 'positionButtons', null));
-    };
-
-    /**
-     * Return editor instance
-     *
-     * @return {object} MediumEditor
-     */
-
-    Core.prototype.getEditor = function () {
-        return this.options.editor;
-    };
-
-    /**
-     * Extend editor's serialize function
-     *
-     * @return {object} Serialized data
-     */
-
-    Core.prototype.editorSerialize = function () {
-        var data = this._serialize();
-
-        $.each(data, function (key) {
-            var $data = $('<div />').html(data[key].value);
-
-            $data.find('.medium-insert-buttons').remove();
-
-            data[key].value = $data.html();
-        });
-
-        return data;
-    };
-
-    /**
-     * Extend editor's destroy function to deactivate this plugin too
-     *
-     * @return {void}
-     */
-
-    Core.prototype.editorDestroy = function () {
-        $.each(this.elements, function (key, el) {
-            $(el).data('plugin_' + pluginName).disable();
-        });
-
-        this._destroy();
-    };
-
-    /**
-     * Extend editor's setup function to activate this plugin too
-     *
-     * @return {void}
-     */
-
-    Core.prototype.editorSetup = function () {
-        this._setup();
-
-        $.each(this.elements, function (key, el) {
-            $(el).data('plugin_' + pluginName).enable();
-        });
-    };
-
-    /**
-     * Extend editor's placeholder.updatePlaceholder function to show placeholder dispite of the plugin buttons
-     *
-     * @return {void}
-     */
-
-    Core.prototype.editorUpdatePlaceholder = function (el) {
-        var contents = $(el).children()
-            .not('.medium-insert-buttons').contents();
-
-        if (contents.length === 1 && contents[0].nodeName.toLowerCase() === 'br') {
-            this.showPlaceholder(el);
-            this.base._hideInsertButtons($(el));
-        } else {
-            this.hidePlaceholder(el);
-        }
-    };
-
-    /**
-     * Trigger editableInput on editor
-     *
-     * @return {void}
-     */
-
-    Core.prototype.triggerInput = function () {
-        if (this.getEditor()) {
-            this.getEditor().trigger('editableInput', null, this.el);
-        }
-    };
-
-    /**
-     * Deselects selected text
-     *
-     * @return {void}
-     */
-
-    Core.prototype.deselect = function () {
-        document.getSelection().removeAllRanges();
-    };
-
-    /**
-     * Disables the plugin
-     *
-     * @return {void}
-     */
-
-    Core.prototype.disable = function () {
-        this.options.enabled = false;
-
-        this.$el.find('.medium-insert-buttons').addClass('hide');
-    };
-
-    /**
-     * Enables the plugin
-     *
-     * @return {void}
-     */
-
-    Core.prototype.enable = function () {
-        this.options.enabled = true;
-
-        this.$el.find('.medium-insert-buttons').removeClass('hide');
-    };
-
-    /**
-     * Disables selectstart mousedown events on plugin elements except images
-     *
-     * @return {void}
-     */
-
-    Core.prototype.disableSelection = function (e) {
-        var $el = $(e.target);
-
-        if ($el.is('img') === false || $el.hasClass('medium-insert-buttons-show')) {
-            e.preventDefault();
-        }
-    };
-
-    /**
-     * Initialize addons
-     *
-     * @return {void}
-     */
-
-    Core.prototype.initAddons = function () {
-        var that = this;
-
-        if (!this.options.addons || this.options.addons.length === 0) {
-            return;
-        }
-
-        $.each(this.options.addons, function (addon, options) {
-            var addonName = pluginName + ucfirst(addon);
-
-            if (options === false) {
-                delete that.options.addons[addon];
-                return;
-            }
-
-            that.$el[addonName](options);
-            that.options.addons[addon] = that.$el.data('plugin_'+ addonName).options;
-        });
-    };
-
-    /**
-     * Cleans a content of the editor
-     *
-     * @return {void}
-     */
-
-    Core.prototype.clean = function () {
-        var that = this,
-            $buttons, $lastEl, $text;
-
-        if (this.options.enabled === false) {
-            return;
-        }
-
-        // Fix #39
-        // After deleting all content (ctrl+A and delete) in Firefox, all content is deleted and only <br> appears
-        // To force placeholder to appear, set <p><br></p> as content of the $el
-
-        if (this.$el.html().trim() === '' || this.$el.html().trim() === '<br>') {
-            this.$el.html(this.templates['src/js/templates/core-empty-line.hbs']().trim());
-        }
-
-        // Fix #29
-        // Wrap content text in <p></p> to avoid Firefox problems
-        $text = this.$el
-            .contents()
-            .filter(function () {
-                return this.nodeName === '#text' && $.trim($(this).text()) !== '';
-            });
-
-        $text.each(function () {
-            $(this).wrap('<p />');
-
-            // Fix #145
-            // Move caret at the end of the element that's being wrapped
-            that.moveCaret($(this).parent(), $(this).text().length);
-        });
-
-        this.addButtons();
-
-        $buttons = this.$el.find('.medium-insert-buttons');
-        $lastEl = $buttons.prev();
-        if ($lastEl.attr('class') && $lastEl.attr('class').match(/medium\-insert(?!\-active)/)) {
-            $buttons.before(this.templates['src/js/templates/core-empty-line.hbs']().trim());
-        }
-    };
-
-    /**
-     * Returns HTML template of buttons
-     *
-     * @return {string} HTML template of buttons
-     */
-
-    Core.prototype.getButtons = function () {
-        if (this.options.enabled === false) {
-            return;
-        }
-
-        return this.templates['src/js/templates/core-buttons.hbs']({
-            addons: this.options.addons
-        }).trim();
-    };
-
-    /**
-     * Appends buttons at the end of the $el
-     *
-     * @return {void}
-     */
-
-    Core.prototype.addButtons = function () {
-        if (this.$el.find('.medium-insert-buttons').length === 0) {
-            this.$el.append(this.getButtons());
-        }
-    };
-
-    /**
-     * Move buttons to current active, empty paragraph and show them
-     *
-     * @return {void}
-     */
-
-    Core.prototype.toggleButtons = function (e) {
-        var $el = $(e.target),
-            selection = window.getSelection(),
-            that = this,
-            range, $current, $p, activeAddon;
-
-        if (this.options.enabled === false) {
-            return;
-        }
-
-        if (!selection || selection.rangeCount === 0) {
-            $current = $el;
-        } else {
-            range = selection.getRangeAt(0);
-            $current = $(range.commonAncestorContainer);
-        }
-
-        // When user clicks on  editor's placeholder in FF, $current el is editor itself, not the first paragraph as it should
-        if ($current.hasClass('medium-editor-insert-plugin')) {
-            $current = $current.find('p:first');
-        }
-
-        $p = $current.is('p') ? $current : $current.closest('p');
-
-        this.clean();
-
-        if ($el.hasClass('medium-editor-placeholder') === false && $el.closest('.medium-insert-buttons').length === 0 && $current.closest('.medium-insert-buttons').length === 0) {
-
-            this.$el.find('.medium-insert-active').removeClass('medium-insert-active');
-
-            $.each(this.options.addons, function (addon) {
-                if ($el.closest('.medium-insert-'+ addon).length) {
-                    $current = $el;
-                }
-
-                if ($current.closest('.medium-insert-'+ addon).length) {
-                    $p = $current.closest('.medium-insert-'+ addon);
-                    activeAddon = addon;
-                    return;
-                }
-            });
-
-            if ($p.length && (($p.text().trim() === '' && !activeAddon) || activeAddon === 'images')) {
-                $p.addClass('medium-insert-active');
-
-                // If buttons are displayed on addon paragraph, wait 100ms for possible captions to display
-                setTimeout(function () {
-                    that.positionButtons(activeAddon);
-                    that.showButtons(activeAddon);
-                }, activeAddon ? 100 : 0);
-            } else {
-                this.hideButtons();
-            }
-        }
-    };
-
-    /**
-     * Show buttons
-     *
-     * @param {string} activeAddon - Name of active addon
-     * @returns {void}
-     */
-
-    Core.prototype.showButtons = function (activeAddon) {
-        var $buttons = this.$el.find('.medium-insert-buttons');
-
-        $buttons.show();
-        $buttons.find('li').show();
-
-        if (activeAddon) {
-            $buttons.find('li').hide();
-            $buttons.find('a[data-addon="'+ activeAddon +'"]').parent().show();
-        }
-    };
-
-    /**
-     * Hides buttons
-     *
-     * @param {jQuery} $el - Editor element
-     * @returns {void}
-     */
-
-    Core.prototype.hideButtons = function ($el) {
-        $el = $el || this.$el;
-
-        $el.find('.medium-insert-buttons').hide();
-        $el.find('.medium-insert-buttons-addons').hide();
-        $el.find('.medium-insert-buttons-show').removeClass('medium-insert-buttons-rotate');
-    };
-
-    /**
-     * Position buttons
-     *
-     * @param {string} activeAddon - Name of active addon
-     * @return {void}
-     */
-
-    Core.prototype.positionButtons = function (activeAddon) {
-        var $buttons = this.$el.find('.medium-insert-buttons'),
-            $p = this.$el.find('.medium-insert-active'),
-            $first = $p.find('figure:first').length ? $p.find('figure:first') : $p,
-            left, top;
-
-        if ($p.length) {
-
-            left = $p.position().left - parseInt($buttons.find('.medium-insert-buttons-addons').css('left'), 10) - parseInt($buttons.find('.medium-insert-buttons-addons a:first').css('margin-left'), 10);
-            left = left < 0 ? $p.position().left : left;
-            // top = $p.position().top + parseInt($p.css('margin-top'), 10);
-            top = $p.offset().top;
-
-            if (activeAddon) {
-                if ($p.position().left !== $first.position().left) {
-                    left = $first.position().left;
-                }
-
-                top += $p.height() + 15; // 15px offset
-            }
-
-            $buttons.css({
-                left: left,
-                top: top
-            });
-        }
-    };
-
-    /**
-     * Toggles addons buttons
-     *
-     * @return {void}
-     */
-
-    Core.prototype.toggleAddons = function () {
-        this.$el.find('.medium-insert-buttons-addons').fadeToggle();
-        this.$el.find('.medium-insert-buttons-show').toggleClass('medium-insert-buttons-rotate');
-    };
-
-    /**
-     * Hide addons buttons
-     *
-     * @return {void}
-     */
-
-    Core.prototype.hideAddons = function () {
-        this.$el.find('.medium-insert-buttons-addons').hide();
-        this.$el.find('.medium-insert-buttons-show').removeClass('medium-insert-buttons-rotate');
-    };
-
-    /**
-     * Call addon's action
-     *
-     * @param {Event} e
-     * @return {void}
-     */
-
-    Core.prototype.addonAction = function (e) {
-        var $a = $(e.target).is('a') ? $(e.target) : $(e.target).closest('a'),
-            addon = $a.data('addon'),
-            action = $a.data('action');
-
-        this.$el.data('plugin_'+ pluginName + ucfirst(addon))[action]();
-    };
-
-    /**
-     * Move caret at the beginning of the empty paragraph
-     *
-     * @param {jQuery} $el Element where to place the caret
-     * @param {integer} position Position where to move caret. Default: 0
-     *
-     * @return {void}
-     */
-
-    Core.prototype.moveCaret = function ($el, position) {
-        var range, sel, el;
-
-        position = position || 0;
-        range = document.createRange();
-        sel = window.getSelection();
-        el = $el.get(0);
-
-        if (!el.childNodes.length) {
-            var textEl = document.createTextNode(' ');
-            el.appendChild(textEl);
-        }
-
-        range.setStart(el.childNodes[0], position);
-        range.collapse(true);
-        sel.removeAllRanges();
-        sel.addRange(range);
-    };
-
-    /**
-     * Add caption
-     *
-     * @param {jQuery Element} $el
-     * @param {string} placeholder
-     * @return {void}
-     */
-
-    Core.prototype.addCaption = function ($el, placeholder) {
-        var $caption = $el.find('figcaption');
-
-        if ($caption.length === 0) {
-            $el.append(this.templates['src/js/templates/core-caption.hbs']({
-                placeholder: placeholder
-            }));
-        }
-    };
-
-    /**
-     * Remove captions
-     *
-     * @param {jQuery Element} $ignore
-     * @return {void}
-     */
-
-    Core.prototype.removeCaptions = function ($ignore) {
-        var $captions = this.$el.find('figcaption');
-
-        if ($ignore) {
-            $captions = $captions.not($ignore);
-        }
-
-        $captions.each(function () {
-            if ($(this).hasClass('medium-insert-caption-placeholder') || $(this).text().trim() === '') {
-                $(this).remove();
-            }
-        });
-    };
-
-    /**
-     * Remove caption placeholder
-     *
-     * @param {jQuery Element} $el
-     * @return {void}
-     */
-
-    Core.prototype.removeCaptionPlaceholder = function ($el) {
-        var $caption = $el.is('figcaption') ? $el : $el.find('figcaption');
-
-        if ($caption.length) {
-            $caption
-                .removeClass('medium-insert-caption-placeholder')
-                .removeAttr('data-placeholder');
-        }
-    };
-
-    /** Plugin initialization */
-
-    $.fn[pluginName] = function (options) {
-        return this.each(function () {
-            var that = this,
-                textareaId;
-
-            if ($(that).is('textarea')) {
-                textareaId = $(that).attr('medium-editor-textarea-id');
-                that = $(that).siblings('[medium-editor-textarea-id="'+ textareaId +'"]').get(0);
-            }
-
-            if (!$.data(that, 'plugin_' + pluginName)) {
-                // Plugin initialization
-                $.data(that, 'plugin_' + pluginName, new Core(that, options));
-                $.data(that, 'plugin_' + pluginName).init();
-            } else if (typeof options === 'string' && $.data(that, 'plugin_' + pluginName)[options]) {
-                // Method call
-                $.data(that, 'plugin_' + pluginName)[options]();
-            }
-        });
-    };
-
-})(jQuery, window, document);
-
-;(function ($, window, document, undefined) {
-
-    'use strict';
-
-    /** Default values */
-    var pluginName = 'mediumInsert',
-        addonName = 'Embeds', // first char is uppercase
-        defaults = {
-            label: '<span class="fa fa-youtube-play"></span>',
-            placeholder: 'Paste a YouTube, Vimeo, Facebook, Twitter or Instagram link and press Enter',
-            oembedProxy: 'http://medium.iframe.ly/api/oembed?iframe=1',
-            captions: true,
-            captionPlaceholder: 'Type caption (optional)',
-            styles: {
-                wide: {
-                    label: '<span class="fa fa-align-justify"></span>',
-                    // added: function ($el) {},
-                    // removed: function ($el) {}
-                },
-                left: {
-                    label: '<span class="fa fa-align-left"></span>',
-                    // added: function ($el) {},
-                    // removed: function ($el) {}
-                },
-                right: {
-                    label: '<span class="fa fa-align-right"></span>',
-                    // added: function ($el) {},
-                    // removed: function ($el) {}
-                }
-            },
-            actions: {
-                remove: {
-                    label: '<span class="fa fa-times"></span>',
-                    clicked: function () {
-                        var $event = $.Event('keydown');
-
-                        $event.which = 8;
-                        $(document).trigger($event);
-                    }
-                }
-            }
-        };
-
-    /**
-     * Embeds object
-     *
-     * Sets options, variables and calls init() function
-     *
-     * @constructor
-     * @param {DOM} el - DOM element to init the plugin on
-     * @param {object} options - Options to override defaults
-     * @return {void}
-     */
-
-    function Embeds (el, options) {
-        this.el = el;
-        this.$el = $(el);
-        this.templates = window.MediumInsert.Templates;
-        this.core = this.$el.data('plugin_'+ pluginName);
-
-        this.options = $.extend(true, {}, defaults, options);
-
-        this._defaults = defaults;
-        this._name = pluginName;
-
-        // Extend editor's functions
-        if (this.core.getEditor()) {
-            this.core.getEditor()._serializePreEmbeds = this.core.getEditor().serialize;
-            this.core.getEditor().serialize = this.editorSerialize;
-        }
-
-        this.init();
-    }
-
-    /**
-     * Initialization
-     *
-     * @return {void}
-     */
-
-    Embeds.prototype.init = function () {
-        var $embeds = this.$el.find('.medium-insert-embeds');
-
-        $embeds.attr('contenteditable', false);
-        $embeds.each(function () {
-            if ($(this).find('.medium-insert-embeds-overlay').length === 0) {
-                $(this).append($('<div />').addClass('medium-insert-embeds-overlay'));
-            }
-        });
-
-        this.events();
-        this.backwardsCompatibility();
-    };
-
-    /**
-     * Event listeners
-     *
-     * @return {void}
-     */
-
-    Embeds.prototype.events = function () {
-        $(document)
-            .on('click', $.proxy(this, 'unselectEmbed'))
-            .on('keydown', $.proxy(this, 'removeEmbed'))
-            .on('click', '.medium-insert-embeds-toolbar .medium-editor-action', $.proxy(this, 'toolbarAction'))
-            .on('click', '.medium-insert-embeds-toolbar2 .medium-editor-action', $.proxy(this, 'toolbar2Action'));
-
-        this.$el
-            .on('keyup click paste', $.proxy(this, 'togglePlaceholder'))
-            .on('keydown', $.proxy(this, 'processLink'))
-            .on('click', '.medium-insert-embeds-overlay', $.proxy(this, 'selectEmbed'))
-            .on('contextmenu', '.medium-insert-embeds-placeholder', $.proxy(this, 'fixRightClickOnPlaceholder'));
-    };
-
-    /**
-     * Replace v0.* class names with new ones, wrap embedded content to new structure
-     *
-     * @return {void}
-     */
-
-    Embeds.prototype.backwardsCompatibility = function () {
-        var that = this;
-
-        this.$el.find('.mediumInsert-embeds')
-            .removeClass('mediumInsert-embeds')
-            .addClass('medium-insert-embeds');
-
-        this.$el.find('.medium-insert-embeds').each(function () {
-            if ($(this).find('.medium-insert-embed').length === 0) {
-                $(this).after(that.templates['src/js/templates/embeds-wrapper.hbs']({
-                    html: $(this).html()
-                }));
-                $(this).remove();
-            }
-        });
-    };
-
-    /**
-     * Extend editor's serialize function
-     *
-     * @return {object} Serialized data
-     */
-
-    Embeds.prototype.editorSerialize = function () {
-        var data = this._serializePreEmbeds();
-
-        $.each(data, function (key) {
-            var $data = $('<div />').html(data[key].value);
-
-            $data.find('.medium-insert-embeds').removeAttr('contenteditable');
-            $data.find('.medium-insert-embeds-overlay').remove();
-
-            data[key].value = $data.html();
-        });
-
-        return data;
-    };
-
-    /**
-     * Add embedded element
-     *
-     * @return {void}
-     */
-
-    Embeds.prototype.add = function () {
-        var $place = this.$el.find('.medium-insert-active');
-
-        // Fix #132
-        // Make sure that the content of the paragraph is empty and <br> is wrapped in <p></p> to avoid Firefox problems
-        $place.html(this.templates['src/js/templates/core-empty-line.hbs']().trim());
-
-        // Replace paragraph with div to prevent #124 issue with pasting in Chrome,
-        // because medium editor wraps inserted content into paragraph and paragraphs can't be nested
-        if ($place.is('p')) {
-            $place.replaceWith('<div class="medium-insert-active">'+ $place.html() +'</div>');
-            $place = this.$el.find('.medium-insert-active');
-            this.core.moveCaret($place);
-        }
-
-        $place.addClass('medium-insert-embeds medium-insert-embeds-input medium-insert-embeds-active');
-
-        this.togglePlaceholder({ target: $place.get(0) });
-
-        $place.click();
-        this.core.hideButtons();
-    };
-
-    /**
-     * Toggles placeholder
-     *
-     * @param {Event} e
-     * @return {void}
-     */
-
-    Embeds.prototype.togglePlaceholder = function (e) {
-        var $place = $(e.target),
-            selection = window.getSelection(),
-            range, $current, text;
-
-        if (!selection || selection.rangeCount === 0) {
-            return;
-        }
-
-        range = selection.getRangeAt(0);
-        $current = $(range.commonAncestorContainer);
-
-        if ($current.hasClass('medium-insert-embeds-active')) {
-            $place = $current;
-        } else if ($current.closest('.medium-insert-embeds-active').length) {
-            $place = $current.closest('.medium-insert-embeds-active');
-        }
-
-        if ($place.hasClass('medium-insert-embeds-active')) {
-
-            text = $place.text().trim();
-
-            if (text === '' && $place.hasClass('medium-insert-embeds-placeholder') === false) {
-                $place
-                    .addClass('medium-insert-embeds-placeholder')
-                    .attr('data-placeholder', this.options.placeholder);
-            } else if (text !== '' && $place.hasClass('medium-insert-embeds-placeholder')) {
-                $place
-                    .removeClass('medium-insert-embeds-placeholder')
-                    .removeAttr('data-placeholder');
-            }
-
-        } else {
-            this.$el.find('.medium-insert-embeds-active').remove();
-        }
-    };
-
-    /**
-     * Right click on placeholder in Chrome selects whole line. Fix this by placing caret at the end of line
-     *
-     * @param {Event} e
-     * @return {void}
-     */
-
-    Embeds.prototype.fixRightClickOnPlaceholder = function (e) {
-        this.core.moveCaret($(e.target));
-    };
-
-    /**
-     * Process link
-     *
-     * @param {Event} e
-     * @return {void}
-     */
-
-    Embeds.prototype.processLink = function (e) {
-        var $place = this.$el.find('.medium-insert-embeds-active'),
-            url;
-
-        if (!$place.length) {
-            return;
-        }
-
-        url = $place.text().trim();
-
-        // Return empty placeholder on backspace, delete or enter
-        if (url === '' && [8, 46, 13].indexOf(e.which) !== -1) {
-            $place.remove();
-            return;
-        }
-
-        if (e.which === 13) {
-            e.preventDefault();
-            e.stopPropagation();
-
-            if (this.options.oembedProxy) {
-                this.oembed(url);
-            } else {
-                this.parseUrl(url);
-            }
-        }
-    };
-
-    /**
-     * Get HTML via oEmbed proxy
-     *
-     * @param {string} url
-     * @return {void}
-     */
-
-    Embeds.prototype.oembed = function (url) {
-        var that = this;
-
-        $.support.cors = true;
-
-        $.ajax({
-            crossDomain: true,
-            cache: false,
-            url: this.options.oembedProxy,
-            dataType: 'json',
-            data: {
-                url: url
-            },
-            success: function(data) {
-                var html = data && data.html;
-
-                if (data && !data.html && data.type === 'photo' && data.url) {
-                    html = '<img src="' + data.url + '" alt="">';
-                }
-
-                $.proxy(that, 'embed', html)();
-            },
-            error: function(jqXHR, textStatus, errorThrown) {
-                var responseJSON = (function() {
-                    try {
-                        return JSON.parse(jqXHR.responseText);
-                    } catch(e) {}
-                })();
-
-                if (typeof window.console !== 'undefined') {
-                    window.console.log((responseJSON && responseJSON.error) || jqXHR.status || errorThrown.message);
-                } else {
-                    window.alert('Error requesting media from ' + that.options.oembedProxy + ' to insert: ' + errorThrown + ' (response status: ' + jqXHR.status + ')');
-                }
-
-                $.proxy(that, 'convertBadEmbed', url)();
-            }
-        });
-    };
-
-    /**
-     * Get HTML using regexp
-     *
-     * @param {string} url
-     * @return {void}
-     */
-
-    Embeds.prototype.parseUrl = function (url) {
-        var html;
-
-        if (!(new RegExp(['youtube', 'youtu.be', 'vimeo', 'instagram'].join('|')).test(url))) {
-            $.proxy(this, 'convertBadEmbed', url)();
-            return false;
-        }
-
-        html = url.replace(/\n?/g, '')
-            .replace(/^((http(s)?:\/\/)?(www\.)?(youtube\.com|youtu\.be)\/(watch\?v=|v\/)?)([a-zA-Z0-9\-_]+)(.*)?$/, '<div class="video video-youtube"><iframe width="420" height="315" src="//www.youtube.com/embed/$7" frameborder="0" allowfullscreen></iframe></div>')
-            .replace(/^https?:\/\/vimeo\.com(\/.+)?\/([0-9]+)$/, '<div class="video video-vimeo"><iframe src="//player.vimeo.com/video/$2" width="500" height="281" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></div>')
-            //.replace(/^https:\/\/twitter\.com\/(\w+)\/status\/(\d+)\/?$/, '<blockquote class="twitter-tweet" align="center" lang="en"><a href="https://twitter.com/$1/statuses/$2"></a></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>')
-            //.replace(/^https:\/\/www\.facebook\.com\/(video.php|photo.php)\?v=(\d+).+$/, '<div class="fb-post" data-href="https://www.facebook.com/photo.php?v=$2"><div class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/photo.php?v=$2">Post</a></div></div>')
-            .replace(/^https?:\/\/instagram\.com\/p\/(.+)\/?$/, '<span class="instagram"><iframe src="//instagram.com/p/$1/embed/" width="612" height="710" frameborder="0" scrolling="no" allowtransparency="true"></iframe></span>');
-
-
-        this.embed((/<("[^"]*"|'[^']*'|[^'">])*>/).test(html) ? html : false);
-    };
-
-    /**
-     * Add html to page
-     *
-     * @param {string} html
-     * @return {void}
-     */
-
-    Embeds.prototype.embed = function (html) {
-        var $place = this.$el.find('.medium-insert-embeds-active');
-
-        if (!html) {
-            alert('Incorrect URL format specified');
-            return false;
-        } else {
-            $place.after(this.templates['src/js/templates/embeds-wrapper.hbs']({
-                html: html
-            }));
-            $place.remove();
-
-            this.core.triggerInput();
-
-            if (html.indexOf('facebook') !== -1) {
-                if (typeof(FB) !== 'undefined') {
-                    setTimeout(function () {
-                        FB.XFBML.parse();
-                    }, 2000);
-                }
-            }
-        }
-    };
-
-    /**
-     * Convert bad oEmbed content to an actual line.
-     * Instead of displaying the error message we convert the bad embed
-     *
-     * @param {string} content Bad content
-     *
-     * @return {void}
-     */
-    Embeds.prototype.convertBadEmbed = function (content) {
-        var $place, $empty, $content,
-            emptyTemplate = this.templates['src/js/templates/core-empty-line.hbs']().trim();
-
-        $place = this.$el.find('.medium-insert-embeds-active');
-
-        // convert embed node to an empty node and insert the bad embed inside
-        $content = $(emptyTemplate);
-        $place.before($content);
-        $place.remove();
-        $content.html(content);
-
-        // add an new empty node right after to simulate Enter press
-        $empty = $(emptyTemplate);
-        $content.after($empty);
-
-        this.core.triggerInput();
-
-        this.core.moveCaret($place);
-    };
-
-    /**
-     * Select clicked embed
-     *
-     * @param {Event} e
-     * @returns {void}
-     */
-
-    Embeds.prototype.selectEmbed = function (e) {
-        if(this.core.options.enabled) {
-            var $embed = $(e.target).hasClass('medium-insert-embeds') ? $(e.target) : $(e.target).closest('.medium-insert-embeds'),
-                that = this;
-
-            $embed.addClass('medium-insert-embeds-selected');
-
-            setTimeout(function () {
-                that.addToolbar();
-
-                if (that.options.captions) {
-                    that.core.addCaption($embed.find('figure'), that.options.captionPlaceholder);
-                }
-            }, 50);
-        }
-    };
-
-    /**
-     * Unselect selected embed
-     *
-     * @param {Event} e
-     * @returns {void}
-     */
-
-    Embeds.prototype.unselectEmbed = function (e) {
-        var $el = $(e.target).hasClass('medium-insert-embeds') ? $(e.target) : $(e.target).closest('.medium-insert-embeds'),
-            $embed = this.$el.find('.medium-insert-embeds-selected');
-
-        if ($el.hasClass('medium-insert-embeds-selected')) {
-            $embed.not($el).removeClass('medium-insert-embeds-selected');
-            $('.medium-insert-embeds-toolbar, .medium-insert-embeds-toolbar2').remove();
-            this.core.removeCaptions($el.find('figcaption'));
-
-            if ($(e.target).is('.medium-insert-caption-placeholder') || $(e.target).is('figcaption')) {
-                $el.removeClass('medium-insert-embeds-selected');
-                this.core.removeCaptionPlaceholder($el.find('figure'));
-            }
-            return;
-        }
-
-        $embed.removeClass('medium-insert-embeds-selected');
-        $('.medium-insert-embeds-toolbar, .medium-insert-embeds-toolbar2').remove();
-
-        if ($(e.target).is('.medium-insert-caption-placeholder')) {
-            this.core.removeCaptionPlaceholder($el.find('figure'));
-        } else if ($(e.target).is('figcaption') === false) {
-            this.core.removeCaptions();
-        }
-    };
-
-    /**
-     * Remove embed
-     *
-     * @param {Event} e
-     * @returns {void}
-     */
-
-    Embeds.prototype.removeEmbed = function (e) {
-        var $embed, $empty;
-
-        if (e.which === 8 || e.which === 46) {
-            $embed = this.$el.find('.medium-insert-embeds-selected');
-
-            if ($embed.length) {
-                e.preventDefault();
-
-                $('.medium-insert-embeds-toolbar, .medium-insert-embeds-toolbar2').remove();
-
-                $empty = $(this.templates['src/js/templates/core-empty-line.hbs']().trim());
-                $embed.before($empty);
-                $embed.remove();
-
-                // Hide addons
-                this.core.hideAddons();
-
-                this.core.moveCaret($empty);
-                this.core.triggerInput();
-            }
-        }
-    };
-
-    /**
-     * Adds embed toolbar to editor
-     *
-     * @returns {void}
-     */
-
-    Embeds.prototype.addToolbar = function () {
-        var $embed = this.$el.find('.medium-insert-embeds-selected'),
-            active = false,
-            $toolbar, $toolbar2, top;
-
-        if ($embed.length === 0) {
-            return;
-        }
-
-        var mediumEditor = this.core.getEditor();
-        var toolbarContainer = mediumEditor.options.elementsContainer || 'body';
-
-        $(toolbarContainer).append(this.templates['src/js/templates/embeds-toolbar.hbs']({
-            styles: this.options.styles,
-            actions: this.options.actions
-        }).trim());
-
-        $toolbar = $('.medium-insert-embeds-toolbar');
-        $toolbar2 = $('.medium-insert-embeds-toolbar2');
-
-        top = $embed.offset().top - $toolbar.height() - 8 - 2 - 5; // 8px - hight of an arrow under toolbar, 2px - height of an embed outset, 5px - distance from an embed
-        if (top < 0) {
-            top = 0;
-        }
-
-        $toolbar
-            .css({
-                top: top,
-                left: $embed.offset().left + $embed.width() / 2 - $toolbar.width() / 2
-            })
-            .show();
-
-        $toolbar2
-            .css({
-                top: $embed.offset().top + 2, // 2px - distance from a border
-                left: $embed.offset().left + $embed.width() - $toolbar2.width() - 4 // 4px - distance from a border
-            })
-            .show();
-
-        $toolbar.find('button').each(function () {
-            if ($embed.hasClass('medium-insert-embeds-'+ $(this).data('action'))) {
-                $(this).addClass('medium-editor-button-active');
-                active = true;
-            }
-        });
-
-        if (active === false) {
-            $toolbar.find('button').first().addClass('medium-editor-button-active');
-        }
-    };
-
-    /**
-     * Fires toolbar action
-     *
-     * @param {Event} e
-     * @returns {void}
-     */
-
-    Embeds.prototype.toolbarAction = function (e) {
-        var $button = $(e.target).is('button') ? $(e.target) : $(e.target).closest('button'),
-            $li = $button.closest('li'),
-            $ul = $li.closest('ul'),
-            $lis = $ul.find('li'),
-            $embed = this.$el.find('.medium-insert-embeds-selected'),
-            that = this;
-
-        $button.addClass('medium-editor-button-active');
-        $li.siblings().find('.medium-editor-button-active').removeClass('medium-editor-button-active');
-
-        $lis.find('button').each(function () {
-            var className = 'medium-insert-embeds-'+ $(this).data('action');
-
-            if ($(this).hasClass('medium-editor-button-active')) {
-                $embed.addClass(className);
-
-                if (that.options.styles[$(this).data('action')].added) {
-                    that.options.styles[$(this).data('action')].added($embed);
-                }
-            } else {
-                $embed.removeClass(className);
-
-                if (that.options.styles[$(this).data('action')].removed) {
-                    that.options.styles[$(this).data('action')].removed($embed);
-                }
-            }
-        });
-
-        this.core.triggerInput();
-    };
-
-    /**
-     * Fires toolbar2 action
-     *
-     * @param {Event} e
-     * @returns {void}
-     */
-
-    Embeds.prototype.toolbar2Action = function (e) {
-        var $button = $(e.target).is('button') ? $(e.target) : $(e.target).closest('button'),
-            callback = this.options.actions[$button.data('action')].clicked;
-
-        if (callback) {
-            callback(this.$el.find('.medium-insert-embeds-selected'));
-        }
-
-        this.core.triggerInput();
-    };
-
-    /** Plugin initialization */
-
-    $.fn[pluginName + addonName] = function (options) {
-        return this.each(function () {
-            if (!$.data(this, 'plugin_' + pluginName + addonName)) {
-                $.data(this, 'plugin_' + pluginName + addonName, new Embeds(this, options));
-            }
-        });
-    };
-
-})(jQuery, window, document);
-
-/*global MediumEditor*/
-
-;(function ($, window, document, Util, undefined) {
-
-    'use strict';
-
-    /** Default values */
-    var pluginName = 'mediumInsert',
-        addonName = 'Images', // first char is uppercase
-        defaults = {
-            label: '<span class="fa fa-camera"></span>',
-            deleteMethod: 'POST',
-            deleteScript: 'delete.php',
-            preview: true,
-            captions: true,
-            captionPlaceholder: 'Type caption for image (optional)',
-            autoGrid: 3,
-            fileUploadOptions: { // See https://github.com/blueimp/jQuery-File-Upload/wiki/Options
-                url: 'upload.php',
-                acceptFileTypes: /(\.|\/)(gif|jpe?g|png)$/i
-            },
-            fileDeleteOptions: {},
-            styles: {
-                wide: {
-                    label: '<span class="fa fa-align-justify"></span>',
-                    // added: function ($el) {},
-                    // removed: function ($el) {}
-                },
-                left: {
-                    label: '<span class="fa fa-align-left"></span>',
-                    // added: function ($el) {},
-                    // removed: function ($el) {}
-                },
-                right: {
-                    label: '<span class="fa fa-align-right"></span>',
-                    // added: function ($el) {},
-                    // removed: function ($el) {}
-                },
-                grid: {
-                    label: '<span class="fa fa-th"></span>',
-                    // added: function ($el) {},
-                    // removed: function ($el) {}
-                }
-            },
-            actions: {
-                remove: {
-                    label: '<span class="fa fa-times"></span>',
-                    clicked: function () {
-                        var $event = $.Event('keydown');
-
-                        $event.which = 8;
-                        $(document).trigger($event);
-                    }
-                }
-            },
-            sorting: function () {
-                var that = this;
-
-                $('.medium-insert-images').sortable({
-                    group: 'medium-insert-images',
-                    containerSelector: '.medium-insert-images',
-                    itemSelector: 'figure',
-                    placeholder: '<figure class="placeholder">',
-                    handle: 'img',
-                    nested: false,
-                    vertical: false,
-                    afterMove: function () {
-                        that.core.triggerInput();
-                    }
-                });
-            },
-            messages: {
-                acceptFileTypesError: 'This file is not in a supported format: ',
-                maxFileSizeError: 'This file is too big: '
-            }
-            // uploadCompleted: function ($el, data) {}
-        };
-
-    /**
-     * Images object
-     *
-     * Sets options, variables and calls init() function
-     *
-     * @constructor
-     * @param {DOM} el - DOM element to init the plugin on
-     * @param {object} options - Options to override defaults
-     * @return {void}
-     */
-
-    function Images (el, options) {
-        this.el = el;
-        this.$el = $(el);
-        this.$currentImage = null;
-        this.templates = window.MediumInsert.Templates;
-        this.core = this.$el.data('plugin_'+ pluginName);
-
-        this.options = $.extend(true, {}, defaults, options);
-
-        this._defaults = defaults;
-        this._name = pluginName;
-
-        // Allow image preview only in browsers, that support's that
-        if (this.options.preview && !window.FileReader) {
-            this.options.preview = false;
-        }
-
-        // Extend editor's functions
-        if (this.core.getEditor()) {
-            this.core.getEditor()._serializePreImages = this.core.getEditor().serialize;
-            this.core.getEditor().serialize = this.editorSerialize;
-        }
-
-        this.init();
-    }
-
-    /**
-     * Initialization
-     *
-     * @return {void}
-     */
-
-    Images.prototype.init = function () {
-        var $images = this.$el.find('.medium-insert-images');
-
-        $images.find('figcaption').attr('contenteditable', true);
-        $images.find('figure').attr('contenteditable', false);
-
-        this.events();
-        this.backwardsCompatibility();
-        this.sorting();
-    };
-
-    /**
-     * Event listeners
-     *
-     * @return {void}
-     */
-
-    Images.prototype.events = function () {
-        $(document)
-            .on('click', $.proxy(this, 'unselectImage'))
-            .on('keydown', $.proxy(this, 'removeImage'))
-            .on('click', '.medium-insert-images-toolbar .medium-editor-action', $.proxy(this, 'toolbarAction'))
-            .on('click', '.medium-insert-images-toolbar2 .medium-editor-action', $.proxy(this, 'toolbar2Action'));
-
-        this.$el
-            .on('click', '.medium-insert-images img', $.proxy(this, 'selectImage'));
-    };
-
-    /**
-     * Replace v0.* class names with new ones
-     *
-     * @return {void}
-     */
-
-    Images.prototype.backwardsCompatibility = function () {
-        this.$el.find('.mediumInsert')
-            .removeClass('mediumInsert')
-            .addClass('medium-insert-images');
-
-        this.$el.find('.medium-insert-images.small')
-            .removeClass('small')
-            .addClass('medium-insert-images-left');
-    };
-
-    /**
-     * Extend editor's serialize function
-     *
-     * @return {object} Serialized data
-     */
-
-    Images.prototype.editorSerialize = function () {
-        var data = this._serializePreImages();
-
-        $.each(data, function (key) {
-            var $data = $('<div />').html(data[key].value);
-
-            $data.find('.medium-insert-images').find('figcaption, figure').removeAttr('contenteditable');
-
-            data[key].value = $data.html();
-        });
-
-        return data;
-    };
-
-    /**
-     * Add image
-     *
-     * @return {void}
-     */
-
-    Images.prototype.add = function () {
-        var that = this,
-            $file = $(this.templates['src/js/templates/images-fileupload.hbs']()),
-            fileUploadOptions = {
-                dataType: 'json',
-                add: function (e, data) {
-                    $.proxy(that, 'uploadAdd', e, data)();
-                },
-                done: function (e, data) {
-                    $.proxy(that, 'uploadDone', e, data)();
-                }
-            };
-
-        // Only add progress callbacks for browsers that support XHR2,
-        // and test for XHR2 per:
-        // http://stackoverflow.com/questions/6767887/
-        // what-is-the-best-way-to-check-for-xhr2-file-upload-support
-        if (new XMLHttpRequest().upload) {
-            fileUploadOptions.progress = function (e, data) {
-                $.proxy(that, 'uploadProgress', e, data)();
-            };
-
-            fileUploadOptions.progressall = function (e, data) {
-                $.proxy(that, 'uploadProgressall', e, data)();
-            };
-        }
-
-        $file.fileupload($.extend(true, {}, this.options.fileUploadOptions, fileUploadOptions));
-
-        $file.click();
-    };
-
-    /**
-     * Callback invoked as soon as files are added to the fileupload widget - via file input selection, drag & drop or add API call.
-     * https://github.com/blueimp/jQuery-File-Upload/wiki/Options#add
-     *
-     * @param {Event} e
-     * @param {object} data
-     * @return {void}
-     */
-
-    Images.prototype.uploadAdd = function (e, data) {
-        var $place = this.$el.find('.medium-insert-active'),
-            that = this,
-            uploadErrors = [],
-            file = data.files[0],
-            acceptFileTypes = this.options.fileUploadOptions.acceptFileTypes,
-            maxFileSize = this.options.fileUploadOptions.maxFileSize,
-            reader;
-
-        if (acceptFileTypes && !acceptFileTypes.test(file['type'])) {
-            uploadErrors.push(this.options.messages.acceptFileTypesError + file['name']);
-        } else if (maxFileSize && file['size'] > maxFileSize) {
-            uploadErrors.push(this.options.messages.maxFileSizeError + file['name']);
-        }
-        if (uploadErrors.length > 0) {
-            alert(uploadErrors.join("\n"));
-            return;
-        }
-
-        this.core.hideButtons();
-
-        // Replace paragraph with div, because figure elements can't be inside paragraph
-        if ($place.is('p')) {
-            $place.replaceWith('<div class="medium-insert-active">'+ $place.html() +'</div>');
-            $place = this.$el.find('.medium-insert-active');
-            this.core.moveCaret($place);
-        }
-
-        $place.addClass('medium-insert-images');
-
-        if (this.options.preview === false && $place.find('progress').length === 0 && (new XMLHttpRequest().upload)) {
-            $place.append(this.templates['src/js/templates/images-progressbar.hbs']());
-        }
-
-        if (data.autoUpload || (data.autoUpload !== false && $(e.target).fileupload('option', 'autoUpload'))) {
-            data.process().done(function () {
-                // If preview is set to true, let the showImage handle the upload start
-                if (that.options.preview) {
-                    reader = new FileReader();
-
-                    reader.onload = function (e) {
-                        $.proxy(that, 'showImage', e.target.result, data)();
-                    };
-
-                    reader.readAsDataURL(data.files[0]);
-                } else {
-                    data.submit();
-                }
-            });
-        }
-    };
-
-    /**
-     * Callback for global upload progress events
-     * https://github.com/blueimp/jQuery-File-Upload/wiki/Options#progressall
-     *
-     * @param {Event} e
-     * @param {object} data
-     * @return {void}
-     */
-
-    Images.prototype.uploadProgressall = function (e, data) {
-        var progress, $progressbar;
-
-        if (this.options.preview === false) {
-            progress = parseInt(data.loaded / data.total * 100, 10);
-            $progressbar = this.$el.find('.medium-insert-active').find('progress');
-
-            $progressbar
-                .attr('value', progress)
-                .text(progress);
-
-            if (progress === 100) {
-                $progressbar.remove();
-            }
-        }
-    };
-
-    /**
-     * Callback for upload progress events.
-     * https://github.com/blueimp/jQuery-File-Upload/wiki/Options#progress
-     *
-     * @param {Event} e
-     * @param {object} data
-     * @return {void}
-     */
-
-    Images.prototype.uploadProgress = function (e, data) {
-        var progress, $progressbar;
-
-        if (this.options.preview) {
-            progress = 100 - parseInt(data.loaded / data.total * 100, 10);
-            $progressbar = data.context.find('.medium-insert-images-progress');
-
-            $progressbar.css('width', progress +'%');
-
-            if (progress === 0) {
-                $progressbar.remove();
-            }
-        }
-    };
-
-    /**
-     * Callback for successful upload requests.
-     * https://github.com/blueimp/jQuery-File-Upload/wiki/Options#done
-     *
-     * @param {Event} e
-     * @param {object} data
-     * @return {void}
-     */
-
-    Images.prototype.uploadDone = function (e, data) {
-        $.proxy(this, 'showImage', data.result.files[0].url, data)();
-
-        this.core.clean();
-        this.sorting();
-    };
-
-    /**
-     * Add uploaded / preview image to DOM
-     *
-     * @param {string} img
-     * @returns {void}
-     */
-
-    Images.prototype.showImage = function (img, data) {
-        var $place = this.$el.find('.medium-insert-active'),
-            domImage,
-            that;
-
-        // Hide editor's placeholder
-        $place.click();
-
-        // If preview is allowed and preview image already exists,
-        // replace it with uploaded image
-        that = this;
-        if (this.options.preview && data.context) {
-            domImage = this.getDOMImage();
-            domImage.onload = function () {
-                data.context.find('img').attr('src', domImage.src);
-
-                if (this.options.uploadCompleted) {
-                    this.options.uploadCompleted(data.context, data);
-                }
-
-                that.core.triggerInput();
-            }.bind(this);
-            domImage.src = img;
-        } else {
-            data.context = $(this.templates['src/js/templates/images-image.hbs']({
-                img: img,
-                progress: this.options.preview
-            })).appendTo($place);
-
-            $place.find('br').remove();
-
-            if (this.options.autoGrid && $place.find('figure').length >= this.options.autoGrid) {
-                $.each(this.options.styles, function (style, options) {
-                    var className = 'medium-insert-images-'+ style;
-
-                    $place.removeClass(className);
-
-                    if (options.removed) {
-                        options.removed($place);
-                    }
-                });
-
-                $place.addClass('medium-insert-images-grid');
-
-                if (this.options.styles.grid.added) {
-                    this.options.styles.grid.added($place);
-                }
-            }
-
-            if (this.options.preview) {
-                data.submit();
-            } else if (this.options.uploadCompleted) {
-                this.options.uploadCompleted(data.context, data);
-            }
-        }
-
-        this.core.triggerInput();
-
-        return data.context;
-    };
-
-    Images.prototype.getDOMImage = function () {
-        return new window.Image();
-    };
-
-    /**
-     * Select clicked image
-     *
-     * @param {Event} e
-     * @returns {void}
-     */
-
-    Images.prototype.selectImage = function (e) {
-        if(this.core.options.enabled) {
-            var $image = $(e.target),
-                that = this;
-
-            this.$currentImage = $image;
-
-            // Hide keyboard on mobile devices
-            this.$el.blur();
-
-            $image.addClass('medium-insert-image-active');
-            $image.closest('.medium-insert-images').addClass('medium-insert-active');
-
-            setTimeout(function () {
-                that.addToolbar();
-
-                if (that.options.captions) {
-                    that.core.addCaption($image.closest('figure'), that.options.captionPlaceholder);
-                }
-            }, 50);
-        }
-    };
-
-    /**
-     * Unselect selected image
-     *
-     * @param {Event} e
-     * @returns {void}
-     */
-
-    Images.prototype.unselectImage = function (e) {
-        var $el = $(e.target),
-            $image = this.$el.find('.medium-insert-image-active');
-
-        if ($el.is('img') && $el.hasClass('medium-insert-image-active')) {
-            $image.not($el).removeClass('medium-insert-image-active');
-            $('.medium-insert-images-toolbar, .medium-insert-images-toolbar2').remove();
-            this.core.removeCaptions($el);
-            return;
-        }
-
-        $image.removeClass('medium-insert-image-active');
-        $('.medium-insert-images-toolbar, .medium-insert-images-toolbar2').remove();
-
-        if ($el.is('.medium-insert-caption-placeholder')) {
-            this.core.removeCaptionPlaceholder($image.closest('figure'));
-        } else if ($el.is('figcaption') === false) {
-            this.core.removeCaptions();
-        }
-        this.$currentImage = null;
-    };
-
-    /**
-     * Remove image
-     *
-     * @param {Event} e
-     * @returns {void}
-     */
-
-    Images.prototype.removeImage = function (e) {
-        var $image, $parent, $empty;
-
-        if (e.which === 8 || e.which === 46) {
-            $image = this.$el.find('.medium-insert-image-active');
-
-            if ($image.length) {
-                e.preventDefault();
-
-                this.deleteFile($image.attr('src'));
-
-                $parent = $image.closest('.medium-insert-images');
-                $image.closest('figure').remove();
-
-                $('.medium-insert-images-toolbar, .medium-insert-images-toolbar2').remove();
-
-                if ($parent.find('figure').length === 0) {
-                    $empty = $parent.next();
-                    if ($empty.is('p') === false || $empty.text() !== '') {
-                        $empty = $(this.templates['src/js/templates/core-empty-line.hbs']().trim());
-                        $parent.before($empty);
-                    }
-                    $parent.remove();
-
-                    // Hide addons
-                    this.core.hideAddons();
-
-                    this.core.moveCaret($empty);
-                }
-
-                this.core.triggerInput();
-            }
-        }
-    };
-
-    /**
-     * Makes ajax call to deleteScript
-     *
-     * @param {String} file File name
-     * @returns {void}
-     */
-
-    Images.prototype.deleteFile = function (file) {
-        if (this.options.deleteScript) {
-            // If deleteMethod is somehow undefined, defaults to POST
-            var method = this.options.deleteMethod || 'POST';
-
-            $.ajax($.extend(true, {}, {
-                url: this.options.deleteScript,
-                type: method,
-                data: { file: file }
-            }, this.options.fileDeleteOptions));
-        }
-    };
-
-    /**
-     * Adds image toolbar to editor
-     *
-     * @returns {void}
-     */
-
-    Images.prototype.addToolbar = function () {
-        var $image = this.$el.find('.medium-insert-image-active'),
-            $p = $image.closest('.medium-insert-images'),
-            active = false,
-            $toolbar, $toolbar2, top;
-
-        var mediumEditor = this.core.getEditor();
-        var toolbarContainer = mediumEditor.options.elementsContainer || 'body';
-
-        $(toolbarContainer).append(this.templates['src/js/templates/images-toolbar.hbs']({
-            styles: this.options.styles,
-            actions: this.options.actions
-        }).trim());
-
-        $toolbar = $('.medium-insert-images-toolbar');
-        $toolbar2 = $('.medium-insert-images-toolbar2');
-
-        top = $image.offset().top - $toolbar.height() - 8 - 2 - 5; // 8px - hight of an arrow under toolbar, 2px - height of an image outset, 5px - distance from an image
-        if (top < 0) {
-            top = 0;
-        }
-
-        $toolbar
-            .css({
-                top: top,
-                left: $image.offset().left + $image.width() / 2 - $toolbar.width() / 2
-            })
-            .show();
-
-        $toolbar2
-            .css({
-                top: $image.offset().top + 2, // 2px - distance from a border
-                left: $image.offset().left + $image.width() - $toolbar2.width() - 4 // 4px - distance from a border
-            })
-            .show();
-
-        $toolbar.find('button').each(function () {
-            if ($p.hasClass('medium-insert-images-'+ $(this).data('action'))) {
-                $(this).addClass('medium-editor-button-active');
-                active = true;
-            }
-        });
-
-        if (active === false) {
-            $toolbar.find('button').first().addClass('medium-editor-button-active');
-        }
-    };
-
-    /**
-     * Fires toolbar action
-     *
-     * @param {Event} e
-     * @returns {void}
-     */
-
-    Images.prototype.toolbarAction = function (e) {
-        if (this.$currentImage === null) return;
-        var $button = $(e.target).is('button') ? $(e.target) : $(e.target).closest('button'),
-            $li = $button.closest('li'),
-            $ul = $li.closest('ul'),
-            $lis = $ul.find('li'),
-            $p = this.$el.find('.medium-insert-active'),
-            that = this;
-
-        $button.addClass('medium-editor-button-active');
-        $li.siblings().find('.medium-editor-button-active').removeClass('medium-editor-button-active');
-
-        $lis.find('button').each(function () {
-            var className = 'medium-insert-images-'+ $(this).data('action');
-
-            if ($(this).hasClass('medium-editor-button-active')) {
-                $p.addClass(className);
-
-                if (that.options.styles[$(this).data('action')].added) {
-                    that.options.styles[$(this).data('action')].added($p);
-                }
-            } else {
-                $p.removeClass(className);
-
-                if (that.options.styles[$(this).data('action')].removed) {
-                    that.options.styles[$(this).data('action')].removed($p);
-                }
-            }
-        });
-
-        this.core.hideButtons();
-
-        this.core.triggerInput();
-    };
-
-    /**
-     * Fires toolbar2 action
-     *
-     * @param {Event} e
-     * @returns {void}
-     */
-
-    Images.prototype.toolbar2Action = function (e) {
-        if (this.$currentImage === null) return;
-        var $button = $(e.target).is('button') ? $(e.target) : $(e.target).closest('button'),
-            callback = this.options.actions[$button.data('action')].clicked;
-
-        if (callback) {
-            callback(this.$el.find('.medium-insert-image-active'));
-        }
-
-        this.core.hideButtons();
-
-        this.core.triggerInput();
-    };
-
-    /**
-     * Initialize sorting
-     *
-     * @returns {void}
-     */
-
-    Images.prototype.sorting = function () {
-        $.proxy(this.options.sorting, this)();
-    };
-
-    /** Plugin initialization */
-
-    $.fn[pluginName + addonName] = function (options) {
-        return this.each(function () {
-            if (!$.data(this, 'plugin_' + pluginName + addonName)) {
-                $.data(this, 'plugin_' + pluginName + addonName, new Images(this, options));
-            }
-        });
-    };
-
-})(jQuery, window, document, MediumEditor.util);
-
-/**
- *   MediumButton  1.0 (24.02.2015)
- *   MIT (c) Patrick Stillhart
- *  
- */
-function MediumButton(options) {
-    if (options.label === undefined || !/\S{1}/.test(options.label) || 
-		options.start === undefined || !/\S{1}/.test(options.start) || 
-		options.end === undefined || !/\S{1}/.test(options.end)) {
-		
-		if(options.label === undefined || !/\S{1}/.test(options.label) ||
-		   options.action === undefined || !/\S{1}/.test(options.action)) {
-			console.error('[Custom-Button] You need to specify "label", "start" and "end" OR "label" and "action"');	
-			return;
-		} 
-    }
-	
-	options.start = (options.start === undefined) ? '' : options.start;
-	options.end = (options.end === undefined) ? '' : options.end;
-	
-    this.options = options;
-    this.button = document.createElement('button');
-    this.button.className = 'medium-editor-action';
-    this.button.innerHTML = options.label;
-    this.button.onclick = function() {
-        // Get Current Value
-        var html = getCurrentSelection(), sel = window.getSelection();
-		
-        //Modify Content 
-		var mark = true;
-        if (options.start === undefined || html.indexOf(options.start) == -1 && html.indexOf(options.end) == -1) {
-		
-			if(options.action != undefined) html = options.action(html, true);
-		
-            html = options.start + html + options.end;
-
-        } else { //clean old
-			if(options.action != undefined) html = options.action(html, false);
-			html = String(html).split(options.start).join('');
-			html = String(html).split(options.end).join('');
-        }
-		
-		
-		
-		
-		var range;
-        //Set new Content
-        if (sel.getRangeAt && sel.rangeCount) {
-            range = window.getSelection().getRangeAt(0);
-            range.deleteContents();
-
-            // Create a DocumentFragment to insert and populate it with HTML
-            // Need to test for the existence of range.createContextualFragment
-            // because it's non-standard and IE 9 does not support it
-            if (range.createContextualFragment) {
-                fragment = range.createContextualFragment(html);
-            } else {
-                var div = document.createElement('div');
-                div.innerHTML = html;
-                fragment = document.createDocumentFragment();
-                while ((child = div.firstChild)) {
-                    fragment.appendChild(child);
-                }
-				
-            }
-            var firstInsertedNode = fragment.firstChild;
-            var lastInsertedNode = fragment.lastChild;
-            range.insertNode(fragment);
-            if (firstInsertedNode) {
-                range.setStartBefore(firstInsertedNode);
-                range.setEndAfter(lastInsertedNode);
-            }
-            sel.removeAllRanges();
-            sel.addRange(range);
-        }
-	
-    };
-
-}
-
-MediumButton.prototype.getButton = function() {
-    return this.button;
-};
-
-MediumButton.prototype.checkState = function(node) {
-	var html = getCurrentSelection();
-    if (this.options.start != '' && html.indexOf(this.options.start) > -1 && html.indexOf(this.options.end) > -1) {
-        this.button.classList.add('medium-editor-button-active');
-    }
-
-};
-
-function getCurrentSelection() {
-
-	var html = '', sel;
-       if (typeof window.getSelection != 'undefined') {
-           sel = window.getSelection();
-           if (sel.rangeCount) {
-               var container = document.createElement('div');
-               for (var i = 0, len = sel.rangeCount; i < len; ++i) {
-                   container.appendChild(sel.getRangeAt(i).cloneContents());
-               }
-               html = container.innerHTML;
-           }
-       } else if (typeof document.selection != 'undefined') {
-           if (document.selection.type == 'Text') {
-               html = document.selection.createRange().htmlText;
-           }
-       }
-	
-	return html;
-	
-}
 /*
  * Date Format 1.2.3
  * (c) 2007-2009 Steven Levithan <stevenlevithan.com>
@@ -10218,6 +5714,9839 @@ S2.define('jquery.select2',[
   // Return the Select2 instance for anyone who is importing it.
   return select2;
 }));
+
+
+;(function(){
+
+/**
+ * Require the module at `name`.
+ *
+ * @param {String} name
+ * @return {Object} exports
+ * @api public
+ */
+
+function require(name) {
+  var module = require.modules[name];
+  if (!module) throw new Error('failed to require "' + name + '"');
+
+  if (!('exports' in module) && typeof module.definition === 'function') {
+    module.client = module.component = true;
+    module.definition.call(this, module.exports = {}, module);
+    delete module.definition;
+  }
+
+  return module.exports;
+}
+
+/**
+ * Registered modules.
+ */
+
+require.modules = {};
+
+/**
+ * Register module at `name` with callback `definition`.
+ *
+ * @param {String} name
+ * @param {Function} definition
+ * @api private
+ */
+
+require.register = function (name, definition) {
+  require.modules[name] = {
+    definition: definition
+  };
+};
+
+/**
+ * Define a module's exports immediately with `exports`.
+ *
+ * @param {String} name
+ * @param {Generic} exports
+ * @api private
+ */
+
+require.define = function (name, exports) {
+  require.modules[name] = {
+    exports: exports
+  };
+};
+require.register("component~emitter@1.1.2", function (exports, module) {
+
+/**
+ * Expose `Emitter`.
+ */
+
+module.exports = Emitter;
+
+/**
+ * Initialize a new `Emitter`.
+ *
+ * @api public
+ */
+
+function Emitter(obj) {
+  if (obj) return mixin(obj);
+};
+
+/**
+ * Mixin the emitter properties.
+ *
+ * @param {Object} obj
+ * @return {Object}
+ * @api private
+ */
+
+function mixin(obj) {
+  for (var key in Emitter.prototype) {
+    obj[key] = Emitter.prototype[key];
+  }
+  return obj;
+}
+
+/**
+ * Listen on the given `event` with `fn`.
+ *
+ * @param {String} event
+ * @param {Function} fn
+ * @return {Emitter}
+ * @api public
+ */
+
+Emitter.prototype.on =
+Emitter.prototype.addEventListener = function(event, fn){
+  this._callbacks = this._callbacks || {};
+  (this._callbacks[event] = this._callbacks[event] || [])
+    .push(fn);
+  return this;
+};
+
+/**
+ * Adds an `event` listener that will be invoked a single
+ * time then automatically removed.
+ *
+ * @param {String} event
+ * @param {Function} fn
+ * @return {Emitter}
+ * @api public
+ */
+
+Emitter.prototype.once = function(event, fn){
+  var self = this;
+  this._callbacks = this._callbacks || {};
+
+  function on() {
+    self.off(event, on);
+    fn.apply(this, arguments);
+  }
+
+  on.fn = fn;
+  this.on(event, on);
+  return this;
+};
+
+/**
+ * Remove the given callback for `event` or all
+ * registered callbacks.
+ *
+ * @param {String} event
+ * @param {Function} fn
+ * @return {Emitter}
+ * @api public
+ */
+
+Emitter.prototype.off =
+Emitter.prototype.removeListener =
+Emitter.prototype.removeAllListeners =
+Emitter.prototype.removeEventListener = function(event, fn){
+  this._callbacks = this._callbacks || {};
+
+  // all
+  if (0 == arguments.length) {
+    this._callbacks = {};
+    return this;
+  }
+
+  // specific event
+  var callbacks = this._callbacks[event];
+  if (!callbacks) return this;
+
+  // remove all handlers
+  if (1 == arguments.length) {
+    delete this._callbacks[event];
+    return this;
+  }
+
+  // remove specific handler
+  var cb;
+  for (var i = 0; i < callbacks.length; i++) {
+    cb = callbacks[i];
+    if (cb === fn || cb.fn === fn) {
+      callbacks.splice(i, 1);
+      break;
+    }
+  }
+  return this;
+};
+
+/**
+ * Emit `event` with the given args.
+ *
+ * @param {String} event
+ * @param {Mixed} ...
+ * @return {Emitter}
+ */
+
+Emitter.prototype.emit = function(event){
+  this._callbacks = this._callbacks || {};
+  var args = [].slice.call(arguments, 1)
+    , callbacks = this._callbacks[event];
+
+  if (callbacks) {
+    callbacks = callbacks.slice(0);
+    for (var i = 0, len = callbacks.length; i < len; ++i) {
+      callbacks[i].apply(this, args);
+    }
+  }
+
+  return this;
+};
+
+/**
+ * Return array of callbacks for `event`.
+ *
+ * @param {String} event
+ * @return {Array}
+ * @api public
+ */
+
+Emitter.prototype.listeners = function(event){
+  this._callbacks = this._callbacks || {};
+  return this._callbacks[event] || [];
+};
+
+/**
+ * Check if this emitter has `event` handlers.
+ *
+ * @param {String} event
+ * @return {Boolean}
+ * @api public
+ */
+
+Emitter.prototype.hasListeners = function(event){
+  return !! this.listeners(event).length;
+};
+
+});
+
+require.register("dropzone", function (exports, module) {
+
+
+/**
+ * Exposing dropzone
+ */
+module.exports = require("dropzone/lib/dropzone.js");
+
+});
+
+require.register("dropzone/lib/dropzone.js", function (exports, module) {
+
+/*
+ *
+ * More info at [www.dropzonejs.com](http://www.dropzonejs.com)
+ *
+ * Copyright (c) 2012, Matias Meno
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ *
+ */
+
+(function() {
+  var Dropzone, Em, camelize, contentLoaded, detectVerticalSquash, drawImageIOSFix, noop, without,
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; },
+    __slice = [].slice;
+
+  Em = typeof Emitter !== "undefined" && Emitter !== null ? Emitter : require("component~emitter@1.1.2");
+
+  noop = function() {};
+
+  Dropzone = (function(_super) {
+    var extend;
+
+    __extends(Dropzone, _super);
+
+
+    /*
+    This is a list of all available events you can register on a dropzone object.
+
+    You can register an event handler like this:
+
+        dropzone.on("dragEnter", function() { });
+     */
+
+    Dropzone.prototype.events = ["drop", "dragstart", "dragend", "dragenter", "dragover", "dragleave", "addedfile", "removedfile", "thumbnail", "error", "errormultiple", "processing", "processingmultiple", "uploadprogress", "totaluploadprogress", "sending", "sendingmultiple", "success", "successmultiple", "canceled", "canceledmultiple", "complete", "completemultiple", "reset", "maxfilesexceeded", "maxfilesreached"];
+
+    Dropzone.prototype.defaultOptions = {
+      url: null,
+      method: "post",
+      withCredentials: false,
+      parallelUploads: 2,
+      uploadMultiple: false,
+      maxFilesize: 256,
+      paramName: "file",
+      createImageThumbnails: true,
+      maxThumbnailFilesize: 10,
+      thumbnailWidth: 100,
+      thumbnailHeight: 100,
+      maxFiles: null,
+      params: {},
+      clickable: true,
+      ignoreHiddenFiles: true,
+      acceptedFiles: null,
+      acceptedMimeTypes: null,
+      autoProcessQueue: true,
+      autoQueue: true,
+      addRemoveLinks: false,
+      previewsContainer: null,
+      dictDefaultMessage: "Drop files here to upload",
+      dictFallbackMessage: "Your browser does not support drag'n'drop file uploads.",
+      dictFallbackText: "Please use the fallback form below to upload your files like in the olden days.",
+      dictFileTooBig: "File is too big ({{filesize}}MiB). Max filesize: {{maxFilesize}}MiB.",
+      dictInvalidFileType: "You can't upload files of this type.",
+      dictResponseError: "Server responded with {{statusCode}} code.",
+      dictCancelUpload: "Cancel upload",
+      dictCancelUploadConfirmation: "Are you sure you want to cancel this upload?",
+      dictRemoveFile: "Remove file",
+      dictRemoveFileConfirmation: null,
+      dictMaxFilesExceeded: "You can not upload any more files.",
+      accept: function(file, done) {
+        return done();
+      },
+      init: function() {
+        return noop;
+      },
+      forceFallback: false,
+      fallback: function() {
+        var child, messageElement, span, _i, _len, _ref;
+        this.element.className = "" + this.element.className + " dz-browser-not-supported";
+        _ref = this.element.getElementsByTagName("div");
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          child = _ref[_i];
+          if (/(^| )dz-message($| )/.test(child.className)) {
+            messageElement = child;
+            child.className = "dz-message";
+            continue;
+          }
+        }
+        if (!messageElement) {
+          messageElement = Dropzone.createElement("<div class=\"dz-message\"><span></span></div>");
+          this.element.appendChild(messageElement);
+        }
+        span = messageElement.getElementsByTagName("span")[0];
+        if (span) {
+          span.textContent = this.options.dictFallbackMessage;
+        }
+        return this.element.appendChild(this.getFallbackForm());
+      },
+      resize: function(file) {
+        var info, srcRatio, trgRatio;
+        info = {
+          srcX: 0,
+          srcY: 0,
+          srcWidth: file.width,
+          srcHeight: file.height
+        };
+        srcRatio = file.width / file.height;
+        info.optWidth = this.options.thumbnailWidth;
+        info.optHeight = this.options.thumbnailHeight;
+        if (!((info.optWidth != null) && (info.optHeigh != null))) {
+          if ((info.optWidth == null) && (info.optHeight == null)) {
+            info.optWidth = info.srcWidth;
+            info.optHeight = info.srcHeight;
+          } else if (info.optWidth == null) {
+            info.optWidth = srcRatio * info.optHeight;
+          } else if (info.optHeight == null) {
+            info.optHeight = (1 / srcRatio) * info.optWidth;
+          }
+        }
+        trgRatio = info.optWidth / info.optHeight;
+        if (file.height < info.optHeight || file.width < info.optWidth) {
+          info.trgHeight = info.srcHeight;
+          info.trgWidth = info.srcWidth;
+        } else {
+          if (srcRatio > trgRatio) {
+            info.srcHeight = file.height;
+            info.srcWidth = info.srcHeight * trgRatio;
+          } else {
+            info.srcWidth = file.width;
+            info.srcHeight = info.srcWidth / trgRatio;
+          }
+        }
+        info.srcX = (file.width - info.srcWidth) / 2;
+        info.srcY = (file.height - info.srcHeight) / 2;
+        return info;
+      },
+
+      /*
+      Those functions register themselves to the events on init and handle all
+      the user interface specific stuff. Overwriting them won't break the upload
+      but can break the way it's displayed.
+      You can overwrite them if you don't like the default behavior. If you just
+      want to add an additional event handler, register it on the dropzone object
+      and don't overwrite those options.
+       */
+      drop: function(e) {
+        return this.element.classList.remove("dz-drag-hover");
+      },
+      dragstart: noop,
+      dragend: function(e) {
+        return this.element.classList.remove("dz-drag-hover");
+      },
+      dragenter: function(e) {
+        return this.element.classList.add("dz-drag-hover");
+      },
+      dragover: function(e) {
+        return this.element.classList.add("dz-drag-hover");
+      },
+      dragleave: function(e) {
+        return this.element.classList.remove("dz-drag-hover");
+      },
+      paste: noop,
+      reset: function() {
+        return this.element.classList.remove("dz-started");
+      },
+      addedfile: function(file) {
+        var node, removeFileEvent, removeLink, _i, _j, _k, _len, _len1, _len2, _ref, _ref1, _ref2, _results;
+        if (this.element === this.previewsContainer) {
+          this.element.classList.add("dz-started");
+        }
+        if (this.previewsContainer) {
+          file.previewElement = Dropzone.createElement(this.options.previewTemplate.trim());
+          file.previewTemplate = file.previewElement;
+          this.previewsContainer.appendChild(file.previewElement);
+          _ref = file.previewElement.querySelectorAll("[data-dz-name]");
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            node = _ref[_i];
+            node.textContent = file.name;
+          }
+          _ref1 = file.previewElement.querySelectorAll("[data-dz-size]");
+          for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
+            node = _ref1[_j];
+            node.innerHTML = this.filesize(file.size);
+          }
+          if (this.options.addRemoveLinks) {
+            file._removeLink = Dropzone.createElement("<a class=\"dz-remove\" href=\"javascript:undefined;\" data-dz-remove>" + this.options.dictRemoveFile + "</a>");
+            file.previewElement.appendChild(file._removeLink);
+          }
+          removeFileEvent = (function(_this) {
+            return function(e) {
+              e.preventDefault();
+              e.stopPropagation();
+              if (file.status === Dropzone.UPLOADING) {
+                return Dropzone.confirm(_this.options.dictCancelUploadConfirmation, function() {
+                  return _this.removeFile(file);
+                });
+              } else {
+                if (_this.options.dictRemoveFileConfirmation) {
+                  return Dropzone.confirm(_this.options.dictRemoveFileConfirmation, function() {
+                    return _this.removeFile(file);
+                  });
+                } else {
+                  return _this.removeFile(file);
+                }
+              }
+            };
+          })(this);
+          _ref2 = file.previewElement.querySelectorAll("[data-dz-remove]");
+          _results = [];
+          for (_k = 0, _len2 = _ref2.length; _k < _len2; _k++) {
+            removeLink = _ref2[_k];
+            _results.push(removeLink.addEventListener("click", removeFileEvent));
+          }
+          return _results;
+        }
+      },
+      removedfile: function(file) {
+        var _ref;
+        if (file.previewElement) {
+          if ((_ref = file.previewElement) != null) {
+            _ref.parentNode.removeChild(file.previewElement);
+          }
+        }
+        return this._updateMaxFilesReachedClass();
+      },
+      thumbnail: function(file, dataUrl) {
+        var thumbnailElement, _i, _len, _ref, _results;
+        if (file.previewElement) {
+          file.previewElement.classList.remove("dz-file-preview");
+          file.previewElement.classList.add("dz-image-preview");
+          _ref = file.previewElement.querySelectorAll("[data-dz-thumbnail]");
+          _results = [];
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            thumbnailElement = _ref[_i];
+            thumbnailElement.alt = file.name;
+            _results.push(thumbnailElement.src = dataUrl);
+          }
+          return _results;
+        }
+      },
+      error: function(file, message) {
+        var node, _i, _len, _ref, _results;
+        if (file.previewElement) {
+          file.previewElement.classList.add("dz-error");
+          if (typeof message !== "String" && message.error) {
+            message = message.error;
+          }
+          _ref = file.previewElement.querySelectorAll("[data-dz-errormessage]");
+          _results = [];
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            node = _ref[_i];
+            _results.push(node.textContent = message);
+          }
+          return _results;
+        }
+      },
+      errormultiple: noop,
+      processing: function(file) {
+        if (file.previewElement) {
+          file.previewElement.classList.add("dz-processing");
+          if (file._removeLink) {
+            return file._removeLink.textContent = this.options.dictCancelUpload;
+          }
+        }
+      },
+      processingmultiple: noop,
+      uploadprogress: function(file, progress, bytesSent) {
+        var node, _i, _len, _ref, _results;
+        if (file.previewElement) {
+          _ref = file.previewElement.querySelectorAll("[data-dz-uploadprogress]");
+          _results = [];
+          for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+            node = _ref[_i];
+            _results.push(node.style.width = "" + progress + "%");
+          }
+          return _results;
+        }
+      },
+      totaluploadprogress: noop,
+      sending: noop,
+      sendingmultiple: noop,
+      success: function(file) {
+        if (file.previewElement) {
+          return file.previewElement.classList.add("dz-success");
+        }
+      },
+      successmultiple: noop,
+      canceled: function(file) {
+        return this.emit("error", file, "Upload canceled.");
+      },
+      canceledmultiple: noop,
+      complete: function(file) {
+        if (file._removeLink) {
+          return file._removeLink.textContent = this.options.dictRemoveFile;
+        }
+      },
+      completemultiple: noop,
+      maxfilesexceeded: noop,
+      maxfilesreached: noop,
+      previewTemplate: "<div class=\"dz-preview dz-file-preview\">\n  <div class=\"dz-details\">\n    <div class=\"dz-filename\"><span data-dz-name></span></div>\n    <div class=\"dz-size\" data-dz-size></div>\n    <img data-dz-thumbnail />\n  </div>\n  <div class=\"dz-progress\"><span class=\"dz-upload\" data-dz-uploadprogress></span></div>\n  <div class=\"dz-success-mark\"><span>✔</span></div>\n  <div class=\"dz-error-mark\"><span>✘</span></div>\n  <div class=\"dz-error-message\"><span data-dz-errormessage></span></div>\n</div>"
+    };
+
+    extend = function() {
+      var key, object, objects, target, val, _i, _len;
+      target = arguments[0], objects = 2 <= arguments.length ? __slice.call(arguments, 1) : [];
+      for (_i = 0, _len = objects.length; _i < _len; _i++) {
+        object = objects[_i];
+        for (key in object) {
+          val = object[key];
+          target[key] = val;
+        }
+      }
+      return target;
+    };
+
+    function Dropzone(element, options) {
+      var elementOptions, fallback, _ref;
+      this.element = element;
+      this.version = Dropzone.version;
+      this.defaultOptions.previewTemplate = this.defaultOptions.previewTemplate.replace(/\n*/g, "");
+      this.clickableElements = [];
+      this.listeners = [];
+      this.files = [];
+      if (typeof this.element === "string") {
+        this.element = document.querySelector(this.element);
+      }
+      if (!(this.element && (this.element.nodeType != null))) {
+        throw new Error("Invalid dropzone element.");
+      }
+      if (this.element.dropzone) {
+        throw new Error("Dropzone already attached.");
+      }
+      Dropzone.instances.push(this);
+      this.element.dropzone = this;
+      elementOptions = (_ref = Dropzone.optionsForElement(this.element)) != null ? _ref : {};
+      this.options = extend({}, this.defaultOptions, elementOptions, options != null ? options : {});
+      if (this.options.forceFallback || !Dropzone.isBrowserSupported()) {
+        return this.options.fallback.call(this);
+      }
+      if (this.options.url == null) {
+        this.options.url = this.element.getAttribute("action");
+      }
+      if (!this.options.url) {
+        throw new Error("No URL provided.");
+      }
+      if (this.options.acceptedFiles && this.options.acceptedMimeTypes) {
+        throw new Error("You can't provide both 'acceptedFiles' and 'acceptedMimeTypes'. 'acceptedMimeTypes' is deprecated.");
+      }
+      if (this.options.acceptedMimeTypes) {
+        this.options.acceptedFiles = this.options.acceptedMimeTypes;
+        delete this.options.acceptedMimeTypes;
+      }
+      this.options.method = this.options.method.toUpperCase();
+      if ((fallback = this.getExistingFallback()) && fallback.parentNode) {
+        fallback.parentNode.removeChild(fallback);
+      }
+      if (this.options.previewsContainer !== false) {
+        if (this.options.previewsContainer) {
+          this.previewsContainer = Dropzone.getElement(this.options.previewsContainer, "previewsContainer");
+        } else {
+          this.previewsContainer = this.element;
+        }
+      }
+      if (this.options.clickable) {
+        if (this.options.clickable === true) {
+          this.clickableElements = [this.element];
+        } else {
+          this.clickableElements = Dropzone.getElements(this.options.clickable, "clickable");
+        }
+      }
+      this.init();
+    }
+
+    Dropzone.prototype.getAcceptedFiles = function() {
+      var file, _i, _len, _ref, _results;
+      _ref = this.files;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        file = _ref[_i];
+        if (file.accepted) {
+          _results.push(file);
+        }
+      }
+      return _results;
+    };
+
+    Dropzone.prototype.getRejectedFiles = function() {
+      var file, _i, _len, _ref, _results;
+      _ref = this.files;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        file = _ref[_i];
+        if (!file.accepted) {
+          _results.push(file);
+        }
+      }
+      return _results;
+    };
+
+    Dropzone.prototype.getFilesWithStatus = function(status) {
+      var file, _i, _len, _ref, _results;
+      _ref = this.files;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        file = _ref[_i];
+        if (file.status === status) {
+          _results.push(file);
+        }
+      }
+      return _results;
+    };
+
+    Dropzone.prototype.getQueuedFiles = function() {
+      return this.getFilesWithStatus(Dropzone.QUEUED);
+    };
+
+    Dropzone.prototype.getUploadingFiles = function() {
+      return this.getFilesWithStatus(Dropzone.UPLOADING);
+    };
+
+    Dropzone.prototype.getActiveFiles = function() {
+      var file, _i, _len, _ref, _results;
+      _ref = this.files;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        file = _ref[_i];
+        if (file.status === Dropzone.UPLOADING || file.status === Dropzone.QUEUED) {
+          _results.push(file);
+        }
+      }
+      return _results;
+    };
+
+    Dropzone.prototype.init = function() {
+      var eventName, noPropagation, setupHiddenFileInput, _i, _len, _ref, _ref1;
+      if (this.element.tagName === "form") {
+        this.element.setAttribute("enctype", "multipart/form-data");
+      }
+      if (this.element.classList.contains("dropzone") && !this.element.querySelector(".dz-message")) {
+        this.element.appendChild(Dropzone.createElement("<div class=\"dz-default dz-message\"><span>" + this.options.dictDefaultMessage + "</span></div>"));
+      }
+      if (this.clickableElements.length) {
+        setupHiddenFileInput = (function(_this) {
+          return function() {
+            if (_this.hiddenFileInput) {
+              document.body.removeChild(_this.hiddenFileInput);
+            }
+            _this.hiddenFileInput = document.createElement("input");
+            _this.hiddenFileInput.setAttribute("type", "file");
+            if ((_this.options.maxFiles == null) || _this.options.maxFiles > 1) {
+              _this.hiddenFileInput.setAttribute("multiple", "multiple");
+            }
+            _this.hiddenFileInput.className = "dz-hidden-input";
+            if (_this.options.acceptedFiles != null) {
+              _this.hiddenFileInput.setAttribute("accept", _this.options.acceptedFiles);
+            }
+            _this.hiddenFileInput.style.visibility = "hidden";
+            _this.hiddenFileInput.style.position = "absolute";
+            _this.hiddenFileInput.style.top = "0";
+            _this.hiddenFileInput.style.left = "0";
+            _this.hiddenFileInput.style.height = "0";
+            _this.hiddenFileInput.style.width = "0";
+            document.body.appendChild(_this.hiddenFileInput);
+            return _this.hiddenFileInput.addEventListener("change", function() {
+              var file, files, _i, _len;
+              files = _this.hiddenFileInput.files;
+              if (files.length) {
+                for (_i = 0, _len = files.length; _i < _len; _i++) {
+                  file = files[_i];
+                  _this.addFile(file);
+                }
+              }
+              return setupHiddenFileInput();
+            });
+          };
+        })(this);
+        setupHiddenFileInput();
+      }
+      this.URL = (_ref = window.URL) != null ? _ref : window.webkitURL;
+      _ref1 = this.events;
+      for (_i = 0, _len = _ref1.length; _i < _len; _i++) {
+        eventName = _ref1[_i];
+        this.on(eventName, this.options[eventName]);
+      }
+      this.on("uploadprogress", (function(_this) {
+        return function() {
+          return _this.updateTotalUploadProgress();
+        };
+      })(this));
+      this.on("removedfile", (function(_this) {
+        return function() {
+          return _this.updateTotalUploadProgress();
+        };
+      })(this));
+      this.on("canceled", (function(_this) {
+        return function(file) {
+          return _this.emit("complete", file);
+        };
+      })(this));
+      this.on("complete", (function(_this) {
+        return function(file) {
+          if (_this.getUploadingFiles().length === 0 && _this.getQueuedFiles().length === 0) {
+            return setTimeout((function() {
+              return _this.emit("queuecomplete");
+            }), 0);
+          }
+        };
+      })(this));
+      noPropagation = function(e) {
+        e.stopPropagation();
+        if (e.preventDefault) {
+          return e.preventDefault();
+        } else {
+          return e.returnValue = false;
+        }
+      };
+      this.listeners = [
+        {
+          element: this.element,
+          events: {
+            "dragstart": (function(_this) {
+              return function(e) {
+                return _this.emit("dragstart", e);
+              };
+            })(this),
+            "dragenter": (function(_this) {
+              return function(e) {
+                noPropagation(e);
+                return _this.emit("dragenter", e);
+              };
+            })(this),
+            "dragover": (function(_this) {
+              return function(e) {
+                var efct;
+                try {
+                  efct = e.dataTransfer.effectAllowed;
+                } catch (_error) {}
+                e.dataTransfer.dropEffect = 'move' === efct || 'linkMove' === efct ? 'move' : 'copy';
+                noPropagation(e);
+                return _this.emit("dragover", e);
+              };
+            })(this),
+            "dragleave": (function(_this) {
+              return function(e) {
+                return _this.emit("dragleave", e);
+              };
+            })(this),
+            "drop": (function(_this) {
+              return function(e) {
+                noPropagation(e);
+                return _this.drop(e);
+              };
+            })(this),
+            "dragend": (function(_this) {
+              return function(e) {
+                return _this.emit("dragend", e);
+              };
+            })(this)
+          }
+        }
+      ];
+      this.clickableElements.forEach((function(_this) {
+        return function(clickableElement) {
+          return _this.listeners.push({
+            element: clickableElement,
+            events: {
+              "click": function(evt) {
+                if ((clickableElement !== _this.element) || (evt.target === _this.element || Dropzone.elementInside(evt.target, _this.element.querySelector(".dz-message")))) {
+                  return _this.hiddenFileInput.click();
+                }
+              }
+            }
+          });
+        };
+      })(this));
+      this.enable();
+      return this.options.init.call(this);
+    };
+
+    Dropzone.prototype.destroy = function() {
+      var _ref;
+      this.disable();
+      this.removeAllFiles(true);
+      if ((_ref = this.hiddenFileInput) != null ? _ref.parentNode : void 0) {
+        this.hiddenFileInput.parentNode.removeChild(this.hiddenFileInput);
+        this.hiddenFileInput = null;
+      }
+      delete this.element.dropzone;
+      return Dropzone.instances.splice(Dropzone.instances.indexOf(this), 1);
+    };
+
+    Dropzone.prototype.updateTotalUploadProgress = function() {
+      var activeFiles, file, totalBytes, totalBytesSent, totalUploadProgress, _i, _len, _ref;
+      totalBytesSent = 0;
+      totalBytes = 0;
+      activeFiles = this.getActiveFiles();
+      if (activeFiles.length) {
+        _ref = this.getActiveFiles();
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          file = _ref[_i];
+          totalBytesSent += file.upload.bytesSent;
+          totalBytes += file.upload.total;
+        }
+        totalUploadProgress = 100 * totalBytesSent / totalBytes;
+      } else {
+        totalUploadProgress = 100;
+      }
+      return this.emit("totaluploadprogress", totalUploadProgress, totalBytes, totalBytesSent);
+    };
+
+    Dropzone.prototype._getParamName = function(n) {
+      if (typeof this.options.paramName === "function") {
+        return this.options.paramName(n);
+      } else {
+        return "" + this.options.paramName + (this.options.uploadMultiple ? "[" + n + "]" : "");
+      }
+    };
+
+    Dropzone.prototype.getFallbackForm = function() {
+      var existingFallback, fields, fieldsString, form;
+      if (existingFallback = this.getExistingFallback()) {
+        return existingFallback;
+      }
+      fieldsString = "<div class=\"dz-fallback\">";
+      if (this.options.dictFallbackText) {
+        fieldsString += "<p>" + this.options.dictFallbackText + "</p>";
+      }
+      fieldsString += "<input type=\"file\" name=\"" + (this._getParamName(0)) + "\" " + (this.options.uploadMultiple ? 'multiple="multiple"' : void 0) + " /><input type=\"submit\" value=\"Upload!\"></div>";
+      fields = Dropzone.createElement(fieldsString);
+      if (this.element.tagName !== "FORM") {
+        form = Dropzone.createElement("<form action=\"" + this.options.url + "\" enctype=\"multipart/form-data\" method=\"" + this.options.method + "\"></form>");
+        form.appendChild(fields);
+      } else {
+        this.element.setAttribute("enctype", "multipart/form-data");
+        this.element.setAttribute("method", this.options.method);
+      }
+      return form != null ? form : fields;
+    };
+
+    Dropzone.prototype.getExistingFallback = function() {
+      var fallback, getFallback, tagName, _i, _len, _ref;
+      getFallback = function(elements) {
+        var el, _i, _len;
+        for (_i = 0, _len = elements.length; _i < _len; _i++) {
+          el = elements[_i];
+          if (/(^| )fallback($| )/.test(el.className)) {
+            return el;
+          }
+        }
+      };
+      _ref = ["div", "form"];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        tagName = _ref[_i];
+        if (fallback = getFallback(this.element.getElementsByTagName(tagName))) {
+          return fallback;
+        }
+      }
+    };
+
+    Dropzone.prototype.setupEventListeners = function() {
+      var elementListeners, event, listener, _i, _len, _ref, _results;
+      _ref = this.listeners;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        elementListeners = _ref[_i];
+        _results.push((function() {
+          var _ref1, _results1;
+          _ref1 = elementListeners.events;
+          _results1 = [];
+          for (event in _ref1) {
+            listener = _ref1[event];
+            _results1.push(elementListeners.element.addEventListener(event, listener, false));
+          }
+          return _results1;
+        })());
+      }
+      return _results;
+    };
+
+    Dropzone.prototype.removeEventListeners = function() {
+      var elementListeners, event, listener, _i, _len, _ref, _results;
+      _ref = this.listeners;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        elementListeners = _ref[_i];
+        _results.push((function() {
+          var _ref1, _results1;
+          _ref1 = elementListeners.events;
+          _results1 = [];
+          for (event in _ref1) {
+            listener = _ref1[event];
+            _results1.push(elementListeners.element.removeEventListener(event, listener, false));
+          }
+          return _results1;
+        })());
+      }
+      return _results;
+    };
+
+    Dropzone.prototype.disable = function() {
+      var file, _i, _len, _ref, _results;
+      this.clickableElements.forEach(function(element) {
+        return element.classList.remove("dz-clickable");
+      });
+      this.removeEventListeners();
+      _ref = this.files;
+      _results = [];
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        file = _ref[_i];
+        _results.push(this.cancelUpload(file));
+      }
+      return _results;
+    };
+
+    Dropzone.prototype.enable = function() {
+      this.clickableElements.forEach(function(element) {
+        return element.classList.add("dz-clickable");
+      });
+      return this.setupEventListeners();
+    };
+
+    Dropzone.prototype.filesize = function(size) {
+      var string;
+      if (size >= 1024 * 1024 * 1024 * 1024 / 10) {
+        size = size / (1024 * 1024 * 1024 * 1024 / 10);
+        string = "TiB";
+      } else if (size >= 1024 * 1024 * 1024 / 10) {
+        size = size / (1024 * 1024 * 1024 / 10);
+        string = "GiB";
+      } else if (size >= 1024 * 1024 / 10) {
+        size = size / (1024 * 1024 / 10);
+        string = "MiB";
+      } else if (size >= 1024 / 10) {
+        size = size / (1024 / 10);
+        string = "KiB";
+      } else {
+        size = size * 10;
+        string = "b";
+      }
+      return "<strong>" + (Math.round(size) / 10) + "</strong> " + string;
+    };
+
+    Dropzone.prototype._updateMaxFilesReachedClass = function() {
+      if ((this.options.maxFiles != null) && this.getAcceptedFiles().length >= this.options.maxFiles) {
+        if (this.getAcceptedFiles().length === this.options.maxFiles) {
+          this.emit('maxfilesreached', this.files);
+        }
+        return this.element.classList.add("dz-max-files-reached");
+      } else {
+        return this.element.classList.remove("dz-max-files-reached");
+      }
+    };
+
+    Dropzone.prototype.drop = function(e) {
+      var files, items;
+      if (!e.dataTransfer) {
+        return;
+      }
+      this.emit("drop", e);
+      files = e.dataTransfer.files;
+      if (files.length) {
+        items = e.dataTransfer.items;
+        if (items && items.length && (items[0].webkitGetAsEntry != null)) {
+          this._addFilesFromItems(items);
+        } else {
+          this.handleFiles(files);
+        }
+      }
+    };
+
+    Dropzone.prototype.paste = function(e) {
+      var items, _ref;
+      if ((e != null ? (_ref = e.clipboardData) != null ? _ref.items : void 0 : void 0) == null) {
+        return;
+      }
+      this.emit("paste", e);
+      items = e.clipboardData.items;
+      if (items.length) {
+        return this._addFilesFromItems(items);
+      }
+    };
+
+    Dropzone.prototype.handleFiles = function(files) {
+      var file, _i, _len, _results;
+      _results = [];
+      for (_i = 0, _len = files.length; _i < _len; _i++) {
+        file = files[_i];
+        _results.push(this.addFile(file));
+      }
+      return _results;
+    };
+
+    Dropzone.prototype._addFilesFromItems = function(items) {
+      var entry, item, _i, _len, _results;
+      _results = [];
+      for (_i = 0, _len = items.length; _i < _len; _i++) {
+        item = items[_i];
+        if ((item.webkitGetAsEntry != null) && (entry = item.webkitGetAsEntry())) {
+          if (entry.isFile) {
+            _results.push(this.addFile(item.getAsFile()));
+          } else if (entry.isDirectory) {
+            _results.push(this._addFilesFromDirectory(entry, entry.name));
+          } else {
+            _results.push(void 0);
+          }
+        } else if (item.getAsFile != null) {
+          if ((item.kind == null) || item.kind === "file") {
+            _results.push(this.addFile(item.getAsFile()));
+          } else {
+            _results.push(void 0);
+          }
+        } else {
+          _results.push(void 0);
+        }
+      }
+      return _results;
+    };
+
+    Dropzone.prototype._addFilesFromDirectory = function(directory, path) {
+      var dirReader, entriesReader;
+      dirReader = directory.createReader();
+      entriesReader = (function(_this) {
+        return function(entries) {
+          var entry, _i, _len;
+          for (_i = 0, _len = entries.length; _i < _len; _i++) {
+            entry = entries[_i];
+            if (entry.isFile) {
+              entry.file(function(file) {
+                if (_this.options.ignoreHiddenFiles && file.name.substring(0, 1) === '.') {
+                  return;
+                }
+                file.fullPath = "" + path + "/" + file.name;
+                return _this.addFile(file);
+              });
+            } else if (entry.isDirectory) {
+              _this._addFilesFromDirectory(entry, "" + path + "/" + entry.name);
+            }
+          }
+        };
+      })(this);
+      return dirReader.readEntries(entriesReader, function(error) {
+        return typeof console !== "undefined" && console !== null ? typeof console.log === "function" ? console.log(error) : void 0 : void 0;
+      });
+    };
+
+    Dropzone.prototype.accept = function(file, done) {
+      if (file.size > this.options.maxFilesize * 1024 * 1024) {
+        return done(this.options.dictFileTooBig.replace("{{filesize}}", Math.round(file.size / 1024 / 10.24) / 100).replace("{{maxFilesize}}", this.options.maxFilesize));
+      } else if (!Dropzone.isValidFile(file, this.options.acceptedFiles)) {
+        return done(this.options.dictInvalidFileType);
+      } else if ((this.options.maxFiles != null) && this.getAcceptedFiles().length >= this.options.maxFiles) {
+        done(this.options.dictMaxFilesExceeded.replace("{{maxFiles}}", this.options.maxFiles));
+        return this.emit("maxfilesexceeded", file);
+      } else {
+        return this.options.accept.call(this, file, done);
+      }
+    };
+
+    Dropzone.prototype.addFile = function(file) {
+      file.upload = {
+        progress: 0,
+        total: file.size,
+        bytesSent: 0
+      };
+      this.files.push(file);
+      file.status = Dropzone.ADDED;
+      this.emit("addedfile", file);
+      this._enqueueThumbnail(file);
+      return this.accept(file, (function(_this) {
+        return function(error) {
+          if (error) {
+            file.accepted = false;
+            _this._errorProcessing([file], error);
+          } else {
+            file.accepted = true;
+            if (_this.options.autoQueue) {
+              _this.enqueueFile(file);
+            }
+          }
+          return _this._updateMaxFilesReachedClass();
+        };
+      })(this));
+    };
+
+    Dropzone.prototype.enqueueFiles = function(files) {
+      var file, _i, _len;
+      for (_i = 0, _len = files.length; _i < _len; _i++) {
+        file = files[_i];
+        this.enqueueFile(file);
+      }
+      return null;
+    };
+
+    Dropzone.prototype.enqueueFile = function(file) {
+      if (file.status === Dropzone.ADDED && file.accepted === true) {
+        file.status = Dropzone.QUEUED;
+        if (this.options.autoProcessQueue) {
+          return setTimeout(((function(_this) {
+            return function() {
+              return _this.processQueue();
+            };
+          })(this)), 0);
+        }
+      } else {
+        throw new Error("This file can't be queued because it has already been processed or was rejected.");
+      }
+    };
+
+    Dropzone.prototype._thumbnailQueue = [];
+
+    Dropzone.prototype._processingThumbnail = false;
+
+    Dropzone.prototype._enqueueThumbnail = function(file) {
+      if (this.options.createImageThumbnails && file.type.match(/image.*/) && file.size <= this.options.maxThumbnailFilesize * 1024 * 1024) {
+        this._thumbnailQueue.push(file);
+        return setTimeout(((function(_this) {
+          return function() {
+            return _this._processThumbnailQueue();
+          };
+        })(this)), 0);
+      }
+    };
+
+    Dropzone.prototype._processThumbnailQueue = function() {
+      if (this._processingThumbnail || this._thumbnailQueue.length === 0) {
+        return;
+      }
+      this._processingThumbnail = true;
+      return this.createThumbnail(this._thumbnailQueue.shift(), (function(_this) {
+        return function() {
+          _this._processingThumbnail = false;
+          return _this._processThumbnailQueue();
+        };
+      })(this));
+    };
+
+    Dropzone.prototype.removeFile = function(file) {
+      if (file.status === Dropzone.UPLOADING) {
+        this.cancelUpload(file);
+      }
+      this.files = without(this.files, file);
+      this.emit("removedfile", file);
+      if (this.files.length === 0) {
+        return this.emit("reset");
+      }
+    };
+
+    Dropzone.prototype.removeAllFiles = function(cancelIfNecessary) {
+      var file, _i, _len, _ref;
+      if (cancelIfNecessary == null) {
+        cancelIfNecessary = false;
+      }
+      _ref = this.files.slice();
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        file = _ref[_i];
+        if (file.status !== Dropzone.UPLOADING || cancelIfNecessary) {
+          this.removeFile(file);
+        }
+      }
+      return null;
+    };
+
+    Dropzone.prototype.createThumbnail = function(file, callback) {
+      var fileReader;
+      fileReader = new FileReader;
+      fileReader.onload = (function(_this) {
+        return function() {
+          var img;
+          img = document.createElement("img");
+          img.onload = function() {
+            var canvas, ctx, resizeInfo, thumbnail, _ref, _ref1, _ref2, _ref3;
+            file.width = img.width;
+            file.height = img.height;
+            resizeInfo = _this.options.resize.call(_this, file);
+            if (resizeInfo.trgWidth == null) {
+              resizeInfo.trgWidth = resizeInfo.optWidth;
+            }
+            if (resizeInfo.trgHeight == null) {
+              resizeInfo.trgHeight = resizeInfo.optHeight;
+            }
+            canvas = document.createElement("canvas");
+            ctx = canvas.getContext("2d");
+            canvas.width = resizeInfo.trgWidth;
+            canvas.height = resizeInfo.trgHeight;
+            drawImageIOSFix(ctx, img, (_ref = resizeInfo.srcX) != null ? _ref : 0, (_ref1 = resizeInfo.srcY) != null ? _ref1 : 0, resizeInfo.srcWidth, resizeInfo.srcHeight, (_ref2 = resizeInfo.trgX) != null ? _ref2 : 0, (_ref3 = resizeInfo.trgY) != null ? _ref3 : 0, resizeInfo.trgWidth, resizeInfo.trgHeight);
+            thumbnail = canvas.toDataURL("image/png");
+            _this.emit("thumbnail", file, thumbnail);
+            if (callback != null) {
+              return callback();
+            }
+          };
+          return img.src = fileReader.result;
+        };
+      })(this);
+      return fileReader.readAsDataURL(file);
+    };
+
+    Dropzone.prototype.processQueue = function() {
+      var i, parallelUploads, processingLength, queuedFiles;
+      parallelUploads = this.options.parallelUploads;
+      processingLength = this.getUploadingFiles().length;
+      i = processingLength;
+      if (processingLength >= parallelUploads) {
+        return;
+      }
+      queuedFiles = this.getQueuedFiles();
+      if (!(queuedFiles.length > 0)) {
+        return;
+      }
+      if (this.options.uploadMultiple) {
+        return this.processFiles(queuedFiles.slice(0, parallelUploads - processingLength));
+      } else {
+        while (i < parallelUploads) {
+          if (!queuedFiles.length) {
+            return;
+          }
+          this.processFile(queuedFiles.shift());
+          i++;
+        }
+      }
+    };
+
+    Dropzone.prototype.processFile = function(file) {
+      return this.processFiles([file]);
+    };
+
+    Dropzone.prototype.processFiles = function(files) {
+      var file, _i, _len;
+      for (_i = 0, _len = files.length; _i < _len; _i++) {
+        file = files[_i];
+        file.processing = true;
+        file.status = Dropzone.UPLOADING;
+        this.emit("processing", file);
+      }
+      if (this.options.uploadMultiple) {
+        this.emit("processingmultiple", files);
+      }
+      return this.uploadFiles(files);
+    };
+
+    Dropzone.prototype._getFilesWithXhr = function(xhr) {
+      var file, files;
+      return files = (function() {
+        var _i, _len, _ref, _results;
+        _ref = this.files;
+        _results = [];
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          file = _ref[_i];
+          if (file.xhr === xhr) {
+            _results.push(file);
+          }
+        }
+        return _results;
+      }).call(this);
+    };
+
+    Dropzone.prototype.cancelUpload = function(file) {
+      var groupedFile, groupedFiles, _i, _j, _len, _len1, _ref;
+      if (file.status === Dropzone.UPLOADING) {
+        groupedFiles = this._getFilesWithXhr(file.xhr);
+        for (_i = 0, _len = groupedFiles.length; _i < _len; _i++) {
+          groupedFile = groupedFiles[_i];
+          groupedFile.status = Dropzone.CANCELED;
+        }
+        file.xhr.abort();
+        for (_j = 0, _len1 = groupedFiles.length; _j < _len1; _j++) {
+          groupedFile = groupedFiles[_j];
+          this.emit("canceled", groupedFile);
+        }
+        if (this.options.uploadMultiple) {
+          this.emit("canceledmultiple", groupedFiles);
+        }
+      } else if ((_ref = file.status) === Dropzone.ADDED || _ref === Dropzone.QUEUED) {
+        file.status = Dropzone.CANCELED;
+        this.emit("canceled", file);
+        if (this.options.uploadMultiple) {
+          this.emit("canceledmultiple", [file]);
+        }
+      }
+      if (this.options.autoProcessQueue) {
+        return this.processQueue();
+      }
+    };
+
+    Dropzone.prototype.uploadFile = function(file) {
+      return this.uploadFiles([file]);
+    };
+
+    Dropzone.prototype.uploadFiles = function(files) {
+      var file, formData, handleError, headerName, headerValue, headers, i, input, inputName, inputType, key, option, progressObj, response, updateProgress, value, xhr, _i, _j, _k, _l, _len, _len1, _len2, _len3, _m, _ref, _ref1, _ref2, _ref3, _ref4, _ref5;
+      xhr = new XMLHttpRequest();
+      for (_i = 0, _len = files.length; _i < _len; _i++) {
+        file = files[_i];
+        file.xhr = xhr;
+      }
+      xhr.open(this.options.method, this.options.url, true);
+      xhr.withCredentials = !!this.options.withCredentials;
+      response = null;
+      handleError = (function(_this) {
+        return function() {
+          var _j, _len1, _results;
+          _results = [];
+          for (_j = 0, _len1 = files.length; _j < _len1; _j++) {
+            file = files[_j];
+            _results.push(_this._errorProcessing(files, response || _this.options.dictResponseError.replace("{{statusCode}}", xhr.status), xhr));
+          }
+          return _results;
+        };
+      })(this);
+      updateProgress = (function(_this) {
+        return function(e) {
+          var allFilesFinished, progress, _j, _k, _l, _len1, _len2, _len3, _results;
+          if (e != null) {
+            progress = 100 * e.loaded / e.total;
+            for (_j = 0, _len1 = files.length; _j < _len1; _j++) {
+              file = files[_j];
+              file.upload = {
+                progress: progress,
+                total: e.total,
+                bytesSent: e.loaded
+              };
+            }
+          } else {
+            allFilesFinished = true;
+            progress = 100;
+            for (_k = 0, _len2 = files.length; _k < _len2; _k++) {
+              file = files[_k];
+              if (!(file.upload.progress === 100 && file.upload.bytesSent === file.upload.total)) {
+                allFilesFinished = false;
+              }
+              file.upload.progress = progress;
+              file.upload.bytesSent = file.upload.total;
+            }
+            if (allFilesFinished) {
+              return;
+            }
+          }
+          _results = [];
+          for (_l = 0, _len3 = files.length; _l < _len3; _l++) {
+            file = files[_l];
+            _results.push(_this.emit("uploadprogress", file, progress, file.upload.bytesSent));
+          }
+          return _results;
+        };
+      })(this);
+      xhr.onload = (function(_this) {
+        return function(e) {
+          var _ref;
+          if (files[0].status === Dropzone.CANCELED) {
+            return;
+          }
+          if (xhr.readyState !== 4) {
+            return;
+          }
+          response = xhr.responseText;
+          if (xhr.getResponseHeader("content-type") && ~xhr.getResponseHeader("content-type").indexOf("application/json")) {
+            try {
+              response = JSON.parse(response);
+            } catch (_error) {
+              e = _error;
+              response = "Invalid JSON response from server.";
+            }
+          }
+          updateProgress();
+          if (!((200 <= (_ref = xhr.status) && _ref < 300))) {
+            return handleError();
+          } else {
+            return _this._finished(files, response, e);
+          }
+        };
+      })(this);
+      xhr.onerror = (function(_this) {
+        return function() {
+          if (files[0].status === Dropzone.CANCELED) {
+            return;
+          }
+          return handleError();
+        };
+      })(this);
+      progressObj = (_ref = xhr.upload) != null ? _ref : xhr;
+      progressObj.onprogress = updateProgress;
+      headers = {
+        "Accept": "application/json",
+        "Cache-Control": "no-cache",
+        "X-Requested-With": "XMLHttpRequest"
+      };
+      if (this.options.headers) {
+        extend(headers, this.options.headers);
+      }
+      for (headerName in headers) {
+        headerValue = headers[headerName];
+        xhr.setRequestHeader(headerName, headerValue);
+      }
+      formData = new FormData();
+      if (this.options.params) {
+        _ref1 = this.options.params;
+        for (key in _ref1) {
+          value = _ref1[key];
+          formData.append(key, value);
+        }
+      }
+      for (_j = 0, _len1 = files.length; _j < _len1; _j++) {
+        file = files[_j];
+        this.emit("sending", file, xhr, formData);
+      }
+      if (this.options.uploadMultiple) {
+        this.emit("sendingmultiple", files, xhr, formData);
+      }
+      if (this.element.tagName === "FORM") {
+        _ref2 = this.element.querySelectorAll("input, textarea, select, button");
+        for (_k = 0, _len2 = _ref2.length; _k < _len2; _k++) {
+          input = _ref2[_k];
+          inputName = input.getAttribute("name");
+          inputType = input.getAttribute("type");
+          if (input.tagName === "SELECT" && input.hasAttribute("multiple")) {
+            _ref3 = input.options;
+            for (_l = 0, _len3 = _ref3.length; _l < _len3; _l++) {
+              option = _ref3[_l];
+              if (option.selected) {
+                formData.append(inputName, option.value);
+              }
+            }
+          } else if (!inputType || ((_ref4 = inputType.toLowerCase()) !== "checkbox" && _ref4 !== "radio") || input.checked) {
+            formData.append(inputName, input.value);
+          }
+        }
+      }
+      for (i = _m = 0, _ref5 = files.length - 1; 0 <= _ref5 ? _m <= _ref5 : _m >= _ref5; i = 0 <= _ref5 ? ++_m : --_m) {
+        formData.append(this._getParamName(i), files[i], files[i].name);
+      }
+      return xhr.send(formData);
+    };
+
+    Dropzone.prototype._finished = function(files, responseText, e) {
+      var file, _i, _len;
+      for (_i = 0, _len = files.length; _i < _len; _i++) {
+        file = files[_i];
+        file.status = Dropzone.SUCCESS;
+        this.emit("success", file, responseText, e);
+        this.emit("complete", file);
+      }
+      if (this.options.uploadMultiple) {
+        this.emit("successmultiple", files, responseText, e);
+        this.emit("completemultiple", files);
+      }
+      if (this.options.autoProcessQueue) {
+        return this.processQueue();
+      }
+    };
+
+    Dropzone.prototype._errorProcessing = function(files, message, xhr) {
+      var file, _i, _len;
+      for (_i = 0, _len = files.length; _i < _len; _i++) {
+        file = files[_i];
+        file.status = Dropzone.ERROR;
+        this.emit("error", file, message, xhr);
+        this.emit("complete", file);
+      }
+      if (this.options.uploadMultiple) {
+        this.emit("errormultiple", files, message, xhr);
+        this.emit("completemultiple", files);
+      }
+      if (this.options.autoProcessQueue) {
+        return this.processQueue();
+      }
+    };
+
+    return Dropzone;
+
+  })(Em);
+
+  Dropzone.version = "3.10.0";
+
+  Dropzone.options = {};
+
+  Dropzone.optionsForElement = function(element) {
+    if (element.getAttribute("id")) {
+      return Dropzone.options[camelize(element.getAttribute("id"))];
+    } else {
+      return void 0;
+    }
+  };
+
+  Dropzone.instances = [];
+
+  Dropzone.forElement = function(element) {
+    if (typeof element === "string") {
+      element = document.querySelector(element);
+    }
+    if ((element != null ? element.dropzone : void 0) == null) {
+      throw new Error("No Dropzone found for given element. This is probably because you're trying to access it before Dropzone had the time to initialize. Use the `init` option to setup any additional observers on your Dropzone.");
+    }
+    return element.dropzone;
+  };
+
+  Dropzone.autoDiscover = true;
+
+  Dropzone.discover = function() {
+    var checkElements, dropzone, dropzones, _i, _len, _results;
+    if (document.querySelectorAll) {
+      dropzones = document.querySelectorAll(".dropzone");
+    } else {
+      dropzones = [];
+      checkElements = function(elements) {
+        var el, _i, _len, _results;
+        _results = [];
+        for (_i = 0, _len = elements.length; _i < _len; _i++) {
+          el = elements[_i];
+          if (/(^| )dropzone($| )/.test(el.className)) {
+            _results.push(dropzones.push(el));
+          } else {
+            _results.push(void 0);
+          }
+        }
+        return _results;
+      };
+      checkElements(document.getElementsByTagName("div"));
+      checkElements(document.getElementsByTagName("form"));
+    }
+    _results = [];
+    for (_i = 0, _len = dropzones.length; _i < _len; _i++) {
+      dropzone = dropzones[_i];
+      if (Dropzone.optionsForElement(dropzone) !== false) {
+        _results.push(new Dropzone(dropzone));
+      } else {
+        _results.push(void 0);
+      }
+    }
+    return _results;
+  };
+
+  Dropzone.blacklistedBrowsers = [/opera.*Macintosh.*version\/12/i];
+
+  Dropzone.isBrowserSupported = function() {
+    var capableBrowser, regex, _i, _len, _ref;
+    capableBrowser = true;
+    if (window.File && window.FileReader && window.FileList && window.Blob && window.FormData && document.querySelector) {
+      if (!("classList" in document.createElement("a"))) {
+        capableBrowser = false;
+      } else {
+        _ref = Dropzone.blacklistedBrowsers;
+        for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+          regex = _ref[_i];
+          if (regex.test(navigator.userAgent)) {
+            capableBrowser = false;
+            continue;
+          }
+        }
+      }
+    } else {
+      capableBrowser = false;
+    }
+    return capableBrowser;
+  };
+
+  without = function(list, rejectedItem) {
+    var item, _i, _len, _results;
+    _results = [];
+    for (_i = 0, _len = list.length; _i < _len; _i++) {
+      item = list[_i];
+      if (item !== rejectedItem) {
+        _results.push(item);
+      }
+    }
+    return _results;
+  };
+
+  camelize = function(str) {
+    return str.replace(/[\-_](\w)/g, function(match) {
+      return match.charAt(1).toUpperCase();
+    });
+  };
+
+  Dropzone.createElement = function(string) {
+    var div;
+    div = document.createElement("div");
+    div.innerHTML = string;
+    return div.childNodes[0];
+  };
+
+  Dropzone.elementInside = function(element, container) {
+    if (element === container) {
+      return true;
+    }
+    while (element = element.parentNode) {
+      if (element === container) {
+        return true;
+      }
+    }
+    return false;
+  };
+
+  Dropzone.getElement = function(el, name) {
+    var element;
+    if (typeof el === "string") {
+      element = document.querySelector(el);
+    } else if (el.nodeType != null) {
+      element = el;
+    }
+    if (element == null) {
+      throw new Error("Invalid `" + name + "` option provided. Please provide a CSS selector or a plain HTML element.");
+    }
+    return element;
+  };
+
+  Dropzone.getElements = function(els, name) {
+    var e, el, elements, _i, _j, _len, _len1, _ref;
+    if (els instanceof Array) {
+      elements = [];
+      try {
+        for (_i = 0, _len = els.length; _i < _len; _i++) {
+          el = els[_i];
+          elements.push(this.getElement(el, name));
+        }
+      } catch (_error) {
+        e = _error;
+        elements = null;
+      }
+    } else if (typeof els === "string") {
+      elements = [];
+      _ref = document.querySelectorAll(els);
+      for (_j = 0, _len1 = _ref.length; _j < _len1; _j++) {
+        el = _ref[_j];
+        elements.push(el);
+      }
+    } else if (els.nodeType != null) {
+      elements = [els];
+    }
+    if (!((elements != null) && elements.length)) {
+      throw new Error("Invalid `" + name + "` option provided. Please provide a CSS selector, a plain HTML element or a list of those.");
+    }
+    return elements;
+  };
+
+  Dropzone.confirm = function(question, accepted, rejected) {
+    if (window.confirm(question)) {
+      return accepted();
+    } else if (rejected != null) {
+      return rejected();
+    }
+  };
+
+  Dropzone.isValidFile = function(file, acceptedFiles) {
+    var baseMimeType, mimeType, validType, _i, _len;
+    if (!acceptedFiles) {
+      return true;
+    }
+    acceptedFiles = acceptedFiles.split(",");
+    mimeType = file.type;
+    baseMimeType = mimeType.replace(/\/.*$/, "");
+    for (_i = 0, _len = acceptedFiles.length; _i < _len; _i++) {
+      validType = acceptedFiles[_i];
+      validType = validType.trim();
+      if (validType.charAt(0) === ".") {
+        if (file.name.toLowerCase().indexOf(validType.toLowerCase(), file.name.length - validType.length) !== -1) {
+          return true;
+        }
+      } else if (/\/\*$/.test(validType)) {
+        if (baseMimeType === validType.replace(/\/.*$/, "")) {
+          return true;
+        }
+      } else {
+        if (mimeType === validType) {
+          return true;
+        }
+      }
+    }
+    return false;
+  };
+
+  if (typeof jQuery !== "undefined" && jQuery !== null) {
+    jQuery.fn.dropzone = function(options) {
+      return this.each(function() {
+        return new Dropzone(this, options);
+      });
+    };
+  }
+
+  if (typeof module !== "undefined" && module !== null) {
+    module.exports = Dropzone;
+  } else {
+    window.Dropzone = Dropzone;
+  }
+
+  Dropzone.ADDED = "added";
+
+  Dropzone.QUEUED = "queued";
+
+  Dropzone.ACCEPTED = Dropzone.QUEUED;
+
+  Dropzone.UPLOADING = "uploading";
+
+  Dropzone.PROCESSING = Dropzone.UPLOADING;
+
+  Dropzone.CANCELED = "canceled";
+
+  Dropzone.ERROR = "error";
+
+  Dropzone.SUCCESS = "success";
+
+
+  /*
+
+  Bugfix for iOS 6 and 7
+  Source: http://stackoverflow.com/questions/11929099/html5-canvas-drawimage-ratio-bug-ios
+  based on the work of https://github.com/stomita/ios-imagefile-megapixel
+   */
+
+  detectVerticalSquash = function(img) {
+    var alpha, canvas, ctx, data, ey, ih, iw, py, ratio, sy;
+    iw = img.naturalWidth;
+    ih = img.naturalHeight;
+    canvas = document.createElement("canvas");
+    canvas.width = 1;
+    canvas.height = ih;
+    ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0);
+    data = ctx.getImageData(0, 0, 1, ih).data;
+    sy = 0;
+    ey = ih;
+    py = ih;
+    while (py > sy) {
+      alpha = data[(py - 1) * 4 + 3];
+      if (alpha === 0) {
+        ey = py;
+      } else {
+        sy = py;
+      }
+      py = (ey + sy) >> 1;
+    }
+    ratio = py / ih;
+    if (ratio === 0) {
+      return 1;
+    } else {
+      return ratio;
+    }
+  };
+
+  drawImageIOSFix = function(ctx, img, sx, sy, sw, sh, dx, dy, dw, dh) {
+    var vertSquashRatio;
+    vertSquashRatio = detectVerticalSquash(img);
+    return ctx.drawImage(img, sx, sy, sw, sh, dx, dy, dw, dh / vertSquashRatio);
+  };
+
+
+  /*
+   * contentloaded.js
+   *
+   * Author: Diego Perini (diego.perini at gmail.com)
+   * Summary: cross-browser wrapper for DOMContentLoaded
+   * Updated: 20101020
+   * License: MIT
+   * Version: 1.2
+   *
+   * URL:
+   * http://javascript.nwbox.com/ContentLoaded/
+   * http://javascript.nwbox.com/ContentLoaded/MIT-LICENSE
+   */
+
+  contentLoaded = function(win, fn) {
+    var add, doc, done, init, poll, pre, rem, root, top;
+    done = false;
+    top = true;
+    doc = win.document;
+    root = doc.documentElement;
+    add = (doc.addEventListener ? "addEventListener" : "attachEvent");
+    rem = (doc.addEventListener ? "removeEventListener" : "detachEvent");
+    pre = (doc.addEventListener ? "" : "on");
+    init = function(e) {
+      if (e.type === "readystatechange" && doc.readyState !== "complete") {
+        return;
+      }
+      (e.type === "load" ? win : doc)[rem](pre + e.type, init, false);
+      if (!done && (done = true)) {
+        return fn.call(win, e.type || e);
+      }
+    };
+    poll = function() {
+      var e;
+      try {
+        root.doScroll("left");
+      } catch (_error) {
+        e = _error;
+        setTimeout(poll, 50);
+        return;
+      }
+      return init("poll");
+    };
+    if (doc.readyState !== "complete") {
+      if (doc.createEventObject && root.doScroll) {
+        try {
+          top = !win.frameElement;
+        } catch (_error) {}
+        if (top) {
+          poll();
+        }
+      }
+      doc[add](pre + "DOMContentLoaded", init, false);
+      doc[add](pre + "readystatechange", init, false);
+      return win[add](pre + "load", init, false);
+    }
+  };
+
+  Dropzone._autoDiscoverFunction = function() {
+    if (Dropzone.autoDiscover) {
+      return Dropzone.discover();
+    }
+  };
+
+  contentLoaded(window, Dropzone._autoDiscoverFunction);
+
+}).call(this);
+
+});
+
+if (typeof exports == "object") {
+  module.exports = require("dropzone");
+} else if (typeof define == "function" && define.amd) {
+  define([], function(){ return require("dropzone"); });
+} else {
+  this["Dropzone"] = require("dropzone");
+}
+})()
+
+// CodeMirror version 3.15
+//
+// CodeMirror is the only global var we claim
+window.CodeMirror = (function() {
+	"use strict";
+
+	// BROWSER SNIFFING
+
+	// Crude, but necessary to handle a number of hard-to-feature-detect
+	// bugs and behavior differences.
+	var gecko = /gecko\/\d/i.test(navigator.userAgent);
+	var ie = /MSIE \d/.test(navigator.userAgent);
+	var ie_lt8 = ie && (document.documentMode == null || document.documentMode < 8);
+	var ie_lt9 = ie && (document.documentMode == null || document.documentMode < 9);
+	var webkit = /WebKit\//.test(navigator.userAgent);
+	var qtwebkit = webkit && /Qt\/\d+\.\d+/.test(navigator.userAgent);
+	var chrome = /Chrome\//.test(navigator.userAgent);
+	var opera = /Opera\//.test(navigator.userAgent);
+	var safari = /Apple Computer/.test(navigator.vendor);
+	var khtml = /KHTML\//.test(navigator.userAgent);
+	var mac_geLion = /Mac OS X 1\d\D([7-9]|\d\d)\D/.test(navigator.userAgent);
+	var mac_geMountainLion = /Mac OS X 1\d\D([8-9]|\d\d)\D/.test(navigator.userAgent);
+	var phantom = /PhantomJS/.test(navigator.userAgent);
+
+	var ios = /AppleWebKit/.test(navigator.userAgent) && /Mobile\/\w+/.test(navigator.userAgent);
+	// This is woefully incomplete. Suggestions for alternative methods welcome.
+	var mobile = ios || /Android|webOS|BlackBerry|Opera Mini|Opera Mobi|IEMobile/i.test(navigator.userAgent);
+	var mac = ios || /Mac/.test(navigator.platform);
+	var windows = /windows/i.test(navigator.platform);
+
+	var opera_version = opera && navigator.userAgent.match(/Version\/(\d*\.\d*)/);
+	if (opera_version) opera_version = Number(opera_version[1]);
+	if (opera_version && opera_version >= 15) {
+		opera = false;
+		webkit = true;
+	}
+	// Some browsers use the wrong event properties to signal cmd/ctrl on OS X
+	var flipCtrlCmd = mac && (qtwebkit || opera && (opera_version == null || opera_version < 12.11));
+	var captureMiddleClick = gecko || (ie && !ie_lt9);
+
+	// Optimize some code when these features are not used
+	var sawReadOnlySpans = false,
+		sawCollapsedSpans = false;
+
+	// CONSTRUCTOR
+
+	function CodeMirror(place, options) {
+		if (!(this instanceof CodeMirror)) return new CodeMirror(place, options);
+
+		this.options = options = options || {};
+		// Determine effective options based on given values and defaults.
+		for (var opt in defaults)
+			if (!options.hasOwnProperty(opt) && defaults.hasOwnProperty(opt))
+				options[opt] = defaults[opt];
+		setGuttersForLineNumbers(options);
+
+		var docStart = typeof options.value == "string" ? 0 : options.value.first;
+		var display = this.display = makeDisplay(place, docStart);
+		display.wrapper.CodeMirror = this;
+		updateGutters(this);
+		if (options.autofocus && !mobile) focusInput(this);
+
+		this.state = {
+			keyMaps: [],
+			overlays: [],
+			modeGen: 0,
+			overwrite: false,
+			focused: false,
+			suppressEdits: false,
+			pasteIncoming: false,
+			draggingText: false,
+			highlight: new Delayed()
+		};
+
+		themeChanged(this);
+		if (options.lineWrapping)
+			this.display.wrapper.className += " CodeMirror-wrap";
+
+		var doc = options.value;
+		if (typeof doc == "string") doc = new Doc(options.value, options.mode);
+		operation(this, attachDoc)(this, doc);
+
+		// Override magic textarea content restore that IE sometimes does
+		// on our hidden textarea on reload
+		if (ie) setTimeout(bind(resetInput, this, true), 20);
+
+		registerEventHandlers(this);
+		// IE throws unspecified error in certain cases, when
+		// trying to access activeElement before onload
+		var hasFocus;
+		try {
+			hasFocus = (document.activeElement == display.input);
+		} catch (e) {}
+		if (hasFocus || (options.autofocus && !mobile)) setTimeout(bind(onFocus, this), 20);
+		else onBlur(this);
+
+		operation(this, function() {
+			for (var opt in optionHandlers)
+				if (optionHandlers.propertyIsEnumerable(opt))
+					optionHandlers[opt](this, options[opt], Init);
+			for (var i = 0; i < initHooks.length; ++i) initHooks[i](this);
+		})();
+	}
+
+	// DISPLAY CONSTRUCTOR
+
+	function makeDisplay(place, docStart) {
+		var d = {};
+
+		var input = d.input = elt("textarea", null, null, "position: absolute; padding: 0; width: 1px; height: 1em; outline: none; font-size: 4px;");
+		if (webkit) input.style.width = "1000px";
+		else input.setAttribute("wrap", "off");
+		// if border: 0; -- iOS fails to open keyboard (issue #1287)
+		if (ios) input.style.border = "1px solid black";
+		input.setAttribute("autocorrect", "off");
+		input.setAttribute("autocapitalize", "off");
+		input.setAttribute("spellcheck", "false");
+
+		// Wraps and hides input textarea
+		d.inputDiv = elt("div", [input], null, "overflow: hidden; position: relative; width: 3px; height: 0px;");
+		// The actual fake scrollbars.
+		d.scrollbarH = elt("div", [elt("div", null, null, "height: 1px")], "CodeMirror-hscrollbar");
+		d.scrollbarV = elt("div", [elt("div", null, null, "width: 1px")], "CodeMirror-vscrollbar");
+		d.scrollbarFiller = elt("div", null, "CodeMirror-scrollbar-filler");
+		d.gutterFiller = elt("div", null, "CodeMirror-gutter-filler");
+		// DIVs containing the selection and the actual code
+		d.lineDiv = elt("div", null, "CodeMirror-code");
+		d.selectionDiv = elt("div", null, null, "position: relative; z-index: 1");
+		// Blinky cursor, and element used to ensure cursor fits at the end of a line
+		d.cursor = elt("div", "\u00a0", "CodeMirror-cursor");
+		// Secondary cursor, shown when on a 'jump' in bi-directional text
+		d.otherCursor = elt("div", "\u00a0", "CodeMirror-cursor CodeMirror-secondarycursor");
+		// Used to measure text size
+		d.measure = elt("div", null, "CodeMirror-measure");
+		// Wraps everything that needs to exist inside the vertically-padded coordinate system
+		d.lineSpace = elt("div", [d.measure, d.selectionDiv, d.lineDiv, d.cursor, d.otherCursor],
+			null, "position: relative; outline: none");
+		// Moved around its parent to cover visible view
+		d.mover = elt("div", [elt("div", [d.lineSpace], "CodeMirror-lines")], null, "position: relative");
+		// Set to the height of the text, causes scrolling
+		d.sizer = elt("div", [d.mover], "CodeMirror-sizer");
+		// D is needed because behavior of elts with overflow: auto and padding is inconsistent across browsers
+		d.heightForcer = elt("div", null, null, "position: absolute; height: " + scrollerCutOff + "px; width: 1px;");
+		// Will contain the gutters, if any
+		d.gutters = elt("div", null, "CodeMirror-gutters");
+		d.lineGutter = null;
+		// Provides scrolling
+		d.scroller = elt("div", [d.sizer, d.heightForcer, d.gutters], "CodeMirror-scroll");
+		d.scroller.setAttribute("tabIndex", "-1");
+		// The element in which the editor lives.
+		d.wrapper = elt("div", [d.inputDiv, d.scrollbarH, d.scrollbarV,
+			d.scrollbarFiller, d.gutterFiller, d.scroller
+		], "CodeMirror");
+		// Work around IE7 z-index bug
+		if (ie_lt8) {
+			d.gutters.style.zIndex = -1;
+			d.scroller.style.paddingRight = 0;
+		}
+		if (place.appendChild) place.appendChild(d.wrapper);
+		else place(d.wrapper);
+
+		// Needed to hide big blue blinking cursor on Mobile Safari
+		if (ios) input.style.width = "0px";
+		if (!webkit) d.scroller.draggable = true;
+		// Needed to handle Tab key in KHTML
+		if (khtml) {
+			d.inputDiv.style.height = "1px";
+			d.inputDiv.style.position = "absolute";
+		}
+		// Need to set a minimum width to see the scrollbar on IE7 (but must not set it on IE8).
+		else if (ie_lt8) d.scrollbarH.style.minWidth = d.scrollbarV.style.minWidth = "18px";
+
+		// Current visible range (may be bigger than the view window).
+		d.viewOffset = d.lastSizeC = 0;
+		d.showingFrom = d.showingTo = docStart;
+
+		// Used to only resize the line number gutter when necessary (when
+		// the amount of lines crosses a boundary that makes its width change)
+		d.lineNumWidth = d.lineNumInnerWidth = d.lineNumChars = null;
+		// See readInput and resetInput
+		d.prevInput = "";
+		// Set to true when a non-horizontal-scrolling widget is added. As
+		// an optimization, widget aligning is skipped when d is false.
+		d.alignWidgets = false;
+		// Flag that indicates whether we currently expect input to appear
+		// (after some event like 'keypress' or 'input') and are polling
+		// intensively.
+		d.pollingFast = false;
+		// Self-resetting timeout for the poller
+		d.poll = new Delayed();
+
+		d.cachedCharWidth = d.cachedTextHeight = null;
+		d.measureLineCache = [];
+		d.measureLineCachePos = 0;
+
+		// Tracks when resetInput has punted to just putting a short
+		// string instead of the (large) selection.
+		d.inaccurateSelection = false;
+
+		// Tracks the maximum line length so that the horizontal scrollbar
+		// can be kept static when scrolling.
+		d.maxLine = null;
+		d.maxLineLength = 0;
+		d.maxLineChanged = false;
+
+		// Used for measuring wheel scrolling granularity
+		d.wheelDX = d.wheelDY = d.wheelStartX = d.wheelStartY = null;
+
+		return d;
+	}
+
+	// STATE UPDATES
+
+	// Used to get the editor into a consistent state again when options change.
+
+	function loadMode(cm) {
+		cm.doc.mode = CodeMirror.getMode(cm.options, cm.doc.modeOption);
+		cm.doc.iter(function(line) {
+			if (line.stateAfter) line.stateAfter = null;
+			if (line.styles) line.styles = null;
+		});
+		cm.doc.frontier = cm.doc.first;
+		startWorker(cm, 100);
+		cm.state.modeGen++;
+		if (cm.curOp) regChange(cm);
+	}
+
+	function wrappingChanged(cm) {
+		if (cm.options.lineWrapping) {
+			cm.display.wrapper.className += " CodeMirror-wrap";
+			cm.display.sizer.style.minWidth = "";
+		} else {
+			cm.display.wrapper.className = cm.display.wrapper.className.replace(" CodeMirror-wrap", "");
+			computeMaxLength(cm);
+		}
+		estimateLineHeights(cm);
+		regChange(cm);
+		clearCaches(cm);
+		setTimeout(function() {
+			updateScrollbars(cm);
+		}, 100);
+	}
+
+	function estimateHeight(cm) {
+		var th = textHeight(cm.display),
+			wrapping = cm.options.lineWrapping;
+		var perLine = wrapping && Math.max(5, cm.display.scroller.clientWidth / charWidth(cm.display) - 3);
+		return function(line) {
+			if (lineIsHidden(cm.doc, line))
+				return 0;
+			else if (wrapping)
+				return (Math.ceil(line.text.length / perLine) || 1) * th;
+			else
+				return th;
+		};
+	}
+
+	function estimateLineHeights(cm) {
+		var doc = cm.doc,
+			est = estimateHeight(cm);
+		doc.iter(function(line) {
+			var estHeight = est(line);
+			if (estHeight != line.height) updateLineHeight(line, estHeight);
+		});
+	}
+
+	function keyMapChanged(cm) {
+		var map = keyMap[cm.options.keyMap],
+			style = map.style;
+		cm.display.wrapper.className = cm.display.wrapper.className.replace(/\s*cm-keymap-\S+/g, "") +
+			(style ? " cm-keymap-" + style : "");
+		cm.state.disableInput = map.disableInput;
+	}
+
+	function themeChanged(cm) {
+		cm.display.wrapper.className = cm.display.wrapper.className.replace(/\s*cm-s-\S+/g, "") +
+			cm.options.theme.replace(/(^|\s)\s*/g, " cm-s-");
+		clearCaches(cm);
+	}
+
+	function guttersChanged(cm) {
+		updateGutters(cm);
+		regChange(cm);
+		setTimeout(function() {
+			alignHorizontally(cm);
+		}, 20);
+	}
+
+	function updateGutters(cm) {
+		var gutters = cm.display.gutters,
+			specs = cm.options.gutters;
+		removeChildren(gutters);
+		for (var i = 0; i < specs.length; ++i) {
+			var gutterClass = specs[i];
+			var gElt = gutters.appendChild(elt("div", null, "CodeMirror-gutter " + gutterClass));
+			if (gutterClass == "CodeMirror-linenumbers") {
+				cm.display.lineGutter = gElt;
+				gElt.style.width = (cm.display.lineNumWidth || 1) + "px";
+			}
+		}
+		gutters.style.display = i ? "" : "none";
+	}
+
+	function lineLength(doc, line) {
+		if (line.height == 0) return 0;
+		var len = line.text.length,
+			merged, cur = line;
+		while (merged = collapsedSpanAtStart(cur)) {
+			var found = merged.find();
+			cur = getLine(doc, found.from.line);
+			len += found.from.ch - found.to.ch;
+		}
+		cur = line;
+		while (merged = collapsedSpanAtEnd(cur)) {
+			var found = merged.find();
+			len -= cur.text.length - found.from.ch;
+			cur = getLine(doc, found.to.line);
+			len += cur.text.length - found.to.ch;
+		}
+		return len;
+	}
+
+	function computeMaxLength(cm) {
+		var d = cm.display,
+			doc = cm.doc;
+		d.maxLine = getLine(doc, doc.first);
+		d.maxLineLength = lineLength(doc, d.maxLine);
+		d.maxLineChanged = true;
+		doc.iter(function(line) {
+			var len = lineLength(doc, line);
+			if (len > d.maxLineLength) {
+				d.maxLineLength = len;
+				d.maxLine = line;
+			}
+		});
+	}
+
+	// Make sure the gutters options contains the element
+	// "CodeMirror-linenumbers" when the lineNumbers option is true.
+	function setGuttersForLineNumbers(options) {
+		var found = false;
+		for (var i = 0; i < options.gutters.length; ++i) {
+			if (options.gutters[i] == "CodeMirror-linenumbers") {
+				if (options.lineNumbers) found = true;
+				else options.gutters.splice(i--, 1);
+			}
+		}
+		if (!found && options.lineNumbers)
+			options.gutters.push("CodeMirror-linenumbers");
+	}
+
+	// SCROLLBARS
+
+	// Re-synchronize the fake scrollbars with the actual size of the
+	// content. Optionally force a scrollTop.
+	function updateScrollbars(cm) {
+		var d = cm.display,
+			docHeight = cm.doc.height;
+		var totalHeight = docHeight + paddingVert(d);
+		d.sizer.style.minHeight = d.heightForcer.style.top = totalHeight + "px";
+		d.gutters.style.height = Math.max(totalHeight, d.scroller.clientHeight - scrollerCutOff) + "px";
+		var scrollHeight = Math.max(totalHeight, d.scroller.scrollHeight);
+		var needsH = d.scroller.scrollWidth > (d.scroller.clientWidth + 1);
+		var needsV = scrollHeight > (d.scroller.clientHeight + 1);
+		if (needsV) {
+			d.scrollbarV.style.display = "block";
+			d.scrollbarV.style.bottom = needsH ? scrollbarWidth(d.measure) + "px" : "0";
+			d.scrollbarV.firstChild.style.height =
+				(scrollHeight - d.scroller.clientHeight + d.scrollbarV.clientHeight) + "px";
+		} else d.scrollbarV.style.display = "";
+		if (needsH) {
+			d.scrollbarH.style.display = "block";
+			d.scrollbarH.style.right = needsV ? scrollbarWidth(d.measure) + "px" : "0";
+			d.scrollbarH.firstChild.style.width =
+				(d.scroller.scrollWidth - d.scroller.clientWidth + d.scrollbarH.clientWidth) + "px";
+		} else d.scrollbarH.style.display = "";
+		if (needsH && needsV) {
+			d.scrollbarFiller.style.display = "block";
+			d.scrollbarFiller.style.height = d.scrollbarFiller.style.width = scrollbarWidth(d.measure) + "px";
+		} else d.scrollbarFiller.style.display = "";
+		if (needsH && cm.options.coverGutterNextToScrollbar && cm.options.fixedGutter) {
+			d.gutterFiller.style.display = "block";
+			d.gutterFiller.style.height = scrollbarWidth(d.measure) + "px";
+			d.gutterFiller.style.width = d.gutters.offsetWidth + "px";
+		} else d.gutterFiller.style.display = "";
+
+		if (mac_geLion && scrollbarWidth(d.measure) === 0)
+			d.scrollbarV.style.minWidth = d.scrollbarH.style.minHeight = mac_geMountainLion ? "18px" : "12px";
+	}
+
+	function visibleLines(display, doc, viewPort) {
+		var top = display.scroller.scrollTop,
+			height = display.wrapper.clientHeight;
+		if (typeof viewPort == "number") top = viewPort;
+		else if (viewPort) {
+			top = viewPort.top;
+			height = viewPort.bottom - viewPort.top;
+		}
+		top = Math.floor(top - paddingTop(display));
+		var bottom = Math.ceil(top + height);
+		return {
+			from: lineAtHeight(doc, top),
+			to: lineAtHeight(doc, bottom)
+		};
+	}
+
+	// LINE NUMBERS
+
+	function alignHorizontally(cm) {
+		var display = cm.display;
+		if (!display.alignWidgets && (!display.gutters.firstChild || !cm.options.fixedGutter)) return;
+		var comp = compensateForHScroll(display) - display.scroller.scrollLeft + cm.doc.scrollLeft;
+		var gutterW = display.gutters.offsetWidth,
+			l = comp + "px";
+		for (var n = display.lineDiv.firstChild; n; n = n.nextSibling)
+			if (n.alignable) {
+				for (var i = 0, a = n.alignable; i < a.length; ++i) a[i].style.left = l;
+			}
+		if (cm.options.fixedGutter)
+			display.gutters.style.left = (comp + gutterW) + "px";
+	}
+
+	function maybeUpdateLineNumberWidth(cm) {
+		if (!cm.options.lineNumbers) return false;
+		var doc = cm.doc,
+			last = lineNumberFor(cm.options, doc.first + doc.size - 1),
+			display = cm.display;
+		if (last.length != display.lineNumChars) {
+			var test = display.measure.appendChild(elt("div", [elt("div", last)],
+				"CodeMirror-linenumber CodeMirror-gutter-elt"));
+			var innerW = test.firstChild.offsetWidth,
+				padding = test.offsetWidth - innerW;
+			display.lineGutter.style.width = "";
+			display.lineNumInnerWidth = Math.max(innerW, display.lineGutter.offsetWidth - padding);
+			display.lineNumWidth = display.lineNumInnerWidth + padding;
+			display.lineNumChars = display.lineNumInnerWidth ? last.length : -1;
+			display.lineGutter.style.width = display.lineNumWidth + "px";
+			return true;
+		}
+		return false;
+	}
+
+	function lineNumberFor(options, i) {
+		return String(options.lineNumberFormatter(i + options.firstLineNumber));
+	}
+
+	function compensateForHScroll(display) {
+		return getRect(display.scroller).left - getRect(display.sizer).left;
+	}
+
+	// DISPLAY DRAWING
+
+	function updateDisplay(cm, changes, viewPort, forced) {
+		var oldFrom = cm.display.showingFrom,
+			oldTo = cm.display.showingTo,
+			updated;
+		var visible = visibleLines(cm.display, cm.doc, viewPort);
+		for (;;) {
+			if (!updateDisplayInner(cm, changes, visible, forced)) break;
+			forced = false;
+			updated = true;
+			updateSelection(cm);
+			updateScrollbars(cm);
+
+			// Clip forced viewport to actual scrollable area
+			if (viewPort)
+				viewPort = Math.min(cm.display.scroller.scrollHeight - cm.display.scroller.clientHeight,
+					typeof viewPort == "number" ? viewPort : viewPort.top);
+			visible = visibleLines(cm.display, cm.doc, viewPort);
+			if (visible.from >= cm.display.showingFrom && visible.to <= cm.display.showingTo)
+				break;
+			changes = [];
+		}
+
+		if (updated) {
+			signalLater(cm, "update", cm);
+			if (cm.display.showingFrom != oldFrom || cm.display.showingTo != oldTo)
+				signalLater(cm, "viewportChange", cm, cm.display.showingFrom, cm.display.showingTo);
+		}
+		return updated;
+	}
+
+	// Uses a set of changes plus the current scroll position to
+	// determine which DOM updates have to be made, and makes the
+	// updates.
+	function updateDisplayInner(cm, changes, visible, forced) {
+		var display = cm.display,
+			doc = cm.doc;
+		if (!display.wrapper.clientWidth) {
+			display.showingFrom = display.showingTo = doc.first;
+			display.viewOffset = 0;
+			return;
+		}
+
+		// Bail out if the visible area is already rendered and nothing changed.
+		if (!forced && changes.length == 0 &&
+			visible.from > display.showingFrom && visible.to < display.showingTo)
+			return;
+
+		if (maybeUpdateLineNumberWidth(cm))
+			changes = [{
+				from: doc.first,
+				to: doc.first + doc.size
+			}];
+		var gutterW = display.sizer.style.marginLeft = display.gutters.offsetWidth + "px";
+		display.scrollbarH.style.left = cm.options.fixedGutter ? gutterW : "0";
+
+		// Used to determine which lines need their line numbers updated
+		var positionsChangedFrom = Infinity;
+		if (cm.options.lineNumbers)
+			for (var i = 0; i < changes.length; ++i)
+				if (changes[i].diff) {
+					positionsChangedFrom = changes[i].from;
+					break;
+				}
+
+		var end = doc.first + doc.size;
+		var from = Math.max(visible.from - cm.options.viewportMargin, doc.first);
+		var to = Math.min(end, visible.to + cm.options.viewportMargin);
+		if (display.showingFrom < from && from - display.showingFrom < 20) from = Math.max(doc.first, display.showingFrom);
+		if (display.showingTo > to && display.showingTo - to < 20) to = Math.min(end, display.showingTo);
+		if (sawCollapsedSpans) {
+			from = lineNo(visualLine(doc, getLine(doc, from)));
+			while (to < end && lineIsHidden(doc, getLine(doc, to)))++to;
+		}
+
+		// Create a range of theoretically intact lines, and punch holes
+		// in that using the change info.
+		var intact = [{
+			from: Math.max(display.showingFrom, doc.first),
+			to: Math.min(display.showingTo, end)
+		}];
+		if (intact[0].from >= intact[0].to) intact = [];
+		else intact = computeIntact(intact, changes);
+		// When merged lines are present, we might have to reduce the
+		// intact ranges because changes in continued fragments of the
+		// intact lines do require the lines to be redrawn.
+		if (sawCollapsedSpans)
+			for (var i = 0; i < intact.length; ++i) {
+				var range = intact[i],
+					merged;
+				while (merged = collapsedSpanAtEnd(getLine(doc, range.to - 1))) {
+					var newTo = merged.find().from.line;
+					if (newTo > range.from) range.to = newTo;
+					else {
+						intact.splice(i--, 1);
+						break;
+					}
+				}
+			}
+
+		// Clip off the parts that won't be visible
+		var intactLines = 0;
+		for (var i = 0; i < intact.length; ++i) {
+			var range = intact[i];
+			if (range.from < from) range.from = from;
+			if (range.to > to) range.to = to;
+			if (range.from >= range.to) intact.splice(i--, 1);
+			else intactLines += range.to - range.from;
+		}
+		if (!forced && intactLines == to - from && from == display.showingFrom && to == display.showingTo) {
+			updateViewOffset(cm);
+			return;
+		}
+		intact.sort(function(a, b) {
+			return a.from - b.from;
+		});
+
+		// Avoid crashing on IE's "unspecified error" when in iframes
+		try {
+			var focused = document.activeElement;
+		} catch (e) {}
+		if (intactLines < (to - from) * .7) display.lineDiv.style.display = "none";
+		patchDisplay(cm, from, to, intact, positionsChangedFrom);
+		display.lineDiv.style.display = "";
+		if (focused && document.activeElement != focused && focused.offsetHeight) focused.focus();
+
+		var different = from != display.showingFrom || to != display.showingTo ||
+			display.lastSizeC != display.wrapper.clientHeight;
+		// This is just a bogus formula that detects when the editor is
+		// resized or the font size changes.
+		if (different) {
+			display.lastSizeC = display.wrapper.clientHeight;
+			startWorker(cm, 400);
+		}
+		display.showingFrom = from;
+		display.showingTo = to;
+
+		updateHeightsInViewport(cm);
+		updateViewOffset(cm);
+
+		return true;
+	}
+
+	function updateHeightsInViewport(cm) {
+		var display = cm.display;
+		var prevBottom = display.lineDiv.offsetTop;
+		for (var node = display.lineDiv.firstChild, height; node; node = node.nextSibling)
+			if (node.lineObj) {
+				if (ie_lt8) {
+					var bot = node.offsetTop + node.offsetHeight;
+					height = bot - prevBottom;
+					prevBottom = bot;
+				} else {
+					var box = getRect(node);
+					height = box.bottom - box.top;
+				}
+				var diff = node.lineObj.height - height;
+				if (height < 2) height = textHeight(display);
+				if (diff > .001 || diff < -.001) {
+					updateLineHeight(node.lineObj, height);
+					var widgets = node.lineObj.widgets;
+					if (widgets)
+						for (var i = 0; i < widgets.length; ++i)
+							widgets[i].height = widgets[i].node.offsetHeight;
+				}
+			}
+	}
+
+	function updateViewOffset(cm) {
+		var off = cm.display.viewOffset = heightAtLine(cm, getLine(cm.doc, cm.display.showingFrom));
+		// Position the mover div to align with the current virtual scroll position
+		cm.display.mover.style.top = off + "px";
+	}
+
+	function computeIntact(intact, changes) {
+		for (var i = 0, l = changes.length || 0; i < l; ++i) {
+			var change = changes[i],
+				intact2 = [],
+				diff = change.diff || 0;
+			for (var j = 0, l2 = intact.length; j < l2; ++j) {
+				var range = intact[j];
+				if (change.to <= range.from && change.diff) {
+					intact2.push({
+						from: range.from + diff,
+						to: range.to + diff
+					});
+				} else if (change.to <= range.from || change.from >= range.to) {
+					intact2.push(range);
+				} else {
+					if (change.from > range.from)
+						intact2.push({
+							from: range.from,
+							to: change.from
+						});
+					if (change.to < range.to)
+						intact2.push({
+							from: change.to + diff,
+							to: range.to + diff
+						});
+				}
+			}
+			intact = intact2;
+		}
+		return intact;
+	}
+
+	function getDimensions(cm) {
+		var d = cm.display,
+			left = {},
+			width = {};
+		for (var n = d.gutters.firstChild, i = 0; n; n = n.nextSibling, ++i) {
+			left[cm.options.gutters[i]] = n.offsetLeft;
+			width[cm.options.gutters[i]] = n.offsetWidth;
+		}
+		return {
+			fixedPos: compensateForHScroll(d),
+			gutterTotalWidth: d.gutters.offsetWidth,
+			gutterLeft: left,
+			gutterWidth: width,
+			wrapperWidth: d.wrapper.clientWidth
+		};
+	}
+
+	function patchDisplay(cm, from, to, intact, updateNumbersFrom) {
+		var dims = getDimensions(cm);
+		var display = cm.display,
+			lineNumbers = cm.options.lineNumbers;
+		if (!intact.length && (!webkit || !cm.display.currentWheelTarget))
+			removeChildren(display.lineDiv);
+		var container = display.lineDiv,
+			cur = container.firstChild;
+
+		function rm(node) {
+			var next = node.nextSibling;
+			if (webkit && mac && cm.display.currentWheelTarget == node) {
+				node.style.display = "none";
+				node.lineObj = null;
+			} else {
+				node.parentNode.removeChild(node);
+			}
+			return next;
+		}
+
+		var nextIntact = intact.shift(),
+			lineN = from;
+		cm.doc.iter(from, to, function(line) {
+			if (nextIntact && nextIntact.to == lineN) nextIntact = intact.shift();
+			if (lineIsHidden(cm.doc, line)) {
+				if (line.height != 0) updateLineHeight(line, 0);
+				if (line.widgets && cur.previousSibling)
+					for (var i = 0; i < line.widgets.length; ++i) {
+						var w = line.widgets[i];
+						if (w.showIfHidden) {
+							var prev = cur.previousSibling;
+							if (/pre/i.test(prev.nodeName)) {
+								var wrap = elt("div", null, null, "position: relative");
+								prev.parentNode.replaceChild(wrap, prev);
+								wrap.appendChild(prev);
+								prev = wrap;
+							}
+							var wnode = prev.appendChild(elt("div", [w.node], "CodeMirror-linewidget"));
+							if (!w.handleMouseEvents) wnode.ignoreEvents = true;
+							positionLineWidget(w, wnode, prev, dims);
+						}
+					}
+			} else if (nextIntact && nextIntact.from <= lineN && nextIntact.to > lineN) {
+				// This line is intact. Skip to the actual node. Update its
+				// line number if needed.
+				while (cur.lineObj != line) cur = rm(cur);
+				if (lineNumbers && updateNumbersFrom <= lineN && cur.lineNumber)
+					setTextContent(cur.lineNumber, lineNumberFor(cm.options, lineN));
+				cur = cur.nextSibling;
+			} else {
+				// For lines with widgets, make an attempt to find and reuse
+				// the existing element, so that widgets aren't needlessly
+				// removed and re-inserted into the dom
+				if (line.widgets)
+					for (var j = 0, search = cur, reuse; search && j < 20; ++j, search = search.nextSibling)
+						if (search.lineObj == line && /div/i.test(search.nodeName)) {
+							reuse = search;
+							break;
+						}
+						// This line needs to be generated.
+				var lineNode = buildLineElement(cm, line, lineN, dims, reuse);
+				if (lineNode != reuse) {
+					container.insertBefore(lineNode, cur);
+				} else {
+					while (cur != reuse) cur = rm(cur);
+					cur = cur.nextSibling;
+				}
+
+				lineNode.lineObj = line;
+			}
+			++lineN;
+		});
+		while (cur) cur = rm(cur);
+	}
+
+	function buildLineElement(cm, line, lineNo, dims, reuse) {
+		var lineElement = lineContent(cm, line);
+		var markers = line.gutterMarkers,
+			display = cm.display,
+			wrap;
+
+		if (!cm.options.lineNumbers && !markers && !line.bgClass && !line.wrapClass && !line.widgets)
+			return lineElement;
+
+		// Lines with gutter elements, widgets or a background class need
+		// to be wrapped again, and have the extra elements added to the
+		// wrapper div
+
+		if (reuse) {
+			reuse.alignable = null;
+			var isOk = true,
+				widgetsSeen = 0,
+				insertBefore = null;
+			for (var n = reuse.firstChild, next; n; n = next) {
+				next = n.nextSibling;
+				if (!/\bCodeMirror-linewidget\b/.test(n.className)) {
+					reuse.removeChild(n);
+				} else {
+					for (var i = 0; i < line.widgets.length; ++i) {
+						var widget = line.widgets[i];
+						if (widget.node == n.firstChild) {
+							if (!widget.above && !insertBefore) insertBefore = n;
+							positionLineWidget(widget, n, reuse, dims);
+							++widgetsSeen;
+							break;
+						}
+					}
+					if (i == line.widgets.length) {
+						isOk = false;
+						break;
+					}
+				}
+			}
+			reuse.insertBefore(lineElement, insertBefore);
+			if (isOk && widgetsSeen == line.widgets.length) {
+				wrap = reuse;
+				reuse.className = line.wrapClass || "";
+			}
+		}
+		if (!wrap) {
+			wrap = elt("div", null, line.wrapClass, "position: relative");
+			wrap.appendChild(lineElement);
+		}
+		// Kludge to make sure the styled element lies behind the selection (by z-index)
+		if (line.bgClass)
+			wrap.insertBefore(elt("div", null, line.bgClass + " CodeMirror-linebackground"), wrap.firstChild);
+		if (cm.options.lineNumbers || markers) {
+			var gutterWrap = wrap.insertBefore(elt("div", null, null, "position: absolute; left: " +
+					(cm.options.fixedGutter ? dims.fixedPos : -dims.gutterTotalWidth) + "px"),
+				wrap.firstChild);
+			if (cm.options.fixedGutter)(wrap.alignable || (wrap.alignable = [])).push(gutterWrap);
+			if (cm.options.lineNumbers && (!markers || !markers["CodeMirror-linenumbers"]))
+				wrap.lineNumber = gutterWrap.appendChild(
+					elt("div", lineNumberFor(cm.options, lineNo),
+						"CodeMirror-linenumber CodeMirror-gutter-elt",
+						"left: " + dims.gutterLeft["CodeMirror-linenumbers"] + "px; width: " + display.lineNumInnerWidth + "px"));
+			if (markers)
+				for (var k = 0; k < cm.options.gutters.length; ++k) {
+					var id = cm.options.gutters[k],
+						found = markers.hasOwnProperty(id) && markers[id];
+					if (found)
+						gutterWrap.appendChild(elt("div", [found], "CodeMirror-gutter-elt", "left: " +
+							dims.gutterLeft[id] + "px; width: " + dims.gutterWidth[id] + "px"));
+				}
+		}
+		if (ie_lt8) wrap.style.zIndex = 2;
+		if (line.widgets && wrap != reuse)
+			for (var i = 0, ws = line.widgets; i < ws.length; ++i) {
+				var widget = ws[i],
+					node = elt("div", [widget.node], "CodeMirror-linewidget");
+				if (!widget.handleMouseEvents) node.ignoreEvents = true;
+				positionLineWidget(widget, node, wrap, dims);
+				if (widget.above)
+					wrap.insertBefore(node, cm.options.lineNumbers && line.height != 0 ? gutterWrap : lineElement);
+				else
+					wrap.appendChild(node);
+				signalLater(widget, "redraw");
+			}
+		return wrap;
+	}
+
+	function positionLineWidget(widget, node, wrap, dims) {
+		if (widget.noHScroll) {
+			(wrap.alignable || (wrap.alignable = [])).push(node);
+			var width = dims.wrapperWidth;
+			node.style.left = dims.fixedPos + "px";
+			if (!widget.coverGutter) {
+				width -= dims.gutterTotalWidth;
+				node.style.paddingLeft = dims.gutterTotalWidth + "px";
+			}
+			node.style.width = width + "px";
+		}
+		if (widget.coverGutter) {
+			node.style.zIndex = 5;
+			node.style.position = "relative";
+			if (!widget.noHScroll) node.style.marginLeft = -dims.gutterTotalWidth + "px";
+		}
+	}
+
+	// SELECTION / CURSOR
+
+	function updateSelection(cm) {
+		var display = cm.display;
+		var collapsed = posEq(cm.doc.sel.from, cm.doc.sel.to);
+		if (collapsed || cm.options.showCursorWhenSelecting)
+			updateSelectionCursor(cm);
+		else
+			display.cursor.style.display = display.otherCursor.style.display = "none";
+		if (!collapsed)
+			updateSelectionRange(cm);
+		else
+			display.selectionDiv.style.display = "none";
+
+		// Move the hidden textarea near the cursor to prevent scrolling artifacts
+		if (cm.options.moveInputWithCursor) {
+			var headPos = cursorCoords(cm, cm.doc.sel.head, "div");
+			var wrapOff = getRect(display.wrapper),
+				lineOff = getRect(display.lineDiv);
+			display.inputDiv.style.top = Math.max(0, Math.min(display.wrapper.clientHeight - 10,
+				headPos.top + lineOff.top - wrapOff.top)) + "px";
+			display.inputDiv.style.left = Math.max(0, Math.min(display.wrapper.clientWidth - 10,
+				headPos.left + lineOff.left - wrapOff.left)) + "px";
+		}
+	}
+
+	// No selection, plain cursor
+	function updateSelectionCursor(cm) {
+		var display = cm.display,
+			pos = cursorCoords(cm, cm.doc.sel.head, "div");
+		display.cursor.style.left = pos.left + "px";
+		display.cursor.style.top = pos.top + "px";
+		display.cursor.style.height = Math.max(0, pos.bottom - pos.top) * cm.options.cursorHeight + "px";
+		display.cursor.style.display = "";
+
+		if (pos.other) {
+			display.otherCursor.style.display = "";
+			display.otherCursor.style.left = pos.other.left + "px";
+			display.otherCursor.style.top = pos.other.top + "px";
+			display.otherCursor.style.height = (pos.other.bottom - pos.other.top) * .85 + "px";
+		} else {
+			display.otherCursor.style.display = "none";
+		}
+	}
+
+	// Highlight selection
+	function updateSelectionRange(cm) {
+		var display = cm.display,
+			doc = cm.doc,
+			sel = cm.doc.sel;
+		var fragment = document.createDocumentFragment();
+		var clientWidth = display.lineSpace.offsetWidth,
+			pl = paddingLeft(cm.display);
+
+		function add(left, top, width, bottom) {
+			if (top < 0) top = 0;
+			fragment.appendChild(elt("div", null, "CodeMirror-selected", "position: absolute; left: " + left +
+				"px; top: " + top + "px; width: " + (width == null ? clientWidth - left : width) +
+				"px; height: " + (bottom - top) + "px"));
+		}
+
+		function drawForLine(line, fromArg, toArg) {
+			var lineObj = getLine(doc, line);
+			var lineLen = lineObj.text.length;
+			var start, end;
+
+			function coords(ch, bias) {
+				return charCoords(cm, Pos(line, ch), "div", lineObj, bias);
+			}
+
+			iterateBidiSections(getOrder(lineObj), fromArg || 0, toArg == null ? lineLen : toArg, function(from, to, dir) {
+				var leftPos = coords(from, "left"),
+					rightPos, left, right;
+				if (from == to) {
+					rightPos = leftPos;
+					left = right = leftPos.left;
+				} else {
+					rightPos = coords(to - 1, "right");
+					if (dir == "rtl") {
+						var tmp = leftPos;
+						leftPos = rightPos;
+						rightPos = tmp;
+					}
+					left = leftPos.left;
+					right = rightPos.right;
+				}
+				if (fromArg == null && from == 0) left = pl;
+				if (rightPos.top - leftPos.top > 3) { // Different lines, draw top part
+					add(left, leftPos.top, null, leftPos.bottom);
+					left = pl;
+					if (leftPos.bottom < rightPos.top) add(left, leftPos.bottom, null, rightPos.top);
+				}
+				if (toArg == null && to == lineLen) right = clientWidth;
+				if (!start || leftPos.top < start.top || leftPos.top == start.top && leftPos.left < start.left)
+					start = leftPos;
+				if (!end || rightPos.bottom > end.bottom || rightPos.bottom == end.bottom && rightPos.right > end.right)
+					end = rightPos;
+				if (left < pl + 1) left = pl;
+				add(left, rightPos.top, right - left, rightPos.bottom);
+			});
+			return {
+				start: start,
+				end: end
+			};
+		}
+
+		if (sel.from.line == sel.to.line) {
+			drawForLine(sel.from.line, sel.from.ch, sel.to.ch);
+		} else {
+			var fromLine = getLine(doc, sel.from.line),
+				toLine = getLine(doc, sel.to.line);
+			var singleVLine = visualLine(doc, fromLine) == visualLine(doc, toLine);
+			var leftEnd = drawForLine(sel.from.line, sel.from.ch, singleVLine ? fromLine.text.length : null).end;
+			var rightStart = drawForLine(sel.to.line, singleVLine ? 0 : null, sel.to.ch).start;
+			if (singleVLine) {
+				if (leftEnd.top < rightStart.top - 2) {
+					add(leftEnd.right, leftEnd.top, null, leftEnd.bottom);
+					add(pl, rightStart.top, rightStart.left, rightStart.bottom);
+				} else {
+					add(leftEnd.right, leftEnd.top, rightStart.left - leftEnd.right, leftEnd.bottom);
+				}
+			}
+			if (leftEnd.bottom < rightStart.top)
+				add(pl, leftEnd.bottom, null, rightStart.top);
+		}
+
+		removeChildrenAndAdd(display.selectionDiv, fragment);
+		display.selectionDiv.style.display = "";
+	}
+
+	// Cursor-blinking
+	function restartBlink(cm) {
+		if (!cm.state.focused) return;
+		var display = cm.display;
+		clearInterval(display.blinker);
+		var on = true;
+		display.cursor.style.visibility = display.otherCursor.style.visibility = "";
+		display.blinker = setInterval(function() {
+			display.cursor.style.visibility = display.otherCursor.style.visibility = (on = !on) ? "" : "hidden";
+		}, cm.options.cursorBlinkRate);
+	}
+
+	// HIGHLIGHT WORKER
+
+	function startWorker(cm, time) {
+		if (cm.doc.mode.startState && cm.doc.frontier < cm.display.showingTo)
+			cm.state.highlight.set(time, bind(highlightWorker, cm));
+	}
+
+	function highlightWorker(cm) {
+		var doc = cm.doc;
+		if (doc.frontier < doc.first) doc.frontier = doc.first;
+		if (doc.frontier >= cm.display.showingTo) return;
+		var end = +new Date + cm.options.workTime;
+		var state = copyState(doc.mode, getStateBefore(cm, doc.frontier));
+		var changed = [],
+			prevChange;
+		doc.iter(doc.frontier, Math.min(doc.first + doc.size, cm.display.showingTo + 500), function(line) {
+			if (doc.frontier >= cm.display.showingFrom) { // Visible
+				var oldStyles = line.styles;
+				line.styles = highlightLine(cm, line, state);
+				var ischange = !oldStyles || oldStyles.length != line.styles.length;
+				for (var i = 0; !ischange && i < oldStyles.length; ++i) ischange = oldStyles[i] != line.styles[i];
+				if (ischange) {
+					if (prevChange && prevChange.end == doc.frontier) prevChange.end++;
+					else changed.push(prevChange = {
+						start: doc.frontier,
+						end: doc.frontier + 1
+					});
+				}
+				line.stateAfter = copyState(doc.mode, state);
+			} else {
+				processLine(cm, line, state);
+				line.stateAfter = doc.frontier % 5 == 0 ? copyState(doc.mode, state) : null;
+			}
+			++doc.frontier;
+			if (+new Date > end) {
+				startWorker(cm, cm.options.workDelay);
+				return true;
+			}
+		});
+		if (changed.length)
+			operation(cm, function() {
+				for (var i = 0; i < changed.length; ++i)
+					regChange(this, changed[i].start, changed[i].end);
+			})();
+	}
+
+	// Finds the line to start with when starting a parse. Tries to
+	// find a line with a stateAfter, so that it can start with a
+	// valid state. If that fails, it returns the line with the
+	// smallest indentation, which tends to need the least context to
+	// parse correctly.
+	function findStartLine(cm, n, precise) {
+		var minindent, minline, doc = cm.doc;
+		for (var search = n, lim = n - 100; search > lim; --search) {
+			if (search <= doc.first) return doc.first;
+			var line = getLine(doc, search - 1);
+			if (line.stateAfter && (!precise || search <= doc.frontier)) return search;
+			var indented = countColumn(line.text, null, cm.options.tabSize);
+			if (minline == null || minindent > indented) {
+				minline = search - 1;
+				minindent = indented;
+			}
+		}
+		return minline;
+	}
+
+	function getStateBefore(cm, n, precise) {
+		var doc = cm.doc,
+			display = cm.display;
+		if (!doc.mode.startState) return true;
+		var pos = findStartLine(cm, n, precise),
+			state = pos > doc.first && getLine(doc, pos - 1).stateAfter;
+		if (!state) state = startState(doc.mode);
+		else state = copyState(doc.mode, state);
+		doc.iter(pos, n, function(line) {
+			processLine(cm, line, state);
+			var save = pos == n - 1 || pos % 5 == 0 || pos >= display.showingFrom && pos < display.showingTo;
+			line.stateAfter = save ? copyState(doc.mode, state) : null;
+			++pos;
+		});
+		return state;
+	}
+
+	// POSITION MEASUREMENT
+
+	function paddingTop(display) {
+		return display.lineSpace.offsetTop;
+	}
+
+	function paddingVert(display) {
+		return display.mover.offsetHeight - display.lineSpace.offsetHeight;
+	}
+
+	function paddingLeft(display) {
+		var e = removeChildrenAndAdd(display.measure, elt("pre", null, null, "text-align: left")).appendChild(elt("span", "x"));
+		return e.offsetLeft;
+	}
+
+	function measureChar(cm, line, ch, data, bias) {
+		var dir = -1;
+		data = data || measureLine(cm, line);
+
+		for (var pos = ch;; pos += dir) {
+			var r = data[pos];
+			if (r) break;
+			if (dir < 0 && pos == 0) dir = 1;
+		}
+		bias = pos > ch ? "left" : pos < ch ? "right" : bias;
+		if (bias == "left" && r.leftSide) r = r.leftSide;
+		else if (bias == "right" && r.rightSide) r = r.rightSide;
+		return {
+			left: pos < ch ? r.right : r.left,
+			right: pos > ch ? r.left : r.right,
+			top: r.top,
+			bottom: r.bottom
+		};
+	}
+
+	function findCachedMeasurement(cm, line) {
+		var cache = cm.display.measureLineCache;
+		for (var i = 0; i < cache.length; ++i) {
+			var memo = cache[i];
+			if (memo.text == line.text && memo.markedSpans == line.markedSpans &&
+				cm.display.scroller.clientWidth == memo.width &&
+				memo.classes == line.textClass + "|" + line.bgClass + "|" + line.wrapClass)
+				return memo;
+		}
+	}
+
+	function clearCachedMeasurement(cm, line) {
+		var exists = findCachedMeasurement(cm, line);
+		if (exists) exists.text = exists.measure = exists.markedSpans = null;
+	}
+
+	function measureLine(cm, line) {
+		// First look in the cache
+		var cached = findCachedMeasurement(cm, line);
+		if (cached) return cached.measure;
+
+		// Failing that, recompute and store result in cache
+		var measure = measureLineInner(cm, line);
+		var cache = cm.display.measureLineCache;
+		var memo = {
+			text: line.text,
+			width: cm.display.scroller.clientWidth,
+			markedSpans: line.markedSpans,
+			measure: measure,
+			classes: line.textClass + "|" + line.bgClass + "|" + line.wrapClass
+		};
+		if (cache.length == 16) cache[++cm.display.measureLineCachePos % 16] = memo;
+		else cache.push(memo);
+		return measure;
+	}
+
+	function measureLineInner(cm, line) {
+		var display = cm.display,
+			measure = emptyArray(line.text.length);
+		var pre = lineContent(cm, line, measure, true);
+
+		// IE does not cache element positions of inline elements between
+		// calls to getBoundingClientRect. This makes the loop below,
+		// which gathers the positions of all the characters on the line,
+		// do an amount of layout work quadratic to the number of
+		// characters. When line wrapping is off, we try to improve things
+		// by first subdividing the line into a bunch of inline blocks, so
+		// that IE can reuse most of the layout information from caches
+		// for those blocks. This does interfere with line wrapping, so it
+		// doesn't work when wrapping is on, but in that case the
+		// situation is slightly better, since IE does cache line-wrapping
+		// information and only recomputes per-line.
+		if (ie && !ie_lt8 && !cm.options.lineWrapping && pre.childNodes.length > 100) {
+			var fragment = document.createDocumentFragment();
+			var chunk = 10,
+				n = pre.childNodes.length;
+			for (var i = 0, chunks = Math.ceil(n / chunk); i < chunks; ++i) {
+				var wrap = elt("div", null, null, "display: inline-block");
+				for (var j = 0; j < chunk && n; ++j) {
+					wrap.appendChild(pre.firstChild);
+					--n;
+				}
+				fragment.appendChild(wrap);
+			}
+			pre.appendChild(fragment);
+		}
+
+		removeChildrenAndAdd(display.measure, pre);
+
+		var outer = getRect(display.lineDiv);
+		var vranges = [],
+			data = emptyArray(line.text.length),
+			maxBot = pre.offsetHeight;
+		// Work around an IE7/8 bug where it will sometimes have randomly
+		// replaced our pre with a clone at this point.
+		if (ie_lt9 && display.measure.first != pre)
+			removeChildrenAndAdd(display.measure, pre);
+
+		function measureRect(rect) {
+			var top = rect.top - outer.top,
+				bot = rect.bottom - outer.top;
+			if (bot > maxBot) bot = maxBot;
+			if (top < 0) top = 0;
+			for (var i = vranges.length - 2; i >= 0; i -= 2) {
+				var rtop = vranges[i],
+					rbot = vranges[i + 1];
+				if (rtop > bot || rbot < top) continue;
+				if (rtop <= top && rbot >= bot ||
+					top <= rtop && bot >= rbot ||
+					Math.min(bot, rbot) - Math.max(top, rtop) >= (bot - top) >> 1) {
+					vranges[i] = Math.min(top, rtop);
+					vranges[i + 1] = Math.max(bot, rbot);
+					break;
+				}
+			}
+			if (i < 0) {
+				i = vranges.length;
+				vranges.push(top, bot);
+			}
+			return {
+				left: rect.left - outer.left,
+				right: rect.right - outer.left,
+				top: i,
+				bottom: null
+			};
+		}
+
+		function finishRect(rect) {
+			rect.bottom = vranges[rect.top + 1];
+			rect.top = vranges[rect.top];
+		}
+
+		for (var i = 0, cur; i < measure.length; ++i)
+			if (cur = measure[i]) {
+				var node = cur,
+					rect = null;
+				// A widget might wrap, needs special care
+				if (/\bCodeMirror-widget\b/.test(cur.className) && cur.getClientRects) {
+					if (cur.firstChild.nodeType == 1) node = cur.firstChild;
+					var rects = node.getClientRects();
+					if (rects.length > 1) {
+						rect = data[i] = measureRect(rects[0]);
+						rect.rightSide = measureRect(rects[rects.length - 1]);
+					}
+				}
+				if (!rect) rect = data[i] = measureRect(getRect(node));
+				if (cur.measureRight) rect.right = getRect(cur.measureRight).left;
+				if (cur.leftSide) rect.leftSide = measureRect(getRect(cur.leftSide));
+			}
+		for (var i = 0, cur; i < data.length; ++i)
+			if (cur = data[i]) {
+				finishRect(cur);
+				if (cur.leftSide) finishRect(cur.leftSide);
+				if (cur.rightSide) finishRect(cur.rightSide);
+			}
+		return data;
+	}
+
+	function measureLineWidth(cm, line) {
+		var hasBadSpan = false;
+		if (line.markedSpans)
+			for (var i = 0; i < line.markedSpans; ++i) {
+				var sp = line.markedSpans[i];
+				if (sp.collapsed && (sp.to == null || sp.to == line.text.length)) hasBadSpan = true;
+			}
+		var cached = !hasBadSpan && findCachedMeasurement(cm, line);
+		if (cached) return measureChar(cm, line, line.text.length, cached.measure, "right").right;
+
+		var pre = lineContent(cm, line, null, true);
+		var end = pre.appendChild(zeroWidthElement(cm.display.measure));
+		removeChildrenAndAdd(cm.display.measure, pre);
+		return getRect(end).right - getRect(cm.display.lineDiv).left;
+	}
+
+	function clearCaches(cm) {
+		cm.display.measureLineCache.length = cm.display.measureLineCachePos = 0;
+		cm.display.cachedCharWidth = cm.display.cachedTextHeight = null;
+		if (!cm.options.lineWrapping) cm.display.maxLineChanged = true;
+		cm.display.lineNumChars = null;
+	}
+
+	function pageScrollX() {
+		return window.pageXOffset || (document.documentElement || document.body).scrollLeft;
+	}
+
+	function pageScrollY() {
+		return window.pageYOffset || (document.documentElement || document.body).scrollTop;
+	}
+
+	// Context is one of "line", "div" (display.lineDiv), "local"/null (editor), or "page"
+	function intoCoordSystem(cm, lineObj, rect, context) {
+		if (lineObj.widgets)
+			for (var i = 0; i < lineObj.widgets.length; ++i)
+				if (lineObj.widgets[i].above) {
+					var size = widgetHeight(lineObj.widgets[i]);
+					rect.top += size;
+					rect.bottom += size;
+				}
+		if (context == "line") return rect;
+		if (!context) context = "local";
+		var yOff = heightAtLine(cm, lineObj);
+		if (context == "local") yOff += paddingTop(cm.display);
+		else yOff -= cm.display.viewOffset;
+		if (context == "page" || context == "window") {
+			var lOff = getRect(cm.display.lineSpace);
+			yOff += lOff.top + (context == "window" ? 0 : pageScrollY());
+			var xOff = lOff.left + (context == "window" ? 0 : pageScrollX());
+			rect.left += xOff;
+			rect.right += xOff;
+		}
+		rect.top += yOff;
+		rect.bottom += yOff;
+		return rect;
+	}
+
+	// Context may be "window", "page", "div", or "local"/null
+	// Result is in "div" coords
+	function fromCoordSystem(cm, coords, context) {
+		if (context == "div") return coords;
+		var left = coords.left,
+			top = coords.top;
+		// First move into "page" coordinate system
+		if (context == "page") {
+			left -= pageScrollX();
+			top -= pageScrollY();
+		} else if (context == "local" || !context) {
+			var localBox = getRect(cm.display.sizer);
+			left += localBox.left;
+			top += localBox.top;
+		}
+
+		var lineSpaceBox = getRect(cm.display.lineSpace);
+		return {
+			left: left - lineSpaceBox.left,
+			top: top - lineSpaceBox.top
+		};
+	}
+
+	function charCoords(cm, pos, context, lineObj, bias) {
+		if (!lineObj) lineObj = getLine(cm.doc, pos.line);
+		return intoCoordSystem(cm, lineObj, measureChar(cm, lineObj, pos.ch, null, bias), context);
+	}
+
+	function cursorCoords(cm, pos, context, lineObj, measurement) {
+		lineObj = lineObj || getLine(cm.doc, pos.line);
+		if (!measurement) measurement = measureLine(cm, lineObj);
+
+		function get(ch, right) {
+			var m = measureChar(cm, lineObj, ch, measurement, right ? "right" : "left");
+			if (right) m.left = m.right;
+			else m.right = m.left;
+			return intoCoordSystem(cm, lineObj, m, context);
+		}
+
+		function getBidi(ch, partPos) {
+			var part = order[partPos],
+				right = part.level % 2;
+			if (ch == bidiLeft(part) && partPos && part.level < order[partPos - 1].level) {
+				part = order[--partPos];
+				ch = bidiRight(part) - (part.level % 2 ? 0 : 1);
+				right = true;
+			} else if (ch == bidiRight(part) && partPos < order.length - 1 && part.level < order[partPos + 1].level) {
+				part = order[++partPos];
+				ch = bidiLeft(part) - part.level % 2;
+				right = false;
+			}
+			if (right && ch == part.to && ch > part.from) return get(ch - 1);
+			return get(ch, right);
+		}
+		var order = getOrder(lineObj),
+			ch = pos.ch;
+		if (!order) return get(ch);
+		var partPos = getBidiPartAt(order, ch);
+		var val = getBidi(ch, partPos);
+		if (bidiOther != null) val.other = getBidi(ch, bidiOther);
+		return val;
+	}
+
+	function PosWithInfo(line, ch, outside, xRel) {
+		var pos = new Pos(line, ch);
+		pos.xRel = xRel;
+		if (outside) pos.outside = true;
+		return pos;
+	}
+
+	// Coords must be lineSpace-local
+	function coordsChar(cm, x, y) {
+		var doc = cm.doc;
+		y += cm.display.viewOffset;
+		if (y < 0) return PosWithInfo(doc.first, 0, true, -1);
+		var lineNo = lineAtHeight(doc, y),
+			last = doc.first + doc.size - 1;
+		if (lineNo > last)
+			return PosWithInfo(doc.first + doc.size - 1, getLine(doc, last).text.length, true, 1);
+		if (x < 0) x = 0;
+
+		for (;;) {
+			var lineObj = getLine(doc, lineNo);
+			var found = coordsCharInner(cm, lineObj, lineNo, x, y);
+			var merged = collapsedSpanAtEnd(lineObj);
+			var mergedPos = merged && merged.find();
+			if (merged && (found.ch > mergedPos.from.ch || found.ch == mergedPos.from.ch && found.xRel > 0))
+				lineNo = mergedPos.to.line;
+			else
+				return found;
+		}
+	}
+
+	function coordsCharInner(cm, lineObj, lineNo, x, y) {
+		var innerOff = y - heightAtLine(cm, lineObj);
+		var wrongLine = false,
+			adjust = 2 * cm.display.wrapper.clientWidth;
+		var measurement = measureLine(cm, lineObj);
+
+		function getX(ch) {
+			var sp = cursorCoords(cm, Pos(lineNo, ch), "line",
+				lineObj, measurement);
+			wrongLine = true;
+			if (innerOff > sp.bottom) return sp.left - adjust;
+			else if (innerOff < sp.top) return sp.left + adjust;
+			else wrongLine = false;
+			return sp.left;
+		}
+
+		var bidi = getOrder(lineObj),
+			dist = lineObj.text.length;
+		var from = lineLeft(lineObj),
+			to = lineRight(lineObj);
+		var fromX = getX(from),
+			fromOutside = wrongLine,
+			toX = getX(to),
+			toOutside = wrongLine;
+
+		if (x > toX) return PosWithInfo(lineNo, to, toOutside, 1);
+		// Do a binary search between these bounds.
+		for (;;) {
+			if (bidi ? to == from || to == moveVisually(lineObj, from, 1) : to - from <= 1) {
+				var ch = x < fromX || x - fromX <= toX - x ? from : to;
+				var xDiff = x - (ch == from ? fromX : toX);
+				while (isExtendingChar.test(lineObj.text.charAt(ch)))++ch;
+				var pos = PosWithInfo(lineNo, ch, ch == from ? fromOutside : toOutside,
+					xDiff < 0 ? -1 : xDiff ? 1 : 0);
+				return pos;
+			}
+			var step = Math.ceil(dist / 2),
+				middle = from + step;
+			if (bidi) {
+				middle = from;
+				for (var i = 0; i < step; ++i) middle = moveVisually(lineObj, middle, 1);
+			}
+			var middleX = getX(middle);
+			if (middleX > x) {
+				to = middle;
+				toX = middleX;
+				if (toOutside = wrongLine) toX += 1000;
+				dist = step;
+			} else {
+				from = middle;
+				fromX = middleX;
+				fromOutside = wrongLine;
+				dist -= step;
+			}
+		}
+	}
+
+	var measureText;
+
+	function textHeight(display) {
+		if (display.cachedTextHeight != null) return display.cachedTextHeight;
+		if (measureText == null) {
+			measureText = elt("pre");
+			// Measure a bunch of lines, for browsers that compute
+			// fractional heights.
+			for (var i = 0; i < 49; ++i) {
+				measureText.appendChild(document.createTextNode("x"));
+				measureText.appendChild(elt("br"));
+			}
+			measureText.appendChild(document.createTextNode("x"));
+		}
+		removeChildrenAndAdd(display.measure, measureText);
+		var height = measureText.offsetHeight / 50;
+		if (height > 3) display.cachedTextHeight = height;
+		removeChildren(display.measure);
+		return height || 1;
+	}
+
+	function charWidth(display) {
+		if (display.cachedCharWidth != null) return display.cachedCharWidth;
+		var anchor = elt("span", "x");
+		var pre = elt("pre", [anchor]);
+		removeChildrenAndAdd(display.measure, pre);
+		var width = anchor.offsetWidth;
+		if (width > 2) display.cachedCharWidth = width;
+		return width || 10;
+	}
+
+	// OPERATIONS
+
+	// Operations are used to wrap changes in such a way that each
+	// change won't have to update the cursor and display (which would
+	// be awkward, slow, and error-prone), but instead updates are
+	// batched and then all combined and executed at once.
+
+	var nextOpId = 0;
+
+	function startOperation(cm) {
+		cm.curOp = {
+			// An array of ranges of lines that have to be updated. See
+			// updateDisplay.
+			changes: [],
+			forceUpdate: false,
+			updateInput: null,
+			userSelChange: null,
+			textChanged: null,
+			selectionChanged: false,
+			cursorActivity: false,
+			updateMaxLine: false,
+			updateScrollPos: false,
+			id: ++nextOpId
+		};
+		if (!delayedCallbackDepth++) delayedCallbacks = [];
+	}
+
+	function endOperation(cm) {
+		var op = cm.curOp,
+			doc = cm.doc,
+			display = cm.display;
+		cm.curOp = null;
+
+		if (op.updateMaxLine) computeMaxLength(cm);
+		if (display.maxLineChanged && !cm.options.lineWrapping && display.maxLine) {
+			var width = measureLineWidth(cm, display.maxLine);
+			display.sizer.style.minWidth = Math.max(0, width + 3 + scrollerCutOff) + "px";
+			display.maxLineChanged = false;
+			var maxScrollLeft = Math.max(0, display.sizer.offsetLeft + display.sizer.offsetWidth - display.scroller.clientWidth);
+			if (maxScrollLeft < doc.scrollLeft && !op.updateScrollPos)
+				setScrollLeft(cm, Math.min(display.scroller.scrollLeft, maxScrollLeft), true);
+		}
+		var newScrollPos, updated;
+		if (op.updateScrollPos) {
+			newScrollPos = op.updateScrollPos;
+		} else if (op.selectionChanged && display.scroller.clientHeight) { // don't rescroll if not visible
+			var coords = cursorCoords(cm, doc.sel.head);
+			newScrollPos = calculateScrollPos(cm, coords.left, coords.top, coords.left, coords.bottom);
+		}
+		if (op.changes.length || op.forceUpdate || newScrollPos && newScrollPos.scrollTop != null) {
+			updated = updateDisplay(cm, op.changes, newScrollPos && newScrollPos.scrollTop, op.forceUpdate);
+			if (cm.display.scroller.offsetHeight) cm.doc.scrollTop = cm.display.scroller.scrollTop;
+		}
+		if (!updated && op.selectionChanged) updateSelection(cm);
+		if (op.updateScrollPos) {
+			display.scroller.scrollTop = display.scrollbarV.scrollTop = doc.scrollTop = newScrollPos.scrollTop;
+			display.scroller.scrollLeft = display.scrollbarH.scrollLeft = doc.scrollLeft = newScrollPos.scrollLeft;
+			alignHorizontally(cm);
+			if (op.scrollToPos)
+				scrollPosIntoView(cm, clipPos(cm.doc, op.scrollToPos), op.scrollToPosMargin);
+		} else if (newScrollPos) {
+			scrollCursorIntoView(cm);
+		}
+		if (op.selectionChanged) restartBlink(cm);
+
+		if (cm.state.focused && op.updateInput)
+			resetInput(cm, op.userSelChange);
+
+		var hidden = op.maybeHiddenMarkers,
+			unhidden = op.maybeUnhiddenMarkers;
+		if (hidden)
+			for (var i = 0; i < hidden.length; ++i)
+				if (!hidden[i].lines.length) signal(hidden[i], "hide");
+		if (unhidden)
+			for (var i = 0; i < unhidden.length; ++i)
+				if (unhidden[i].lines.length) signal(unhidden[i], "unhide");
+
+		var delayed;
+		if (!--delayedCallbackDepth) {
+			delayed = delayedCallbacks;
+			delayedCallbacks = null;
+		}
+		if (op.textChanged)
+			signal(cm, "change", cm, op.textChanged);
+		if (op.cursorActivity) signal(cm, "cursorActivity", cm);
+		if (delayed)
+			for (var i = 0; i < delayed.length; ++i) delayed[i]();
+	}
+
+	// Wraps a function in an operation. Returns the wrapped function.
+	function operation(cm1, f) {
+		return function() {
+			var cm = cm1 || this,
+				withOp = !cm.curOp;
+			if (withOp) startOperation(cm);
+			try {
+				var result = f.apply(cm, arguments);
+			} finally {
+				if (withOp) endOperation(cm);
+			}
+			return result;
+		};
+	}
+
+	function docOperation(f) {
+		return function() {
+			var withOp = this.cm && !this.cm.curOp,
+				result;
+			if (withOp) startOperation(this.cm);
+			try {
+				result = f.apply(this, arguments);
+			} finally {
+				if (withOp) endOperation(this.cm);
+			}
+			return result;
+		};
+	}
+
+	function runInOp(cm, f) {
+		var withOp = !cm.curOp,
+			result;
+		if (withOp) startOperation(cm);
+		try {
+			result = f();
+		} finally {
+			if (withOp) endOperation(cm);
+		}
+		return result;
+	}
+
+	function regChange(cm, from, to, lendiff) {
+		if (from == null) from = cm.doc.first;
+		if (to == null) to = cm.doc.first + cm.doc.size;
+		cm.curOp.changes.push({
+			from: from,
+			to: to,
+			diff: lendiff
+		});
+	}
+
+	// INPUT HANDLING
+
+	function slowPoll(cm) {
+		if (cm.display.pollingFast) return;
+		cm.display.poll.set(cm.options.pollInterval, function() {
+			readInput(cm);
+			if (cm.state.focused) slowPoll(cm);
+		});
+	}
+
+	function fastPoll(cm) {
+		var missed = false;
+		cm.display.pollingFast = true;
+
+		function p() {
+			var changed = readInput(cm);
+			if (!changed && !missed) {
+				missed = true;
+				cm.display.poll.set(60, p);
+			} else {
+				cm.display.pollingFast = false;
+				slowPoll(cm);
+			}
+		}
+		cm.display.poll.set(20, p);
+	}
+
+	// prevInput is a hack to work with IME. If we reset the textarea
+	// on every change, that breaks IME. So we look for changes
+	// compared to the previous content instead. (Modern browsers have
+	// events that indicate IME taking place, but these are not widely
+	// supported or compatible enough yet to rely on.)
+	function readInput(cm) {
+		var input = cm.display.input,
+			prevInput = cm.display.prevInput,
+			doc = cm.doc,
+			sel = doc.sel;
+		if (!cm.state.focused || hasSelection(input) || isReadOnly(cm) || cm.state.disableInput) return false;
+		var text = input.value;
+		if (text == prevInput && posEq(sel.from, sel.to)) return false;
+		if (ie && !ie_lt9 && cm.display.inputHasSelection === text) {
+			resetInput(cm, true);
+			return false;
+		}
+
+		var withOp = !cm.curOp;
+		if (withOp) startOperation(cm);
+		sel.shift = false;
+		var same = 0,
+			l = Math.min(prevInput.length, text.length);
+		while (same < l && prevInput.charCodeAt(same) == text.charCodeAt(same))++same;
+		var from = sel.from,
+			to = sel.to;
+		if (same < prevInput.length)
+			from = Pos(from.line, from.ch - (prevInput.length - same));
+		else if (cm.state.overwrite && posEq(from, to) && !cm.state.pasteIncoming)
+			to = Pos(to.line, Math.min(getLine(doc, to.line).text.length, to.ch + (text.length - same)));
+
+		var updateInput = cm.curOp.updateInput;
+		var changeEvent = {
+			from: from,
+			to: to,
+			text: splitLines(text.slice(same)),
+			origin: cm.state.pasteIncoming ? "paste" : "+input"
+		};
+		makeChange(cm.doc, changeEvent, "end");
+		cm.curOp.updateInput = updateInput;
+		signalLater(cm, "inputRead", cm, changeEvent);
+
+		if (text.length > 1000 || text.indexOf("\n") > -1) input.value = cm.display.prevInput = "";
+		else cm.display.prevInput = text;
+		if (withOp) endOperation(cm);
+		cm.state.pasteIncoming = false;
+		return true;
+	}
+
+	function resetInput(cm, user) {
+		var minimal, selected, doc = cm.doc;
+		if (!posEq(doc.sel.from, doc.sel.to)) {
+			cm.display.prevInput = "";
+			minimal = hasCopyEvent &&
+				(doc.sel.to.line - doc.sel.from.line > 100 || (selected = cm.getSelection()).length > 1000);
+			var content = minimal ? "-" : selected || cm.getSelection();
+			cm.display.input.value = content;
+			if (cm.state.focused) selectInput(cm.display.input);
+			if (ie && !ie_lt9) cm.display.inputHasSelection = content;
+		} else if (user) {
+			cm.display.prevInput = cm.display.input.value = "";
+			if (ie && !ie_lt9) cm.display.inputHasSelection = null;
+		}
+		cm.display.inaccurateSelection = minimal;
+	}
+
+	function focusInput(cm) {
+		if (cm.options.readOnly != "nocursor" && (!mobile || document.activeElement != cm.display.input))
+			cm.display.input.focus();
+	}
+
+	function isReadOnly(cm) {
+		return cm.options.readOnly || cm.doc.cantEdit;
+	}
+
+	// EVENT HANDLERS
+
+	function registerEventHandlers(cm) {
+		var d = cm.display;
+		on(d.scroller, "mousedown", operation(cm, onMouseDown));
+		if (ie)
+			on(d.scroller, "dblclick", operation(cm, function(e) {
+				if (signalDOMEvent(cm, e)) return;
+				var pos = posFromMouse(cm, e);
+				if (!pos || clickInGutter(cm, e) || eventInWidget(cm.display, e)) return;
+				e_preventDefault(e);
+				var word = findWordAt(getLine(cm.doc, pos.line).text, pos);
+				extendSelection(cm.doc, word.from, word.to);
+			}));
+		else
+			on(d.scroller, "dblclick", function(e) {
+				signalDOMEvent(cm, e) || e_preventDefault(e);
+			});
+		on(d.lineSpace, "selectstart", function(e) {
+			if (!eventInWidget(d, e)) e_preventDefault(e);
+		});
+		// Gecko browsers fire contextmenu *after* opening the menu, at
+		// which point we can't mess with it anymore. Context menu is
+		// handled in onMouseDown for Gecko.
+		if (!captureMiddleClick) on(d.scroller, "contextmenu", function(e) {
+			onContextMenu(cm, e);
+		});
+
+		on(d.scroller, "scroll", function() {
+			if (d.scroller.clientHeight) {
+				setScrollTop(cm, d.scroller.scrollTop);
+				setScrollLeft(cm, d.scroller.scrollLeft, true);
+				signal(cm, "scroll", cm);
+			}
+		});
+		on(d.scrollbarV, "scroll", function() {
+			if (d.scroller.clientHeight) setScrollTop(cm, d.scrollbarV.scrollTop);
+		});
+		on(d.scrollbarH, "scroll", function() {
+			if (d.scroller.clientHeight) setScrollLeft(cm, d.scrollbarH.scrollLeft);
+		});
+
+		on(d.scroller, "mousewheel", function(e) {
+			onScrollWheel(cm, e);
+		});
+		on(d.scroller, "DOMMouseScroll", function(e) {
+			onScrollWheel(cm, e);
+		});
+
+		function reFocus() {
+			if (cm.state.focused) setTimeout(bind(focusInput, cm), 0);
+		}
+		on(d.scrollbarH, "mousedown", reFocus);
+		on(d.scrollbarV, "mousedown", reFocus);
+		// Prevent wrapper from ever scrolling
+		on(d.wrapper, "scroll", function() {
+			d.wrapper.scrollTop = d.wrapper.scrollLeft = 0;
+		});
+
+		var resizeTimer;
+
+		function onResize() {
+			if (resizeTimer == null) resizeTimer = setTimeout(function() {
+				resizeTimer = null;
+				// Might be a text scaling operation, clear size caches.
+				d.cachedCharWidth = d.cachedTextHeight = knownScrollbarWidth = null;
+				clearCaches(cm);
+				runInOp(cm, bind(regChange, cm));
+			}, 100);
+		}
+		on(window, "resize", onResize);
+		// Above handler holds on to the editor and its data structures.
+		// Here we poll to unregister it when the editor is no longer in
+		// the document, so that it can be garbage-collected.
+		function unregister() {
+			for (var p = d.wrapper.parentNode; p && p != document.body; p = p.parentNode) {}
+			if (p) setTimeout(unregister, 5000);
+			else off(window, "resize", onResize);
+		}
+		setTimeout(unregister, 5000);
+
+		on(d.input, "keyup", operation(cm, function(e) {
+			if (signalDOMEvent(cm, e) || cm.options.onKeyEvent && cm.options.onKeyEvent(cm, addStop(e))) return;
+			if (e.keyCode == 16) cm.doc.sel.shift = false;
+		}));
+		on(d.input, "input", bind(fastPoll, cm));
+		on(d.input, "keydown", operation(cm, onKeyDown));
+		on(d.input, "keypress", operation(cm, onKeyPress));
+		on(d.input, "focus", bind(onFocus, cm));
+		on(d.input, "blur", bind(onBlur, cm));
+
+		function drag_(e) {
+			if (signalDOMEvent(cm, e) || cm.options.onDragEvent && cm.options.onDragEvent(cm, addStop(e))) return;
+			e_stop(e);
+		}
+		if (cm.options.dragDrop) {
+			on(d.scroller, "dragstart", function(e) {
+				onDragStart(cm, e);
+			});
+			on(d.scroller, "dragenter", drag_);
+			on(d.scroller, "dragover", drag_);
+			on(d.scroller, "drop", operation(cm, onDrop));
+		}
+		on(d.scroller, "paste", function(e) {
+			if (eventInWidget(d, e)) return;
+			focusInput(cm);
+			fastPoll(cm);
+		});
+		on(d.input, "paste", function() {
+			cm.state.pasteIncoming = true;
+			fastPoll(cm);
+		});
+
+		function prepareCopy() {
+			if (d.inaccurateSelection) {
+				d.prevInput = "";
+				d.inaccurateSelection = false;
+				d.input.value = cm.getSelection();
+				selectInput(d.input);
+			}
+		}
+		on(d.input, "cut", prepareCopy);
+		on(d.input, "copy", prepareCopy);
+
+		// Needed to handle Tab key in KHTML
+		if (khtml) on(d.sizer, "mouseup", function() {
+			if (document.activeElement == d.input) d.input.blur();
+			focusInput(cm);
+		});
+	}
+
+	function eventInWidget(display, e) {
+		for (var n = e_target(e); n != display.wrapper; n = n.parentNode) {
+			if (!n || n.ignoreEvents || n.parentNode == display.sizer && n != display.mover) return true;
+		}
+	}
+
+	function posFromMouse(cm, e, liberal) {
+		var display = cm.display;
+		if (!liberal) {
+			var target = e_target(e);
+			if (target == display.scrollbarH || target == display.scrollbarH.firstChild ||
+				target == display.scrollbarV || target == display.scrollbarV.firstChild ||
+				target == display.scrollbarFiller || target == display.gutterFiller) return null;
+		}
+		var x, y, space = getRect(display.lineSpace);
+		// Fails unpredictably on IE[67] when mouse is dragged around quickly.
+		try {
+			x = e.clientX;
+			y = e.clientY;
+		} catch (e) {
+			return null;
+		}
+		return coordsChar(cm, x - space.left, y - space.top);
+	}
+
+	var lastClick, lastDoubleClick;
+
+	function onMouseDown(e) {
+		if (signalDOMEvent(this, e)) return;
+		var cm = this,
+			display = cm.display,
+			doc = cm.doc,
+			sel = doc.sel;
+		sel.shift = e.shiftKey;
+
+		if (eventInWidget(display, e)) {
+			if (!webkit) {
+				display.scroller.draggable = false;
+				setTimeout(function() {
+					display.scroller.draggable = true;
+				}, 100);
+			}
+			return;
+		}
+		if (clickInGutter(cm, e)) return;
+		var start = posFromMouse(cm, e);
+
+		switch (e_button(e)) {
+			case 3:
+				if (captureMiddleClick) onContextMenu.call(cm, cm, e);
+				return;
+			case 2:
+				if (start) extendSelection(cm.doc, start);
+				setTimeout(bind(focusInput, cm), 20);
+				e_preventDefault(e);
+				return;
+		}
+		// For button 1, if it was clicked inside the editor
+		// (posFromMouse returning non-null), we have to adjust the
+		// selection.
+		if (!start) {
+			if (e_target(e) == display.scroller) e_preventDefault(e);
+			return;
+		}
+
+		if (!cm.state.focused) onFocus(cm);
+
+		var now = +new Date,
+			type = "single";
+		if (lastDoubleClick && lastDoubleClick.time > now - 400 && posEq(lastDoubleClick.pos, start)) {
+			type = "triple";
+			e_preventDefault(e);
+			setTimeout(bind(focusInput, cm), 20);
+			selectLine(cm, start.line);
+		} else if (lastClick && lastClick.time > now - 400 && posEq(lastClick.pos, start)) {
+			type = "double";
+			lastDoubleClick = {
+				time: now,
+				pos: start
+			};
+			e_preventDefault(e);
+			var word = findWordAt(getLine(doc, start.line).text, start);
+			extendSelection(cm.doc, word.from, word.to);
+		} else {
+			lastClick = {
+				time: now,
+				pos: start
+			};
+		}
+
+		var last = start;
+		if (cm.options.dragDrop && dragAndDrop && !isReadOnly(cm) && !posEq(sel.from, sel.to) &&
+			!posLess(start, sel.from) && !posLess(sel.to, start) && type == "single") {
+			var dragEnd = operation(cm, function(e2) {
+				if (webkit) display.scroller.draggable = false;
+				cm.state.draggingText = false;
+				off(document, "mouseup", dragEnd);
+				off(display.scroller, "drop", dragEnd);
+				if (Math.abs(e.clientX - e2.clientX) + Math.abs(e.clientY - e2.clientY) < 10) {
+					e_preventDefault(e2);
+					extendSelection(cm.doc, start);
+					focusInput(cm);
+				}
+			});
+			// Let the drag handler handle this.
+			if (webkit) display.scroller.draggable = true;
+			cm.state.draggingText = dragEnd;
+			// IE's approach to draggable
+			if (display.scroller.dragDrop) display.scroller.dragDrop();
+			on(document, "mouseup", dragEnd);
+			on(display.scroller, "drop", dragEnd);
+			return;
+		}
+		e_preventDefault(e);
+		if (type == "single") extendSelection(cm.doc, clipPos(doc, start));
+
+		var startstart = sel.from,
+			startend = sel.to,
+			lastPos = start;
+
+		function doSelect(cur) {
+			if (posEq(lastPos, cur)) return;
+			lastPos = cur;
+
+			if (type == "single") {
+				extendSelection(cm.doc, clipPos(doc, start), cur);
+				return;
+			}
+
+			startstart = clipPos(doc, startstart);
+			startend = clipPos(doc, startend);
+			if (type == "double") {
+				var word = findWordAt(getLine(doc, cur.line).text, cur);
+				if (posLess(cur, startstart)) extendSelection(cm.doc, word.from, startend);
+				else extendSelection(cm.doc, startstart, word.to);
+			} else if (type == "triple") {
+				if (posLess(cur, startstart)) extendSelection(cm.doc, startend, clipPos(doc, Pos(cur.line, 0)));
+				else extendSelection(cm.doc, startstart, clipPos(doc, Pos(cur.line + 1, 0)));
+			}
+		}
+
+		var editorSize = getRect(display.wrapper);
+		// Used to ensure timeout re-tries don't fire when another extend
+		// happened in the meantime (clearTimeout isn't reliable -- at
+		// least on Chrome, the timeouts still happen even when cleared,
+		// if the clear happens after their scheduled firing time).
+		var counter = 0;
+
+		function extend(e) {
+			var curCount = ++counter;
+			var cur = posFromMouse(cm, e, true);
+			if (!cur) return;
+			if (!posEq(cur, last)) {
+				if (!cm.state.focused) onFocus(cm);
+				last = cur;
+				doSelect(cur);
+				var visible = visibleLines(display, doc);
+				if (cur.line >= visible.to || cur.line < visible.from)
+					setTimeout(operation(cm, function() {
+						if (counter == curCount) extend(e);
+					}), 150);
+			} else {
+				var outside = e.clientY < editorSize.top ? -20 : e.clientY > editorSize.bottom ? 20 : 0;
+				if (outside) setTimeout(operation(cm, function() {
+					if (counter != curCount) return;
+					display.scroller.scrollTop += outside;
+					extend(e);
+				}), 50);
+			}
+		}
+
+		function done(e) {
+			counter = Infinity;
+			e_preventDefault(e);
+			focusInput(cm);
+			off(document, "mousemove", move);
+			off(document, "mouseup", up);
+		}
+
+		var move = operation(cm, function(e) {
+			if (!ie && !e_button(e)) done(e);
+			else extend(e);
+		});
+		var up = operation(cm, done);
+		on(document, "mousemove", move);
+		on(document, "mouseup", up);
+	}
+
+	function clickInGutter(cm, e) {
+		var display = cm.display;
+		try {
+			var mX = e.clientX,
+				mY = e.clientY;
+		} catch (e) {
+			return false;
+		}
+
+		if (mX >= Math.floor(getRect(display.gutters).right)) return false;
+		e_preventDefault(e);
+		if (!hasHandler(cm, "gutterClick")) return true;
+
+		var lineBox = getRect(display.lineDiv);
+		if (mY > lineBox.bottom) return true;
+		mY -= lineBox.top - display.viewOffset;
+
+		for (var i = 0; i < cm.options.gutters.length; ++i) {
+			var g = display.gutters.childNodes[i];
+			if (g && getRect(g).right >= mX) {
+				var line = lineAtHeight(cm.doc, mY);
+				var gutter = cm.options.gutters[i];
+				signalLater(cm, "gutterClick", cm, line, gutter, e);
+				break;
+			}
+		}
+		return true;
+	}
+
+	// Kludge to work around strange IE behavior where it'll sometimes
+	// re-fire a series of drag-related events right after the drop (#1551)
+	var lastDrop = 0;
+
+	function onDrop(e) {
+		var cm = this;
+		if (signalDOMEvent(cm, e) || eventInWidget(cm.display, e) || (cm.options.onDragEvent && cm.options.onDragEvent(cm, addStop(e))))
+			return;
+		e_preventDefault(e);
+		if (ie) lastDrop = +new Date;
+		var pos = posFromMouse(cm, e, true),
+			files = e.dataTransfer.files;
+		if (!pos || isReadOnly(cm)) return;
+		if (files && files.length && window.FileReader && window.File) {
+			var n = files.length,
+				text = Array(n),
+				read = 0;
+			var loadFile = function(file, i) {
+				var reader = new FileReader;
+				reader.onload = function() {
+					text[i] = reader.result;
+					if (++read == n) {
+						pos = clipPos(cm.doc, pos);
+						makeChange(cm.doc, {
+							from: pos,
+							to: pos,
+							text: splitLines(text.join("\n")),
+							origin: "paste"
+						}, "around");
+					}
+				};
+				reader.readAsText(file);
+			};
+			for (var i = 0; i < n; ++i) loadFile(files[i], i);
+		} else {
+			// Don't do a replace if the drop happened inside of the selected text.
+			if (cm.state.draggingText && !(posLess(pos, cm.doc.sel.from) || posLess(cm.doc.sel.to, pos))) {
+				cm.state.draggingText(e);
+				// Ensure the editor is re-focused
+				setTimeout(bind(focusInput, cm), 20);
+				return;
+			}
+			try {
+				var text = e.dataTransfer.getData("Text");
+				if (text) {
+					var curFrom = cm.doc.sel.from,
+						curTo = cm.doc.sel.to;
+					setSelection(cm.doc, pos, pos);
+					if (cm.state.draggingText) replaceRange(cm.doc, "", curFrom, curTo, "paste");
+					cm.replaceSelection(text, null, "paste");
+					focusInput(cm);
+					onFocus(cm);
+				}
+			} catch (e) {}
+		}
+	}
+
+	function onDragStart(cm, e) {
+		if (ie && (!cm.state.draggingText || +new Date - lastDrop < 100)) {
+			e_stop(e);
+			return;
+		}
+		if (signalDOMEvent(cm, e) || eventInWidget(cm.display, e)) return;
+
+		var txt = cm.getSelection();
+		e.dataTransfer.setData("Text", txt);
+
+		// Use dummy image instead of default browsers image.
+		// Recent Safari (~6.0.2) have a tendency to segfault when this happens, so we don't do it there.
+		if (e.dataTransfer.setDragImage && !safari) {
+			var img = elt("img", null, null, "position: fixed; left: 0; top: 0;");
+			if (opera) {
+				img.width = img.height = 1;
+				cm.display.wrapper.appendChild(img);
+				// Force a relayout, or Opera won't use our image for some obscure reason
+				img._top = img.offsetTop;
+			}
+			e.dataTransfer.setDragImage(img, 0, 0);
+			if (opera) img.parentNode.removeChild(img);
+		}
+	}
+
+	function setScrollTop(cm, val) {
+		if (Math.abs(cm.doc.scrollTop - val) < 2) return;
+		cm.doc.scrollTop = val;
+		if (!gecko) updateDisplay(cm, [], val);
+		if (cm.display.scroller.scrollTop != val) cm.display.scroller.scrollTop = val;
+		if (cm.display.scrollbarV.scrollTop != val) cm.display.scrollbarV.scrollTop = val;
+		if (gecko) updateDisplay(cm, []);
+		startWorker(cm, 100);
+	}
+
+	function setScrollLeft(cm, val, isScroller) {
+		if (isScroller ? val == cm.doc.scrollLeft : Math.abs(cm.doc.scrollLeft - val) < 2) return;
+		val = Math.min(val, cm.display.scroller.scrollWidth - cm.display.scroller.clientWidth);
+		cm.doc.scrollLeft = val;
+		alignHorizontally(cm);
+		if (cm.display.scroller.scrollLeft != val) cm.display.scroller.scrollLeft = val;
+		if (cm.display.scrollbarH.scrollLeft != val) cm.display.scrollbarH.scrollLeft = val;
+	}
+
+	// Since the delta values reported on mouse wheel events are
+	// unstandardized between browsers and even browser versions, and
+	// generally horribly unpredictable, this code starts by measuring
+	// the scroll effect that the first few mouse wheel events have,
+	// and, from that, detects the way it can convert deltas to pixel
+	// offsets afterwards.
+	//
+	// The reason we want to know the amount a wheel event will scroll
+	// is that it gives us a chance to update the display before the
+	// actual scrolling happens, reducing flickering.
+
+	var wheelSamples = 0,
+		wheelPixelsPerUnit = null;
+	// Fill in a browser-detected starting value on browsers where we
+	// know one. These don't have to be accurate -- the result of them
+	// being wrong would just be a slight flicker on the first wheel
+	// scroll (if it is large enough).
+	if (ie) wheelPixelsPerUnit = -.53;
+	else if (gecko) wheelPixelsPerUnit = 15;
+	else if (chrome) wheelPixelsPerUnit = -.7;
+	else if (safari) wheelPixelsPerUnit = -1 / 3;
+
+	function onScrollWheel(cm, e) {
+		var dx = e.wheelDeltaX,
+			dy = e.wheelDeltaY;
+		if (dx == null && e.detail && e.axis == e.HORIZONTAL_AXIS) dx = e.detail;
+		if (dy == null && e.detail && e.axis == e.VERTICAL_AXIS) dy = e.detail;
+		else if (dy == null) dy = e.wheelDelta;
+
+		var display = cm.display,
+			scroll = display.scroller;
+		// Quit if there's nothing to scroll here
+		if (!(dx && scroll.scrollWidth > scroll.clientWidth ||
+			dy && scroll.scrollHeight > scroll.clientHeight)) return;
+
+		// Webkit browsers on OS X abort momentum scrolls when the target
+		// of the scroll event is removed from the scrollable element.
+		// This hack (see related code in patchDisplay) makes sure the
+		// element is kept around.
+		if (dy && mac && webkit) {
+			for (var cur = e.target; cur != scroll; cur = cur.parentNode) {
+				if (cur.lineObj) {
+					cm.display.currentWheelTarget = cur;
+					break;
+				}
+			}
+		}
+
+		// On some browsers, horizontal scrolling will cause redraws to
+		// happen before the gutter has been realigned, causing it to
+		// wriggle around in a most unseemly way. When we have an
+		// estimated pixels/delta value, we just handle horizontal
+		// scrolling entirely here. It'll be slightly off from native, but
+		// better than glitching out.
+		if (dx && !gecko && !opera && wheelPixelsPerUnit != null) {
+			if (dy)
+				setScrollTop(cm, Math.max(0, Math.min(scroll.scrollTop + dy * wheelPixelsPerUnit, scroll.scrollHeight - scroll.clientHeight)));
+			setScrollLeft(cm, Math.max(0, Math.min(scroll.scrollLeft + dx * wheelPixelsPerUnit, scroll.scrollWidth - scroll.clientWidth)));
+			e_preventDefault(e);
+			display.wheelStartX = null; // Abort measurement, if in progress
+			return;
+		}
+
+		if (dy && wheelPixelsPerUnit != null) {
+			var pixels = dy * wheelPixelsPerUnit;
+			var top = cm.doc.scrollTop,
+				bot = top + display.wrapper.clientHeight;
+			if (pixels < 0) top = Math.max(0, top + pixels - 50);
+			else bot = Math.min(cm.doc.height, bot + pixels + 50);
+			updateDisplay(cm, [], {
+				top: top,
+				bottom: bot
+			});
+		}
+
+		if (wheelSamples < 20) {
+			if (display.wheelStartX == null) {
+				display.wheelStartX = scroll.scrollLeft;
+				display.wheelStartY = scroll.scrollTop;
+				display.wheelDX = dx;
+				display.wheelDY = dy;
+				setTimeout(function() {
+					if (display.wheelStartX == null) return;
+					var movedX = scroll.scrollLeft - display.wheelStartX;
+					var movedY = scroll.scrollTop - display.wheelStartY;
+					var sample = (movedY && display.wheelDY && movedY / display.wheelDY) ||
+						(movedX && display.wheelDX && movedX / display.wheelDX);
+					display.wheelStartX = display.wheelStartY = null;
+					if (!sample) return;
+					wheelPixelsPerUnit = (wheelPixelsPerUnit * wheelSamples + sample) / (wheelSamples + 1);
+					++wheelSamples;
+				}, 200);
+			} else {
+				display.wheelDX += dx;
+				display.wheelDY += dy;
+			}
+		}
+	}
+
+	function doHandleBinding(cm, bound, dropShift) {
+		if (typeof bound == "string") {
+			bound = commands[bound];
+			if (!bound) return false;
+		}
+		// Ensure previous input has been read, so that the handler sees a
+		// consistent view of the document
+		if (cm.display.pollingFast && readInput(cm)) cm.display.pollingFast = false;
+		var doc = cm.doc,
+			prevShift = doc.sel.shift,
+			done = false;
+		try {
+			if (isReadOnly(cm)) cm.state.suppressEdits = true;
+			if (dropShift) doc.sel.shift = false;
+			done = bound(cm) != Pass;
+		} finally {
+			doc.sel.shift = prevShift;
+			cm.state.suppressEdits = false;
+		}
+		return done;
+	}
+
+	function allKeyMaps(cm) {
+		var maps = cm.state.keyMaps.slice(0);
+		if (cm.options.extraKeys) maps.push(cm.options.extraKeys);
+		maps.push(cm.options.keyMap);
+		return maps;
+	}
+
+	var maybeTransition;
+
+	function handleKeyBinding(cm, e) {
+		// Handle auto keymap transitions
+		var startMap = getKeyMap(cm.options.keyMap),
+			next = startMap.auto;
+		clearTimeout(maybeTransition);
+		if (next && !isModifierKey(e)) maybeTransition = setTimeout(function() {
+			if (getKeyMap(cm.options.keyMap) == startMap) {
+				cm.options.keyMap = (next.call ? next.call(null, cm) : next);
+				keyMapChanged(cm);
+			}
+		}, 50);
+
+		var name = keyName(e, true),
+			handled = false;
+		if (!name) return false;
+		var keymaps = allKeyMaps(cm);
+
+		if (e.shiftKey) {
+			// First try to resolve full name (including 'Shift-'). Failing
+			// that, see if there is a cursor-motion command (starting with
+			// 'go') bound to the keyname without 'Shift-'.
+			handled = lookupKey("Shift-" + name, keymaps, function(b) {
+				return doHandleBinding(cm, b, true);
+			}) || lookupKey(name, keymaps, function(b) {
+				if (typeof b == "string" ? /^go[A-Z]/.test(b) : b.motion)
+					return doHandleBinding(cm, b);
+			});
+		} else {
+			handled = lookupKey(name, keymaps, function(b) {
+				return doHandleBinding(cm, b);
+			});
+		}
+
+		if (handled) {
+			e_preventDefault(e);
+			restartBlink(cm);
+			if (ie_lt9) {
+				e.oldKeyCode = e.keyCode;
+				e.keyCode = 0;
+			}
+			signalLater(cm, "keyHandled", cm, name, e);
+		}
+		return handled;
+	}
+
+	function handleCharBinding(cm, e, ch) {
+		var handled = lookupKey("'" + ch + "'", allKeyMaps(cm),
+			function(b) {
+				return doHandleBinding(cm, b, true);
+			});
+		if (handled) {
+			e_preventDefault(e);
+			restartBlink(cm);
+			signalLater(cm, "keyHandled", cm, "'" + ch + "'", e);
+		}
+		return handled;
+	}
+
+	var lastStoppedKey = null;
+
+	function onKeyDown(e) {
+		var cm = this;
+		if (!cm.state.focused) onFocus(cm);
+		if (ie && e.keyCode == 27) {
+			e.returnValue = false;
+		}
+		if (signalDOMEvent(cm, e) || cm.options.onKeyEvent && cm.options.onKeyEvent(cm, addStop(e))) return;
+		var code = e.keyCode;
+		// IE does strange things with escape.
+		cm.doc.sel.shift = code == 16 || e.shiftKey;
+		// First give onKeyEvent option a chance to handle this.
+		var handled = handleKeyBinding(cm, e);
+		if (opera) {
+			lastStoppedKey = handled ? code : null;
+			// Opera has no cut event... we try to at least catch the key combo
+			if (!handled && code == 88 && !hasCopyEvent && (mac ? e.metaKey : e.ctrlKey))
+				cm.replaceSelection("");
+		}
+	}
+
+	function onKeyPress(e) {
+		var cm = this;
+		if (signalDOMEvent(cm, e) || cm.options.onKeyEvent && cm.options.onKeyEvent(cm, addStop(e))) return;
+		var keyCode = e.keyCode,
+			charCode = e.charCode;
+		if (opera && keyCode == lastStoppedKey) {
+			lastStoppedKey = null;
+			e_preventDefault(e);
+			return;
+		}
+		if (((opera && (!e.which || e.which < 10)) || khtml) && handleKeyBinding(cm, e)) return;
+		var ch = String.fromCharCode(charCode == null ? keyCode : charCode);
+		if (this.options.electricChars && this.doc.mode.electricChars &&
+			this.options.smartIndent && !isReadOnly(this) &&
+			this.doc.mode.electricChars.indexOf(ch) > -1)
+			setTimeout(operation(cm, function() {
+				indentLine(cm, cm.doc.sel.to.line, "smart");
+			}), 75);
+		if (handleCharBinding(cm, e, ch)) return;
+		if (ie && !ie_lt9) cm.display.inputHasSelection = null;
+		fastPoll(cm);
+	}
+
+	function onFocus(cm) {
+		if (cm.options.readOnly == "nocursor") return;
+		if (!cm.state.focused) {
+			signal(cm, "focus", cm);
+			cm.state.focused = true;
+			if (cm.display.wrapper.className.search(/\bCodeMirror-focused\b/) == -1)
+				cm.display.wrapper.className += " CodeMirror-focused";
+			resetInput(cm, true);
+		}
+		slowPoll(cm);
+		restartBlink(cm);
+	}
+
+	function onBlur(cm) {
+		if (cm.state.focused) {
+			signal(cm, "blur", cm);
+			cm.state.focused = false;
+			cm.display.wrapper.className = cm.display.wrapper.className.replace(" CodeMirror-focused", "");
+		}
+		clearInterval(cm.display.blinker);
+		setTimeout(function() {
+			if (!cm.state.focused) cm.doc.sel.shift = false;
+		}, 150);
+	}
+
+	var detectingSelectAll;
+
+	function onContextMenu(cm, e) {
+		if (signalDOMEvent(cm, e, "contextmenu")) return;
+		var display = cm.display,
+			sel = cm.doc.sel;
+		if (eventInWidget(display, e)) return;
+
+		var pos = posFromMouse(cm, e),
+			scrollPos = display.scroller.scrollTop;
+		if (!pos || opera) return; // Opera is difficult.
+		if (posEq(sel.from, sel.to) || posLess(pos, sel.from) || !posLess(pos, sel.to))
+			operation(cm, setSelection)(cm.doc, pos, pos);
+
+		var oldCSS = display.input.style.cssText;
+		display.inputDiv.style.position = "absolute";
+		display.input.style.cssText = "position: fixed; width: 30px; height: 30px; top: " + (e.clientY - 5) +
+			"px; left: " + (e.clientX - 5) + "px; z-index: 1000; background: white; outline: none;" +
+			"border-width: 0; outline: none; overflow: hidden; opacity: .05; -ms-opacity: .05; filter: alpha(opacity=5);";
+		focusInput(cm);
+		resetInput(cm, true);
+		// Adds "Select all" to context menu in FF
+		if (posEq(sel.from, sel.to)) display.input.value = display.prevInput = " ";
+
+		function prepareSelectAllHack() {
+			if (display.input.selectionStart != null) {
+				var extval = display.input.value = " " + (posEq(sel.from, sel.to) ? "" : display.input.value);
+				display.prevInput = " ";
+				display.input.selectionStart = 1;
+				display.input.selectionEnd = extval.length;
+			}
+		}
+
+		function rehide() {
+			display.inputDiv.style.position = "relative";
+			display.input.style.cssText = oldCSS;
+			if (ie_lt9) display.scrollbarV.scrollTop = display.scroller.scrollTop = scrollPos;
+			slowPoll(cm);
+
+			// Try to detect the user choosing select-all
+			if (display.input.selectionStart != null) {
+				if (!ie || ie_lt9) prepareSelectAllHack();
+				clearTimeout(detectingSelectAll);
+				var i = 0,
+					poll = function() {
+						if (display.prevInput == " " && display.input.selectionStart == 0)
+							operation(cm, commands.selectAll)(cm);
+						else if (i++ < 10) detectingSelectAll = setTimeout(poll, 500);
+						else resetInput(cm);
+					};
+				detectingSelectAll = setTimeout(poll, 200);
+			}
+		}
+
+		if (ie && !ie_lt9) prepareSelectAllHack();
+		if (captureMiddleClick) {
+			e_stop(e);
+			var mouseup = function() {
+				off(window, "mouseup", mouseup);
+				setTimeout(rehide, 20);
+			};
+			on(window, "mouseup", mouseup);
+		} else {
+			setTimeout(rehide, 50);
+		}
+	}
+
+	// UPDATING
+
+	var changeEnd = CodeMirror.changeEnd = function(change) {
+		if (!change.text) return change.to;
+		return Pos(change.from.line + change.text.length - 1,
+			lst(change.text).length + (change.text.length == 1 ? change.from.ch : 0));
+	};
+
+	// Make sure a position will be valid after the given change.
+	function clipPostChange(doc, change, pos) {
+		if (!posLess(change.from, pos)) return clipPos(doc, pos);
+		var diff = (change.text.length - 1) - (change.to.line - change.from.line);
+		if (pos.line > change.to.line + diff) {
+			var preLine = pos.line - diff,
+				lastLine = doc.first + doc.size - 1;
+			if (preLine > lastLine) return Pos(lastLine, getLine(doc, lastLine).text.length);
+			return clipToLen(pos, getLine(doc, preLine).text.length);
+		}
+		if (pos.line == change.to.line + diff)
+			return clipToLen(pos, lst(change.text).length + (change.text.length == 1 ? change.from.ch : 0) +
+				getLine(doc, change.to.line).text.length - change.to.ch);
+		var inside = pos.line - change.from.line;
+		return clipToLen(pos, change.text[inside].length + (inside ? 0 : change.from.ch));
+	}
+
+	// Hint can be null|"end"|"start"|"around"|{anchor,head}
+	function computeSelAfterChange(doc, change, hint) {
+		if (hint && typeof hint == "object") // Assumed to be {anchor, head} object
+			return {
+			anchor: clipPostChange(doc, change, hint.anchor),
+			head: clipPostChange(doc, change, hint.head)
+		};
+
+		if (hint == "start") return {
+			anchor: change.from,
+			head: change.from
+		};
+
+		var end = changeEnd(change);
+		if (hint == "around") return {
+			anchor: change.from,
+			head: end
+		};
+		if (hint == "end") return {
+			anchor: end,
+			head: end
+		};
+
+		// hint is null, leave the selection alone as much as possible
+		var adjustPos = function(pos) {
+			if (posLess(pos, change.from)) return pos;
+			if (!posLess(change.to, pos)) return end;
+
+			var line = pos.line + change.text.length - (change.to.line - change.from.line) - 1,
+				ch = pos.ch;
+			if (pos.line == change.to.line) ch += end.ch - change.to.ch;
+			return Pos(line, ch);
+		};
+		return {
+			anchor: adjustPos(doc.sel.anchor),
+			head: adjustPos(doc.sel.head)
+		};
+	}
+
+	function filterChange(doc, change, update) {
+		var obj = {
+			canceled: false,
+			from: change.from,
+			to: change.to,
+			text: change.text,
+			origin: change.origin,
+			cancel: function() {
+				this.canceled = true;
+			}
+		};
+		if (update) obj.update = function(from, to, text, origin) {
+			if (from) this.from = clipPos(doc, from);
+			if (to) this.to = clipPos(doc, to);
+			if (text) this.text = text;
+			if (origin !== undefined) this.origin = origin;
+		};
+		signal(doc, "beforeChange", doc, obj);
+		if (doc.cm) signal(doc.cm, "beforeChange", doc.cm, obj);
+
+		if (obj.canceled) return null;
+		return {
+			from: obj.from,
+			to: obj.to,
+			text: obj.text,
+			origin: obj.origin
+		};
+	}
+
+	// Replace the range from from to to by the strings in replacement.
+	// change is a {from, to, text [, origin]} object
+	function makeChange(doc, change, selUpdate, ignoreReadOnly) {
+		if (doc.cm) {
+			if (!doc.cm.curOp) return operation(doc.cm, makeChange)(doc, change, selUpdate, ignoreReadOnly);
+			if (doc.cm.state.suppressEdits) return;
+		}
+
+		if (hasHandler(doc, "beforeChange") || doc.cm && hasHandler(doc.cm, "beforeChange")) {
+			change = filterChange(doc, change, true);
+			if (!change) return;
+		}
+
+		// Possibly split or suppress the update based on the presence
+		// of read-only spans in its range.
+		var split = sawReadOnlySpans && !ignoreReadOnly && removeReadOnlyRanges(doc, change.from, change.to);
+		if (split) {
+			for (var i = split.length - 1; i >= 1; --i)
+				makeChangeNoReadonly(doc, {
+					from: split[i].from,
+					to: split[i].to,
+					text: [""]
+				});
+			if (split.length)
+				makeChangeNoReadonly(doc, {
+					from: split[0].from,
+					to: split[0].to,
+					text: change.text
+				}, selUpdate);
+		} else {
+			makeChangeNoReadonly(doc, change, selUpdate);
+		}
+	}
+
+	function makeChangeNoReadonly(doc, change, selUpdate) {
+		var selAfter = computeSelAfterChange(doc, change, selUpdate);
+		addToHistory(doc, change, selAfter, doc.cm ? doc.cm.curOp.id : NaN);
+
+		makeChangeSingleDoc(doc, change, selAfter, stretchSpansOverChange(doc, change));
+		var rebased = [];
+
+		linkedDocs(doc, function(doc, sharedHist) {
+			if (!sharedHist && indexOf(rebased, doc.history) == -1) {
+				rebaseHist(doc.history, change);
+				rebased.push(doc.history);
+			}
+			makeChangeSingleDoc(doc, change, null, stretchSpansOverChange(doc, change));
+		});
+	}
+
+	function makeChangeFromHistory(doc, type) {
+		if (doc.cm && doc.cm.state.suppressEdits) return;
+
+		var hist = doc.history;
+		var event = (type == "undo" ? hist.done : hist.undone).pop();
+		if (!event) return;
+
+		var anti = {
+			changes: [],
+			anchorBefore: event.anchorAfter,
+			headBefore: event.headAfter,
+			anchorAfter: event.anchorBefore,
+			headAfter: event.headBefore,
+			generation: hist.generation
+		};
+		(type == "undo" ? hist.undone : hist.done).push(anti);
+		hist.generation = event.generation || ++hist.maxGeneration;
+
+		var filter = hasHandler(doc, "beforeChange") || doc.cm && hasHandler(doc.cm, "beforeChange");
+
+		for (var i = event.changes.length - 1; i >= 0; --i) {
+			var change = event.changes[i];
+			change.origin = type;
+			if (filter && !filterChange(doc, change, false)) {
+				(type == "undo" ? hist.done : hist.undone).length = 0;
+				return;
+			}
+
+			anti.changes.push(historyChangeFromChange(doc, change));
+
+			var after = i ? computeSelAfterChange(doc, change, null) : {
+				anchor: event.anchorBefore,
+				head: event.headBefore
+			};
+			makeChangeSingleDoc(doc, change, after, mergeOldSpans(doc, change));
+			var rebased = [];
+
+			linkedDocs(doc, function(doc, sharedHist) {
+				if (!sharedHist && indexOf(rebased, doc.history) == -1) {
+					rebaseHist(doc.history, change);
+					rebased.push(doc.history);
+				}
+				makeChangeSingleDoc(doc, change, null, mergeOldSpans(doc, change));
+			});
+		}
+	}
+
+	function shiftDoc(doc, distance) {
+		function shiftPos(pos) {
+			return Pos(pos.line + distance, pos.ch);
+		}
+		doc.first += distance;
+		if (doc.cm) regChange(doc.cm, doc.first, doc.first, distance);
+		doc.sel.head = shiftPos(doc.sel.head);
+		doc.sel.anchor = shiftPos(doc.sel.anchor);
+		doc.sel.from = shiftPos(doc.sel.from);
+		doc.sel.to = shiftPos(doc.sel.to);
+	}
+
+	function makeChangeSingleDoc(doc, change, selAfter, spans) {
+		if (doc.cm && !doc.cm.curOp)
+			return operation(doc.cm, makeChangeSingleDoc)(doc, change, selAfter, spans);
+
+		if (change.to.line < doc.first) {
+			shiftDoc(doc, change.text.length - 1 - (change.to.line - change.from.line));
+			return;
+		}
+		if (change.from.line > doc.lastLine()) return;
+
+		// Clip the change to the size of this doc
+		if (change.from.line < doc.first) {
+			var shift = change.text.length - 1 - (doc.first - change.from.line);
+			shiftDoc(doc, shift);
+			change = {
+				from: Pos(doc.first, 0),
+				to: Pos(change.to.line + shift, change.to.ch),
+				text: [lst(change.text)],
+				origin: change.origin
+			};
+		}
+		var last = doc.lastLine();
+		if (change.to.line > last) {
+			change = {
+				from: change.from,
+				to: Pos(last, getLine(doc, last).text.length),
+				text: [change.text[0]],
+				origin: change.origin
+			};
+		}
+
+		change.removed = getBetween(doc, change.from, change.to);
+
+		if (!selAfter) selAfter = computeSelAfterChange(doc, change, null);
+		if (doc.cm) makeChangeSingleDocInEditor(doc.cm, change, spans, selAfter);
+		else updateDoc(doc, change, spans, selAfter);
+	}
+
+	function makeChangeSingleDocInEditor(cm, change, spans, selAfter) {
+		var doc = cm.doc,
+			display = cm.display,
+			from = change.from,
+			to = change.to;
+
+		var recomputeMaxLength = false,
+			checkWidthStart = from.line;
+		if (!cm.options.lineWrapping) {
+			checkWidthStart = lineNo(visualLine(doc, getLine(doc, from.line)));
+			doc.iter(checkWidthStart, to.line + 1, function(line) {
+				if (line == display.maxLine) {
+					recomputeMaxLength = true;
+					return true;
+				}
+			});
+		}
+
+		if (!posLess(doc.sel.head, change.from) && !posLess(change.to, doc.sel.head))
+			cm.curOp.cursorActivity = true;
+
+		updateDoc(doc, change, spans, selAfter, estimateHeight(cm));
+
+		if (!cm.options.lineWrapping) {
+			doc.iter(checkWidthStart, from.line + change.text.length, function(line) {
+				var len = lineLength(doc, line);
+				if (len > display.maxLineLength) {
+					display.maxLine = line;
+					display.maxLineLength = len;
+					display.maxLineChanged = true;
+					recomputeMaxLength = false;
+				}
+			});
+			if (recomputeMaxLength) cm.curOp.updateMaxLine = true;
+		}
+
+		// Adjust frontier, schedule worker
+		doc.frontier = Math.min(doc.frontier, from.line);
+		startWorker(cm, 400);
+
+		var lendiff = change.text.length - (to.line - from.line) - 1;
+		// Remember that these lines changed, for updating the display
+		regChange(cm, from.line, to.line + 1, lendiff);
+
+		if (hasHandler(cm, "change")) {
+			var changeObj = {
+				from: from,
+				to: to,
+				text: change.text,
+				removed: change.removed,
+				origin: change.origin
+			};
+			if (cm.curOp.textChanged) {
+				for (var cur = cm.curOp.textChanged; cur.next; cur = cur.next) {}
+				cur.next = changeObj;
+			} else cm.curOp.textChanged = changeObj;
+		}
+	}
+
+	function replaceRange(doc, code, from, to, origin) {
+		if (!to) to = from;
+		if (posLess(to, from)) {
+			var tmp = to;
+			to = from;
+			from = tmp;
+		}
+		if (typeof code == "string") code = splitLines(code);
+		makeChange(doc, {
+			from: from,
+			to: to,
+			text: code,
+			origin: origin
+		}, null);
+	}
+
+	// POSITION OBJECT
+
+	function Pos(line, ch) {
+		if (!(this instanceof Pos)) return new Pos(line, ch);
+		this.line = line;
+		this.ch = ch;
+	}
+	CodeMirror.Pos = Pos;
+
+	function posEq(a, b) {
+		return a.line == b.line && a.ch == b.ch;
+	}
+
+	function posLess(a, b) {
+		return a.line < b.line || (a.line == b.line && a.ch < b.ch);
+	}
+
+	function copyPos(x) {
+		return Pos(x.line, x.ch);
+	}
+
+	// SELECTION
+
+	function clipLine(doc, n) {
+		return Math.max(doc.first, Math.min(n, doc.first + doc.size - 1));
+	}
+
+	function clipPos(doc, pos) {
+		if (pos.line < doc.first) return Pos(doc.first, 0);
+		var last = doc.first + doc.size - 1;
+		if (pos.line > last) return Pos(last, getLine(doc, last).text.length);
+		return clipToLen(pos, getLine(doc, pos.line).text.length);
+	}
+
+	function clipToLen(pos, linelen) {
+		var ch = pos.ch;
+		if (ch == null || ch > linelen) return Pos(pos.line, linelen);
+		else if (ch < 0) return Pos(pos.line, 0);
+		else return pos;
+	}
+
+	function isLine(doc, l) {
+		return l >= doc.first && l < doc.first + doc.size;
+	}
+
+	// If shift is held, this will move the selection anchor. Otherwise,
+	// it'll set the whole selection.
+	function extendSelection(doc, pos, other, bias) {
+		if (doc.sel.shift || doc.sel.extend) {
+			var anchor = doc.sel.anchor;
+			if (other) {
+				var posBefore = posLess(pos, anchor);
+				if (posBefore != posLess(other, anchor)) {
+					anchor = pos;
+					pos = other;
+				} else if (posBefore != posLess(pos, other)) {
+					pos = other;
+				}
+			}
+			setSelection(doc, anchor, pos, bias);
+		} else {
+			setSelection(doc, pos, other || pos, bias);
+		}
+		if (doc.cm) doc.cm.curOp.userSelChange = true;
+	}
+
+	function filterSelectionChange(doc, anchor, head) {
+		var obj = {
+			anchor: anchor,
+			head: head
+		};
+		signal(doc, "beforeSelectionChange", doc, obj);
+		if (doc.cm) signal(doc.cm, "beforeSelectionChange", doc.cm, obj);
+		obj.anchor = clipPos(doc, obj.anchor);
+		obj.head = clipPos(doc, obj.head);
+		return obj;
+	}
+
+	// Update the selection. Last two args are only used by
+	// updateDoc, since they have to be expressed in the line
+	// numbers before the update.
+	function setSelection(doc, anchor, head, bias, checkAtomic) {
+		if (!checkAtomic && hasHandler(doc, "beforeSelectionChange") || doc.cm && hasHandler(doc.cm, "beforeSelectionChange")) {
+			var filtered = filterSelectionChange(doc, anchor, head);
+			head = filtered.head;
+			anchor = filtered.anchor;
+		}
+
+		var sel = doc.sel;
+		sel.goalColumn = null;
+		// Skip over atomic spans.
+		if (checkAtomic || !posEq(anchor, sel.anchor))
+			anchor = skipAtomic(doc, anchor, bias, checkAtomic != "push");
+		if (checkAtomic || !posEq(head, sel.head))
+			head = skipAtomic(doc, head, bias, checkAtomic != "push");
+
+		if (posEq(sel.anchor, anchor) && posEq(sel.head, head)) return;
+
+		sel.anchor = anchor;
+		sel.head = head;
+		var inv = posLess(head, anchor);
+		sel.from = inv ? head : anchor;
+		sel.to = inv ? anchor : head;
+
+		if (doc.cm)
+			doc.cm.curOp.updateInput = doc.cm.curOp.selectionChanged =
+			doc.cm.curOp.cursorActivity = true;
+
+		signalLater(doc, "cursorActivity", doc);
+	}
+
+	function reCheckSelection(cm) {
+		setSelection(cm.doc, cm.doc.sel.from, cm.doc.sel.to, null, "push");
+	}
+
+	function skipAtomic(doc, pos, bias, mayClear) {
+		var flipped = false,
+			curPos = pos;
+		var dir = bias || 1;
+		doc.cantEdit = false;
+		search: for (;;) {
+			var line = getLine(doc, curPos.line);
+			if (line.markedSpans) {
+				for (var i = 0; i < line.markedSpans.length; ++i) {
+					var sp = line.markedSpans[i],
+						m = sp.marker;
+					if ((sp.from == null || (m.inclusiveLeft ? sp.from <= curPos.ch : sp.from < curPos.ch)) &&
+						(sp.to == null || (m.inclusiveRight ? sp.to >= curPos.ch : sp.to > curPos.ch))) {
+						if (mayClear) {
+							signal(m, "beforeCursorEnter");
+							if (m.explicitlyCleared) {
+								if (!line.markedSpans) break;
+								else {
+									--i;
+									continue;
+								}
+							}
+						}
+						if (!m.atomic) continue;
+						var newPos = m.find()[dir < 0 ? "from" : "to"];
+						if (posEq(newPos, curPos)) {
+							newPos.ch += dir;
+							if (newPos.ch < 0) {
+								if (newPos.line > doc.first) newPos = clipPos(doc, Pos(newPos.line - 1));
+								else newPos = null;
+							} else if (newPos.ch > line.text.length) {
+								if (newPos.line < doc.first + doc.size - 1) newPos = Pos(newPos.line + 1, 0);
+								else newPos = null;
+							}
+							if (!newPos) {
+								if (flipped) {
+									// Driven in a corner -- no valid cursor position found at all
+									// -- try again *with* clearing, if we didn't already
+									if (!mayClear) return skipAtomic(doc, pos, bias, true);
+									// Otherwise, turn off editing until further notice, and return the start of the doc
+									doc.cantEdit = true;
+									return Pos(doc.first, 0);
+								}
+								flipped = true;
+								newPos = pos;
+								dir = -dir;
+							}
+						}
+						curPos = newPos;
+						continue search;
+					}
+				}
+			}
+			return curPos;
+		}
+	}
+
+	// SCROLLING
+
+	function scrollCursorIntoView(cm) {
+		var coords = scrollPosIntoView(cm, cm.doc.sel.head, cm.options.cursorScrollMargin);
+		if (!cm.state.focused) return;
+		var display = cm.display,
+			box = getRect(display.sizer),
+			doScroll = null;
+		if (coords.top + box.top < 0) doScroll = true;
+		else if (coords.bottom + box.top > (window.innerHeight || document.documentElement.clientHeight)) doScroll = false;
+		if (doScroll != null && !phantom) {
+			var hidden = display.cursor.style.display == "none";
+			if (hidden) {
+				display.cursor.style.display = "";
+				display.cursor.style.left = coords.left + "px";
+				display.cursor.style.top = (coords.top - display.viewOffset) + "px";
+			}
+			display.cursor.scrollIntoView(doScroll);
+			if (hidden) display.cursor.style.display = "none";
+		}
+	}
+
+	function scrollPosIntoView(cm, pos, margin) {
+		if (margin == null) margin = 0;
+		for (;;) {
+			var changed = false,
+				coords = cursorCoords(cm, pos);
+			var scrollPos = calculateScrollPos(cm, coords.left, coords.top - margin, coords.left, coords.bottom + margin);
+			var startTop = cm.doc.scrollTop,
+				startLeft = cm.doc.scrollLeft;
+			if (scrollPos.scrollTop != null) {
+				setScrollTop(cm, scrollPos.scrollTop);
+				if (Math.abs(cm.doc.scrollTop - startTop) > 1) changed = true;
+			}
+			if (scrollPos.scrollLeft != null) {
+				setScrollLeft(cm, scrollPos.scrollLeft);
+				if (Math.abs(cm.doc.scrollLeft - startLeft) > 1) changed = true;
+			}
+			if (!changed) return coords;
+		}
+	}
+
+	function scrollIntoView(cm, x1, y1, x2, y2) {
+		var scrollPos = calculateScrollPos(cm, x1, y1, x2, y2);
+		if (scrollPos.scrollTop != null) setScrollTop(cm, scrollPos.scrollTop);
+		if (scrollPos.scrollLeft != null) setScrollLeft(cm, scrollPos.scrollLeft);
+	}
+
+	function calculateScrollPos(cm, x1, y1, x2, y2) {
+		var display = cm.display,
+			snapMargin = textHeight(cm.display);
+		if (y1 < 0) y1 = 0;
+		var screen = display.scroller.clientHeight - scrollerCutOff,
+			screentop = display.scroller.scrollTop,
+			result = {};
+		var docBottom = cm.doc.height + paddingVert(display);
+		var atTop = y1 < snapMargin,
+			atBottom = y2 > docBottom - snapMargin;
+		if (y1 < screentop) {
+			result.scrollTop = atTop ? 0 : y1;
+		} else if (y2 > screentop + screen) {
+			var newTop = Math.min(y1, (atBottom ? docBottom : y2) - screen);
+			if (newTop != screentop) result.scrollTop = newTop;
+		}
+
+		var screenw = display.scroller.clientWidth - scrollerCutOff,
+			screenleft = display.scroller.scrollLeft;
+		x1 += display.gutters.offsetWidth;
+		x2 += display.gutters.offsetWidth;
+		var gutterw = display.gutters.offsetWidth;
+		var atLeft = x1 < gutterw + 10;
+		if (x1 < screenleft + gutterw || atLeft) {
+			if (atLeft) x1 = 0;
+			result.scrollLeft = Math.max(0, x1 - 10 - gutterw);
+		} else if (x2 > screenw + screenleft - 3) {
+			result.scrollLeft = x2 + 10 - screenw;
+		}
+		return result;
+	}
+
+	function updateScrollPos(cm, left, top) {
+		cm.curOp.updateScrollPos = {
+			scrollLeft: left == null ? cm.doc.scrollLeft : left,
+			scrollTop: top == null ? cm.doc.scrollTop : top
+		};
+	}
+
+	function addToScrollPos(cm, left, top) {
+		var pos = cm.curOp.updateScrollPos || (cm.curOp.updateScrollPos = {
+			scrollLeft: cm.doc.scrollLeft,
+			scrollTop: cm.doc.scrollTop
+		});
+		var scroll = cm.display.scroller;
+		pos.scrollTop = Math.max(0, Math.min(scroll.scrollHeight - scroll.clientHeight, pos.scrollTop + top));
+		pos.scrollLeft = Math.max(0, Math.min(scroll.scrollWidth - scroll.clientWidth, pos.scrollLeft + left));
+	}
+
+	// API UTILITIES
+
+	function indentLine(cm, n, how, aggressive) {
+		var doc = cm.doc;
+		if (how == null) how = "add";
+		if (how == "smart") {
+			if (!cm.doc.mode.indent) how = "prev";
+			else var state = getStateBefore(cm, n);
+		}
+
+		var tabSize = cm.options.tabSize;
+		var line = getLine(doc, n),
+			curSpace = countColumn(line.text, null, tabSize);
+		var curSpaceString = line.text.match(/^\s*/)[0],
+			indentation;
+		if (how == "smart") {
+			indentation = cm.doc.mode.indent(state, line.text.slice(curSpaceString.length), line.text);
+			if (indentation == Pass) {
+				if (!aggressive) return;
+				how = "prev";
+			}
+		}
+		if (how == "prev") {
+			if (n > doc.first) indentation = countColumn(getLine(doc, n - 1).text, null, tabSize);
+			else indentation = 0;
+		} else if (how == "add") {
+			indentation = curSpace + cm.options.indentUnit;
+		} else if (how == "subtract") {
+			indentation = curSpace - cm.options.indentUnit;
+		} else if (typeof how == "number") {
+			indentation = curSpace + how;
+		}
+		indentation = Math.max(0, indentation);
+
+		var indentString = "",
+			pos = 0;
+		if (cm.options.indentWithTabs)
+			for (var i = Math.floor(indentation / tabSize); i; --i) {
+				pos += tabSize;
+				indentString += "\t";
+			}
+		if (pos < indentation) indentString += spaceStr(indentation - pos);
+
+		if (indentString != curSpaceString)
+			replaceRange(cm.doc, indentString, Pos(n, 0), Pos(n, curSpaceString.length), "+input");
+		line.stateAfter = null;
+	}
+
+	function changeLine(cm, handle, op) {
+		var no = handle,
+			line = handle,
+			doc = cm.doc;
+		if (typeof handle == "number") line = getLine(doc, clipLine(doc, handle));
+		else no = lineNo(handle);
+		if (no == null) return null;
+		if (op(line, no)) regChange(cm, no, no + 1);
+		else return null;
+		return line;
+	}
+
+	function findPosH(doc, pos, dir, unit, visually) {
+		var line = pos.line,
+			ch = pos.ch,
+			origDir = dir;
+		var lineObj = getLine(doc, line);
+		var possible = true;
+
+		function findNextLine() {
+			var l = line + dir;
+			if (l < doc.first || l >= doc.first + doc.size) return (possible = false);
+			line = l;
+			return lineObj = getLine(doc, l);
+		}
+
+		function moveOnce(boundToLine) {
+			var next = (visually ? moveVisually : moveLogically)(lineObj, ch, dir, true);
+			if (next == null) {
+				if (!boundToLine && findNextLine()) {
+					if (visually) ch = (dir < 0 ? lineRight : lineLeft)(lineObj);
+					else ch = dir < 0 ? lineObj.text.length : 0;
+				} else return (possible = false);
+			} else ch = next;
+			return true;
+		}
+
+		if (unit == "char") moveOnce();
+		else if (unit == "column") moveOnce(true);
+		else if (unit == "word" || unit == "group") {
+			var sawType = null,
+				group = unit == "group";
+			for (var first = true;; first = false) {
+				if (dir < 0 && !moveOnce(!first)) break;
+				var cur = lineObj.text.charAt(ch) || "\n";
+				var type = isWordChar(cur) ? "w" : !group ? null : /\s/.test(cur) ? null : "p";
+				if (sawType && sawType != type) {
+					if (dir < 0) {
+						dir = 1;
+						moveOnce();
+					}
+					break;
+				}
+				if (type) sawType = type;
+				if (dir > 0 && !moveOnce(!first)) break;
+			}
+		}
+		var result = skipAtomic(doc, Pos(line, ch), origDir, true);
+		if (!possible) result.hitSide = true;
+		return result;
+	}
+
+	function findPosV(cm, pos, dir, unit) {
+		var doc = cm.doc,
+			x = pos.left,
+			y;
+		if (unit == "page") {
+			var pageSize = Math.min(cm.display.wrapper.clientHeight, window.innerHeight || document.documentElement.clientHeight);
+			y = pos.top + dir * (pageSize - (dir < 0 ? 1.5 : .5) * textHeight(cm.display));
+		} else if (unit == "line") {
+			y = dir > 0 ? pos.bottom + 3 : pos.top - 3;
+		}
+		for (;;) {
+			var target = coordsChar(cm, x, y);
+			if (!target.outside) break;
+			if (dir < 0 ? y <= 0 : y >= doc.height) {
+				target.hitSide = true;
+				break;
+			}
+			y += dir * 5;
+		}
+		return target;
+	}
+
+	function findWordAt(line, pos) {
+		var start = pos.ch,
+			end = pos.ch;
+		if (line) {
+			if ((pos.xRel < 0 || end == line.length) && start)--start;
+			else ++end;
+			var startChar = line.charAt(start);
+			var check = isWordChar(startChar) ? isWordChar : /\s/.test(startChar) ? function(ch) {
+				return /\s/.test(ch);
+			} : function(ch) {
+				return !/\s/.test(ch) && !isWordChar(ch);
+			};
+			while (start > 0 && check(line.charAt(start - 1)))--start;
+			while (end < line.length && check(line.charAt(end)))++end;
+		}
+		return {
+			from: Pos(pos.line, start),
+			to: Pos(pos.line, end)
+		};
+	}
+
+	function selectLine(cm, line) {
+		extendSelection(cm.doc, Pos(line, 0), clipPos(cm.doc, Pos(line + 1, 0)));
+	}
+
+	// PROTOTYPE
+
+	// The publicly visible API. Note that operation(null, f) means
+	// 'wrap f in an operation, performed on its `this` parameter'
+
+	CodeMirror.prototype = {
+		constructor: CodeMirror,
+		focus: function() {
+			window.focus();
+			focusInput(this);
+			onFocus(this);
+			fastPoll(this);
+		},
+
+		setOption: function(option, value) {
+			var options = this.options,
+				old = options[option];
+			if (options[option] == value && option != "mode") return;
+			options[option] = value;
+			if (optionHandlers.hasOwnProperty(option))
+				operation(this, optionHandlers[option])(this, value, old);
+		},
+
+		getOption: function(option) {
+			return this.options[option];
+		},
+		getDoc: function() {
+			return this.doc;
+		},
+
+		addKeyMap: function(map, bottom) {
+			this.state.keyMaps[bottom ? "push" : "unshift"](map);
+		},
+		removeKeyMap: function(map) {
+			var maps = this.state.keyMaps;
+			for (var i = 0; i < maps.length; ++i)
+				if (maps[i] == map || (typeof maps[i] != "string" && maps[i].name == map)) {
+					maps.splice(i, 1);
+					return true;
+				}
+		},
+
+		addOverlay: operation(null, function(spec, options) {
+			var mode = spec.token ? spec : CodeMirror.getMode(this.options, spec);
+			if (mode.startState) throw new Error("Overlays may not be stateful.");
+			this.state.overlays.push({
+				mode: mode,
+				modeSpec: spec,
+				opaque: options && options.opaque
+			});
+			this.state.modeGen++;
+			regChange(this);
+		}),
+		removeOverlay: operation(null, function(spec) {
+			var overlays = this.state.overlays;
+			for (var i = 0; i < overlays.length; ++i) {
+				var cur = overlays[i].modeSpec;
+				if (cur == spec || typeof spec == "string" && cur.name == spec) {
+					overlays.splice(i, 1);
+					this.state.modeGen++;
+					regChange(this);
+					return;
+				}
+			}
+		}),
+
+		indentLine: operation(null, function(n, dir, aggressive) {
+			if (typeof dir != "string" && typeof dir != "number") {
+				if (dir == null) dir = this.options.smartIndent ? "smart" : "prev";
+				else dir = dir ? "add" : "subtract";
+			}
+			if (isLine(this.doc, n)) indentLine(this, n, dir, aggressive);
+		}),
+		indentSelection: operation(null, function(how) {
+			var sel = this.doc.sel;
+			if (posEq(sel.from, sel.to)) return indentLine(this, sel.from.line, how);
+			var e = sel.to.line - (sel.to.ch ? 0 : 1);
+			for (var i = sel.from.line; i <= e; ++i) indentLine(this, i, how);
+		}),
+
+		// Fetch the parser token for a given character. Useful for hacks
+		// that want to inspect the mode state (say, for completion).
+		getTokenAt: function(pos, precise) {
+			var doc = this.doc;
+			pos = clipPos(doc, pos);
+			var state = getStateBefore(this, pos.line, precise),
+				mode = this.doc.mode;
+			var line = getLine(doc, pos.line);
+			var stream = new StringStream(line.text, this.options.tabSize);
+			while (stream.pos < pos.ch && !stream.eol()) {
+				stream.start = stream.pos;
+				var style = mode.token(stream, state);
+			}
+			return {
+				start: stream.start,
+				end: stream.pos,
+				string: stream.current(),
+				className: style || null, // Deprecated, use 'type' instead
+				type: style || null,
+				state: state
+			};
+		},
+
+		getTokenTypeAt: function(pos) {
+			pos = clipPos(this.doc, pos);
+			var styles = getLineStyles(this, getLine(this.doc, pos.line));
+			var before = 0,
+				after = (styles.length - 1) / 2,
+				ch = pos.ch;
+			if (ch == 0) return styles[2];
+			for (;;) {
+				var mid = (before + after) >> 1;
+				if ((mid ? styles[mid * 2 - 1] : 0) >= ch) after = mid;
+				else if (styles[mid * 2 + 1] < ch) before = mid + 1;
+				else return styles[mid * 2 + 2];
+			}
+		},
+
+		getModeAt: function(pos) {
+			var mode = this.doc.mode;
+			if (!mode.innerMode) return mode;
+			return CodeMirror.innerMode(mode, this.getTokenAt(pos).state).mode;
+		},
+
+		getHelper: function(pos, type) {
+			if (!helpers.hasOwnProperty(type)) return;
+			var help = helpers[type],
+				mode = this.getModeAt(pos);
+			return mode[type] && help[mode[type]] ||
+				mode.helperType && help[mode.helperType] ||
+				help[mode.name];
+		},
+
+		getStateAfter: function(line, precise) {
+			var doc = this.doc;
+			line = clipLine(doc, line == null ? doc.first + doc.size - 1 : line);
+			return getStateBefore(this, line + 1, precise);
+		},
+
+		cursorCoords: function(start, mode) {
+			var pos, sel = this.doc.sel;
+			if (start == null) pos = sel.head;
+			else if (typeof start == "object") pos = clipPos(this.doc, start);
+			else pos = start ? sel.from : sel.to;
+			return cursorCoords(this, pos, mode || "page");
+		},
+
+		charCoords: function(pos, mode) {
+			return charCoords(this, clipPos(this.doc, pos), mode || "page");
+		},
+
+		coordsChar: function(coords, mode) {
+			coords = fromCoordSystem(this, coords, mode || "page");
+			return coordsChar(this, coords.left, coords.top);
+		},
+
+		lineAtHeight: function(height, mode) {
+			height = fromCoordSystem(this, {
+				top: height,
+				left: 0
+			}, mode || "page").top;
+			return lineAtHeight(this.doc, height + this.display.viewOffset);
+		},
+		heightAtLine: function(line, mode) {
+			var end = false,
+				last = this.doc.first + this.doc.size - 1;
+			if (line < this.doc.first) line = this.doc.first;
+			else if (line > last) {
+				line = last;
+				end = true;
+			}
+			var lineObj = getLine(this.doc, line);
+			return intoCoordSystem(this, getLine(this.doc, line), {
+					top: 0,
+					left: 0
+				}, mode || "page").top +
+				(end ? lineObj.height : 0);
+		},
+
+		defaultTextHeight: function() {
+			return textHeight(this.display);
+		},
+		defaultCharWidth: function() {
+			return charWidth(this.display);
+		},
+
+		setGutterMarker: operation(null, function(line, gutterID, value) {
+			return changeLine(this, line, function(line) {
+				var markers = line.gutterMarkers || (line.gutterMarkers = {});
+				markers[gutterID] = value;
+				if (!value && isEmpty(markers)) line.gutterMarkers = null;
+				return true;
+			});
+		}),
+
+		clearGutter: operation(null, function(gutterID) {
+			var cm = this,
+				doc = cm.doc,
+				i = doc.first;
+			doc.iter(function(line) {
+				if (line.gutterMarkers && line.gutterMarkers[gutterID]) {
+					line.gutterMarkers[gutterID] = null;
+					regChange(cm, i, i + 1);
+					if (isEmpty(line.gutterMarkers)) line.gutterMarkers = null;
+				}
+				++i;
+			});
+		}),
+
+		addLineClass: operation(null, function(handle, where, cls) {
+			return changeLine(this, handle, function(line) {
+				var prop = where == "text" ? "textClass" : where == "background" ? "bgClass" : "wrapClass";
+				if (!line[prop]) line[prop] = cls;
+				else if (new RegExp("(?:^|\\s)" + cls + "(?:$|\\s)").test(line[prop])) return false;
+				else line[prop] += " " + cls;
+				return true;
+			});
+		}),
+
+		removeLineClass: operation(null, function(handle, where, cls) {
+			return changeLine(this, handle, function(line) {
+				var prop = where == "text" ? "textClass" : where == "background" ? "bgClass" : "wrapClass";
+				var cur = line[prop];
+				if (!cur) return false;
+				else if (cls == null) line[prop] = null;
+				else {
+					var found = cur.match(new RegExp("(?:^|\\s+)" + cls + "(?:$|\\s+)"));
+					if (!found) return false;
+					var end = found.index + found[0].length;
+					line[prop] = cur.slice(0, found.index) + (!found.index || end == cur.length ? "" : " ") + cur.slice(end) || null;
+				}
+				return true;
+			});
+		}),
+
+		addLineWidget: operation(null, function(handle, node, options) {
+			return addLineWidget(this, handle, node, options);
+		}),
+
+		removeLineWidget: function(widget) {
+			widget.clear();
+		},
+
+		lineInfo: function(line) {
+			if (typeof line == "number") {
+				if (!isLine(this.doc, line)) return null;
+				var n = line;
+				line = getLine(this.doc, line);
+				if (!line) return null;
+			} else {
+				var n = lineNo(line);
+				if (n == null) return null;
+			}
+			return {
+				line: n,
+				handle: line,
+				text: line.text,
+				gutterMarkers: line.gutterMarkers,
+				textClass: line.textClass,
+				bgClass: line.bgClass,
+				wrapClass: line.wrapClass,
+				widgets: line.widgets
+			};
+		},
+
+		getViewport: function() {
+			return {
+				from: this.display.showingFrom,
+				to: this.display.showingTo
+			};
+		},
+
+		addWidget: function(pos, node, scroll, vert, horiz) {
+			var display = this.display;
+			pos = cursorCoords(this, clipPos(this.doc, pos));
+			var top = pos.bottom,
+				left = pos.left;
+			node.style.position = "absolute";
+			display.sizer.appendChild(node);
+			if (vert == "over") {
+				top = pos.top;
+			} else if (vert == "above" || vert == "near") {
+				var vspace = Math.max(display.wrapper.clientHeight, this.doc.height),
+					hspace = Math.max(display.sizer.clientWidth, display.lineSpace.clientWidth);
+				// Default to positioning above (if specified and possible); otherwise default to positioning below
+				if ((vert == 'above' || pos.bottom + node.offsetHeight > vspace) && pos.top > node.offsetHeight)
+					top = pos.top - node.offsetHeight;
+				else if (pos.bottom + node.offsetHeight <= vspace)
+					top = pos.bottom;
+				if (left + node.offsetWidth > hspace)
+					left = hspace - node.offsetWidth;
+			}
+			node.style.top = top + "px";
+			node.style.left = node.style.right = "";
+			if (horiz == "right") {
+				left = display.sizer.clientWidth - node.offsetWidth;
+				node.style.right = "0px";
+			} else {
+				if (horiz == "left") left = 0;
+				else if (horiz == "middle") left = (display.sizer.clientWidth - node.offsetWidth) / 2;
+				node.style.left = left + "px";
+			}
+			if (scroll)
+				scrollIntoView(this, left, top, left + node.offsetWidth, top + node.offsetHeight);
+		},
+
+		triggerOnKeyDown: operation(null, onKeyDown),
+
+		execCommand: function(cmd) {
+			return commands[cmd](this);
+		},
+
+		findPosH: function(from, amount, unit, visually) {
+			var dir = 1;
+			if (amount < 0) {
+				dir = -1;
+				amount = -amount;
+			}
+			for (var i = 0, cur = clipPos(this.doc, from); i < amount; ++i) {
+				cur = findPosH(this.doc, cur, dir, unit, visually);
+				if (cur.hitSide) break;
+			}
+			return cur;
+		},
+
+		moveH: operation(null, function(dir, unit) {
+			var sel = this.doc.sel,
+				pos;
+			if (sel.shift || sel.extend || posEq(sel.from, sel.to))
+				pos = findPosH(this.doc, sel.head, dir, unit, this.options.rtlMoveVisually);
+			else
+				pos = dir < 0 ? sel.from : sel.to;
+			extendSelection(this.doc, pos, pos, dir);
+		}),
+
+		deleteH: operation(null, function(dir, unit) {
+			var sel = this.doc.sel;
+			if (!posEq(sel.from, sel.to)) replaceRange(this.doc, "", sel.from, sel.to, "+delete");
+			else replaceRange(this.doc, "", sel.from, findPosH(this.doc, sel.head, dir, unit, false), "+delete");
+			this.curOp.userSelChange = true;
+		}),
+
+		findPosV: function(from, amount, unit, goalColumn) {
+			var dir = 1,
+				x = goalColumn;
+			if (amount < 0) {
+				dir = -1;
+				amount = -amount;
+			}
+			for (var i = 0, cur = clipPos(this.doc, from); i < amount; ++i) {
+				var coords = cursorCoords(this, cur, "div");
+				if (x == null) x = coords.left;
+				else coords.left = x;
+				cur = findPosV(this, coords, dir, unit);
+				if (cur.hitSide) break;
+			}
+			return cur;
+		},
+
+		moveV: operation(null, function(dir, unit) {
+			var sel = this.doc.sel;
+			var pos = cursorCoords(this, sel.head, "div");
+			if (sel.goalColumn != null) pos.left = sel.goalColumn;
+			var target = findPosV(this, pos, dir, unit);
+
+			if (unit == "page") addToScrollPos(this, 0, charCoords(this, target, "div").top - pos.top);
+			extendSelection(this.doc, target, target, dir);
+			sel.goalColumn = pos.left;
+		}),
+
+		toggleOverwrite: function(value) {
+			if (value != null && value == this.state.overwrite) return;
+			if (this.state.overwrite = !this.state.overwrite)
+				this.display.cursor.className += " CodeMirror-overwrite";
+			else
+				this.display.cursor.className = this.display.cursor.className.replace(" CodeMirror-overwrite", "");
+		},
+		hasFocus: function() {
+			return this.state.focused;
+		},
+
+		scrollTo: operation(null, function(x, y) {
+			updateScrollPos(this, x, y);
+		}),
+		getScrollInfo: function() {
+			var scroller = this.display.scroller,
+				co = scrollerCutOff;
+			return {
+				left: scroller.scrollLeft,
+				top: scroller.scrollTop,
+				height: scroller.scrollHeight - co,
+				width: scroller.scrollWidth - co,
+				clientHeight: scroller.clientHeight - co,
+				clientWidth: scroller.clientWidth - co
+			};
+		},
+
+		scrollIntoView: operation(null, function(pos, margin) {
+			if (typeof pos == "number") pos = Pos(pos, 0);
+			if (!margin) margin = 0;
+			var coords = pos;
+
+			if (!pos || pos.line != null) {
+				this.curOp.scrollToPos = pos ? clipPos(this.doc, pos) : this.doc.sel.head;
+				this.curOp.scrollToPosMargin = margin;
+				coords = cursorCoords(this, this.curOp.scrollToPos);
+			}
+			var sPos = calculateScrollPos(this, coords.left, coords.top - margin, coords.right, coords.bottom + margin);
+			updateScrollPos(this, sPos.scrollLeft, sPos.scrollTop);
+		}),
+
+		setSize: operation(null, function(width, height) {
+			function interpret(val) {
+				return typeof val == "number" || /^\d+$/.test(String(val)) ? val + "px" : val;
+			}
+			if (width != null) this.display.wrapper.style.width = interpret(width);
+			if (height != null) this.display.wrapper.style.height = interpret(height);
+			if (this.options.lineWrapping)
+				this.display.measureLineCache.length = this.display.measureLineCachePos = 0;
+			this.curOp.forceUpdate = true;
+		}),
+
+		operation: function(f) {
+			return runInOp(this, f);
+		},
+
+		refresh: operation(null, function() {
+			clearCaches(this);
+			updateScrollPos(this, this.doc.scrollLeft, this.doc.scrollTop);
+			regChange(this);
+		}),
+
+		swapDoc: operation(null, function(doc) {
+			var old = this.doc;
+			old.cm = null;
+			attachDoc(this, doc);
+			clearCaches(this);
+			resetInput(this, true);
+			updateScrollPos(this, doc.scrollLeft, doc.scrollTop);
+			return old;
+		}),
+
+		getInputField: function() {
+			return this.display.input;
+		},
+		getWrapperElement: function() {
+			return this.display.wrapper;
+		},
+		getScrollerElement: function() {
+			return this.display.scroller;
+		},
+		getGutterElement: function() {
+			return this.display.gutters;
+		}
+	};
+	eventMixin(CodeMirror);
+
+	// OPTION DEFAULTS
+
+	var optionHandlers = CodeMirror.optionHandlers = {};
+
+	// The default configuration options.
+	var defaults = CodeMirror.defaults = {};
+
+	function option(name, deflt, handle, notOnInit) {
+		CodeMirror.defaults[name] = deflt;
+		if (handle) optionHandlers[name] =
+			notOnInit ? function(cm, val, old) {
+				if (old != Init) handle(cm, val, old);
+			} : handle;
+	}
+
+	var Init = CodeMirror.Init = {
+		toString: function() {
+			return "CodeMirror.Init";
+		}
+	};
+
+	// These two are, on init, called from the constructor because they
+	// have to be initialized before the editor can start at all.
+	option("value", "", function(cm, val) {
+		cm.setValue(val);
+	}, true);
+	option("mode", null, function(cm, val) {
+		cm.doc.modeOption = val;
+		loadMode(cm);
+	}, true);
+
+	option("indentUnit", 2, loadMode, true);
+	option("indentWithTabs", false);
+	option("smartIndent", true);
+	option("tabSize", 4, function(cm) {
+		loadMode(cm);
+		clearCaches(cm);
+		regChange(cm);
+	}, true);
+	option("electricChars", true);
+	option("rtlMoveVisually", !windows);
+
+	option("theme", "default", function(cm) {
+		themeChanged(cm);
+		guttersChanged(cm);
+	}, true);
+	option("keyMap", "default", keyMapChanged);
+	option("extraKeys", null);
+
+	option("onKeyEvent", null);
+	option("onDragEvent", null);
+
+	option("lineWrapping", false, wrappingChanged, true);
+	option("gutters", [], function(cm) {
+		setGuttersForLineNumbers(cm.options);
+		guttersChanged(cm);
+	}, true);
+	option("fixedGutter", true, function(cm, val) {
+		cm.display.gutters.style.left = val ? compensateForHScroll(cm.display) + "px" : "0";
+		cm.refresh();
+	}, true);
+	option("coverGutterNextToScrollbar", false, updateScrollbars, true);
+	option("lineNumbers", false, function(cm) {
+		setGuttersForLineNumbers(cm.options);
+		guttersChanged(cm);
+	}, true);
+	option("firstLineNumber", 1, guttersChanged, true);
+	option("lineNumberFormatter", function(integer) {
+		return integer;
+	}, guttersChanged, true);
+	option("showCursorWhenSelecting", false, updateSelection, true);
+
+	option("readOnly", false, function(cm, val) {
+		if (val == "nocursor") {
+			onBlur(cm);
+			cm.display.input.blur();
+		} else if (!val) resetInput(cm, true);
+	});
+	option("dragDrop", true);
+
+	option("cursorBlinkRate", 530);
+	option("cursorScrollMargin", 0);
+	option("cursorHeight", 1);
+	option("workTime", 100);
+	option("workDelay", 100);
+	option("flattenSpans", true);
+	option("pollInterval", 100);
+	option("undoDepth", 40, function(cm, val) {
+		cm.doc.history.undoDepth = val;
+	});
+	option("historyEventDelay", 500);
+	option("viewportMargin", 10, function(cm) {
+		cm.refresh();
+	}, true);
+	option("maxHighlightLength", 10000, function(cm) {
+		loadMode(cm);
+		cm.refresh();
+	}, true);
+	option("moveInputWithCursor", true, function(cm, val) {
+		if (!val) cm.display.inputDiv.style.top = cm.display.inputDiv.style.left = 0;
+	});
+
+	option("tabindex", null, function(cm, val) {
+		cm.display.input.tabIndex = val || "";
+	});
+	option("autofocus", null);
+
+	// MODE DEFINITION AND QUERYING
+
+	// Known modes, by name and by MIME
+	var modes = CodeMirror.modes = {},
+		mimeModes = CodeMirror.mimeModes = {};
+
+	CodeMirror.defineMode = function(name, mode) {
+		if (!CodeMirror.defaults.mode && name != "null") CodeMirror.defaults.mode = name;
+		if (arguments.length > 2) {
+			mode.dependencies = [];
+			for (var i = 2; i < arguments.length; ++i) mode.dependencies.push(arguments[i]);
+		}
+		modes[name] = mode;
+	};
+
+	CodeMirror.defineMIME = function(mime, spec) {
+		mimeModes[mime] = spec;
+	};
+
+	CodeMirror.resolveMode = function(spec) {
+		if (typeof spec == "string" && mimeModes.hasOwnProperty(spec)) {
+			spec = mimeModes[spec];
+		} else if (spec && typeof spec.name == "string" && mimeModes.hasOwnProperty(spec.name)) {
+			var found = mimeModes[spec.name];
+			spec = createObj(found, spec);
+			spec.name = found.name;
+		} else if (typeof spec == "string" && /^[\w\-]+\/[\w\-]+\+xml$/.test(spec)) {
+			return CodeMirror.resolveMode("application/xml");
+		}
+		if (typeof spec == "string") return {
+			name: spec
+		};
+		else return spec || {
+			name: "null"
+		};
+	};
+
+	CodeMirror.getMode = function(options, spec) {
+		var spec = CodeMirror.resolveMode(spec);
+		var mfactory = modes[spec.name];
+		if (!mfactory) return CodeMirror.getMode(options, "text/plain");
+		var modeObj = mfactory(options, spec);
+		if (modeExtensions.hasOwnProperty(spec.name)) {
+			var exts = modeExtensions[spec.name];
+			for (var prop in exts) {
+				if (!exts.hasOwnProperty(prop)) continue;
+				if (modeObj.hasOwnProperty(prop)) modeObj["_" + prop] = modeObj[prop];
+				modeObj[prop] = exts[prop];
+			}
+		}
+		modeObj.name = spec.name;
+
+		return modeObj;
+	};
+
+	CodeMirror.defineMode("null", function() {
+		return {
+			token: function(stream) {
+				stream.skipToEnd();
+			}
+		};
+	});
+	CodeMirror.defineMIME("text/plain", "null");
+
+	var modeExtensions = CodeMirror.modeExtensions = {};
+	CodeMirror.extendMode = function(mode, properties) {
+		var exts = modeExtensions.hasOwnProperty(mode) ? modeExtensions[mode] : (modeExtensions[mode] = {});
+		copyObj(properties, exts);
+	};
+
+	// EXTENSIONS
+
+	CodeMirror.defineExtension = function(name, func) {
+		CodeMirror.prototype[name] = func;
+	};
+	CodeMirror.defineDocExtension = function(name, func) {
+		Doc.prototype[name] = func;
+	};
+	CodeMirror.defineOption = option;
+
+	var initHooks = [];
+	CodeMirror.defineInitHook = function(f) {
+		initHooks.push(f);
+	};
+
+	var helpers = CodeMirror.helpers = {};
+	CodeMirror.registerHelper = function(type, name, value) {
+		if (!helpers.hasOwnProperty(type)) helpers[type] = CodeMirror[type] = {};
+		helpers[type][name] = value;
+	};
+
+	// UTILITIES
+
+	CodeMirror.isWordChar = isWordChar;
+
+	// MODE STATE HANDLING
+
+	// Utility functions for working with state. Exported because modes
+	// sometimes need to do this.
+	function copyState(mode, state) {
+		if (state === true) return state;
+		if (mode.copyState) return mode.copyState(state);
+		var nstate = {};
+		for (var n in state) {
+			var val = state[n];
+			if (val instanceof Array) val = val.concat([]);
+			nstate[n] = val;
+		}
+		return nstate;
+	}
+	CodeMirror.copyState = copyState;
+
+	function startState(mode, a1, a2) {
+		return mode.startState ? mode.startState(a1, a2) : true;
+	}
+	CodeMirror.startState = startState;
+
+	CodeMirror.innerMode = function(mode, state) {
+		while (mode.innerMode) {
+			var info = mode.innerMode(state);
+			if (!info || info.mode == mode) break;
+			state = info.state;
+			mode = info.mode;
+		}
+		return info || {
+			mode: mode,
+			state: state
+		};
+	};
+
+	// STANDARD COMMANDS
+
+	var commands = CodeMirror.commands = {
+		selectAll: function(cm) {
+			cm.setSelection(Pos(cm.firstLine(), 0), Pos(cm.lastLine()));
+		},
+		killLine: function(cm) {
+			var from = cm.getCursor(true),
+				to = cm.getCursor(false),
+				sel = !posEq(from, to);
+			if (!sel && cm.getLine(from.line).length == from.ch)
+				cm.replaceRange("", from, Pos(from.line + 1, 0), "+delete");
+			else cm.replaceRange("", from, sel ? to : Pos(from.line), "+delete");
+		},
+		deleteLine: function(cm) {
+			var l = cm.getCursor().line;
+			cm.replaceRange("", Pos(l, 0), Pos(l), "+delete");
+		},
+		delLineLeft: function(cm) {
+			var cur = cm.getCursor();
+			cm.replaceRange("", Pos(cur.line, 0), cur, "+delete");
+		},
+		undo: function(cm) {
+			cm.undo();
+		},
+		redo: function(cm) {
+			cm.redo();
+		},
+		goDocStart: function(cm) {
+			cm.extendSelection(Pos(cm.firstLine(), 0));
+		},
+		goDocEnd: function(cm) {
+			cm.extendSelection(Pos(cm.lastLine()));
+		},
+		goLineStart: function(cm) {
+			cm.extendSelection(lineStart(cm, cm.getCursor().line));
+		},
+		goLineStartSmart: function(cm) {
+			var cur = cm.getCursor(),
+				start = lineStart(cm, cur.line);
+			var line = cm.getLineHandle(start.line);
+			var order = getOrder(line);
+			if (!order || order[0].level == 0) {
+				var firstNonWS = Math.max(0, line.text.search(/\S/));
+				var inWS = cur.line == start.line && cur.ch <= firstNonWS && cur.ch;
+				cm.extendSelection(Pos(start.line, inWS ? 0 : firstNonWS));
+			} else cm.extendSelection(start);
+		},
+		goLineEnd: function(cm) {
+			cm.extendSelection(lineEnd(cm, cm.getCursor().line));
+		},
+		goLineRight: function(cm) {
+			var top = cm.charCoords(cm.getCursor(), "div").top + 5;
+			cm.extendSelection(cm.coordsChar({
+				left: cm.display.lineDiv.offsetWidth + 100,
+				top: top
+			}, "div"));
+		},
+		goLineLeft: function(cm) {
+			var top = cm.charCoords(cm.getCursor(), "div").top + 5;
+			cm.extendSelection(cm.coordsChar({
+				left: 0,
+				top: top
+			}, "div"));
+		},
+		goLineUp: function(cm) {
+			cm.moveV(-1, "line");
+		},
+		goLineDown: function(cm) {
+			cm.moveV(1, "line");
+		},
+		goPageUp: function(cm) {
+			cm.moveV(-1, "page");
+		},
+		goPageDown: function(cm) {
+			cm.moveV(1, "page");
+		},
+		goCharLeft: function(cm) {
+			cm.moveH(-1, "char");
+		},
+		goCharRight: function(cm) {
+			cm.moveH(1, "char");
+		},
+		goColumnLeft: function(cm) {
+			cm.moveH(-1, "column");
+		},
+		goColumnRight: function(cm) {
+			cm.moveH(1, "column");
+		},
+		goWordLeft: function(cm) {
+			cm.moveH(-1, "word");
+		},
+		goGroupRight: function(cm) {
+			cm.moveH(1, "group");
+		},
+		goGroupLeft: function(cm) {
+			cm.moveH(-1, "group");
+		},
+		goWordRight: function(cm) {
+			cm.moveH(1, "word");
+		},
+		delCharBefore: function(cm) {
+			cm.deleteH(-1, "char");
+		},
+		delCharAfter: function(cm) {
+			cm.deleteH(1, "char");
+		},
+		delWordBefore: function(cm) {
+			cm.deleteH(-1, "word");
+		},
+		delWordAfter: function(cm) {
+			cm.deleteH(1, "word");
+		},
+		delGroupBefore: function(cm) {
+			cm.deleteH(-1, "group");
+		},
+		delGroupAfter: function(cm) {
+			cm.deleteH(1, "group");
+		},
+		indentAuto: function(cm) {
+			cm.indentSelection("smart");
+		},
+		indentMore: function(cm) {
+			cm.indentSelection("add");
+		},
+		indentLess: function(cm) {
+			cm.indentSelection("subtract");
+		},
+		insertTab: function(cm) {
+			cm.replaceSelection("\t", "end", "+input");
+		},
+		defaultTab: function(cm) {
+			if (cm.somethingSelected()) cm.indentSelection("add");
+			else cm.replaceSelection("\t", "end", "+input");
+		},
+		transposeChars: function(cm) {
+			var cur = cm.getCursor(),
+				line = cm.getLine(cur.line);
+			if (cur.ch > 0 && cur.ch < line.length - 1)
+				cm.replaceRange(line.charAt(cur.ch) + line.charAt(cur.ch - 1),
+					Pos(cur.line, cur.ch - 1), Pos(cur.line, cur.ch + 1));
+		},
+		newlineAndIndent: function(cm) {
+			operation(cm, function() {
+				cm.replaceSelection("\n", "end", "+input");
+				cm.indentLine(cm.getCursor().line, null, true);
+			})();
+		},
+		toggleOverwrite: function(cm) {
+			cm.toggleOverwrite();
+		}
+	};
+
+	// STANDARD KEYMAPS
+
+	var keyMap = CodeMirror.keyMap = {};
+	keyMap.basic = {
+		"Left": "goCharLeft",
+		"Right": "goCharRight",
+		"Up": "goLineUp",
+		"Down": "goLineDown",
+		"End": "goLineEnd",
+		"Home": "goLineStartSmart",
+		"PageUp": "goPageUp",
+		"PageDown": "goPageDown",
+		"Delete": "delCharAfter",
+		"Backspace": "delCharBefore",
+		"Tab": "defaultTab",
+		"Shift-Tab": "indentAuto",
+		"Enter": "newlineAndIndent",
+		"Insert": "toggleOverwrite"
+	};
+	// Note that the save and find-related commands aren't defined by
+	// default. Unknown commands are simply ignored.
+	keyMap.pcDefault = {
+		"Ctrl-A": "selectAll",
+		"Ctrl-D": "deleteLine",
+		"Ctrl-Z": "undo",
+		"Shift-Ctrl-Z": "redo",
+		"Ctrl-Y": "redo",
+		"Ctrl-Home": "goDocStart",
+		"Alt-Up": "goDocStart",
+		"Ctrl-End": "goDocEnd",
+		"Ctrl-Down": "goDocEnd",
+		"Ctrl-Left": "goGroupLeft",
+		"Ctrl-Right": "goGroupRight",
+		"Alt-Left": "goLineStart",
+		"Alt-Right": "goLineEnd",
+		"Ctrl-Backspace": "delGroupBefore",
+		"Ctrl-Delete": "delGroupAfter",
+		"Ctrl-S": "save",
+		"Ctrl-F": "find",
+		"Ctrl-G": "findNext",
+		"Shift-Ctrl-G": "findPrev",
+		"Shift-Ctrl-F": "replace",
+		"Shift-Ctrl-R": "replaceAll",
+		"Ctrl-[": "indentLess",
+		"Ctrl-]": "indentMore",
+		fallthrough: "basic"
+	};
+	keyMap.macDefault = {
+		"Cmd-A": "selectAll",
+		"Cmd-D": "deleteLine",
+		"Cmd-Z": "undo",
+		"Shift-Cmd-Z": "redo",
+		"Cmd-Y": "redo",
+		"Cmd-Up": "goDocStart",
+		"Cmd-End": "goDocEnd",
+		"Cmd-Down": "goDocEnd",
+		"Alt-Left": "goGroupLeft",
+		"Alt-Right": "goGroupRight",
+		"Cmd-Left": "goLineStart",
+		"Cmd-Right": "goLineEnd",
+		"Alt-Backspace": "delGroupBefore",
+		"Ctrl-Alt-Backspace": "delGroupAfter",
+		"Alt-Delete": "delGroupAfter",
+		"Cmd-S": "save",
+		"Cmd-F": "find",
+		"Cmd-G": "findNext",
+		"Shift-Cmd-G": "findPrev",
+		"Cmd-Alt-F": "replace",
+		"Shift-Cmd-Alt-F": "replaceAll",
+		"Cmd-[": "indentLess",
+		"Cmd-]": "indentMore",
+		"Cmd-Backspace": "delLineLeft",
+		fallthrough: ["basic", "emacsy"]
+	};
+	keyMap["default"] = mac ? keyMap.macDefault : keyMap.pcDefault;
+	keyMap.emacsy = {
+		"Ctrl-F": "goCharRight",
+		"Ctrl-B": "goCharLeft",
+		"Ctrl-P": "goLineUp",
+		"Ctrl-N": "goLineDown",
+		"Alt-F": "goWordRight",
+		"Alt-B": "goWordLeft",
+		"Ctrl-A": "goLineStart",
+		"Ctrl-E": "goLineEnd",
+		"Ctrl-V": "goPageDown",
+		"Shift-Ctrl-V": "goPageUp",
+		"Ctrl-D": "delCharAfter",
+		"Ctrl-H": "delCharBefore",
+		"Alt-D": "delWordAfter",
+		"Alt-Backspace": "delWordBefore",
+		"Ctrl-K": "killLine",
+		"Ctrl-T": "transposeChars"
+	};
+
+	// KEYMAP DISPATCH
+
+	function getKeyMap(val) {
+		if (typeof val == "string") return keyMap[val];
+		else return val;
+	}
+
+	function lookupKey(name, maps, handle) {
+		function lookup(map) {
+			map = getKeyMap(map);
+			var found = map[name];
+			if (found === false) return "stop";
+			if (found != null && handle(found)) return true;
+			if (map.nofallthrough) return "stop";
+
+			var fallthrough = map.fallthrough;
+			if (fallthrough == null) return false;
+			if (Object.prototype.toString.call(fallthrough) != "[object Array]")
+				return lookup(fallthrough);
+			for (var i = 0, e = fallthrough.length; i < e; ++i) {
+				var done = lookup(fallthrough[i]);
+				if (done) return done;
+			}
+			return false;
+		}
+
+		for (var i = 0; i < maps.length; ++i) {
+			var done = lookup(maps[i]);
+			if (done) return done != "stop";
+		}
+	}
+
+	function isModifierKey(event) {
+		var name = keyNames[event.keyCode];
+		return name == "Ctrl" || name == "Alt" || name == "Shift" || name == "Mod";
+	}
+
+	function keyName(event, noShift) {
+		if (opera && event.keyCode == 34 && event["char"]) return false;
+		var name = keyNames[event.keyCode];
+		if (name == null || event.altGraphKey) return false;
+		if (event.altKey) name = "Alt-" + name;
+		if (flipCtrlCmd ? event.metaKey : event.ctrlKey) name = "Ctrl-" + name;
+		if (flipCtrlCmd ? event.ctrlKey : event.metaKey) name = "Cmd-" + name;
+		if (!noShift && event.shiftKey) name = "Shift-" + name;
+		return name;
+	}
+	CodeMirror.lookupKey = lookupKey;
+	CodeMirror.isModifierKey = isModifierKey;
+	CodeMirror.keyName = keyName;
+
+	// FROMTEXTAREA
+
+	CodeMirror.fromTextArea = function(textarea, options) {
+		if (!options) options = {};
+		options.value = textarea.value;
+		if (!options.tabindex && textarea.tabindex)
+			options.tabindex = textarea.tabindex;
+		if (!options.placeholder && textarea.placeholder)
+			options.placeholder = textarea.placeholder;
+		// Set autofocus to true if this textarea is focused, or if it has
+		// autofocus and no other element is focused.
+		if (options.autofocus == null) {
+			var hasFocus = document.body;
+			// doc.activeElement occasionally throws on IE
+			try {
+				hasFocus = document.activeElement;
+			} catch (e) {}
+			options.autofocus = hasFocus == textarea ||
+				textarea.getAttribute("autofocus") != null && hasFocus == document.body;
+		}
+
+		function save() {
+			textarea.value = cm.getValue();
+		}
+		if (textarea.form) {
+			on(textarea.form, "submit", save);
+			// Deplorable hack to make the submit method do the right thing.
+			if (!options.leaveSubmitMethodAlone) {
+				var form = textarea.form,
+					realSubmit = form.submit;
+				try {
+					var wrappedSubmit = form.submit = function() {
+						save();
+						form.submit = realSubmit;
+						form.submit();
+						form.submit = wrappedSubmit;
+					};
+				} catch (e) {}
+			}
+		}
+
+		textarea.style.display = "none";
+		var cm = CodeMirror(function(node) {
+			textarea.parentNode.insertBefore(node, textarea.nextSibling);
+		}, options);
+		cm.save = save;
+		cm.getTextArea = function() {
+			return textarea;
+		};
+		cm.toTextArea = function() {
+			save();
+			textarea.parentNode.removeChild(cm.getWrapperElement());
+			textarea.style.display = "";
+			if (textarea.form) {
+				off(textarea.form, "submit", save);
+				if (typeof textarea.form.submit == "function")
+					textarea.form.submit = realSubmit;
+			}
+		};
+		return cm;
+	};
+
+	// STRING STREAM
+
+	// Fed to the mode parsers, provides helper functions to make
+	// parsers more succinct.
+
+	// The character stream used by a mode's parser.
+	function StringStream(string, tabSize) {
+		this.pos = this.start = 0;
+		this.string = string;
+		this.tabSize = tabSize || 8;
+		this.lastColumnPos = this.lastColumnValue = 0;
+	}
+
+	StringStream.prototype = {
+		eol: function() {
+			return this.pos >= this.string.length;
+		},
+		sol: function() {
+			return this.pos == 0;
+		},
+		peek: function() {
+			return this.string.charAt(this.pos) || undefined;
+		},
+		next: function() {
+			if (this.pos < this.string.length)
+				return this.string.charAt(this.pos++);
+		},
+		eat: function(match) {
+			var ch = this.string.charAt(this.pos);
+			if (typeof match == "string") var ok = ch == match;
+			else var ok = ch && (match.test ? match.test(ch) : match(ch));
+			if (ok) {
+				++this.pos;
+				return ch;
+			}
+		},
+		eatWhile: function(match) {
+			var start = this.pos;
+			while (this.eat(match)) {}
+			return this.pos > start;
+		},
+		eatSpace: function() {
+			var start = this.pos;
+			while (/[\s\u00a0]/.test(this.string.charAt(this.pos)))++this.pos;
+			return this.pos > start;
+		},
+		skipToEnd: function() {
+			this.pos = this.string.length;
+		},
+		skipTo: function(ch) {
+			var found = this.string.indexOf(ch, this.pos);
+			if (found > -1) {
+				this.pos = found;
+				return true;
+			}
+		},
+		backUp: function(n) {
+			this.pos -= n;
+		},
+		column: function() {
+			if (this.lastColumnPos < this.start) {
+				this.lastColumnValue = countColumn(this.string, this.start, this.tabSize, this.lastColumnPos, this.lastColumnValue);
+				this.lastColumnPos = this.start;
+			}
+			return this.lastColumnValue;
+		},
+		indentation: function() {
+			return countColumn(this.string, null, this.tabSize);
+		},
+		match: function(pattern, consume, caseInsensitive) {
+			if (typeof pattern == "string") {
+				var cased = function(str) {
+					return caseInsensitive ? str.toLowerCase() : str;
+				};
+				var substr = this.string.substr(this.pos, pattern.length);
+				if (cased(substr) == cased(pattern)) {
+					if (consume !== false) this.pos += pattern.length;
+					return true;
+				}
+			} else {
+				var match = this.string.slice(this.pos).match(pattern);
+				if (match && match.index > 0) return null;
+				if (match && consume !== false) this.pos += match[0].length;
+				return match;
+			}
+		},
+		current: function() {
+			return this.string.slice(this.start, this.pos);
+		}
+	};
+	CodeMirror.StringStream = StringStream;
+
+	// TEXTMARKERS
+
+	function TextMarker(doc, type) {
+		this.lines = [];
+		this.type = type;
+		this.doc = doc;
+	}
+	CodeMirror.TextMarker = TextMarker;
+	eventMixin(TextMarker);
+
+	TextMarker.prototype.clear = function() {
+		if (this.explicitlyCleared) return;
+		var cm = this.doc.cm,
+			withOp = cm && !cm.curOp;
+		if (withOp) startOperation(cm);
+		if (hasHandler(this, "clear")) {
+			var found = this.find();
+			if (found) signalLater(this, "clear", found.from, found.to);
+		}
+		var min = null,
+			max = null;
+		for (var i = 0; i < this.lines.length; ++i) {
+			var line = this.lines[i];
+			var span = getMarkedSpanFor(line.markedSpans, this);
+			if (span.to != null) max = lineNo(line);
+			line.markedSpans = removeMarkedSpan(line.markedSpans, span);
+			if (span.from != null)
+				min = lineNo(line);
+			else if (this.collapsed && !lineIsHidden(this.doc, line) && cm)
+				updateLineHeight(line, textHeight(cm.display));
+		}
+		if (cm && this.collapsed && !cm.options.lineWrapping)
+			for (var i = 0; i < this.lines.length; ++i) {
+				var visual = visualLine(cm.doc, this.lines[i]),
+					len = lineLength(cm.doc, visual);
+				if (len > cm.display.maxLineLength) {
+					cm.display.maxLine = visual;
+					cm.display.maxLineLength = len;
+					cm.display.maxLineChanged = true;
+				}
+			}
+
+		if (min != null && cm) regChange(cm, min, max + 1);
+		this.lines.length = 0;
+		this.explicitlyCleared = true;
+		if (this.atomic && this.doc.cantEdit) {
+			this.doc.cantEdit = false;
+			if (cm) reCheckSelection(cm);
+		}
+		if (withOp) endOperation(cm);
+	};
+
+	TextMarker.prototype.find = function() {
+		var from, to;
+		for (var i = 0; i < this.lines.length; ++i) {
+			var line = this.lines[i];
+			var span = getMarkedSpanFor(line.markedSpans, this);
+			if (span.from != null || span.to != null) {
+				var found = lineNo(line);
+				if (span.from != null) from = Pos(found, span.from);
+				if (span.to != null) to = Pos(found, span.to);
+			}
+		}
+		if (this.type == "bookmark") return from;
+		return from && {
+			from: from,
+			to: to
+		};
+	};
+
+	TextMarker.prototype.changed = function() {
+		var pos = this.find(),
+			cm = this.doc.cm;
+		if (!pos || !cm) return;
+		var line = getLine(this.doc, pos.from.line);
+		clearCachedMeasurement(cm, line);
+		if (pos.from.line >= cm.display.showingFrom && pos.from.line < cm.display.showingTo) {
+			for (var node = cm.display.lineDiv.firstChild; node; node = node.nextSibling)
+				if (node.lineObj == line) {
+					if (node.offsetHeight != line.height) updateLineHeight(line, node.offsetHeight);
+					break;
+				}
+			runInOp(cm, function() {
+				cm.curOp.selectionChanged = cm.curOp.forceUpdate = cm.curOp.updateMaxLine = true;
+			});
+		}
+	};
+
+	TextMarker.prototype.attachLine = function(line) {
+		if (!this.lines.length && this.doc.cm) {
+			var op = this.doc.cm.curOp;
+			if (!op.maybeHiddenMarkers || indexOf(op.maybeHiddenMarkers, this) == -1)
+				(op.maybeUnhiddenMarkers || (op.maybeUnhiddenMarkers = [])).push(this);
+		}
+		this.lines.push(line);
+	};
+	TextMarker.prototype.detachLine = function(line) {
+		this.lines.splice(indexOf(this.lines, line), 1);
+		if (!this.lines.length && this.doc.cm) {
+			var op = this.doc.cm.curOp;
+			(op.maybeHiddenMarkers || (op.maybeHiddenMarkers = [])).push(this);
+		}
+	};
+
+	function markText(doc, from, to, options, type) {
+		if (options && options.shared) return markTextShared(doc, from, to, options, type);
+		if (doc.cm && !doc.cm.curOp) return operation(doc.cm, markText)(doc, from, to, options, type);
+
+		var marker = new TextMarker(doc, type);
+		if (type == "range" && !posLess(from, to)) return marker;
+		if (options) copyObj(options, marker);
+		if (marker.replacedWith) {
+			marker.collapsed = true;
+			marker.replacedWith = elt("span", [marker.replacedWith], "CodeMirror-widget");
+			if (!options.handleMouseEvents) marker.replacedWith.ignoreEvents = true;
+		}
+		if (marker.collapsed) sawCollapsedSpans = true;
+
+		if (marker.addToHistory)
+			addToHistory(doc, {
+				from: from,
+				to: to,
+				origin: "markText"
+			}, {
+				head: doc.sel.head,
+				anchor: doc.sel.anchor
+			}, NaN);
+
+		var curLine = from.line,
+			size = 0,
+			collapsedAtStart, collapsedAtEnd, cm = doc.cm,
+			updateMaxLine;
+		doc.iter(curLine, to.line + 1, function(line) {
+			if (cm && marker.collapsed && !cm.options.lineWrapping && visualLine(doc, line) == cm.display.maxLine)
+				updateMaxLine = true;
+			var span = {
+				from: null,
+				to: null,
+				marker: marker
+			};
+			size += line.text.length;
+			if (curLine == from.line) {
+				span.from = from.ch;
+				size -= from.ch;
+			}
+			if (curLine == to.line) {
+				span.to = to.ch;
+				size -= line.text.length - to.ch;
+			}
+			if (marker.collapsed) {
+				if (curLine == to.line) collapsedAtEnd = collapsedSpanAt(line, to.ch);
+				if (curLine == from.line) collapsedAtStart = collapsedSpanAt(line, from.ch);
+				else updateLineHeight(line, 0);
+			}
+			addMarkedSpan(line, span);
+			++curLine;
+		});
+		if (marker.collapsed) doc.iter(from.line, to.line + 1, function(line) {
+			if (lineIsHidden(doc, line)) updateLineHeight(line, 0);
+		});
+
+		if (marker.clearOnEnter) on(marker, "beforeCursorEnter", function() {
+			marker.clear();
+		});
+
+		if (marker.readOnly) {
+			sawReadOnlySpans = true;
+			if (doc.history.done.length || doc.history.undone.length)
+				doc.clearHistory();
+		}
+		if (marker.collapsed) {
+			if (collapsedAtStart != collapsedAtEnd)
+				throw new Error("Inserting collapsed marker overlapping an existing one");
+			marker.size = size;
+			marker.atomic = true;
+		}
+		if (cm) {
+			if (updateMaxLine) cm.curOp.updateMaxLine = true;
+			if (marker.className || marker.title || marker.startStyle || marker.endStyle || marker.collapsed)
+				regChange(cm, from.line, to.line + 1);
+			if (marker.atomic) reCheckSelection(cm);
+		}
+		return marker;
+	}
+
+	// SHARED TEXTMARKERS
+
+	function SharedTextMarker(markers, primary) {
+		this.markers = markers;
+		this.primary = primary;
+		for (var i = 0, me = this; i < markers.length; ++i) {
+			markers[i].parent = this;
+			on(markers[i], "clear", function() {
+				me.clear();
+			});
+		}
+	}
+	CodeMirror.SharedTextMarker = SharedTextMarker;
+	eventMixin(SharedTextMarker);
+
+	SharedTextMarker.prototype.clear = function() {
+		if (this.explicitlyCleared) return;
+		this.explicitlyCleared = true;
+		for (var i = 0; i < this.markers.length; ++i)
+			this.markers[i].clear();
+		signalLater(this, "clear");
+	};
+	SharedTextMarker.prototype.find = function() {
+		return this.primary.find();
+	};
+
+	function markTextShared(doc, from, to, options, type) {
+		options = copyObj(options);
+		options.shared = false;
+		var markers = [markText(doc, from, to, options, type)],
+			primary = markers[0];
+		var widget = options.replacedWith;
+		linkedDocs(doc, function(doc) {
+			if (widget) options.replacedWith = widget.cloneNode(true);
+			markers.push(markText(doc, clipPos(doc, from), clipPos(doc, to), options, type));
+			for (var i = 0; i < doc.linked.length; ++i)
+				if (doc.linked[i].isParent) return;
+			primary = lst(markers);
+		});
+		return new SharedTextMarker(markers, primary);
+	}
+
+	// TEXTMARKER SPANS
+
+	function getMarkedSpanFor(spans, marker) {
+		if (spans)
+			for (var i = 0; i < spans.length; ++i) {
+				var span = spans[i];
+				if (span.marker == marker) return span;
+			}
+	}
+
+	function removeMarkedSpan(spans, span) {
+		for (var r, i = 0; i < spans.length; ++i)
+			if (spans[i] != span)(r || (r = [])).push(spans[i]);
+		return r;
+	}
+
+	function addMarkedSpan(line, span) {
+		line.markedSpans = line.markedSpans ? line.markedSpans.concat([span]) : [span];
+		span.marker.attachLine(line);
+	}
+
+	function markedSpansBefore(old, startCh, isInsert) {
+		if (old)
+			for (var i = 0, nw; i < old.length; ++i) {
+				var span = old[i],
+					marker = span.marker;
+				var startsBefore = span.from == null || (marker.inclusiveLeft ? span.from <= startCh : span.from < startCh);
+				if (startsBefore || marker.type == "bookmark" && span.from == startCh && (!isInsert || !span.marker.insertLeft)) {
+					var endsAfter = span.to == null || (marker.inclusiveRight ? span.to >= startCh : span.to > startCh);
+					(nw || (nw = [])).push({
+						from: span.from,
+						to: endsAfter ? null : span.to,
+						marker: marker
+					});
+				}
+			}
+		return nw;
+	}
+
+	function markedSpansAfter(old, endCh, isInsert) {
+		if (old)
+			for (var i = 0, nw; i < old.length; ++i) {
+				var span = old[i],
+					marker = span.marker;
+				var endsAfter = span.to == null || (marker.inclusiveRight ? span.to >= endCh : span.to > endCh);
+				if (endsAfter || marker.type == "bookmark" && span.from == endCh && (!isInsert || span.marker.insertLeft)) {
+					var startsBefore = span.from == null || (marker.inclusiveLeft ? span.from <= endCh : span.from < endCh);
+					(nw || (nw = [])).push({
+						from: startsBefore ? null : span.from - endCh,
+						to: span.to == null ? null : span.to - endCh,
+						marker: marker
+					});
+				}
+			}
+		return nw;
+	}
+
+	function stretchSpansOverChange(doc, change) {
+		var oldFirst = isLine(doc, change.from.line) && getLine(doc, change.from.line).markedSpans;
+		var oldLast = isLine(doc, change.to.line) && getLine(doc, change.to.line).markedSpans;
+		if (!oldFirst && !oldLast) return null;
+
+		var startCh = change.from.ch,
+			endCh = change.to.ch,
+			isInsert = posEq(change.from, change.to);
+		// Get the spans that 'stick out' on both sides
+		var first = markedSpansBefore(oldFirst, startCh, isInsert);
+		var last = markedSpansAfter(oldLast, endCh, isInsert);
+
+		// Next, merge those two ends
+		var sameLine = change.text.length == 1,
+			offset = lst(change.text).length + (sameLine ? startCh : 0);
+		if (first) {
+			// Fix up .to properties of first
+			for (var i = 0; i < first.length; ++i) {
+				var span = first[i];
+				if (span.to == null) {
+					var found = getMarkedSpanFor(last, span.marker);
+					if (!found) span.to = startCh;
+					else if (sameLine) span.to = found.to == null ? null : found.to + offset;
+				}
+			}
+		}
+		if (last) {
+			// Fix up .from in last (or move them into first in case of sameLine)
+			for (var i = 0; i < last.length; ++i) {
+				var span = last[i];
+				if (span.to != null) span.to += offset;
+				if (span.from == null) {
+					var found = getMarkedSpanFor(first, span.marker);
+					if (!found) {
+						span.from = offset;
+						if (sameLine)(first || (first = [])).push(span);
+					}
+				} else {
+					span.from += offset;
+					if (sameLine)(first || (first = [])).push(span);
+				}
+			}
+		}
+		if (sameLine && first) {
+			// Make sure we didn't create any zero-length spans
+			for (var i = 0; i < first.length; ++i)
+				if (first[i].from != null && first[i].from == first[i].to && first[i].marker.type != "bookmark")
+					first.splice(i--, 1);
+			if (!first.length) first = null;
+		}
+
+		var newMarkers = [first];
+		if (!sameLine) {
+			// Fill gap with whole-line-spans
+			var gap = change.text.length - 2,
+				gapMarkers;
+			if (gap > 0 && first)
+				for (var i = 0; i < first.length; ++i)
+					if (first[i].to == null)
+						(gapMarkers || (gapMarkers = [])).push({
+							from: null,
+							to: null,
+							marker: first[i].marker
+						});
+			for (var i = 0; i < gap; ++i)
+				newMarkers.push(gapMarkers);
+			newMarkers.push(last);
+		}
+		return newMarkers;
+	}
+
+	function mergeOldSpans(doc, change) {
+		var old = getOldSpans(doc, change);
+		var stretched = stretchSpansOverChange(doc, change);
+		if (!old) return stretched;
+		if (!stretched) return old;
+
+		for (var i = 0; i < old.length; ++i) {
+			var oldCur = old[i],
+				stretchCur = stretched[i];
+			if (oldCur && stretchCur) {
+				spans: for (var j = 0; j < stretchCur.length; ++j) {
+					var span = stretchCur[j];
+					for (var k = 0; k < oldCur.length; ++k)
+						if (oldCur[k].marker == span.marker) continue spans;
+					oldCur.push(span);
+				}
+			} else if (stretchCur) {
+				old[i] = stretchCur;
+			}
+		}
+		return old;
+	}
+
+	function removeReadOnlyRanges(doc, from, to) {
+		var markers = null;
+		doc.iter(from.line, to.line + 1, function(line) {
+			if (line.markedSpans)
+				for (var i = 0; i < line.markedSpans.length; ++i) {
+					var mark = line.markedSpans[i].marker;
+					if (mark.readOnly && (!markers || indexOf(markers, mark) == -1))
+						(markers || (markers = [])).push(mark);
+				}
+		});
+		if (!markers) return null;
+		var parts = [{
+			from: from,
+			to: to
+		}];
+		for (var i = 0; i < markers.length; ++i) {
+			var mk = markers[i],
+				m = mk.find();
+			for (var j = 0; j < parts.length; ++j) {
+				var p = parts[j];
+				if (posLess(p.to, m.from) || posLess(m.to, p.from)) continue;
+				var newParts = [j, 1];
+				if (posLess(p.from, m.from) || !mk.inclusiveLeft && posEq(p.from, m.from))
+					newParts.push({
+						from: p.from,
+						to: m.from
+					});
+				if (posLess(m.to, p.to) || !mk.inclusiveRight && posEq(p.to, m.to))
+					newParts.push({
+						from: m.to,
+						to: p.to
+					});
+				parts.splice.apply(parts, newParts);
+				j += newParts.length - 1;
+			}
+		}
+		return parts;
+	}
+
+	function collapsedSpanAt(line, ch) {
+		var sps = sawCollapsedSpans && line.markedSpans,
+			found;
+		if (sps)
+			for (var sp, i = 0; i < sps.length; ++i) {
+				sp = sps[i];
+				if (!sp.marker.collapsed) continue;
+				if ((sp.from == null || sp.from < ch) &&
+					(sp.to == null || sp.to > ch) &&
+					(!found || found.width < sp.marker.width))
+					found = sp.marker;
+			}
+		return found;
+	}
+
+	function collapsedSpanAtStart(line) {
+		return collapsedSpanAt(line, -1);
+	}
+
+	function collapsedSpanAtEnd(line) {
+		return collapsedSpanAt(line, line.text.length + 1);
+	}
+
+	function visualLine(doc, line) {
+		var merged;
+		while (merged = collapsedSpanAtStart(line))
+			line = getLine(doc, merged.find().from.line);
+		return line;
+	}
+
+	function lineIsHidden(doc, line) {
+		var sps = sawCollapsedSpans && line.markedSpans;
+		if (sps)
+			for (var sp, i = 0; i < sps.length; ++i) {
+				sp = sps[i];
+				if (!sp.marker.collapsed) continue;
+				if (sp.from == null) return true;
+				if (sp.marker.replacedWith) continue;
+				if (sp.from == 0 && sp.marker.inclusiveLeft && lineIsHiddenInner(doc, line, sp))
+					return true;
+			}
+	}
+
+	function lineIsHiddenInner(doc, line, span) {
+		if (span.to == null) {
+			var end = span.marker.find().to,
+				endLine = getLine(doc, end.line);
+			return lineIsHiddenInner(doc, endLine, getMarkedSpanFor(endLine.markedSpans, span.marker));
+		}
+		if (span.marker.inclusiveRight && span.to == line.text.length)
+			return true;
+		for (var sp, i = 0; i < line.markedSpans.length; ++i) {
+			sp = line.markedSpans[i];
+			if (sp.marker.collapsed && !sp.marker.replacedWith && sp.from == span.to &&
+				(sp.marker.inclusiveLeft || span.marker.inclusiveRight) &&
+				lineIsHiddenInner(doc, line, sp)) return true;
+		}
+	}
+
+	function detachMarkedSpans(line) {
+		var spans = line.markedSpans;
+		if (!spans) return;
+		for (var i = 0; i < spans.length; ++i)
+			spans[i].marker.detachLine(line);
+		line.markedSpans = null;
+	}
+
+	function attachMarkedSpans(line, spans) {
+		if (!spans) return;
+		for (var i = 0; i < spans.length; ++i)
+			spans[i].marker.attachLine(line);
+		line.markedSpans = spans;
+	}
+
+	// LINE WIDGETS
+
+	var LineWidget = CodeMirror.LineWidget = function(cm, node, options) {
+		if (options)
+			for (var opt in options)
+				if (options.hasOwnProperty(opt))
+					this[opt] = options[opt];
+		this.cm = cm;
+		this.node = node;
+	};
+	eventMixin(LineWidget);
+
+	function widgetOperation(f) {
+		return function() {
+			var withOp = !this.cm.curOp;
+			if (withOp) startOperation(this.cm);
+			try {
+				var result = f.apply(this, arguments);
+			} finally {
+				if (withOp) endOperation(this.cm);
+			}
+			return result;
+		};
+	}
+	LineWidget.prototype.clear = widgetOperation(function() {
+		var ws = this.line.widgets,
+			no = lineNo(this.line);
+		if (no == null || !ws) return;
+		for (var i = 0; i < ws.length; ++i)
+			if (ws[i] == this) ws.splice(i--, 1);
+		if (!ws.length) this.line.widgets = null;
+		var aboveVisible = heightAtLine(this.cm, this.line) < this.cm.doc.scrollTop;
+		updateLineHeight(this.line, Math.max(0, this.line.height - widgetHeight(this)));
+		if (aboveVisible) addToScrollPos(this.cm, 0, -this.height);
+		regChange(this.cm, no, no + 1);
+	});
+	LineWidget.prototype.changed = widgetOperation(function() {
+		var oldH = this.height;
+		this.height = null;
+		var diff = widgetHeight(this) - oldH;
+		if (!diff) return;
+		updateLineHeight(this.line, this.line.height + diff);
+		var no = lineNo(this.line);
+		regChange(this.cm, no, no + 1);
+	});
+
+	function widgetHeight(widget) {
+		if (widget.height != null) return widget.height;
+		if (!widget.node.parentNode || widget.node.parentNode.nodeType != 1)
+			removeChildrenAndAdd(widget.cm.display.measure, elt("div", [widget.node], null, "position: relative"));
+		return widget.height = widget.node.offsetHeight;
+	}
+
+	function addLineWidget(cm, handle, node, options) {
+		var widget = new LineWidget(cm, node, options);
+		if (widget.noHScroll) cm.display.alignWidgets = true;
+		changeLine(cm, handle, function(line) {
+			var widgets = line.widgets || (line.widgets = []);
+			if (widget.insertAt == null) widgets.push(widget);
+			else widgets.splice(Math.min(widgets.length - 1, Math.max(0, widget.insertAt)), 0, widget);
+			widget.line = line;
+			if (!lineIsHidden(cm.doc, line) || widget.showIfHidden) {
+				var aboveVisible = heightAtLine(cm, line) < cm.doc.scrollTop;
+				updateLineHeight(line, line.height + widgetHeight(widget));
+				if (aboveVisible) addToScrollPos(cm, 0, widget.height);
+			}
+			return true;
+		});
+		return widget;
+	}
+
+	// LINE DATA STRUCTURE
+
+	// Line objects. These hold state related to a line, including
+	// highlighting info (the styles array).
+	var Line = CodeMirror.Line = function(text, markedSpans, estimateHeight) {
+		this.text = text;
+		attachMarkedSpans(this, markedSpans);
+		this.height = estimateHeight ? estimateHeight(this) : 1;
+	};
+	eventMixin(Line);
+
+	function updateLine(line, text, markedSpans, estimateHeight) {
+		line.text = text;
+		if (line.stateAfter) line.stateAfter = null;
+		if (line.styles) line.styles = null;
+		if (line.order != null) line.order = null;
+		detachMarkedSpans(line);
+		attachMarkedSpans(line, markedSpans);
+		var estHeight = estimateHeight ? estimateHeight(line) : 1;
+		if (estHeight != line.height) updateLineHeight(line, estHeight);
+	}
+
+	function cleanUpLine(line) {
+		line.parent = null;
+		detachMarkedSpans(line);
+	}
+
+	// Run the given mode's parser over a line, update the styles
+	// array, which contains alternating fragments of text and CSS
+	// classes.
+	function runMode(cm, text, mode, state, f) {
+		var flattenSpans = mode.flattenSpans;
+		if (flattenSpans == null) flattenSpans = cm.options.flattenSpans;
+		var curStart = 0,
+			curStyle = null;
+		var stream = new StringStream(text, cm.options.tabSize),
+			style;
+		if (text == "" && mode.blankLine) mode.blankLine(state);
+		while (!stream.eol()) {
+			if (stream.pos > cm.options.maxHighlightLength) {
+				flattenSpans = false;
+				// Webkit seems to refuse to render text nodes longer than 57444 characters
+				stream.pos = Math.min(text.length, stream.start + 50000);
+				style = null;
+			} else {
+				style = mode.token(stream, state);
+			}
+			if (!flattenSpans || curStyle != style) {
+				if (curStart < stream.start) f(stream.start, curStyle);
+				curStart = stream.start;
+				curStyle = style;
+			}
+			stream.start = stream.pos;
+		}
+		if (curStart < stream.pos) f(stream.pos, curStyle);
+	}
+
+	function highlightLine(cm, line, state) {
+		// A styles array always starts with a number identifying the
+		// mode/overlays that it is based on (for easy invalidation).
+		var st = [cm.state.modeGen];
+		// Compute the base array of styles
+		runMode(cm, line.text, cm.doc.mode, state, function(end, style) {
+			st.push(end, style);
+		});
+
+		// Run overlays, adjust style array.
+		for (var o = 0; o < cm.state.overlays.length; ++o) {
+			var overlay = cm.state.overlays[o],
+				i = 1,
+				at = 0;
+			runMode(cm, line.text, overlay.mode, true, function(end, style) {
+				var start = i;
+				// Ensure there's a token end at the current position, and that i points at it
+				while (at < end) {
+					var i_end = st[i];
+					if (i_end > end)
+						st.splice(i, 1, end, st[i + 1], i_end);
+					i += 2;
+					at = Math.min(end, i_end);
+				}
+				if (!style) return;
+				if (overlay.opaque) {
+					st.splice(start, i - start, end, style);
+					i = start + 2;
+				} else {
+					for (; start < i; start += 2) {
+						var cur = st[start + 1];
+						st[start + 1] = cur ? cur + " " + style : style;
+					}
+				}
+			});
+		}
+
+		return st;
+	}
+
+	function getLineStyles(cm, line) {
+		if (!line.styles || line.styles[0] != cm.state.modeGen)
+			line.styles = highlightLine(cm, line, line.stateAfter = getStateBefore(cm, lineNo(line)));
+		return line.styles;
+	}
+
+	// Lightweight form of highlight -- proceed over this line and
+	// update state, but don't save a style array.
+	function processLine(cm, line, state) {
+		var mode = cm.doc.mode;
+		var stream = new StringStream(line.text, cm.options.tabSize);
+		if (line.text == "" && mode.blankLine) mode.blankLine(state);
+		while (!stream.eol() && stream.pos <= cm.options.maxHighlightLength) {
+			mode.token(stream, state);
+			stream.start = stream.pos;
+		}
+	}
+
+	var styleToClassCache = {};
+
+	function styleToClass(style) {
+		if (!style) return null;
+		return styleToClassCache[style] ||
+			(styleToClassCache[style] = "cm-" + style.replace(/ +/g, " cm-"));
+	}
+
+	function lineContent(cm, realLine, measure, copyWidgets) {
+		var merged, line = realLine,
+			empty = true;
+		while (merged = collapsedSpanAtStart(line))
+			line = getLine(cm.doc, merged.find().from.line);
+
+		var builder = {
+			pre: elt("pre"),
+			col: 0,
+			pos: 0,
+			measure: null,
+			measuredSomething: false,
+			cm: cm,
+			copyWidgets: copyWidgets
+		};
+		if (line.textClass) builder.pre.className = line.textClass;
+
+		do {
+			if (line.text) empty = false;
+			builder.measure = line == realLine && measure;
+			builder.pos = 0;
+			builder.addToken = builder.measure ? buildTokenMeasure : buildToken;
+			if ((ie || webkit) && cm.getOption("lineWrapping"))
+				builder.addToken = buildTokenSplitSpaces(builder.addToken);
+			var next = insertLineContent(line, builder, getLineStyles(cm, line));
+			if (measure && line == realLine && !builder.measuredSomething) {
+				measure[0] = builder.pre.appendChild(zeroWidthElement(cm.display.measure));
+				builder.measuredSomething = true;
+			}
+			if (next) line = getLine(cm.doc, next.to.line);
+		} while (next);
+
+		if (measure && !builder.measuredSomething && !measure[0])
+			measure[0] = builder.pre.appendChild(empty ? elt("span", "\u00a0") : zeroWidthElement(cm.display.measure));
+		if (!builder.pre.firstChild && !lineIsHidden(cm.doc, realLine))
+			builder.pre.appendChild(document.createTextNode("\u00a0"));
+
+		var order;
+		// Work around problem with the reported dimensions of single-char
+		// direction spans on IE (issue #1129). See also the comment in
+		// cursorCoords.
+		if (measure && ie && (order = getOrder(line))) {
+			var l = order.length - 1;
+			if (order[l].from == order[l].to)--l;
+			var last = order[l],
+				prev = order[l - 1];
+			if (last.from + 1 == last.to && prev && last.level < prev.level) {
+				var span = measure[builder.pos - 1];
+				if (span) span.parentNode.insertBefore(span.measureRight = zeroWidthElement(cm.display.measure),
+					span.nextSibling);
+			}
+		}
+
+		signal(cm, "renderLine", cm, realLine, builder.pre);
+		return builder.pre;
+	}
+
+	var tokenSpecialChars = /[\t\u0000-\u0019\u00ad\u200b\u2028\u2029\uFEFF]/g;
+
+	function buildToken(builder, text, style, startStyle, endStyle, title) {
+		if (!text) return;
+		if (!tokenSpecialChars.test(text)) {
+			builder.col += text.length;
+			var content = document.createTextNode(text);
+		} else {
+			var content = document.createDocumentFragment(),
+				pos = 0;
+			while (true) {
+				tokenSpecialChars.lastIndex = pos;
+				var m = tokenSpecialChars.exec(text);
+				var skipped = m ? m.index - pos : text.length - pos;
+				if (skipped) {
+					content.appendChild(document.createTextNode(text.slice(pos, pos + skipped)));
+					builder.col += skipped;
+				}
+				if (!m) break;
+				pos += skipped + 1;
+				if (m[0] == "\t") {
+					var tabSize = builder.cm.options.tabSize,
+						tabWidth = tabSize - builder.col % tabSize;
+					content.appendChild(elt("span", spaceStr(tabWidth), "cm-tab"));
+					builder.col += tabWidth;
+				} else {
+					var token = elt("span", "\u2022", "cm-invalidchar");
+					token.title = "\\u" + m[0].charCodeAt(0).toString(16);
+					content.appendChild(token);
+					builder.col += 1;
+				}
+			}
+		}
+		if (style || startStyle || endStyle || builder.measure) {
+			var fullStyle = style || "";
+			if (startStyle) fullStyle += startStyle;
+			if (endStyle) fullStyle += endStyle;
+			var token = elt("span", [content], fullStyle);
+			if (title) token.title = title;
+			return builder.pre.appendChild(token);
+		}
+		builder.pre.appendChild(content);
+	}
+
+	function buildTokenMeasure(builder, text, style, startStyle, endStyle) {
+		var wrapping = builder.cm.options.lineWrapping;
+		for (var i = 0; i < text.length; ++i) {
+			var ch = text.charAt(i),
+				start = i == 0;
+			if (ch >= "\ud800" && ch < "\udbff" && i < text.length - 1) {
+				ch = text.slice(i, i + 2);
+				++i;
+			} else if (i && wrapping && spanAffectsWrapping(text, i)) {
+				builder.pre.appendChild(elt("wbr"));
+			}
+			var old = builder.measure[builder.pos];
+			var span = builder.measure[builder.pos] =
+				buildToken(builder, ch, style,
+					start && startStyle, i == text.length - 1 && endStyle);
+			if (old) span.leftSide = old.leftSide || old;
+			// In IE single-space nodes wrap differently than spaces
+			// embedded in larger text nodes, except when set to
+			// white-space: normal (issue #1268).
+			if (ie && wrapping && ch == " " && i && !/\s/.test(text.charAt(i - 1)) &&
+				i < text.length - 1 && !/\s/.test(text.charAt(i + 1)))
+				span.style.whiteSpace = "normal";
+			builder.pos += ch.length;
+		}
+		if (text.length) builder.measuredSomething = true;
+	}
+
+	function buildTokenSplitSpaces(inner) {
+		function split(old) {
+			var out = " ";
+			for (var i = 0; i < old.length - 2; ++i) out += i % 2 ? " " : "\u00a0";
+			out += " ";
+			return out;
+		}
+		return function(builder, text, style, startStyle, endStyle, title) {
+			return inner(builder, text.replace(/ {3,}/, split), style, startStyle, endStyle, title);
+		};
+	}
+
+	function buildCollapsedSpan(builder, size, marker, ignoreWidget) {
+		var widget = !ignoreWidget && marker.replacedWith;
+		if (widget) {
+			if (builder.copyWidgets) widget = widget.cloneNode(true);
+			builder.pre.appendChild(widget);
+			if (builder.measure) {
+				if (size) {
+					builder.measure[builder.pos] = widget;
+				} else {
+					var elt = builder.measure[builder.pos] = zeroWidthElement(builder.cm.display.measure);
+					if (marker.type != "bookmark" || marker.insertLeft)
+						builder.pre.insertBefore(elt, widget);
+					else
+						builder.pre.appendChild(elt);
+				}
+				builder.measuredSomething = true;
+			}
+		}
+		builder.pos += size;
+	}
+
+	// Outputs a number of spans to make up a line, taking highlighting
+	// and marked text into account.
+	function insertLineContent(line, builder, styles) {
+		var spans = line.markedSpans,
+			allText = line.text,
+			at = 0;
+		if (!spans) {
+			for (var i = 1; i < styles.length; i += 2)
+				builder.addToken(builder, allText.slice(at, at = styles[i]), styleToClass(styles[i + 1]));
+			return;
+		}
+
+		var len = allText.length,
+			pos = 0,
+			i = 1,
+			text = "",
+			style;
+		var nextChange = 0,
+			spanStyle, spanEndStyle, spanStartStyle, title, collapsed;
+		for (;;) {
+			if (nextChange == pos) { // Update current marker set
+				spanStyle = spanEndStyle = spanStartStyle = title = "";
+				collapsed = null;
+				nextChange = Infinity;
+				var foundBookmark = null;
+				for (var j = 0; j < spans.length; ++j) {
+					var sp = spans[j],
+						m = sp.marker;
+					if (sp.from <= pos && (sp.to == null || sp.to > pos)) {
+						if (sp.to != null && nextChange > sp.to) {
+							nextChange = sp.to;
+							spanEndStyle = "";
+						}
+						if (m.className) spanStyle += " " + m.className;
+						if (m.startStyle && sp.from == pos) spanStartStyle += " " + m.startStyle;
+						if (m.endStyle && sp.to == nextChange) spanEndStyle += " " + m.endStyle;
+						if (m.title && !title) title = m.title;
+						if (m.collapsed && (!collapsed || collapsed.marker.size < m.size))
+							collapsed = sp;
+					} else if (sp.from > pos && nextChange > sp.from) {
+						nextChange = sp.from;
+					}
+					if (m.type == "bookmark" && sp.from == pos && m.replacedWith) foundBookmark = m;
+				}
+				if (collapsed && (collapsed.from || 0) == pos) {
+					buildCollapsedSpan(builder, (collapsed.to == null ? len : collapsed.to) - pos,
+						collapsed.marker, collapsed.from == null);
+					if (collapsed.to == null) return collapsed.marker.find();
+				}
+				if (foundBookmark && !collapsed) buildCollapsedSpan(builder, 0, foundBookmark);
+			}
+			if (pos >= len) break;
+
+			var upto = Math.min(len, nextChange);
+			while (true) {
+				if (text) {
+					var end = pos + text.length;
+					if (!collapsed) {
+						var tokenText = end > upto ? text.slice(0, upto - pos) : text;
+						builder.addToken(builder, tokenText, style ? style + spanStyle : spanStyle,
+							spanStartStyle, pos + tokenText.length == nextChange ? spanEndStyle : "", title);
+					}
+					if (end >= upto) {
+						text = text.slice(upto - pos);
+						pos = upto;
+						break;
+					}
+					pos = end;
+					spanStartStyle = "";
+				}
+				text = allText.slice(at, at = styles[i++]);
+				style = styleToClass(styles[i++]);
+			}
+		}
+	}
+
+	// DOCUMENT DATA STRUCTURE
+
+	function updateDoc(doc, change, markedSpans, selAfter, estimateHeight) {
+		function spansFor(n) {
+			return markedSpans ? markedSpans[n] : null;
+		}
+
+		function update(line, text, spans) {
+			updateLine(line, text, spans, estimateHeight);
+			signalLater(line, "change", line, change);
+		}
+
+		var from = change.from,
+			to = change.to,
+			text = change.text;
+		var firstLine = getLine(doc, from.line),
+			lastLine = getLine(doc, to.line);
+		var lastText = lst(text),
+			lastSpans = spansFor(text.length - 1),
+			nlines = to.line - from.line;
+
+		// First adjust the line structure
+		if (from.ch == 0 && to.ch == 0 && lastText == "") {
+			// This is a whole-line replace. Treated specially to make
+			// sure line objects move the way they are supposed to.
+			for (var i = 0, e = text.length - 1, added = []; i < e; ++i)
+				added.push(new Line(text[i], spansFor(i), estimateHeight));
+			update(lastLine, lastLine.text, lastSpans);
+			if (nlines) doc.remove(from.line, nlines);
+			if (added.length) doc.insert(from.line, added);
+		} else if (firstLine == lastLine) {
+			if (text.length == 1) {
+				update(firstLine, firstLine.text.slice(0, from.ch) + lastText + firstLine.text.slice(to.ch), lastSpans);
+			} else {
+				for (var added = [], i = 1, e = text.length - 1; i < e; ++i)
+					added.push(new Line(text[i], spansFor(i), estimateHeight));
+				added.push(new Line(lastText + firstLine.text.slice(to.ch), lastSpans, estimateHeight));
+				update(firstLine, firstLine.text.slice(0, from.ch) + text[0], spansFor(0));
+				doc.insert(from.line + 1, added);
+			}
+		} else if (text.length == 1) {
+			update(firstLine, firstLine.text.slice(0, from.ch) + text[0] + lastLine.text.slice(to.ch), spansFor(0));
+			doc.remove(from.line + 1, nlines);
+		} else {
+			update(firstLine, firstLine.text.slice(0, from.ch) + text[0], spansFor(0));
+			update(lastLine, lastText + lastLine.text.slice(to.ch), lastSpans);
+			for (var i = 1, e = text.length - 1, added = []; i < e; ++i)
+				added.push(new Line(text[i], spansFor(i), estimateHeight));
+			if (nlines > 1) doc.remove(from.line + 1, nlines - 1);
+			doc.insert(from.line + 1, added);
+		}
+
+		signalLater(doc, "change", doc, change);
+		setSelection(doc, selAfter.anchor, selAfter.head, null, true);
+	}
+
+	function LeafChunk(lines) {
+		this.lines = lines;
+		this.parent = null;
+		for (var i = 0, e = lines.length, height = 0; i < e; ++i) {
+			lines[i].parent = this;
+			height += lines[i].height;
+		}
+		this.height = height;
+	}
+
+	LeafChunk.prototype = {
+		chunkSize: function() {
+			return this.lines.length;
+		},
+		removeInner: function(at, n) {
+			for (var i = at, e = at + n; i < e; ++i) {
+				var line = this.lines[i];
+				this.height -= line.height;
+				cleanUpLine(line);
+				signalLater(line, "delete");
+			}
+			this.lines.splice(at, n);
+		},
+		collapse: function(lines) {
+			lines.splice.apply(lines, [lines.length, 0].concat(this.lines));
+		},
+		insertInner: function(at, lines, height) {
+			this.height += height;
+			this.lines = this.lines.slice(0, at).concat(lines).concat(this.lines.slice(at));
+			for (var i = 0, e = lines.length; i < e; ++i) lines[i].parent = this;
+		},
+		iterN: function(at, n, op) {
+			for (var e = at + n; at < e; ++at)
+				if (op(this.lines[at])) return true;
+		}
+	};
+
+	function BranchChunk(children) {
+		this.children = children;
+		var size = 0,
+			height = 0;
+		for (var i = 0, e = children.length; i < e; ++i) {
+			var ch = children[i];
+			size += ch.chunkSize();
+			height += ch.height;
+			ch.parent = this;
+		}
+		this.size = size;
+		this.height = height;
+		this.parent = null;
+	}
+
+	BranchChunk.prototype = {
+		chunkSize: function() {
+			return this.size;
+		},
+		removeInner: function(at, n) {
+			this.size -= n;
+			for (var i = 0; i < this.children.length; ++i) {
+				var child = this.children[i],
+					sz = child.chunkSize();
+				if (at < sz) {
+					var rm = Math.min(n, sz - at),
+						oldHeight = child.height;
+					child.removeInner(at, rm);
+					this.height -= oldHeight - child.height;
+					if (sz == rm) {
+						this.children.splice(i--, 1);
+						child.parent = null;
+					}
+					if ((n -= rm) == 0) break;
+					at = 0;
+				} else at -= sz;
+			}
+			if (this.size - n < 25) {
+				var lines = [];
+				this.collapse(lines);
+				this.children = [new LeafChunk(lines)];
+				this.children[0].parent = this;
+			}
+		},
+		collapse: function(lines) {
+			for (var i = 0, e = this.children.length; i < e; ++i) this.children[i].collapse(lines);
+		},
+		insertInner: function(at, lines, height) {
+			this.size += lines.length;
+			this.height += height;
+			for (var i = 0, e = this.children.length; i < e; ++i) {
+				var child = this.children[i],
+					sz = child.chunkSize();
+				if (at <= sz) {
+					child.insertInner(at, lines, height);
+					if (child.lines && child.lines.length > 50) {
+						while (child.lines.length > 50) {
+							var spilled = child.lines.splice(child.lines.length - 25, 25);
+							var newleaf = new LeafChunk(spilled);
+							child.height -= newleaf.height;
+							this.children.splice(i + 1, 0, newleaf);
+							newleaf.parent = this;
+						}
+						this.maybeSpill();
+					}
+					break;
+				}
+				at -= sz;
+			}
+		},
+		maybeSpill: function() {
+			if (this.children.length <= 10) return;
+			var me = this;
+			do {
+				var spilled = me.children.splice(me.children.length - 5, 5);
+				var sibling = new BranchChunk(spilled);
+				if (!me.parent) { // Become the parent node
+					var copy = new BranchChunk(me.children);
+					copy.parent = me;
+					me.children = [copy, sibling];
+					me = copy;
+				} else {
+					me.size -= sibling.size;
+					me.height -= sibling.height;
+					var myIndex = indexOf(me.parent.children, me);
+					me.parent.children.splice(myIndex + 1, 0, sibling);
+				}
+				sibling.parent = me.parent;
+			} while (me.children.length > 10);
+			me.parent.maybeSpill();
+		},
+		iterN: function(at, n, op) {
+			for (var i = 0, e = this.children.length; i < e; ++i) {
+				var child = this.children[i],
+					sz = child.chunkSize();
+				if (at < sz) {
+					var used = Math.min(n, sz - at);
+					if (child.iterN(at, used, op)) return true;
+					if ((n -= used) == 0) break;
+					at = 0;
+				} else at -= sz;
+			}
+		}
+	};
+
+	var nextDocId = 0;
+	var Doc = CodeMirror.Doc = function(text, mode, firstLine) {
+		if (!(this instanceof Doc)) return new Doc(text, mode, firstLine);
+		if (firstLine == null) firstLine = 0;
+
+		BranchChunk.call(this, [new LeafChunk([new Line("", null)])]);
+		this.first = firstLine;
+		this.scrollTop = this.scrollLeft = 0;
+		this.cantEdit = false;
+		this.history = makeHistory();
+		this.cleanGeneration = 1;
+		this.frontier = firstLine;
+		var start = Pos(firstLine, 0);
+		this.sel = {
+			from: start,
+			to: start,
+			head: start,
+			anchor: start,
+			shift: false,
+			extend: false,
+			goalColumn: null
+		};
+		this.id = ++nextDocId;
+		this.modeOption = mode;
+
+		if (typeof text == "string") text = splitLines(text);
+		updateDoc(this, {
+			from: start,
+			to: start,
+			text: text
+		}, null, {
+			head: start,
+			anchor: start
+		});
+	};
+
+	Doc.prototype = createObj(BranchChunk.prototype, {
+		constructor: Doc,
+		iter: function(from, to, op) {
+			if (op) this.iterN(from - this.first, to - from, op);
+			else this.iterN(this.first, this.first + this.size, from);
+		},
+
+		insert: function(at, lines) {
+			var height = 0;
+			for (var i = 0, e = lines.length; i < e; ++i) height += lines[i].height;
+			this.insertInner(at - this.first, lines, height);
+		},
+		remove: function(at, n) {
+			this.removeInner(at - this.first, n);
+		},
+
+		getValue: function(lineSep) {
+			var lines = getLines(this, this.first, this.first + this.size);
+			if (lineSep === false) return lines;
+			return lines.join(lineSep || "\n");
+		},
+		setValue: function(code) {
+			var top = Pos(this.first, 0),
+				last = this.first + this.size - 1;
+			makeChange(this, {
+				from: top,
+				to: Pos(last, getLine(this, last).text.length),
+				text: splitLines(code),
+				origin: "setValue"
+			}, {
+				head: top,
+				anchor: top
+			}, true);
+		},
+		replaceRange: function(code, from, to, origin) {
+			from = clipPos(this, from);
+			to = to ? clipPos(this, to) : from;
+			replaceRange(this, code, from, to, origin);
+		},
+		getRange: function(from, to, lineSep) {
+			var lines = getBetween(this, clipPos(this, from), clipPos(this, to));
+			if (lineSep === false) return lines;
+			return lines.join(lineSep || "\n");
+		},
+
+		getLine: function(line) {
+			var l = this.getLineHandle(line);
+			return l && l.text;
+		},
+		setLine: function(line, text) {
+			if (isLine(this, line))
+				replaceRange(this, text, Pos(line, 0), clipPos(this, Pos(line)));
+		},
+		removeLine: function(line) {
+			if (line) replaceRange(this, "", clipPos(this, Pos(line - 1)), clipPos(this, Pos(line)));
+			else replaceRange(this, "", Pos(0, 0), clipPos(this, Pos(1, 0)));
+		},
+
+		getLineHandle: function(line) {
+			if (isLine(this, line)) return getLine(this, line);
+		},
+		getLineNumber: function(line) {
+			return lineNo(line);
+		},
+
+		getLineHandleVisualStart: function(line) {
+			if (typeof line == "number") line = getLine(this, line);
+			return visualLine(this, line);
+		},
+
+		lineCount: function() {
+			return this.size;
+		},
+		firstLine: function() {
+			return this.first;
+		},
+		lastLine: function() {
+			return this.first + this.size - 1;
+		},
+
+		clipPos: function(pos) {
+			return clipPos(this, pos);
+		},
+
+		getCursor: function(start) {
+			var sel = this.sel,
+				pos;
+			if (start == null || start == "head") pos = sel.head;
+			else if (start == "anchor") pos = sel.anchor;
+			else if (start == "end" || start === false) pos = sel.to;
+			else pos = sel.from;
+			return copyPos(pos);
+		},
+		somethingSelected: function() {
+			return !posEq(this.sel.head, this.sel.anchor);
+		},
+
+		setCursor: docOperation(function(line, ch, extend) {
+			var pos = clipPos(this, typeof line == "number" ? Pos(line, ch || 0) : line);
+			if (extend) extendSelection(this, pos);
+			else setSelection(this, pos, pos);
+		}),
+		setSelection: docOperation(function(anchor, head) {
+			setSelection(this, clipPos(this, anchor), clipPos(this, head || anchor));
+		}),
+		extendSelection: docOperation(function(from, to) {
+			extendSelection(this, clipPos(this, from), to && clipPos(this, to));
+		}),
+
+		getSelection: function(lineSep) {
+			return this.getRange(this.sel.from, this.sel.to, lineSep);
+		},
+		replaceSelection: function(code, collapse, origin) {
+			makeChange(this, {
+				from: this.sel.from,
+				to: this.sel.to,
+				text: splitLines(code),
+				origin: origin
+			}, collapse || "around");
+		},
+		undo: docOperation(function() {
+			makeChangeFromHistory(this, "undo");
+		}),
+		redo: docOperation(function() {
+			makeChangeFromHistory(this, "redo");
+		}),
+
+		setExtending: function(val) {
+			this.sel.extend = val;
+		},
+
+		historySize: function() {
+			var hist = this.history;
+			return {
+				undo: hist.done.length,
+				redo: hist.undone.length
+			};
+		},
+		clearHistory: function() {
+			this.history = makeHistory(this.history.maxGeneration);
+		},
+
+		markClean: function() {
+			this.cleanGeneration = this.changeGeneration();
+		},
+		changeGeneration: function() {
+			this.history.lastOp = this.history.lastOrigin = null;
+			return this.history.generation;
+		},
+		isClean: function(gen) {
+			return this.history.generation == (gen || this.cleanGeneration);
+		},
+
+		getHistory: function() {
+			return {
+				done: copyHistoryArray(this.history.done),
+				undone: copyHistoryArray(this.history.undone)
+			};
+		},
+		setHistory: function(histData) {
+			var hist = this.history = makeHistory(this.history.maxGeneration);
+			hist.done = histData.done.slice(0);
+			hist.undone = histData.undone.slice(0);
+		},
+
+		markText: function(from, to, options) {
+			return markText(this, clipPos(this, from), clipPos(this, to), options, "range");
+		},
+		setBookmark: function(pos, options) {
+			var realOpts = {
+				replacedWith: options && (options.nodeType == null ? options.widget : options),
+				insertLeft: options && options.insertLeft
+			};
+			pos = clipPos(this, pos);
+			return markText(this, pos, pos, realOpts, "bookmark");
+		},
+		findMarksAt: function(pos) {
+			pos = clipPos(this, pos);
+			var markers = [],
+				spans = getLine(this, pos.line).markedSpans;
+			if (spans)
+				for (var i = 0; i < spans.length; ++i) {
+					var span = spans[i];
+					if ((span.from == null || span.from <= pos.ch) &&
+						(span.to == null || span.to >= pos.ch))
+						markers.push(span.marker.parent || span.marker);
+				}
+			return markers;
+		},
+		getAllMarks: function() {
+			var markers = [];
+			this.iter(function(line) {
+				var sps = line.markedSpans;
+				if (sps)
+					for (var i = 0; i < sps.length; ++i)
+						if (sps[i].from != null) markers.push(sps[i].marker);
+			});
+			return markers;
+		},
+
+		posFromIndex: function(off) {
+			var ch, lineNo = this.first;
+			this.iter(function(line) {
+				var sz = line.text.length + 1;
+				if (sz > off) {
+					ch = off;
+					return true;
+				}
+				off -= sz;
+				++lineNo;
+			});
+			return clipPos(this, Pos(lineNo, ch));
+		},
+		indexFromPos: function(coords) {
+			coords = clipPos(this, coords);
+			var index = coords.ch;
+			if (coords.line < this.first || coords.ch < 0) return 0;
+			this.iter(this.first, coords.line, function(line) {
+				index += line.text.length + 1;
+			});
+			return index;
+		},
+
+		copy: function(copyHistory) {
+			var doc = new Doc(getLines(this, this.first, this.first + this.size), this.modeOption, this.first);
+			doc.scrollTop = this.scrollTop;
+			doc.scrollLeft = this.scrollLeft;
+			doc.sel = {
+				from: this.sel.from,
+				to: this.sel.to,
+				head: this.sel.head,
+				anchor: this.sel.anchor,
+				shift: this.sel.shift,
+				extend: false,
+				goalColumn: this.sel.goalColumn
+			};
+			if (copyHistory) {
+				doc.history.undoDepth = this.history.undoDepth;
+				doc.setHistory(this.getHistory());
+			}
+			return doc;
+		},
+
+		linkedDoc: function(options) {
+			if (!options) options = {};
+			var from = this.first,
+				to = this.first + this.size;
+			if (options.from != null && options.from > from) from = options.from;
+			if (options.to != null && options.to < to) to = options.to;
+			var copy = new Doc(getLines(this, from, to), options.mode || this.modeOption, from);
+			if (options.sharedHist) copy.history = this.history;
+			(this.linked || (this.linked = [])).push({
+				doc: copy,
+				sharedHist: options.sharedHist
+			});
+			copy.linked = [{
+				doc: this,
+				isParent: true,
+				sharedHist: options.sharedHist
+			}];
+			return copy;
+		},
+		unlinkDoc: function(other) {
+			if (other instanceof CodeMirror) other = other.doc;
+			if (this.linked)
+				for (var i = 0; i < this.linked.length; ++i) {
+					var link = this.linked[i];
+					if (link.doc != other) continue;
+					this.linked.splice(i, 1);
+					other.unlinkDoc(this);
+					break;
+				}
+				// If the histories were shared, split them again
+			if (other.history == this.history) {
+				var splitIds = [other.id];
+				linkedDocs(other, function(doc) {
+					splitIds.push(doc.id);
+				}, true);
+				other.history = makeHistory();
+				other.history.done = copyHistoryArray(this.history.done, splitIds);
+				other.history.undone = copyHistoryArray(this.history.undone, splitIds);
+			}
+		},
+		iterLinkedDocs: function(f) {
+			linkedDocs(this, f);
+		},
+
+		getMode: function() {
+			return this.mode;
+		},
+		getEditor: function() {
+			return this.cm;
+		}
+	});
+
+	Doc.prototype.eachLine = Doc.prototype.iter;
+
+	// The Doc methods that should be available on CodeMirror instances
+	var dontDelegate = "iter insert remove copy getEditor".split(" ");
+	for (var prop in Doc.prototype)
+		if (Doc.prototype.hasOwnProperty(prop) && indexOf(dontDelegate, prop) < 0)
+			CodeMirror.prototype[prop] = (function(method) {
+				return function() {
+					return method.apply(this.doc, arguments);
+				};
+			})(Doc.prototype[prop]);
+
+	eventMixin(Doc);
+
+	function linkedDocs(doc, f, sharedHistOnly) {
+		function propagate(doc, skip, sharedHist) {
+			if (doc.linked)
+				for (var i = 0; i < doc.linked.length; ++i) {
+					var rel = doc.linked[i];
+					if (rel.doc == skip) continue;
+					var shared = sharedHist && rel.sharedHist;
+					if (sharedHistOnly && !shared) continue;
+					f(rel.doc, shared);
+					propagate(rel.doc, doc, shared);
+				}
+		}
+		propagate(doc, null, true);
+	}
+
+	function attachDoc(cm, doc) {
+		if (doc.cm) throw new Error("This document is already in use.");
+		cm.doc = doc;
+		doc.cm = cm;
+		estimateLineHeights(cm);
+		loadMode(cm);
+		if (!cm.options.lineWrapping) computeMaxLength(cm);
+		cm.options.mode = doc.modeOption;
+		regChange(cm);
+	}
+
+	// LINE UTILITIES
+
+	function getLine(chunk, n) {
+		n -= chunk.first;
+		while (!chunk.lines) {
+			for (var i = 0;; ++i) {
+				var child = chunk.children[i],
+					sz = child.chunkSize();
+				if (n < sz) {
+					chunk = child;
+					break;
+				}
+				n -= sz;
+			}
+		}
+		return chunk.lines[n];
+	}
+
+	function getBetween(doc, start, end) {
+		var out = [],
+			n = start.line;
+		doc.iter(start.line, end.line + 1, function(line) {
+			var text = line.text;
+			if (n == end.line) text = text.slice(0, end.ch);
+			if (n == start.line) text = text.slice(start.ch);
+			out.push(text);
+			++n;
+		});
+		return out;
+	}
+
+	function getLines(doc, from, to) {
+		var out = [];
+		doc.iter(from, to, function(line) {
+			out.push(line.text);
+		});
+		return out;
+	}
+
+	function updateLineHeight(line, height) {
+		var diff = height - line.height;
+		for (var n = line; n; n = n.parent) n.height += diff;
+	}
+
+	function lineNo(line) {
+		if (line.parent == null) return null;
+		var cur = line.parent,
+			no = indexOf(cur.lines, line);
+		for (var chunk = cur.parent; chunk; cur = chunk, chunk = chunk.parent) {
+			for (var i = 0;; ++i) {
+				if (chunk.children[i] == cur) break;
+				no += chunk.children[i].chunkSize();
+			}
+		}
+		return no + cur.first;
+	}
+
+	function lineAtHeight(chunk, h) {
+		var n = chunk.first;
+		outer: do {
+			for (var i = 0, e = chunk.children.length; i < e; ++i) {
+				var child = chunk.children[i],
+					ch = child.height;
+				if (h < ch) {
+					chunk = child;
+					continue outer;
+				}
+				h -= ch;
+				n += child.chunkSize();
+			}
+			return n;
+		} while (!chunk.lines);
+		for (var i = 0, e = chunk.lines.length; i < e; ++i) {
+			var line = chunk.lines[i],
+				lh = line.height;
+			if (h < lh) break;
+			h -= lh;
+		}
+		return n + i;
+	}
+
+	function heightAtLine(cm, lineObj) {
+		lineObj = visualLine(cm.doc, lineObj);
+
+		var h = 0,
+			chunk = lineObj.parent;
+		for (var i = 0; i < chunk.lines.length; ++i) {
+			var line = chunk.lines[i];
+			if (line == lineObj) break;
+			else h += line.height;
+		}
+		for (var p = chunk.parent; p; chunk = p, p = chunk.parent) {
+			for (var i = 0; i < p.children.length; ++i) {
+				var cur = p.children[i];
+				if (cur == chunk) break;
+				else h += cur.height;
+			}
+		}
+		return h;
+	}
+
+	function getOrder(line) {
+		var order = line.order;
+		if (order == null) order = line.order = bidiOrdering(line.text);
+		return order;
+	}
+
+	// HISTORY
+
+	function makeHistory(startGen) {
+		return {
+			// Arrays of history events. Doing something adds an event to
+			// done and clears undo. Undoing moves events from done to
+			// undone, redoing moves them in the other direction.
+			done: [],
+			undone: [],
+			undoDepth: Infinity,
+			// Used to track when changes can be merged into a single undo
+			// event
+			lastTime: 0,
+			lastOp: null,
+			lastOrigin: null,
+			// Used by the isClean() method
+			generation: startGen || 1,
+			maxGeneration: startGen || 1
+		};
+	}
+
+	function attachLocalSpans(doc, change, from, to) {
+		var existing = change["spans_" + doc.id],
+			n = 0;
+		doc.iter(Math.max(doc.first, from), Math.min(doc.first + doc.size, to), function(line) {
+			if (line.markedSpans)
+				(existing || (existing = change["spans_" + doc.id] = {}))[n] = line.markedSpans;
+			++n;
+		});
+	}
+
+	function historyChangeFromChange(doc, change) {
+		var from = {
+			line: change.from.line,
+			ch: change.from.ch
+		};
+		var histChange = {
+			from: from,
+			to: changeEnd(change),
+			text: getBetween(doc, change.from, change.to)
+		};
+		attachLocalSpans(doc, histChange, change.from.line, change.to.line + 1);
+		linkedDocs(doc, function(doc) {
+			attachLocalSpans(doc, histChange, change.from.line, change.to.line + 1);
+		}, true);
+		return histChange;
+	}
+
+	function addToHistory(doc, change, selAfter, opId) {
+		var hist = doc.history;
+		hist.undone.length = 0;
+		var time = +new Date,
+			cur = lst(hist.done);
+
+		if (cur &&
+			(hist.lastOp == opId ||
+				hist.lastOrigin == change.origin && change.origin &&
+				((change.origin.charAt(0) == "+" && doc.cm && hist.lastTime > time - doc.cm.options.historyEventDelay) ||
+					change.origin.charAt(0) == "*"))) {
+			// Merge this change into the last event
+			var last = lst(cur.changes);
+			if (posEq(change.from, change.to) && posEq(change.from, last.to)) {
+				// Optimized case for simple insertion -- don't want to add
+				// new changesets for every character typed
+				last.to = changeEnd(change);
+			} else {
+				// Add new sub-event
+				cur.changes.push(historyChangeFromChange(doc, change));
+			}
+			cur.anchorAfter = selAfter.anchor;
+			cur.headAfter = selAfter.head;
+		} else {
+			// Can not be merged, start a new event.
+			cur = {
+				changes: [historyChangeFromChange(doc, change)],
+				generation: hist.generation,
+				anchorBefore: doc.sel.anchor,
+				headBefore: doc.sel.head,
+				anchorAfter: selAfter.anchor,
+				headAfter: selAfter.head
+			};
+			hist.done.push(cur);
+			hist.generation = ++hist.maxGeneration;
+			while (hist.done.length > hist.undoDepth)
+				hist.done.shift();
+		}
+		hist.lastTime = time;
+		hist.lastOp = opId;
+		hist.lastOrigin = change.origin;
+	}
+
+	function removeClearedSpans(spans) {
+		if (!spans) return null;
+		for (var i = 0, out; i < spans.length; ++i) {
+			if (spans[i].marker.explicitlyCleared) {
+				if (!out) out = spans.slice(0, i);
+			} else if (out) out.push(spans[i]);
+		}
+		return !out ? spans : out.length ? out : null;
+	}
+
+	function getOldSpans(doc, change) {
+		var found = change["spans_" + doc.id];
+		if (!found) return null;
+		for (var i = 0, nw = []; i < change.text.length; ++i)
+			nw.push(removeClearedSpans(found[i]));
+		return nw;
+	}
+
+	// Used both to provide a JSON-safe object in .getHistory, and, when
+	// detaching a document, to split the history in two
+	function copyHistoryArray(events, newGroup) {
+		for (var i = 0, copy = []; i < events.length; ++i) {
+			var event = events[i],
+				changes = event.changes,
+				newChanges = [];
+			copy.push({
+				changes: newChanges,
+				anchorBefore: event.anchorBefore,
+				headBefore: event.headBefore,
+				anchorAfter: event.anchorAfter,
+				headAfter: event.headAfter
+			});
+			for (var j = 0; j < changes.length; ++j) {
+				var change = changes[j],
+					m;
+				newChanges.push({
+					from: change.from,
+					to: change.to,
+					text: change.text
+				});
+				if (newGroup)
+					for (var prop in change)
+						if (m = prop.match(/^spans_(\d+)$/)) {
+							if (indexOf(newGroup, Number(m[1])) > -1) {
+								lst(newChanges)[prop] = change[prop];
+								delete change[prop];
+							}
+						}
+			}
+		}
+		return copy;
+	}
+
+	// Rebasing/resetting history to deal with externally-sourced changes
+
+	function rebaseHistSel(pos, from, to, diff) {
+		if (to < pos.line) {
+			pos.line += diff;
+		} else if (from < pos.line) {
+			pos.line = from;
+			pos.ch = 0;
+		}
+	}
+
+	// Tries to rebase an array of history events given a change in the
+	// document. If the change touches the same lines as the event, the
+	// event, and everything 'behind' it, is discarded. If the change is
+	// before the event, the event's positions are updated. Uses a
+	// copy-on-write scheme for the positions, to avoid having to
+	// reallocate them all on every rebase, but also avoid problems with
+	// shared position objects being unsafely updated.
+	function rebaseHistArray(array, from, to, diff) {
+		for (var i = 0; i < array.length; ++i) {
+			var sub = array[i],
+				ok = true;
+			for (var j = 0; j < sub.changes.length; ++j) {
+				var cur = sub.changes[j];
+				if (!sub.copied) {
+					cur.from = copyPos(cur.from);
+					cur.to = copyPos(cur.to);
+				}
+				if (to < cur.from.line) {
+					cur.from.line += diff;
+					cur.to.line += diff;
+				} else if (from <= cur.to.line) {
+					ok = false;
+					break;
+				}
+			}
+			if (!sub.copied) {
+				sub.anchorBefore = copyPos(sub.anchorBefore);
+				sub.headBefore = copyPos(sub.headBefore);
+				sub.anchorAfter = copyPos(sub.anchorAfter);
+				sub.readAfter = copyPos(sub.headAfter);
+				sub.copied = true;
+			}
+			if (!ok) {
+				array.splice(0, i + 1);
+				i = 0;
+			} else {
+				rebaseHistSel(sub.anchorBefore);
+				rebaseHistSel(sub.headBefore);
+				rebaseHistSel(sub.anchorAfter);
+				rebaseHistSel(sub.headAfter);
+			}
+		}
+	}
+
+	function rebaseHist(hist, change) {
+		var from = change.from.line,
+			to = change.to.line,
+			diff = change.text.length - (to - from) - 1;
+		rebaseHistArray(hist.done, from, to, diff);
+		rebaseHistArray(hist.undone, from, to, diff);
+	}
+
+	// EVENT OPERATORS
+
+	function stopMethod() {
+		e_stop(this);
+	}
+	// Ensure an event has a stop method.
+	function addStop(event) {
+		if (!event.stop) event.stop = stopMethod;
+		return event;
+	}
+
+	function e_preventDefault(e) {
+		if (e.preventDefault) e.preventDefault();
+		else e.returnValue = false;
+	}
+
+	function e_stopPropagation(e) {
+		if (e.stopPropagation) e.stopPropagation();
+		else e.cancelBubble = true;
+	}
+
+	function e_defaultPrevented(e) {
+		return e.defaultPrevented != null ? e.defaultPrevented : e.returnValue == false;
+	}
+
+	function e_stop(e) {
+		e_preventDefault(e);
+		e_stopPropagation(e);
+	}
+	CodeMirror.e_stop = e_stop;
+	CodeMirror.e_preventDefault = e_preventDefault;
+	CodeMirror.e_stopPropagation = e_stopPropagation;
+
+	function e_target(e) {
+		return e.target || e.srcElement;
+	}
+
+	function e_button(e) {
+		var b = e.which;
+		if (b == null) {
+			if (e.button & 1) b = 1;
+			else if (e.button & 2) b = 3;
+			else if (e.button & 4) b = 2;
+		}
+		if (mac && e.ctrlKey && b == 1) b = 3;
+		return b;
+	}
+
+	// EVENT HANDLING
+
+	function on(emitter, type, f) {
+		if (emitter.addEventListener)
+			emitter.addEventListener(type, f, false);
+		else if (emitter.attachEvent)
+			emitter.attachEvent("on" + type, f);
+		else {
+			var map = emitter._handlers || (emitter._handlers = {});
+			var arr = map[type] || (map[type] = []);
+			arr.push(f);
+		}
+	}
+
+	function off(emitter, type, f) {
+		if (emitter.removeEventListener)
+			emitter.removeEventListener(type, f, false);
+		else if (emitter.detachEvent)
+			emitter.detachEvent("on" + type, f);
+		else {
+			var arr = emitter._handlers && emitter._handlers[type];
+			if (!arr) return;
+			for (var i = 0; i < arr.length; ++i)
+				if (arr[i] == f) {
+					arr.splice(i, 1);
+					break;
+				}
+		}
+	}
+
+	function signal(emitter, type /*, values...*/ ) {
+		var arr = emitter._handlers && emitter._handlers[type];
+		if (!arr) return;
+		var args = Array.prototype.slice.call(arguments, 2);
+		for (var i = 0; i < arr.length; ++i) arr[i].apply(null, args);
+	}
+
+	var delayedCallbacks, delayedCallbackDepth = 0;
+
+	function signalLater(emitter, type /*, values...*/ ) {
+		var arr = emitter._handlers && emitter._handlers[type];
+		if (!arr) return;
+		var args = Array.prototype.slice.call(arguments, 2);
+		if (!delayedCallbacks) {
+			++delayedCallbackDepth;
+			delayedCallbacks = [];
+			setTimeout(fireDelayed, 0);
+		}
+
+		function bnd(f) {
+			return function() {
+				f.apply(null, args);
+			};
+		};
+		for (var i = 0; i < arr.length; ++i)
+			delayedCallbacks.push(bnd(arr[i]));
+	}
+
+	function signalDOMEvent(cm, e, override) {
+		signal(cm, override || e.type, cm, e);
+		return e_defaultPrevented(e) || e.codemirrorIgnore;
+	}
+
+	function fireDelayed() {
+		--delayedCallbackDepth;
+		var delayed = delayedCallbacks;
+		delayedCallbacks = null;
+		for (var i = 0; i < delayed.length; ++i) delayed[i]();
+	}
+
+	function hasHandler(emitter, type) {
+		var arr = emitter._handlers && emitter._handlers[type];
+		return arr && arr.length > 0;
+	}
+
+	CodeMirror.on = on;
+	CodeMirror.off = off;
+	CodeMirror.signal = signal;
+
+	function eventMixin(ctor) {
+		ctor.prototype.on = function(type, f) {
+			on(this, type, f);
+		};
+		ctor.prototype.off = function(type, f) {
+			off(this, type, f);
+		};
+	}
+
+	// MISC UTILITIES
+
+	// Number of pixels added to scroller and sizer to hide scrollbar
+	var scrollerCutOff = 30;
+
+	// Returned or thrown by various protocols to signal 'I'm not
+	// handling this'.
+	var Pass = CodeMirror.Pass = {
+		toString: function() {
+			return "CodeMirror.Pass";
+		}
+	};
+
+	function Delayed() {
+		this.id = null;
+	}
+	Delayed.prototype = {
+		set: function(ms, f) {
+			clearTimeout(this.id);
+			this.id = setTimeout(f, ms);
+		}
+	};
+
+	// Counts the column offset in a string, taking tabs into account.
+	// Used mostly to find indentation.
+	function countColumn(string, end, tabSize, startIndex, startValue) {
+		if (end == null) {
+			end = string.search(/[^\s\u00a0]/);
+			if (end == -1) end = string.length;
+		}
+		for (var i = startIndex || 0, n = startValue || 0; i < end; ++i) {
+			if (string.charAt(i) == "\t") n += tabSize - (n % tabSize);
+			else ++n;
+		}
+		return n;
+	}
+	CodeMirror.countColumn = countColumn;
+
+	var spaceStrs = [""];
+
+	function spaceStr(n) {
+		while (spaceStrs.length <= n)
+			spaceStrs.push(lst(spaceStrs) + " ");
+		return spaceStrs[n];
+	}
+
+	function lst(arr) {
+		return arr[arr.length - 1];
+	}
+
+	function selectInput(node) {
+		if (ios) { // Mobile Safari apparently has a bug where select() is broken.
+			node.selectionStart = 0;
+			node.selectionEnd = node.value.length;
+		} else {
+			// Suppress mysterious IE10 errors
+			try {
+				node.select();
+			} catch (_e) {}
+		}
+	}
+
+	function indexOf(collection, elt) {
+		if (collection.indexOf) return collection.indexOf(elt);
+		for (var i = 0, e = collection.length; i < e; ++i)
+			if (collection[i] == elt) return i;
+		return -1;
+	}
+
+	function createObj(base, props) {
+		function Obj() {}
+		Obj.prototype = base;
+		var inst = new Obj();
+		if (props) copyObj(props, inst);
+		return inst;
+	}
+
+	function copyObj(obj, target) {
+		if (!target) target = {};
+		for (var prop in obj)
+			if (obj.hasOwnProperty(prop)) target[prop] = obj[prop];
+		return target;
+	}
+
+	function emptyArray(size) {
+		for (var a = [], i = 0; i < size; ++i) a.push(undefined);
+		return a;
+	}
+
+	function bind(f) {
+		var args = Array.prototype.slice.call(arguments, 1);
+		return function() {
+			return f.apply(null, args);
+		};
+	}
+
+	var nonASCIISingleCaseWordChar = /[\u3040-\u309f\u30a0-\u30ff\u3400-\u4db5\u4e00-\u9fcc\uac00-\ud7af]/;
+
+	function isWordChar(ch) {
+		return /\w/.test(ch) || ch > "\x80" &&
+			(ch.toUpperCase() != ch.toLowerCase() || nonASCIISingleCaseWordChar.test(ch));
+	}
+
+	function isEmpty(obj) {
+		for (var n in obj)
+			if (obj.hasOwnProperty(n) && obj[n]) return false;
+		return true;
+	}
+
+	var isExtendingChar = /[\u0300-\u036F\u0483-\u0487\u0488-\u0489\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06DC\u06DF-\u06E4\u06E7-\u06E8\u06EA-\u06ED\uA66F\uA670-\uA672\uA674-\uA67D\uA69F\udc00-\udfff]/;
+
+	// DOM UTILITIES
+
+	function elt(tag, content, className, style) {
+		var e = document.createElement(tag);
+		if (className) e.className = className;
+		if (style) e.style.cssText = style;
+		if (typeof content == "string") setTextContent(e, content);
+		else if (content)
+			for (var i = 0; i < content.length; ++i) e.appendChild(content[i]);
+		return e;
+	}
+
+	function removeChildren(e) {
+		for (var count = e.childNodes.length; count > 0; --count)
+			e.removeChild(e.firstChild);
+		return e;
+	}
+
+	function removeChildrenAndAdd(parent, e) {
+		return removeChildren(parent).appendChild(e);
+	}
+
+	function setTextContent(e, str) {
+		if (ie_lt9) {
+			e.innerHTML = "";
+			e.appendChild(document.createTextNode(str));
+		} else e.textContent = str;
+	}
+
+	function getRect(node) {
+		return node.getBoundingClientRect();
+	}
+	CodeMirror.replaceGetRect = function(f) {
+		getRect = f;
+	};
+
+	// FEATURE DETECTION
+
+	// Detect drag-and-drop
+	var dragAndDrop = function() {
+		// There is *some* kind of drag-and-drop support in IE6-8, but I
+		// couldn't get it to work yet.
+		if (ie_lt9) return false;
+		var div = elt('div');
+		return "draggable" in div || "dragDrop" in div;
+	}();
+
+	// For a reason I have yet to figure out, some browsers disallow
+	// word wrapping between certain characters *only* if a new inline
+	// element is started between them. This makes it hard to reliably
+	// measure the position of things, since that requires inserting an
+	// extra span. This terribly fragile set of tests matches the
+	// character combinations that suffer from this phenomenon on the
+	// various browsers.
+	function spanAffectsWrapping() {
+		return false;
+	}
+	if (gecko) // Only for "$'"
+		spanAffectsWrapping = function(str, i) {
+		return str.charCodeAt(i - 1) == 36 && str.charCodeAt(i) == 39;
+	};
+	else if (safari && !/Version\/([6-9]|\d\d)\b/.test(navigator.userAgent))
+		spanAffectsWrapping = function(str, i) {
+			return /\-[^ \-?]|\?[^ !\'\"\),.\-\/:;\?\]\}]/.test(str.slice(i - 1, i + 1));
+		};
+	else if (webkit && !/Chrome\/(?:29|[3-9]\d|\d\d\d)\./.test(navigator.userAgent))
+		spanAffectsWrapping = function(str, i) {
+			if (i > 1 && str.charCodeAt(i - 1) == 45) {
+				if (/\w/.test(str.charAt(i - 2)) && /[^\-?\.]/.test(str.charAt(i))) return true;
+				if (i > 2 && /[\d\.,]/.test(str.charAt(i - 2)) && /[\d\.,]/.test(str.charAt(i))) return false;
+			}
+			return /[~!#%&*)=+}\]|\"\.>,:;][({[<]|-[^\-?\.\u2010-\u201f\u2026]|\?[\w~`@#$%\^&*(_=+{[|><]|…[\w~`@#$%\^&*(_=+{[><]/.test(str.slice(i - 1, i + 1));
+		};
+
+	var knownScrollbarWidth;
+
+	function scrollbarWidth(measure) {
+		if (knownScrollbarWidth != null) return knownScrollbarWidth;
+		var test = elt("div", null, null, "width: 50px; height: 50px; overflow-x: scroll");
+		removeChildrenAndAdd(measure, test);
+		if (test.offsetWidth)
+			knownScrollbarWidth = test.offsetHeight - test.clientHeight;
+		return knownScrollbarWidth || 0;
+	}
+
+	var zwspSupported;
+
+	function zeroWidthElement(measure) {
+		if (zwspSupported == null) {
+			var test = elt("span", "\u200b");
+			removeChildrenAndAdd(measure, elt("span", [test, document.createTextNode("x")]));
+			if (measure.firstChild.offsetHeight != 0)
+				zwspSupported = test.offsetWidth <= 1 && test.offsetHeight > 2 && !ie_lt8;
+		}
+		if (zwspSupported) return elt("span", "\u200b");
+		else return elt("span", "\u00a0", null, "display: inline-block; width: 1px; margin-right: -1px");
+	}
+
+	// See if "".split is the broken IE version, if so, provide an
+	// alternative way to split lines.
+	var splitLines = "\n\nb".split(/\n/).length != 3 ? function(string) {
+		var pos = 0,
+			result = [],
+			l = string.length;
+		while (pos <= l) {
+			var nl = string.indexOf("\n", pos);
+			if (nl == -1) nl = string.length;
+			var line = string.slice(pos, string.charAt(nl - 1) == "\r" ? nl - 1 : nl);
+			var rt = line.indexOf("\r");
+			if (rt != -1) {
+				result.push(line.slice(0, rt));
+				pos += rt + 1;
+			} else {
+				result.push(line);
+				pos = nl + 1;
+			}
+		}
+		return result;
+	} : function(string) {
+		return string.split(/\r\n?|\n/);
+	};
+	CodeMirror.splitLines = splitLines;
+
+	var hasSelection = window.getSelection ? function(te) {
+		try {
+			return te.selectionStart != te.selectionEnd;
+		} catch (e) {
+			return false;
+		}
+	} : function(te) {
+		try {
+			var range = te.ownerDocument.selection.createRange();
+		} catch (e) {}
+		if (!range || range.parentElement() != te) return false;
+		return range.compareEndPoints("StartToEnd", range) != 0;
+	};
+
+	var hasCopyEvent = (function() {
+		var e = elt("div");
+		if ("oncopy" in e) return true;
+		e.setAttribute("oncopy", "return;");
+		return typeof e.oncopy == 'function';
+	})();
+
+	// KEY NAMING
+
+	var keyNames = {
+		3: "Enter",
+		8: "Backspace",
+		9: "Tab",
+		13: "Enter",
+		16: "Shift",
+		17: "Ctrl",
+		18: "Alt",
+		19: "Pause",
+		20: "CapsLock",
+		27: "Esc",
+		32: "Space",
+		33: "PageUp",
+		34: "PageDown",
+		35: "End",
+		36: "Home",
+		37: "Left",
+		38: "Up",
+		39: "Right",
+		40: "Down",
+		44: "PrintScrn",
+		45: "Insert",
+		46: "Delete",
+		59: ";",
+		91: "Mod",
+		92: "Mod",
+		93: "Mod",
+		109: "-",
+		107: "=",
+		127: "Delete",
+		186: ";",
+		187: "=",
+		188: ",",
+		189: "-",
+		190: ".",
+		191: "/",
+		192: "`",
+		219: "[",
+		220: "\\",
+		221: "]",
+		222: "'",
+		63276: "PageUp",
+		63277: "PageDown",
+		63275: "End",
+		63273: "Home",
+		63234: "Left",
+		63232: "Up",
+		63235: "Right",
+		63233: "Down",
+		63302: "Insert",
+		63272: "Delete"
+	};
+	CodeMirror.keyNames = keyNames;
+	(function() {
+		// Number keys
+		for (var i = 0; i < 10; i++) keyNames[i + 48] = String(i);
+		// Alphabetic keys
+		for (var i = 65; i <= 90; i++) keyNames[i] = String.fromCharCode(i);
+		// Function keys
+		for (var i = 1; i <= 12; i++) keyNames[i + 111] = keyNames[i + 63235] = "F" + i;
+	})();
+
+	// BIDI HELPERS
+
+	function iterateBidiSections(order, from, to, f) {
+		if (!order) return f(from, to, "ltr");
+		var found = false;
+		for (var i = 0; i < order.length; ++i) {
+			var part = order[i];
+			if (part.from < to && part.to > from || from == to && part.to == from) {
+				f(Math.max(part.from, from), Math.min(part.to, to), part.level == 1 ? "rtl" : "ltr");
+				found = true;
+			}
+		}
+		if (!found) f(from, to, "ltr");
+	}
+
+	function bidiLeft(part) {
+		return part.level % 2 ? part.to : part.from;
+	}
+
+	function bidiRight(part) {
+		return part.level % 2 ? part.from : part.to;
+	}
+
+	function lineLeft(line) {
+		var order = getOrder(line);
+		return order ? bidiLeft(order[0]) : 0;
+	}
+
+	function lineRight(line) {
+		var order = getOrder(line);
+		if (!order) return line.text.length;
+		return bidiRight(lst(order));
+	}
+
+	function lineStart(cm, lineN) {
+		var line = getLine(cm.doc, lineN);
+		var visual = visualLine(cm.doc, line);
+		if (visual != line) lineN = lineNo(visual);
+		var order = getOrder(visual);
+		var ch = !order ? 0 : order[0].level % 2 ? lineRight(visual) : lineLeft(visual);
+		return Pos(lineN, ch);
+	}
+
+	function lineEnd(cm, lineN) {
+		var merged, line;
+		while (merged = collapsedSpanAtEnd(line = getLine(cm.doc, lineN)))
+			lineN = merged.find().to.line;
+		var order = getOrder(line);
+		var ch = !order ? line.text.length : order[0].level % 2 ? lineLeft(line) : lineRight(line);
+		return Pos(lineN, ch);
+	}
+
+	function compareBidiLevel(order, a, b) {
+		var linedir = order[0].level;
+		if (a == linedir) return true;
+		if (b == linedir) return false;
+		return a < b;
+	}
+	var bidiOther;
+
+	function getBidiPartAt(order, pos) {
+		for (var i = 0, found; i < order.length; ++i) {
+			var cur = order[i];
+			if (cur.from < pos && cur.to > pos) {
+				bidiOther = null;
+				return i;
+			}
+			if (cur.from == pos || cur.to == pos) {
+				if (found == null) {
+					found = i;
+				} else if (compareBidiLevel(order, cur.level, order[found].level)) {
+					bidiOther = found;
+					return i;
+				} else {
+					bidiOther = i;
+					return found;
+				}
+			}
+		}
+		bidiOther = null;
+		return found;
+	}
+
+	function moveInLine(line, pos, dir, byUnit) {
+		if (!byUnit) return pos + dir;
+		do pos += dir;
+		while (pos > 0 && isExtendingChar.test(line.text.charAt(pos)));
+		return pos;
+	}
+
+	// This is somewhat involved. It is needed in order to move
+	// 'visually' through bi-directional text -- i.e., pressing left
+	// should make the cursor go left, even when in RTL text. The
+	// tricky part is the 'jumps', where RTL and LTR text touch each
+	// other. This often requires the cursor offset to move more than
+	// one unit, in order to visually move one unit.
+	function moveVisually(line, start, dir, byUnit) {
+		var bidi = getOrder(line);
+		if (!bidi) return moveLogically(line, start, dir, byUnit);
+		var pos = getBidiPartAt(bidi, start),
+			part = bidi[pos];
+		var target = moveInLine(line, start, part.level % 2 ? -dir : dir, byUnit);
+
+		for (;;) {
+			if (target > part.from && target < part.to) return target;
+			if (target == part.from || target == part.to) {
+				if (getBidiPartAt(bidi, target) == pos) return target;
+				part = bidi[pos += dir];
+				return (dir > 0) == part.level % 2 ? part.to : part.from;
+			} else {
+				part = bidi[pos += dir];
+				if (!part) return null;
+				if ((dir > 0) == part.level % 2)
+					target = moveInLine(line, part.to, -1, byUnit);
+				else
+					target = moveInLine(line, part.from, 1, byUnit);
+			}
+		}
+	}
+
+	function moveLogically(line, start, dir, byUnit) {
+		var target = start + dir;
+		if (byUnit)
+			while (target > 0 && isExtendingChar.test(line.text.charAt(target))) target += dir;
+		return target < 0 || target > line.text.length ? null : target;
+	}
+
+	// Bidirectional ordering algorithm
+	// See http://unicode.org/reports/tr9/tr9-13.html for the algorithm
+	// that this (partially) implements.
+
+	// One-char codes used for character types:
+	// L (L):   Left-to-Right
+	// R (R):   Right-to-Left
+	// r (AL):  Right-to-Left Arabic
+	// 1 (EN):  European Number
+	// + (ES):  European Number Separator
+	// % (ET):  European Number Terminator
+	// n (AN):  Arabic Number
+	// , (CS):  Common Number Separator
+	// m (NSM): Non-Spacing Mark
+	// b (BN):  Boundary Neutral
+	// s (B):   Paragraph Separator
+	// t (S):   Segment Separator
+	// w (WS):  Whitespace
+	// N (ON):  Other Neutrals
+
+	// Returns null if characters are ordered as they appear
+	// (left-to-right), or an array of sections ({from, to, level}
+	// objects) in the order in which they occur visually.
+	var bidiOrdering = (function() {
+		// Character types for codepoints 0 to 0xff
+		var lowTypes = "bbbbbbbbbtstwsbbbbbbbbbbbbbbssstwNN%%%NNNNNN,N,N1111111111NNNNNNNLLLLLLLLLLLLLLLLLLLLLLLLLLNNNNNNLLLLLLLLLLLLLLLLLLLLLLLLLLNNNNbbbbbbsbbbbbbbbbbbbbbbbbbbbbbbbbb,N%%%%NNNNLNNNNN%%11NLNNN1LNNNNNLLLLLLLLLLLLLLLLLLLLLLLNLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLNLLLLLLLL";
+		// Character types for codepoints 0x600 to 0x6ff
+		var arabicTypes = "rrrrrrrrrrrr,rNNmmmmmmrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrmmmmmmmmmmmmmmrrrrrrrnnnnnnnnnn%nnrrrmrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrmmmmmmmmmmmmmmmmmmmNmmmmrrrrrrrrrrrrrrrrrr";
+
+		function charType(code) {
+			if (code <= 0xff) return lowTypes.charAt(code);
+			else if (0x590 <= code && code <= 0x5f4) return "R";
+			else if (0x600 <= code && code <= 0x6ff) return arabicTypes.charAt(code - 0x600);
+			else if (0x700 <= code && code <= 0x8ac) return "r";
+			else return "L";
+		}
+
+		var bidiRE = /[\u0590-\u05f4\u0600-\u06ff\u0700-\u08ac]/;
+		var isNeutral = /[stwN]/,
+			isStrong = /[LRr]/,
+			countsAsLeft = /[Lb1n]/,
+			countsAsNum = /[1n]/;
+		// Browsers seem to always treat the boundaries of block elements as being L.
+		var outerType = "L";
+
+		return function(str) {
+			if (!bidiRE.test(str)) return false;
+			var len = str.length,
+				types = [];
+			for (var i = 0, type; i < len; ++i)
+				types.push(type = charType(str.charCodeAt(i)));
+
+			// W1. Examine each non-spacing mark (NSM) in the level run, and
+			// change the type of the NSM to the type of the previous
+			// character. If the NSM is at the start of the level run, it will
+			// get the type of sor.
+			for (var i = 0, prev = outerType; i < len; ++i) {
+				var type = types[i];
+				if (type == "m") types[i] = prev;
+				else prev = type;
+			}
+
+			// W2. Search backwards from each instance of a European number
+			// until the first strong type (R, L, AL, or sor) is found. If an
+			// AL is found, change the type of the European number to Arabic
+			// number.
+			// W3. Change all ALs to R.
+			for (var i = 0, cur = outerType; i < len; ++i) {
+				var type = types[i];
+				if (type == "1" && cur == "r") types[i] = "n";
+				else if (isStrong.test(type)) {
+					cur = type;
+					if (type == "r") types[i] = "R";
+				}
+			}
+
+			// W4. A single European separator between two European numbers
+			// changes to a European number. A single common separator between
+			// two numbers of the same type changes to that type.
+			for (var i = 1, prev = types[0]; i < len - 1; ++i) {
+				var type = types[i];
+				if (type == "+" && prev == "1" && types[i + 1] == "1") types[i] = "1";
+				else if (type == "," && prev == types[i + 1] &&
+					(prev == "1" || prev == "n")) types[i] = prev;
+				prev = type;
+			}
+
+			// W5. A sequence of European terminators adjacent to European
+			// numbers changes to all European numbers.
+			// W6. Otherwise, separators and terminators change to Other
+			// Neutral.
+			for (var i = 0; i < len; ++i) {
+				var type = types[i];
+				if (type == ",") types[i] = "N";
+				else if (type == "%") {
+					for (var end = i + 1; end < len && types[end] == "%"; ++end) {}
+					var replace = (i && types[i - 1] == "!") || (end < len - 1 && types[end] == "1") ? "1" : "N";
+					for (var j = i; j < end; ++j) types[j] = replace;
+					i = end - 1;
+				}
+			}
+
+			// W7. Search backwards from each instance of a European number
+			// until the first strong type (R, L, or sor) is found. If an L is
+			// found, then change the type of the European number to L.
+			for (var i = 0, cur = outerType; i < len; ++i) {
+				var type = types[i];
+				if (cur == "L" && type == "1") types[i] = "L";
+				else if (isStrong.test(type)) cur = type;
+			}
+
+			// N1. A sequence of neutrals takes the direction of the
+			// surrounding strong text if the text on both sides has the same
+			// direction. European and Arabic numbers act as if they were R in
+			// terms of their influence on neutrals. Start-of-level-run (sor)
+			// and end-of-level-run (eor) are used at level run boundaries.
+			// N2. Any remaining neutrals take the embedding direction.
+			for (var i = 0; i < len; ++i) {
+				if (isNeutral.test(types[i])) {
+					for (var end = i + 1; end < len && isNeutral.test(types[end]); ++end) {}
+					var before = (i ? types[i - 1] : outerType) == "L";
+					var after = (end < len - 1 ? types[end] : outerType) == "L";
+					var replace = before || after ? "L" : "R";
+					for (var j = i; j < end; ++j) types[j] = replace;
+					i = end - 1;
+				}
+			}
+
+			// Here we depart from the documented algorithm, in order to avoid
+			// building up an actual levels array. Since there are only three
+			// levels (0, 1, 2) in an implementation that doesn't take
+			// explicit embedding into account, we can build up the order on
+			// the fly, without following the level-based algorithm.
+			var order = [],
+				m;
+			for (var i = 0; i < len;) {
+				if (countsAsLeft.test(types[i])) {
+					var start = i;
+					for (++i; i < len && countsAsLeft.test(types[i]); ++i) {}
+					order.push({
+						from: start,
+						to: i,
+						level: 0
+					});
+				} else {
+					var pos = i,
+						at = order.length;
+					for (++i; i < len && types[i] != "L"; ++i) {}
+					for (var j = pos; j < i;) {
+						if (countsAsNum.test(types[j])) {
+							if (pos < j) order.splice(at, 0, {
+								from: pos,
+								to: j,
+								level: 1
+							});
+							var nstart = j;
+							for (++j; j < i && countsAsNum.test(types[j]); ++j) {}
+							order.splice(at, 0, {
+								from: nstart,
+								to: j,
+								level: 2
+							});
+							pos = j;
+						} else ++j;
+					}
+					if (pos < i) order.splice(at, 0, {
+						from: pos,
+						to: i,
+						level: 1
+					});
+				}
+			}
+			if (order[0].level == 1 && (m = str.match(/^\s+/))) {
+				order[0].from = m[0].length;
+				order.unshift({
+					from: 0,
+					to: m[0].length,
+					level: 0
+				});
+			}
+			if (lst(order).level == 1 && (m = str.match(/\s+$/))) {
+				lst(order).to -= m[0].length;
+				order.push({
+					from: len - m[0].length,
+					to: len,
+					level: 0
+				});
+			}
+			if (order[0].level != lst(order).level)
+				order.push({
+					from: len,
+					to: len,
+					level: order[0].level
+				});
+
+			return order;
+		};
+	})();
+
+	// THE END
+
+	CodeMirror.version = "3.15.0";
+
+	return CodeMirror;
+})();
+
+CodeMirror.defineMode("markdown", function(cmCfg, modeCfg) {
+
+	var htmlFound = CodeMirror.mimeModes.hasOwnProperty("text/html");
+	var htmlMode = CodeMirror.getMode(cmCfg, htmlFound ? "text/html" : "text/plain");
+	var aliases = {
+		html: "htmlmixed",
+		js: "javascript",
+		json: "application/json",
+		c: "text/x-csrc",
+		"c++": "text/x-c++src",
+		java: "text/x-java",
+		csharp: "text/x-csharp",
+		"c#": "text/x-csharp",
+		scala: "text/x-scala"
+	};
+
+	var getMode = (function() {
+		var i, modes = {},
+			mimes = {},
+			mime;
+
+		var list = [];
+		for (var m in CodeMirror.modes)
+			if (CodeMirror.modes.propertyIsEnumerable(m)) list.push(m);
+		for (i = 0; i < list.length; i++) {
+			modes[list[i]] = list[i];
+		}
+		var mimesList = [];
+		for (var m in CodeMirror.mimeModes)
+			if (CodeMirror.mimeModes.propertyIsEnumerable(m))
+				mimesList.push({
+					mime: m,
+					mode: CodeMirror.mimeModes[m]
+				});
+		for (i = 0; i < mimesList.length; i++) {
+			mime = mimesList[i].mime;
+			mimes[mime] = mimesList[i].mime;
+		}
+
+		for (var a in aliases) {
+			if (aliases[a] in modes || aliases[a] in mimes)
+				modes[a] = aliases[a];
+		}
+
+		return function(lang) {
+			return modes[lang] ? CodeMirror.getMode(cmCfg, modes[lang]) : null;
+		};
+	}());
+
+	// Should underscores in words open/close em/strong?
+	if (modeCfg.underscoresBreakWords === undefined)
+		modeCfg.underscoresBreakWords = true;
+
+	// Turn on fenced code blocks? ("```" to start/end)
+	if (modeCfg.fencedCodeBlocks === undefined) modeCfg.fencedCodeBlocks = false;
+
+	var codeDepth = 0;
+	var prevLineHasContent = false,
+		thisLineHasContent = false;
+
+	var header = 'header',
+		code = 'comment',
+		quote = 'quote',
+		list = 'string',
+		hr = 'hr',
+		image = 'tag',
+		linkinline = 'link',
+		linkemail = 'link',
+		linktext = 'link',
+		linkhref = 'string',
+		em = 'em',
+		strong = 'strong',
+		emstrong = 'emstrong';
+
+	var hrRE = /^([*\-=_])(?:\s*\1){2,}\s*$/,
+		ulRE = /^[*\-+]\s+/,
+		olRE = /^[0-9]+\.\s+/,
+		headerRE = /^(?:\={1,}|-{1,})$/,
+		textRE = /^[^!\[\]*_\\<>` "'(]+/;
+
+	function switchInline(stream, state, f) {
+		state.f = state.inline = f;
+		return f(stream, state);
+	}
+
+	function switchBlock(stream, state, f) {
+		state.f = state.block = f;
+		return f(stream, state);
+	}
+
+
+	// Blocks
+
+	function blankLine(state) {
+		// Reset linkTitle state
+		state.linkTitle = false;
+		// Reset EM state
+		state.em = false;
+		// Reset STRONG state
+		state.strong = false;
+		// Reset state.quote
+		state.quote = false;
+		if (!htmlFound && state.f == htmlBlock) {
+			state.f = inlineNormal;
+			state.block = blockNormal;
+		}
+		return null;
+	}
+
+	function blockNormal(stream, state) {
+
+		if (state.list !== false && state.indentationDiff >= 0) { // Continued list
+			if (state.indentationDiff < 4) { // Only adjust indentation if *not* a code block
+				state.indentation -= state.indentationDiff;
+			}
+			state.list = null;
+		} else { // No longer a list
+			state.list = false;
+		}
+
+		if (state.indentationDiff >= 4) {
+			state.indentation -= 4;
+			stream.skipToEnd();
+			return code;
+		} else if (stream.eatSpace()) {
+			return null;
+		} else if (stream.peek() === '#' || (prevLineHasContent && stream.match(headerRE))) {
+			state.header = true;
+		} else if (stream.eat('>')) {
+			state.indentation++;
+			state.quote = true;
+		} else if (stream.peek() === '[') {
+			return switchInline(stream, state, footnoteLink);
+		} else if (stream.match(hrRE, true)) {
+			return hr;
+		} else if (stream.match(ulRE, true) || stream.match(olRE, true)) {
+			state.indentation += 4;
+			state.list = true;
+		} else if (modeCfg.fencedCodeBlocks && stream.match(/^```([\w+#]*)/, true)) {
+			// try switching mode
+			state.localMode = getMode(RegExp.$1);
+			if (state.localMode) state.localState = state.localMode.startState();
+			switchBlock(stream, state, local);
+			return code;
+		}
+
+		return switchInline(stream, state, state.inline);
+	}
+
+	function htmlBlock(stream, state) {
+		var style = htmlMode.token(stream, state.htmlState);
+		if (htmlFound && style === 'tag' && state.htmlState.type !== 'openTag' && !state.htmlState.context) {
+			state.f = inlineNormal;
+			state.block = blockNormal;
+		}
+		if (state.md_inside && stream.current().indexOf(">") != -1) {
+			state.f = inlineNormal;
+			state.block = blockNormal;
+			state.htmlState.context = undefined;
+		}
+		return style;
+	}
+
+	function local(stream, state) {
+		if (stream.sol() && stream.match(/^```/, true)) {
+			state.localMode = state.localState = null;
+			state.f = inlineNormal;
+			state.block = blockNormal;
+			return code;
+		} else if (state.localMode) {
+			return state.localMode.token(stream, state.localState);
+		} else {
+			stream.skipToEnd();
+			return code;
+		}
+	}
+
+	// Inline
+	function getType(state) {
+		var styles = [];
+
+		if (state.strong) {
+			styles.push(state.em ? emstrong : strong);
+		} else if (state.em) {
+			styles.push(em);
+		}
+
+		if (state.linkText) {
+			styles.push(linktext);
+		}
+
+		if (state.code) {
+			styles.push(code);
+		}
+
+		if (state.header) {
+			styles.push(header);
+		}
+		if (state.quote) {
+			styles.push(quote);
+		}
+		if (state.list !== false) {
+			styles.push(list);
+		}
+
+		return styles.length ? styles.join(' ') : null;
+	}
+
+	function handleText(stream, state) {
+		if (stream.match(textRE, true)) {
+			return getType(state);
+		}
+		return undefined;
+	}
+
+	function inlineNormal(stream, state) {
+		var style = state.text(stream, state);
+		if (typeof style !== 'undefined')
+			return style;
+
+		if (state.list) { // List marker (*, +, -, 1., etc)
+			state.list = null;
+			return list;
+		}
+
+		var ch = stream.next();
+
+		if (ch === '\\') {
+			stream.next();
+			return getType(state);
+		}
+
+		// Matches link titles present on next line
+		if (state.linkTitle) {
+			state.linkTitle = false;
+			var matchCh = ch;
+			if (ch === '(') {
+				matchCh = ')';
+			}
+			matchCh = (matchCh + '').replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1");
+			var regex = '^\\s*(?:[^' + matchCh + '\\\\]+|\\\\\\\\|\\\\.)' + matchCh;
+			if (stream.match(new RegExp(regex), true)) {
+				return linkhref;
+			}
+		}
+
+		// If this block is changed, it may need to be updated in GFM mode
+		if (ch === '`') {
+			var t = getType(state);
+			var before = stream.pos;
+			stream.eatWhile('`');
+			var difference = 1 + stream.pos - before;
+			if (!state.code) {
+				codeDepth = difference;
+				state.code = true;
+				return getType(state);
+			} else {
+				if (difference === codeDepth) { // Must be exact
+					state.code = false;
+					return t;
+				}
+				return getType(state);
+			}
+		} else if (state.code) {
+			return getType(state);
+		}
+
+		if (ch === '!' && stream.match(/\[[^\]]*\] ?(?:\(|\[)/, false)) {
+			stream.match(/\[[^\]]*\]/);
+			state.inline = state.f = linkHref;
+			return image;
+		}
+
+		if (ch === '[' && stream.match(/.*\](\(| ?\[)/, false)) {
+			state.linkText = true;
+			return getType(state);
+		}
+
+		if (ch === ']' && state.linkText) {
+			var type = getType(state);
+			state.linkText = false;
+			state.inline = state.f = linkHref;
+			return type;
+		}
+
+		if (ch === '<' && stream.match(/^(https?|ftps?):\/\/(?:[^\\>]|\\.)+>/, true)) {
+			return switchInline(stream, state, inlineElement(linkinline, '>'));
+		}
+
+		if (ch === '<' && stream.match(/^[^> \\]+@(?:[^\\>]|\\.)+>/, true)) {
+			return switchInline(stream, state, inlineElement(linkemail, '>'));
+		}
+
+		if (ch === '<' && stream.match(/^\w/, false)) {
+			if (stream.string.indexOf(">") != -1) {
+				var atts = stream.string.substring(1, stream.string.indexOf(">"));
+				if (/markdown\s*=\s*('|"){0,1}1('|"){0,1}/.test(atts)) {
+					state.md_inside = true;
+				}
+			}
+			stream.backUp(1);
+			return switchBlock(stream, state, htmlBlock);
+		}
+
+		if (ch === '<' && stream.match(/^\/\w*?>/)) {
+			state.md_inside = false;
+			return "tag";
+		}
+
+		var ignoreUnderscore = false;
+		if (!modeCfg.underscoresBreakWords) {
+			if (ch === '_' && stream.peek() !== '_' && stream.match(/(\w)/, false)) {
+				var prevPos = stream.pos - 2;
+				if (prevPos >= 0) {
+					var prevCh = stream.string.charAt(prevPos);
+					if (prevCh !== '_' && prevCh.match(/(\w)/, false)) {
+						ignoreUnderscore = true;
+					}
+				}
+			}
+		}
+		var t = getType(state);
+		if (ch === '*' || (ch === '_' && !ignoreUnderscore)) {
+			if (state.strong === ch && stream.eat(ch)) { // Remove STRONG
+				state.strong = false;
+				return t;
+			} else if (!state.strong && stream.eat(ch)) { // Add STRONG
+				state.strong = ch;
+				return getType(state);
+			} else if (state.em === ch) { // Remove EM
+				state.em = false;
+				return t;
+			} else if (!state.em) { // Add EM
+				state.em = ch;
+				return getType(state);
+			}
+		} else if (ch === ' ') {
+			if (stream.eat('*') || stream.eat('_')) { // Probably surrounded by spaces
+				if (stream.peek() === ' ') { // Surrounded by spaces, ignore
+					return getType(state);
+				} else { // Not surrounded by spaces, back up pointer
+					stream.backUp(1);
+				}
+			}
+		}
+
+		return getType(state);
+	}
+
+	function linkHref(stream, state) {
+		// Check if space, and return NULL if so (to avoid marking the space)
+		if (stream.eatSpace()) {
+			return null;
+		}
+		var ch = stream.next();
+		if (ch === '(' || ch === '[') {
+			return switchInline(stream, state, inlineElement(linkhref, ch === '(' ? ')' : ']'));
+		}
+		return 'error';
+	}
+
+	function footnoteLink(stream, state) {
+		if (stream.match(/^[^\]]*\]:/, true)) {
+			state.f = footnoteUrl;
+			return linktext;
+		}
+		return switchInline(stream, state, inlineNormal);
+	}
+
+	function footnoteUrl(stream, state) {
+		// Check if space, and return NULL if so (to avoid marking the space)
+		if (stream.eatSpace()) {
+			return null;
+		}
+		// Match URL
+		stream.match(/^[^\s]+/, true);
+		// Check for link title
+		if (stream.peek() === undefined) { // End of line, set flag to check next line
+			state.linkTitle = true;
+		} else { // More content on line, check if link title
+			stream.match(/^(?:\s+(?:"(?:[^"\\]|\\\\|\\.)+"|'(?:[^'\\]|\\\\|\\.)+'|\((?:[^)\\]|\\\\|\\.)+\)))?/, true);
+		}
+		state.f = state.inline = inlineNormal;
+		return linkhref;
+	}
+
+	var savedInlineRE = [];
+
+	function inlineRE(endChar) {
+		if (!savedInlineRE[endChar]) {
+			// Escape endChar for RegExp (taken from http://stackoverflow.com/a/494122/526741)
+			endChar = (endChar + '').replace(/([.?*+^$[\]\\(){}|-])/g, "\\$1");
+			// Match any non-endChar, escaped character, as well as the closing
+			// endChar.
+			savedInlineRE[endChar] = new RegExp('^(?:[^\\\\]|\\\\.)*?(' + endChar + ')');
+		}
+		return savedInlineRE[endChar];
+	}
+
+	function inlineElement(type, endChar, next) {
+		next = next || inlineNormal;
+		return function(stream, state) {
+			stream.match(inlineRE(endChar));
+			state.inline = state.f = next;
+			return type;
+		};
+	}
+
+	return {
+		startState: function() {
+			prevLineHasContent = false;
+			thisLineHasContent = false;
+			return {
+				f: blockNormal,
+
+				block: blockNormal,
+				htmlState: CodeMirror.startState(htmlMode),
+				indentation: 0,
+
+				inline: inlineNormal,
+				text: handleText,
+
+				linkText: false,
+				linkTitle: false,
+				em: false,
+				strong: false,
+				header: false,
+				list: false,
+				quote: false
+			};
+		},
+
+		copyState: function(s) {
+			return {
+				f: s.f,
+
+				block: s.block,
+				htmlState: CodeMirror.copyState(htmlMode, s.htmlState),
+				indentation: s.indentation,
+
+				localMode: s.localMode,
+				localState: s.localMode ? CodeMirror.copyState(s.localMode, s.localState) : null,
+
+				inline: s.inline,
+				text: s.text,
+				linkTitle: s.linkTitle,
+				em: s.em,
+				strong: s.strong,
+				header: s.header,
+				list: s.list,
+				quote: s.quote,
+				md_inside: s.md_inside
+			};
+		},
+
+		token: function(stream, state) {
+			if (stream.sol()) {
+				if (stream.match(/^\s*$/, true)) {
+					prevLineHasContent = false;
+					return blankLine(state);
+				} else {
+					if (thisLineHasContent) {
+						prevLineHasContent = true;
+						thisLineHasContent = false;
+					}
+					thisLineHasContent = true;
+				}
+
+				// Reset state.header
+				state.header = false;
+
+				// Reset state.code
+				state.code = false;
+
+				state.f = state.block;
+				var indentation = stream.match(/^\s*/, true)[0].replace(/\t/g, '    ').length;
+				var difference = Math.floor((indentation - state.indentation) / 4) * 4;
+				if (difference > 4) difference = 4;
+				var adjustedIndentation = state.indentation + difference;
+				state.indentationDiff = adjustedIndentation - state.indentation;
+				state.indentation = adjustedIndentation;
+				if (indentation > 0) return null;
+			}
+			return state.f(stream, state);
+		},
+
+		blankLine: blankLine,
+
+		getType: getType
+	};
+
+}, "xml");
+
+CodeMirror.defineMIME("text/x-markdown", "markdown");
+//
+// showdown.js -- A javascript port of Markdown.
+//
+// Copyright (c) 2007 John Fraser.
+//
+// Original Markdown Copyright (c) 2004-2005 John Gruber
+//   <http://daringfireball.net/projects/markdown/>
+//
+// Redistributable under a BSD-style open source license.
+// See license.txt for more information.
+//
+// The full source distribution is at:
+//
+//				A A L
+//				T C A
+//				T K B
+//
+//   <http://www.attacklab.net/>
+//
+//
+// Wherever possible, Showdown is a straight, line-by-line port
+// of the Perl version of Markdown.
+//
+// This is not a normal parser design; it's basically just a
+// series of string substitutions.  It's hard to read and
+// maintain this way,  but keeping Showdown close to the original
+// design makes it easier to port new features.
+//
+// More importantly, Showdown behaves like markdown.pl in most
+// edge cases.  So web applications can do client-side preview
+// in Javascript, and then build identical HTML on the server.
+//
+// This port needs the new RegExp functionality of ECMA 262,
+// 3rd Edition (i.e. Javascript 1.5).  Most modern web browsers
+// should do fine.  Even with the new regular expression features,
+// We do a lot of work to emulate Perl's regex functionality.
+// The tricky changes in this file mostly have the "attacklab:"
+// label.  Major or self-explanatory changes don't.
+//
+// Smart diff tools like Araxis Merge will be able to match up
+// this file with markdown.pl in a useful way.  A little tweaking
+// helps: in a copy of markdown.pl, replace "#" with "//" and
+// replace "$text" with "text".  Be sure to ignore whitespace
+// and line endings.
+//
+//
+// Showdown usage:
+//
+//   var text = "Markdown *rocks*.";
+//
+//   var converter = new Showdown.converter();
+//   var html = converter.makeHtml(text);
+//
+//   alert(html);
+//
+// Note: move the sample code to the bottom of this
+// file before uncommenting it.
+//
+//
+// Showdown namespace
+//
+var Showdown = {
+		extensions: {}
+	},
+	forEach = Showdown.forEach = function(a, b) {
+		if (typeof a.forEach == "function") a.forEach(b);
+		else {
+			var c, d = a.length;
+			for (c = 0; c < d; c++) b(a[c], c, a)
+		}
+	},
+	stdExtName = function(a) {
+		return a.replace(/[_-]||\s/g, "").toLowerCase()
+	};
+Showdown.converter = function(a) {
+	var b, c, d, e = 0,
+		f = [],
+		g = [];
+	if (typeof module != "undefind" && typeof exports != "undefined" && typeof require != "undefind") {
+		var h = require("fs");
+		if (h) {
+			var i = h.readdirSync((__dirname || ".") + "/extensions").filter(function(a) {
+				return~ a.indexOf(".js")
+			}).map(function(a) {
+				return a.replace(/\.js$/, "")
+			});
+			Showdown.forEach(i, function(a) {
+				var b = stdExtName(a);
+				Showdown.extensions[b] = require("./extensions/" + a)
+			})
+		}
+	}
+	this.makeHtml = function(a) {
+		return b = {}, c = {}, d = [], a = a.replace(/~/g, "~T"), a = a.replace(/\$/g, "~D"), a = a.replace(/\r\n/g, "\n"), a = a.replace(/\r/g, "\n"), a = "\n\n" + a + "\n\n", a = M(a), a = a.replace(/^[ \t]+$/mg, ""), Showdown.forEach(f, function(b) {
+			a = k(b, a)
+		}), a = z(a), a = m(a), a = l(a), a = o(a), a = K(a), a = a.replace(/~D/g, "$$"), a = a.replace(/~T/g, "~"), Showdown.forEach(g, function(b) {
+			a = k(b, a)
+		}), a
+	};
+	if (a && a.extensions) {
+		var j = this;
+		Showdown.forEach(a.extensions, function(a) {
+			typeof a == "string" && (a = Showdown.extensions[stdExtName(a)]);
+			if (typeof a != "function") throw "Extension '" + a + "' could not be loaded.  It was either not found or is not a valid extension.";
+			Showdown.forEach(a(j), function(a) {
+				a.type ? a.type === "language" || a.type === "lang" ? f.push(a) : (a.type === "output" || a.type === "html") && g.push(a) : g.push(a)
+			})
+		})
+	}
+	var k = function(a, b) {
+			if (a.regex) {
+				var c = new RegExp(a.regex, "g");
+				return b.replace(c, a.replace)
+			}
+			if (a.filter) return a.filter(b)
+		},
+		l = function(a) {
+			return a += "~0", a = a.replace(/^[ ]{0,3}\[(.+)\]:[ \t]*\n?[ \t]*<?(\S+?)>?[ \t]*\n?[ \t]*(?:(\n*)["(](.+?)[")][ \t]*)?(?:\n+|(?=~0))/gm, function(a, d, e, f, g) {
+				return d = d.toLowerCase(), b[d] = G(e), f ? f + g : (g && (c[d] = g.replace(/"/g, "&quot;")), "")
+			}), a = a.replace(/~0/, ""), a
+		},
+		m = function(a) {
+			a = a.replace(/\n/g, "\n\n");
+			var b = "p|div|h[1-6]|blockquote|pre|table|dl|ol|ul|script|noscript|form|fieldset|iframe|math|ins|del|style|section|header|footer|nav|article|aside",
+				c = "p|div|h[1-6]|blockquote|pre|table|dl|ol|ul|script|noscript|form|fieldset|iframe|math|style|section|header|footer|nav|article|aside";
+			return a = a.replace(/^(<(p|div|h[1-6]|blockquote|pre|table|dl|ol|ul|script|noscript|form|fieldset|iframe|math|ins|del)\b[^\r]*?\n<\/\2>[ \t]*(?=\n+))/gm, n), a = a.replace(/^(<(p|div|h[1-6]|blockquote|pre|table|dl|ol|ul|script|noscript|form|fieldset|iframe|math|style|section|header|footer|nav|article|aside)\b[^\r]*?<\/\2>[ \t]*(?=\n+)\n)/gm, n), a = a.replace(/(\n[ ]{0,3}(<(hr)\b([^<>])*?\/?>)[ \t]*(?=\n{2,}))/g, n), a = a.replace(/(\n\n[ ]{0,3}<!(--[^\r]*?--\s*)+>[ \t]*(?=\n{2,}))/g, n), a = a.replace(/(?:\n\n)([ ]{0,3}(?:<([?%])[^\r]*?\2>)[ \t]*(?=\n{2,}))/g, n), a = a.replace(/\n\n/g, "\n"), a
+		},
+		n = function(a, b) {
+			var c = b;
+			return c = c.replace(/\n\n/g, "\n"), c = c.replace(/^\n/, ""), c = c.replace(/\n+$/g, ""), c = "\n\n~K" + (d.push(c) - 1) + "K\n\n", c
+		},
+		o = function(a) {
+			a = v(a);
+			var b = A("<hr />");
+			return a = a.replace(/^[ ]{0,2}([ ]?\*[ ]?){3,}[ \t]*$/gm, b), a = a.replace(/^[ ]{0,2}([ ]?\-[ ]?){3,}[ \t]*$/gm, b), a = a.replace(/^[ ]{0,2}([ ]?\_[ ]?){3,}[ \t]*$/gm, b), a = x(a), a = y(a), a = E(a), a = m(a), a = F(a), a
+		},
+		p = function(a) {
+			return a = B(a), a = q(a), a = H(a), a = t(a), a = r(a), a = I(a), a = G(a), a = D(a), a = a.replace(/  +\n/g, " <br />\n"), a
+		},
+		q = function(a) {
+			var b = /(<[a-z\/!$]("[^"]*"|'[^']*'|[^'">])*>|<!(--.*?--\s*)+>)/gi;
+			return a = a.replace(b, function(a) {
+				var b = a.replace(/(.)<\/?code>(?=.)/g, "$1`");
+				return b = N(b, "\\`*_"), b
+			}), a
+		},
+		r = function(a) {
+			return a = a.replace(/(\[((?:\[[^\]]*\]|[^\[\]])*)\][ ]?(?:\n[ ]*)?\[(.*?)\])()()()()/g, s), a = a.replace(/(\[((?:\[[^\]]*\]|[^\[\]])*)\]\([ \t]*()<?(.*?(?:\(.*?\).*?)?)>?[ \t]*((['"])(.*?)\6[ \t]*)?\))/g, s), a = a.replace(/(\[([^\[\]]+)\])()()()()()/g, s), a
+		},
+		s = function(a, d, e, f, g, h, i, j) {
+			j == undefined && (j = "");
+			var k = d,
+				l = e,
+				m = f.toLowerCase(),
+				n = g,
+				o = j;
+			if (n == "") {
+				m == "" && (m = l.toLowerCase().replace(/ ?\n/g, " ")), n = "#" + m;
+				if (b[m] != undefined) n = b[m], c[m] != undefined && (o = c[m]);
+				else {
+					if (!(k.search(/\(\s*\)$/m) > -1)) return k;
+					n = ""
+				}
+			}
+			n = N(n, "*_");
+			var p = '<a href="' + n + '"';
+			return o != "" && (o = o.replace(/"/g, "&quot;"), o = N(o, "*_"), p += ' title="' + o + '"'), p += " target='_blank'>" + l + "</a>", p
+		},
+		t = function(a) {
+			return a = a.replace(/(!\[(.*?)\][ ]?(?:\n[ ]*)?\[(.*?)\])()()()()/g, u), a = a.replace(/(!\[(.*?)\]\s?\([ \t]*()<?(\S+?)>?[ \t]*((['"])(.*?)\6[ \t]*)?\))/g, u), a
+		},
+		u = function(a, d, e, f, g, h, i, j) {
+			var k = d,
+				l = e,
+				m = f.toLowerCase(),
+				n = g,
+				o = j;
+			o || (o = "");
+			if (n == "") {
+				m == "" && (m = l.toLowerCase().replace(/ ?\n/g, " ")), n = "#" + m;
+				if (b[m] == undefined) return k;
+				n = b[m], c[m] != undefined && (o = c[m])
+			}
+			l = l.replace(/"/g, "&quot;"), n = N(n, "*_");
+			var p = '<img class="img" src="' + n + '" alt="' + l + '"';
+			return o = o.replace(/"/g, "&quot;"), o = N(o, "*_"), p += ' title="' + o + '"', p += " />", p
+		},
+		v = function(a) {
+			function b(a) {
+				return a.replace(/[^\w]/g, "").toLowerCase()
+			}
+			return a = a.replace(/^(.+)[ \t]*\n=+[ \t]*\n+/gm, function(a, c) {
+				return A('<h1 id="' + b(c) + '">' + p(c) + "</h1>")
+			}), a = a.replace(/^(.+)[ \t]*\n-+[ \t]*\n+/gm, function(a, c) {
+				return A('<h2 id="' + b(c) + '">' + p(c) + "</h2>")
+			}), a = a.replace(/^(\#{1,6})[ \t]*(.+?)[ \t]*\#*\n+/gm, function(a, c, d) {
+				var e = c.length;
+				return A("<h" + e + ' id="' + b(d) + '">' + p(d) + "</h" + e + ">")
+			}), a
+		},
+		w, x = function(a) {
+			a += "~0";
+			var b = /^(([ ]{0,3}([*+-]|\d+[.])[ \t]+)[^\r]+?(~0|\n{2,}(?=\S)(?![ \t]*(?:[*+-]|\d+[.])[ \t]+)))/gm;
+			return e ? a = a.replace(b, function(a, b, c) {
+				var d = b,
+					e = c.search(/[*+-]/g) > -1 ? "ul" : "ol";
+				d = d.replace(/\n{2,}/g, "\n\n\n");
+				var f = w(d);
+				return f = f.replace(/\s+$/, ""), f = "<" + e + ">" + f + "</" + e + ">\n", f
+			}) : (b = /(\n\n|^\n?)(([ ]{0,3}([*+-]|\d+[.])[ \t]+)[^\r]+?(~0|\n{2,}(?=\S)(?![ \t]*(?:[*+-]|\d+[.])[ \t]+)))/g, a = a.replace(b, function(a, b, c, d) {
+				var e = b,
+					f = c,
+					g = d.search(/[*+-]/g) > -1 ? "ul" : "ol",
+					f = f.replace(/\n{2,}/g, "\n\n\n"),
+					h = w(f);
+				return h = e + "<" + g + ">\n" + h + "</" + g + ">\n", h
+			})), a = a.replace(/~0/, ""), a
+		};
+	w = function(a) {
+		return e++, a = a.replace(/\n{2,}$/, "\n"), a += "~0", a = a.replace(/(\n)?(^[ \t]*)([*+-]|\d+[.])[ \t]+([^\r]+?(\n{1,2}))(?=\n*(~0|\2([*+-]|\d+[.])[ \t]+))/gm, function(a, b, c, d, e) {
+			var f = e,
+				g = b,
+				h = c;
+			return g || f.search(/\n{2,}/) > -1 ? f = o(L(f)) : (f = x(L(f)), f = f.replace(/\n$/, ""), f = p(f)), "<li>" + f + "</li>\n"
+		}), a = a.replace(/~0/g, ""), e--, a
+	};
+	var y = function(a) {
+			return a += "~0", a = a.replace(/(?:\n\n|^)((?:(?:[ ]{4}|\t).*\n+)+)(\n*[ ]{0,3}[^ \t\n]|(?=~0))/g, function(a, b, c) {
+				var d = b,
+					e = c;
+				return d = C(L(d)), d = M(d), d = d.replace(/^\n+/g, ""), d = d.replace(/\n+$/g, ""), d = "<pre><code>" + d + "\n</code></pre>", A(d) + e
+			}), a = a.replace(/~0/, ""), a
+		},
+		z = function(a) {
+			return a += "~0", a = a.replace(/(?:^|\n)```(.*)\n([\s\S]*?)\n```/g, function(a, b, c) {
+				var d = b,
+					e = c;
+				return e = C(e), e = M(e), e = e.replace(/^\n+/g, ""), e = e.replace(/\n+$/g, ""), e = "<pre><code" + (d ? ' class="' + d + '"' : "") + ">" + e + "\n</code></pre>", A(e)
+			}), a = a.replace(/~0/, ""), a
+		},
+		A = function(a) {
+			return a = a.replace(/(^\n+|\n+$)/g, ""), "\n\n~K" + (d.push(a) - 1) + "K\n\n"
+		},
+		B = function(a) {
+			return a = a.replace(/(^|[^\\])(`+)([^\r]*?[^`])\2(?!`)/gm, function(a, b, c, d, e) {
+				var f = d;
+				return f = f.replace(/^([ \t]*)/g, ""), f = f.replace(/[ \t]*$/g, ""), f = C(f), b + "<code>" + f + "</code>"
+			}), a
+		},
+		C = function(a) {
+			return a = a.replace(/&/g, "&amp;"), a = a.replace(/</g, "&lt;"), a = a.replace(/>/g, "&gt;"), a = N(a, "*_{}[]\\", !1), a
+		},
+		D = function(a) {
+			return a = a.replace(/(\*\*|__)(?=\S)([^\r]*?\S[*_]*)\1/g, "<strong>$2</strong>"), a = a.replace(/(\*|_)(?=\S)([^\r]*?\S)\1/g, "<em>$2</em>"), a
+		},
+		E = function(a) {
+			return a = a.replace(/((^[ \t]*>[ \t]?.+\n(.+\n)*\n*)+)/gm, function(a, b) {
+				var c = b;
+				return c = c.replace(/^[ \t]*>[ \t]?/gm, "~0"), c = c.replace(/~0/g, ""), c = c.replace(/^[ \t]+$/gm, ""), c = o(c), c = c.replace(/(^|\n)/g, "$1  "), c = c.replace(/(\s*<pre>[^\r]+?<\/pre>)/gm, function(a, b) {
+					var c = b;
+					return c = c.replace(/^  /mg, "~0"), c = c.replace(/~0/g, ""), c
+				}), A("<blockquote>\n" + c + "\n</blockquote>")
+			}), a
+		},
+		F = function(a) {
+			a = a.replace(/^\n+/g, ""), a = a.replace(/\n+$/g, "");
+			var b = a.split(/\n{2,}/g),
+				c = [],
+				e = b.length;
+			for (var f = 0; f < e; f++) {
+				var g = b[f];
+				g.search(/~K(\d+)K/g) >= 0 ? c.push(g) : g.search(/\S/) >= 0 && (g = p(g), g = g.replace(/^([ \t]*)/g, "<p>"), g += "</p>", c.push(g))
+			}
+			e = c.length;
+			for (var f = 0; f < e; f++)
+				while (c[f].search(/~K(\d+)K/) >= 0) {
+					var h = d[RegExp.$1];
+					h = h.replace(/\$/g, "$$$$"), c[f] = c[f].replace(/~K\d+K/, h)
+				}
+			return c.join("\n\n")
+		},
+		G = function(a) {
+			return a = a.replace(/&(?!#?[xX]?(?:[0-9a-fA-F]+|\w+);)/g, "&amp;"), a = a.replace(/<(?![a-z\/?\$!])/gi, "&lt;"), a
+		},
+		H = function(a) {
+			return a = a.replace(/\\(\\)/g, O), a = a.replace(/\\([`*_{}\[\]()>#+-.!])/g, O), a
+		},
+		I = function(a) {
+			return a = a.replace(/<((https?|ftp|dict):[^'">\s]+)>/gi, '<a href="$1">$1</a>'), a = a.replace(/<(?:mailto:)?([-.\w]+\@[-a-z0-9]+(\.[-a-z0-9]+)*\.[a-z]+)>/gi, function(a, b) {
+				return J(K(b))
+			}), a
+		},
+		J = function(a) {
+			var b = [
+
+				function(a) {
+					return "&#" + a.charCodeAt(0) + ";"
+				},
+				function(a) {
+					return "&#x" + a.charCodeAt(0).toString(16) + ";"
+				},
+				function(a) {
+					return a
+				}
+			];
+			return a = "mailto:" + a, a = a.replace(/./g, function(a) {
+				if (a == "@") a = b[Math.floor(Math.random() * 2)](a);
+				else if (a != ":") {
+					var c = Math.random();
+					a = c > .9 ? b[2](a) : c > .45 ? b[1](a) : b[0](a)
+				}
+				return a
+			}), a = '<a href="' + a + '">' + a + "</a>", a = a.replace(/">.+:/g, '">'), a
+		},
+		K = function(a) {
+			return a = a.replace(/~E(\d+)E/g, function(a, b) {
+				var c = parseInt(b);
+				return String.fromCharCode(c)
+			}), a
+		},
+		L = function(a) {
+			return a = a.replace(/^(\t|[ ]{1,4})/gm, "~0"), a = a.replace(/~0/g, ""), a
+		},
+		M = function(a) {
+			return a = a.replace(/\t(?=\t)/g, "    "), a = a.replace(/\t/g, "~A~B"), a = a.replace(/~B(.+?)~A/g, function(a, b, c) {
+				var d = b,
+					e = 4 - d.length % 4;
+				for (var f = 0; f < e; f++) d += " ";
+				return d
+			}), a = a.replace(/~A/g, "    "), a = a.replace(/~B/g, ""), a
+		},
+		N = function(a, b, c) {
+			var d = "([" + b.replace(/([\[\]\\])/g, "\\$1") + "])";
+			c && (d = "\\\\" + d);
+			var e = new RegExp(d, "g");
+			return a = a.replace(e, O), a
+		},
+		O = function(a, b) {
+			var c = b.charCodeAt(0);
+			return "~E" + c + "E"
+		}
+}, typeof module != "undefined" && (module.exports = Showdown), typeof define == "function" && define.amd && define("showdown", function() {
+	return Showdown
+});
+
+(function($, ShowDown, CodeMirror) {
+	"use strict";
+
+	$(function() {
+
+		if (!document.getElementById('entry-markdown'))
+			return;
+
+		//var delay;
+		var converter = new ShowDown.converter(),
+			editor = CodeMirror.fromTextArea(document.getElementById('entry-markdown'), {
+				mode: 'markdown',
+				tabMode: 'indent',
+				lineWrapping: true
+			});
+
+		// Really not the best way to do things as it includes Markdown formatting along with words
+		function updateWordCount() {
+			var wordCount = document.getElementsByClassName('entry-word-count')[0],
+				editorValue = editor.getValue();
+
+			if (editorValue.length) {
+				wordCount.innerHTML = editorValue.match(/\S+/g).length + ' palabras';
+			}
+		}
+
+		function updateImagePlaceholders(content) {
+			var imgPlaceholders = $(document.getElementsByClassName('rendered-markdown')[0]).find('p').filter(function() {
+				return (/^(?:\{<(.*?)>\})?!(?:\[([^\n\]]*)\])(?:\(([^\n\]]*)\))?$/gim).test($(this).text());
+			});
+
+			$(imgPlaceholders).each(function( index ) {
+
+				var elemindex = index,
+					self = $(this),
+					altText = self.text();
+
+				(function(){
+
+                    var csrf_token = $('input[name="_token"]').val();
+                    self.dropzone({
+                        headers: {
+                            'X-CSRF-Token': csrf_token
+                        },
+						url: "http://" + window.location.hostname + "/admin/editorUpload",
+						success: function( file, response ){
+							var holderP = $(file.previewElement).closest("p"),
+
+								// Update the image path in markdown
+								imgHolderMardown = $(".CodeMirror-code").find('pre').filter(function() {
+							    	return (/^(?:\{<(.*?)>\})?!(?:\[([^\n\]]*)\])(?:\(([^\n\]]*)\))?$/gim).test(self.text()) && (self.find("span").length === 0);
+								}),
+
+								// Get markdown
+								editorOrigVal = editor.getValue(),
+								nth = 0,
+								newMarkdown = editorOrigVal.replace(/^(?:\{<(.*?)>\})?!(?:\[([^\n\]]*)\])(:\(([^\n\]]*)\))?$/gim, function (match, i, original){
+									nth++;
+									return (nth === (elemindex+1)) ? (match + "(" + response.path +")") : match;
+								});
+								editor.setValue( newMarkdown );
+
+							// Set image instead of placeholder
+							holderP.removeClass("dropzone").html('<img class="img" src="'+ response.path +'"/>');
+						}
+					}).addClass("dropzone");
+				}());
+			})
+		}
+
+		function updatePreview() {
+			var preview = document.getElementsByClassName('rendered-markdown')[0];
+			preview.innerHTML = converter.makeHtml(editor.getValue());
+
+			updateImagePlaceholders(preview.innerHTML);
+			updateWordCount();
+		}
+
+		$(document).ready(function() {
+			$('.entry-markdown header, .entry-preview header').click(function(e) {
+				$('.entry-markdown, .entry-preview').removeClass('active');
+				$(e.target).closest('section').addClass('active');
+			});
+
+			editor.on("change", function() {
+				updatePreview();
+			});
+
+			updatePreview();
+
+			// Sync scrolling
+			function syncScroll(e) {
+				// vars
+				var $codeViewport = $(e.target),
+					$previewViewport = $('.entry-preview-content'),
+					$codeContent = $('.CodeMirror-sizer'),
+					$previewContent = $('.rendered-markdown'),
+
+					// calc position
+					codeHeight = $codeContent.height() - $codeViewport.height(),
+					previewHeight = $previewContent.height() - $previewViewport.height(),
+					ratio = previewHeight / codeHeight,
+					previewPostition = $codeViewport.scrollTop() * ratio;
+
+				// apply new scroll
+				$previewViewport.scrollTop(previewPostition);
+			}
+
+			// TODO: Debounce
+			$('.CodeMirror-scroll').on('scroll', syncScroll);
+
+			// Shadow on Markdown if scrolled
+			$('.CodeMirror-scroll').scroll(function() {
+				if ($('.CodeMirror-scroll').scrollTop() > 10) {
+					$('.entry-markdown').addClass('scrolling');
+				} else {
+					$('.entry-markdown').removeClass('scrolling');
+				}
+			});
+			// Shadow on Preview if scrolled
+			$('.entry-preview-content').scroll(function() {
+				if ($('.entry-preview-content').scrollTop() > 10) {
+					$('.entry-preview').addClass('scrolling');
+				} else {
+					$('.entry-preview').removeClass('scrolling');
+				}
+			});
+
+		});
+	});
+}(jQuery, Showdown, CodeMirror));
 
 $(function(){
 

@@ -24,4 +24,22 @@
                     | {!! Form::submit($submitButtonText, ['class' => 'btn blue']) !!}
         | {!! Form::text('title', null, ['placeholder' => 'El título de tu artículo', 'id' => 'input-title']) !!}
     .body
-        | {!! Form::textarea('body', null, ['class' => 'editable']) !!}
+        .editorwrap
+            // Markdown Editor
+            section.entry-markdown
+                header.floatingheader
+                    small Markdown
+                    a.markdown-help(href='#')
+                        span.hidden What is Markdown?
+                section.entry-markdown-content
+                    | {!! Form::textarea('body', null, ['id' => 'entry-markdown']) !!}
+            // Markdown Editor END
+            // Markdown Preview
+            section.entry-preview.active
+                header.floatingheader
+                    small.pull-left Vista previa
+                    small.pull-right
+                        span.entry-word-count.js-entry-word-count 0 palabras
+                section.entry-preview-content
+                    .rendered-markdown
+            // Markdown Preview END

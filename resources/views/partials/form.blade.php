@@ -29,5 +29,22 @@
       </div>
     </div>{!! Form::text('title', null, ['placeholder' => 'El título de tu artículo', 'id' => 'input-title']) !!}
   </div>
-  <div class="body">{!! Form::textarea('body', null, ['class' => 'editable']) !!}</div>
+  <div class="body">
+    <div class="editorwrap">
+      <!-- Markdown Editor-->
+      <section class="entry-markdown">
+        <header class="floatingheader"><small>Markdown</small><a href="#" class="markdown-help"><span class="hidden">What is Markdown?</span></a></header>
+        <section class="entry-markdown-content">{!! Form::textarea('body', null, ['id' => 'entry-markdown']) !!}</section>
+      </section>
+      <!-- Markdown Editor END-->
+      <!-- Markdown Preview-->
+      <section class="entry-preview active">
+        <header class="floatingheader"><small class="pull-left">Vista previa</small><small class="pull-right"><span class="entry-word-count js-entry-word-count">0 palabras</span></small></header>
+        <section class="entry-preview-content">
+          <div class="rendered-markdown"></div>
+        </section>
+      </section>
+      <!-- Markdown Preview END-->
+    </div>
+  </div>
 </div>
