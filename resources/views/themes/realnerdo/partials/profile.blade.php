@@ -1,7 +1,7 @@
 {{-- Profile --}}
 <div class="profile">
     {{-- Photo --}}
-    <div class="photo"><img src="http://realnerdo.com/img/profile.png" alt="Asael Jaimes" class="img" width="80" height="80"></div>
+    <div class="photo"><img src="{{ (is_null($admin->photo())) ? 'http://realnerdo.com/img/profile.png' : url($admin->photo()->url) }}" alt="{{ $admin->name }}" class="img" width="80" height="80"></div>
     {{-- /Photo --}}
 
     {{-- Networks --}}
@@ -41,7 +41,11 @@
 
     {{-- Bio --}}
     <div class="bio">
-        Hola, soy Asael y me gusta hacer cosas para internet.
+        @if($admin->bio != '')
+            {{ $admin->bio }}
+        @else
+            Hola, soy Asael y me gusta hacer cosas para internet.
+        @endif
         <br>
         Soy <a href="http://realnerdo.com/" class="link" target="_blank">diseñador</a> y <a href="https://github.com/realnerdo/" class="link" target="_blank">desarrollador</a> web.
     </div>

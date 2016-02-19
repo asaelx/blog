@@ -7,6 +7,7 @@ use Illuminate\Contracts\Auth\Guard;
 
 use App\Setting;
 use App\Tag;
+use App\User;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,6 +29,12 @@ class AppServiceProvider extends ServiceProvider
         {
             $tags = Tag::where('navigation', 1)->get();
             $view->with(compact('tags'));
+        });
+
+        view()->composer('themes.realnerdo.partials.profile', function($view)
+        {
+            $admin = User::first();
+            $view->with(compact('admin'));
         });
     }
 

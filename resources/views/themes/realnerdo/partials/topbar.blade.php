@@ -3,7 +3,7 @@
 
     {{-- Logo --}}
     <a href="{{ url('/') }}" class="logo">
-        <img src="{{ asset('img/remixcode_logo.svg') }}" alt="RealNerdo Logo" class="img" height="24">
+        <img src="{{ asset('img/logo.svg') }}" alt="RealNerdo Logo" class="img" height="24">
     </a>
     {{-- /Logo --}}
 
