@@ -8,7 +8,7 @@
     {{-- Title --}}
     <h1 class="title">{{ $article->title }}</h1>
     {{-- Body --}}
-    <div class="body">{!! $article->body !!}</div>
+    <div class="body">{!! Markdown::convertToHtml($article->body) !!}</div>
     {{-- /Body --}}
 
 </article>

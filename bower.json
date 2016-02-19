@@ -28,6 +28,7 @@
     "bootstrap-datepicker": "~1.5.1",
     "bootstrap": "~3.3.6",
     "instafeed.js": "~1.4.1",
-    "MediumButton": "*"
+    "MediumButton": "*",
+    "sharer.js": "sharerjs#^0.2.12"
   }
 }

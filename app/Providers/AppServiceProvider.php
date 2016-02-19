@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Setting;
 use Illuminate\Contracts\Auth\Guard;
+
+use App\Setting;
+use App\Tag;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -20,6 +22,12 @@ class AppServiceProvider extends ServiceProvider
             $setting = Setting::latest()->first();
             $currentUser = $auth->user();
             $view->with(compact('setting', 'currentUser'));
+        });
+
+        view()->composer('themes.realnerdo.partials.topbar', function($view)
+        {
+            $tags = Tag::where('navigation', 1)->get();
+            $view->with(compact('tags'));
         });
     }
 

@@ -5,13 +5,20 @@
     <p>Así me ayudas a generar más contenido.</p>
     <ul class="networks">
         <li class="network">
-            <a href="https://twitter.com/home?status={{ $article->title . " " . url($article->slug) }}" class="link twitter">
+            <a href="#" class="link twitter sharer button"
+                data-sharer="twitter"
+                data-title="{{ $article->title }}"
+                data-via="asaelx"
+                data-hashtags="{{ $article->tags()->first()->name }}"
+                data-url="{{ url($article->slug) }}">
                 <img src="{{ asset('img/twitter.svg') }}" alt="Twitter Icon SVG" class="logo svg">
                 Compartir en twitter
             </a>
         </li>
         <li class="network">
-            <a href="https://www.facebook.com/sharer/sharer.php?u={{ url($article->slug) }}" class="link facebook">
+            <a href="#" class="link facebook sharer button"
+                data-sharer="facebook"
+                data-url="{{ url($article->slug) }}">
                 <img src="{{ asset('img/facebook.svg') }}" alt="Facebook Icon SVG" class="logo svg">
                 Compartir en facebook
             </a>

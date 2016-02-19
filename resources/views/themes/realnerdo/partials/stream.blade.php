@@ -1,6 +1,10 @@
 {{-- Stream --}}
 <section class="stream">
 
+    @if(isset($currentTag))
+        <h1 class="title tagged">Artículos archivados en <a href="{{ url('tagged', $currentTag->slug) }}" class="tag">{{ $currentTag->name }}</a></h1>
+    @endif
+
     @if(!$articles->isEmpty())
         @foreach($articles as $article)
             {{-- Article --}}
@@ -8,7 +12,7 @@
                 {{-- Cover --}}
                 <div class="cover col-5">
                     <a href="{{ url($article->slug) }}">
-                        <img src="{{ $article->cover()->url }}" alt="{{ $article->title }}" class="img">
+                        <img src="{{ url($article->cover()->url) }}" alt="{{ $article->title }}" class="img">
                     </a>
                 </div>
                 {{-- /Cover --}}
@@ -35,6 +39,17 @@
             </article>
             {{-- /Article --}}
         @endforeach
+
+        <div class="row pagination">
+            @if(!is_null($articles->previousPageUrl()))
+                <a href="{{ $articles->previousPageUrl() }}" class="btn green previous"><span class="typcn typcn-chevron-left"></span> Anterior</a>
+            @endif
+
+            @if(!is_null($articles->nextPageUrl()))
+            <a href="{{ $articles->nextPageUrl() }}" class="btn green next">Siguiente <span class="typcn typcn-chevron-right"></span></a>
+            @endif
+        </div>
+
     @endif
 
 </section>

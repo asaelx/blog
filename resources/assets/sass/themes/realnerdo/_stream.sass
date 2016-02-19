@@ -1,5 +1,12 @@
 .stream
     padding: 1rem 0
+    .tagged
+        padding: 0 1rem
+        color: $dark
+        font-family: 'Merriweather', Georgia, serif
+        +font-size(18px)
+        .tag
+            +link
     .article
         +opacity(0)
         @for $i from 1 through 5
@@ -71,3 +78,9 @@
                 +link
                 +breakpoint($small)
                     +font-size(18px)
+    .pagination
+        padding: 1rem
+        .previous
+            float: left
+        .next
+            float: right

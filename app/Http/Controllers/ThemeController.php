@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Article;
+use App\Tag;
 
 class ThemeController extends Controller
 {
@@ -20,7 +21,7 @@ class ThemeController extends Controller
      */
     public function index()
     {
-        $articles = Article::latest()->published()->get();
+        $articles = Article::latest()->published()->simplePaginate(5);
         return view($this->theme() . 'home', compact('articles'));
     }
 
@@ -33,6 +34,19 @@ class ThemeController extends Controller
     public function show(Article $article)
     {
         return view($this->theme() . 'single', compact('article'));
+    }
+
+    /**
+     * Display a listing of the resource associated with the tag name.
+     *
+     * @param Tag $tag
+     * @return \Illuminate\Http\Response
+     */
+    public function tagged(Tag $tag)
+    {
+        $articles = $tag->publishedArticles()->simplePaginate(5);
+        $currentTag = $tag;
+        return view($this->theme() . 'home', compact('articles', 'currentTag'));
     }
 
     /**

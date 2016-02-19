@@ -19,7 +19,7 @@
     color: $green
     display: inline-block
     position: relative
-    &:hover
+    &:hover, &.active
         color: $blue
         transition: all 0.3s ease
     &:before, &:after
@@ -34,7 +34,7 @@
     &:before
         bottom: rem(-1px)
         transform: translateY(0.5rem)
-    &:hover
+    &:hover, &.active
         &:before
             transform: translateX(0)
             +opacity(1)

@@ -72,6 +72,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function(){
 // Theme
 Route::get('/', 'ThemeController@index');
 Route::get('{articles}', 'ThemeController@show');
+Route::get('tagged/{tags}', 'ThemeController@tagged');
 // Route::get('{articles}', 'ThemeController@show');
 // Route::get('tagged/{tags}', 'ThemeController@tagged');
 // Route::get('author/{users}', 'ThemeController@author');

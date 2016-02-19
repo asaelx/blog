@@ -1,5 +1,6 @@
 {{-- Topbar --}}
 <nav class="topbar">
+
     {{-- Logo --}}
     <a href="{{ url('/') }}" class="logo">
         <img src="{{ asset('img/remixcode_logo.svg') }}" alt="RealNerdo Logo" class="img" height="24">
@@ -15,27 +16,13 @@
             <li class="option">
                 <img src="{{ asset('img/close.svg') }}" alt="close">
             </li>
-            <li class="option">
-                <a href="#" class="link">Diseño</a>
-            </li>
-            <li class="option">
-                <a href="#" class="link">Laravel</a>
-            </li>
-            <li class="option">
-                <a href="#" class="link">PHP</a>
-            </li>
-            <li class="option">
-                <a href="#" class="link">Javascript</a>
-            </li>
-            <li class="option">
-                <a href="#" class="link">CSS</a>
-            </li>
-            <li class="option">
-                <a href="#" class="link">Acerca de mí</a>
-            </li>
-            <li class="option">
-                <a href="#" class="link">Contacto</a>
-            </li>
+            @unless($tags->isEmpty())
+                @foreach($tags as $tag)
+                    <li class="option">
+                        <a href="{{ url('tagged', $tag->slug) }}" class="link {{ (isset($currentTag) && $currentTag->name == $tag->name) ? 'active' : '' }}">{{ $tag->name }}</a>
+                    </li>
+                @endforeach
+            @endunless
         </ul>
         {{-- /Options --}}
     </label>

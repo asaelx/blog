@@ -32,6 +32,7 @@
         +opacity(0)
         +font-size(14px)
         color: $gray
+        margin-bottom: 0.5rem
         .comments
             color: $green
             &:hover
@@ -42,8 +43,10 @@
     .title
         animation: show 0.8s 0.6s forwards ease
         +opacity(0)
-        font-family: 'Montserrat', Helvetica, Arial, sans-serif
-        +font-size(26px)
+        // font-family: 'Montserrat', Helvetica, Arial, sans-serif
+        font-family: 'Merriweather', Georgia, serif
+        font-weight: bold
+        +font-size(36px)
         color: $dark
         margin-bottom: 2rem
         +breakpoint($medium)
@@ -90,19 +93,22 @@
             margin-bottom: 2rem
             +breakpoint($small)
                 +font-size(18px)
-        figure
-            img
-                max-width: 100%
-                border-radius: rem(3px)
-            figcaption
-                font-style: italic
-                +font-size(14px)
-                color: $gray
-                text-align: center
-                padding-top: 0.5rem
-                // +breakpoint($small)
-                //     width: 100%
-                //     padding: 0 1rem
+        img
+            max-width: 100%
+            border-radius: rem(3px)
+        a
+            +link
+        // figure
+        //
+        //     figcaption
+        //         font-style: italic
+        //         +font-size(14px)
+        //         color: $gray
+        //         text-align: center
+        //         padding-top: 0.5rem
+        //         // +breakpoint($small)
+        //         //     width: 100%
+        //         //     padding: 0 1rem
         pre
             margin-bottom: 2rem
             code

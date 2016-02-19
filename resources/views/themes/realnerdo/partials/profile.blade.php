@@ -7,35 +7,35 @@
     {{-- Networks --}}
     <ul class="networks">
         <li class="network">
-            <a href="#" class="link">
+            <a href="https://twitter.com/asaelx" class="link" target="_blank">
                 <img src="{{ asset('img/twitter.svg') }}" alt="Twitter Icon SVG" class="logo">
             </a>
         </li>
-        <li class="network">
-            <a href="#" class="link">
+        {{-- <li class="network">
+            <a href="https://facebook.com/nerdopls" class="link" target="_blank">
                 <img src="{{ asset('img/facebook.svg') }}" alt="Facebook Icon SVG" class="logo">
             </a>
-        </li>
+        </li> --}}
         <li class="network">
-            <a href="#" class="link">
+            <a href="https://instagram.com/asaelx" class="link" target="_blank">
                 <img src="{{ asset('img/instagram.svg') }}" alt="Instagram Icon SVG" class="logo">
             </a>
         </li>
         <li class="network">
-            <a href="#" class="link">
+            <a href="https://github.com/realnerdo" class="link" target="_blank">
                 <img src="{{ asset('img/github.svg') }}" alt="Github Icon SVG" class="logo">
             </a>
         </li>
-        <li class="network">
-            <a href="#" class="link">
+        {{-- <li class="network">
+            <a href="#" class="link" target="_blank">
                 <img src="{{ asset('img/youtube.svg') }}" alt="Youtube Icon SVG" class="logo">
             </a>
-        </li>
-        <li class="network">
-            <a href="#" class="link">
+        </li> --}}
+        {{-- <li class="network">
+            <a href="#" class="link" target="_blank">
                 <img src="{{ asset('img/behance.svg') }}" alt="Behance Icon SVG" class="logo">
             </a>
-        </li>
+        </li> --}}
     </ul>
     {{-- /Networks --}}
 
