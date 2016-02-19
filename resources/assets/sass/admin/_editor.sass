@@ -1,15 +1,16 @@
 .editor
-    width: rem(800px)
-    margin: 0 auto
-    padding-top: 3rem
+    // width: rem(800px)
+    // margin: 0 auto
+    // padding-top: 3rem
+    height: 100%
+    padding: 2em
     .title
         border-bottom: 1px solid $clouds
         .options
-            // float: right
-            // margin-bottom: 0.5em
             position: fixed
             top: 2rem
-            right: 2rem
+            right: 4rem
+            z-index: 500
             .publish
                 .typcn
                     pointer-events: none
@@ -32,6 +33,70 @@
             font-family: 'Varela Round', Helvetica, Arial, sans-serif
     .body
         padding-top: 2em
+        .editorwrap
+            position: relative
+            +clearfix
+            width: 100%
+            .entry-markdown
+                float: left
+                width: 50%
+                .entry-markdown-content
+                    .CodeMirror
+                        color: $dark
+                    .cm-string, .cm-link, .cm-tag
+                        color: $dark
+            .entry-preview
+                float: left
+                width: 50%
+                padding: 2rem
+                padding-top: 0
+                position: relative
+                .floatingheader
+                    padding-left: 2rem
+                .entry-preview-content
+                    font-family: 'Merriweather', Georgia, serif
+                    color: $dark
+                    line-height: rem(32px)
+                    padding: 1.5rem 0 2rem 0
+                    +headings
+                    blockquote
+                        color: $light
+                        padding-left: 1rem
+                        border-left: 3px solid $clouds
+                        font-style: italic
+                    a
+                        color: $blue
+                    ol, ul
+                        padding-left: 1.2em
+                    ol
+                        list-style: decimal
+                    ul
+                        list-style: disc
+                    p
+                        color: $dark
+                        line-height: rem(36px)
+                        margin: 1.5rem auto 1.5rem auto
+                        span[style]
+                            font-size: inherit!important
+                            line-height: inherit!important
+                        strong
+                            font-weight: bold
+                        em
+                            font-style: italic
+                    .img
+                        border-radius: rem(3px)
+                    pre
+                        code
+                            display: block
+                            overflow-x: auto
+                            background: #272822
+                            color: #ddd
+                            font-family: Consolas, Monaco, monospace
+                            font-size: 0.85em
+                            padding: 1rem 1.5rem
+                            border-radius: rem(3px)
+                            white-space: pre-wrap
+
         .editable
             border: 0
             width: 100%
