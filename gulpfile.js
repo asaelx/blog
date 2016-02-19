@@ -30,7 +30,9 @@ elixir(function(mix) {
         rs + 'css/dropdowns.css',
         bw + 'bootstrap-datepicker/dist/css/bootstrap-datepicker3.css',
         bw + 'select2/src/scss/core.scss',
-        rs + 'scss/twemoji-awesome.scss'
+        rs + 'scss/twemoji-awesome.scss',
+        '../css/dropzone.css',
+        '../css/editor.css'
     ], 'public/css/admin.css');
 });
 
@@ -41,6 +43,8 @@ elixir(function(mix) {
         bw + 'date.format/date.format.js',
         bw + 'bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',
         bw + 'select2/dist/js/select2.js',
+        'dropzone.js',
+        'ghostdown.js',
         'admin.js'
     ], 'public/js/admin.js');
 });
