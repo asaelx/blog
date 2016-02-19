@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Article;
 use App\Tag;
+use App\Setting;
 
 class ThemeController extends Controller
 {
@@ -21,8 +22,9 @@ class ThemeController extends Controller
      */
     public function index()
     {
+        $blog = Setting::first();
         $articles = Article::latest()->published()->simplePaginate(5);
-        return view($this->theme() . 'home', compact('articles'));
+        return view($this->theme() . 'home', compact('articles', 'blog'));
     }
 
     /**

@@ -14,9 +14,17 @@
         +clear
         margin: 0 auto
         padding-top: 0.5rem
+        +breakpoint($small)
+            padding-top: 1rem
         .network
             float: left
             margin-right: 1rem
+            +breakpoint($small)
+                float: none
+                margin-right: 0
+                margin-bottom: 1rem
+                &:last-child
+                    margin: 0
             .link
                 display: inline-block
                 color: $white

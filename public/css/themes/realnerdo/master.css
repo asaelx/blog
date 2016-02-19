@@ -226,7 +226,7 @@ img {
   left: 0;
   width: 100%;
   z-index: 5;
-  padding: 2rem;
+  padding: 1rem 2rem;
   border-bottom: 2px solid #ECF0F1;
   transition: all 0.3s ease; }
   @media only screen and (max-width: 600px) {
@@ -242,6 +242,8 @@ img {
     float: left;
     -webkit-animation: show 0.8s forwards ease;
     animation: show 0.8s forwards ease; }
+    .topbar .logo .img {
+      height: 24px; }
   .topbar .toggle-menu {
     float: right;
     display: block; }
@@ -250,7 +252,7 @@ img {
     .topbar .toggle-menu .img {
       display: none; }
     .topbar .toggle-menu .options {
-      padding-top: 0.3rem; }
+      padding-top: 0.7rem; }
       .topbar .toggle-menu .options .option {
         float: left;
         margin: 0 0.6em;
@@ -332,7 +334,7 @@ img {
         display: block;
         cursor: pointer;
         position: relative;
-        top: 0.5em; }
+        top: 0.8em; }
       .topbar .toggle-menu .options {
         display: none;
         background: rgba(255, 255, 255, 0.95);
@@ -636,7 +638,7 @@ img {
   font-family: 'Merriweather', Georgia, serif; }
   @media only screen and (max-width: 600px) {
     .single {
-      padding-top: 3.7142857143rem; } }
+      padding-top: 4.6428571429rem; } }
   .single .cover {
     -webkit-animation: show 0.8s 0.1s forwards ease;
     animation: show 0.8s 0.1s forwards ease;
@@ -819,6 +821,10 @@ img {
     .single .body [class^="medium-insert-"] {
       margin: 1rem 0; }
 
+@media only screen and (max-width: 600px) {
+  #disqus_thread {
+    padding: 0 1rem; } }
+
 .share {
   -webkit-animation: show 0.8s forwards ease;
   animation: show 0.8s forwards ease;
@@ -839,9 +845,19 @@ img {
     clear: both;
     margin: 0 auto;
     padding-top: 0.5rem; }
+    @media only screen and (max-width: 600px) {
+      .share .networks {
+        padding-top: 1rem; } }
     .share .networks .network {
       float: left;
       margin-right: 1rem; }
+      @media only screen and (max-width: 600px) {
+        .share .networks .network {
+          float: none;
+          margin-right: 0;
+          margin-bottom: 1rem; }
+          .share .networks .network:last-child {
+            margin: 0; } }
       .share .networks .network .link {
         display: inline-block;
         color: #FFFFFF;
