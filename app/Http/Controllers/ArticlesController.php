@@ -49,7 +49,6 @@ class ArticlesController extends Controller
      */
     public function store(ArticleRequest $request)
     {
-        $request->request->add(['excerpt' => str_limit(strip_tags($request->input('body')), 140)]);
         $article = Auth::user()->articles()->create($request->all());
 
         $this->syncTags($article, $request->input('tag_list'));
@@ -99,15 +98,6 @@ class ArticlesController extends Controller
      */
     public function update(UpdateArticleRequest $request, Article $article)
     {
-        $request->request->add(
-            ['excerpt' => str_limit(
-                preg_replace(
-                    '/[\r\n]+/', '',
-                    strip_tags(
-                        $request->input('body')
-                    )
-                ), 140)
-            ]);
         $article->update($request->except('published_at'));
 
         $this->syncTags($article, $request->input('tag_list'));
@@ -209,10 +199,6 @@ class ArticlesController extends Controller
 
         $path = '/' . $destinationPath . '/' . $fileName;
         $original_name = pathinfo($client_original_name, PATHINFO_FILENAME);
-
-        // $files = array();
-        // $files[] = array('url' => $path);
-        // $response = array('files' => $files);
 
         $response = [
             'type' => 'success',

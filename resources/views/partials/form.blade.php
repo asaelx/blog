@@ -14,6 +14,10 @@
 
         </div>
         <div class="group">
+          {!! Form::label('excerpt', 'Extracto', ['class' => 'label']) !!}
+          {!! Form::text('excerpt', null, ['class' => 'input']) !!}
+        </div>
+        <div class="group">
           {!! Form::label('tags', 'Etiquetas', ['class' => 'label']) !!}
           {!! Form::select('tag_list[]', $tags, null, ['multiple', 'class' => 'select2']) !!}
         </div>

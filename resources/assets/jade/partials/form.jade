@@ -12,6 +12,9 @@
                     +if("!is_null($article->cover())")
                         .preview.wide(style!="background: url({{ url($article->cover()->url) }}) no-repeat center center; background-size: cover;")
                 .group
+                    | {!! Form::label('excerpt', 'Extracto', ['class' => 'label']) !!}
+                    | {!! Form::text('excerpt', null, ['class' => 'input']) !!}
+                .group
                     | {!! Form::label('tags', 'Etiquetas', ['class' => 'label']) !!}
                     | {!! Form::select('tag_list[]', $tags, null, ['multiple', 'class' => 'select2']) !!}
                 .group

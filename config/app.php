@@ -149,7 +149,8 @@ return [
         Cviebrock\EloquentSluggable\SluggableServiceProvider::class,
         Jenssegers\Date\DateServiceProvider::class,
         Thujohn\Twitter\TwitterServiceProvider::class,
-        Intervention\Image\ImageServiceProvider::class
+        Intervention\Image\ImageServiceProvider::class,
+        GrahamCampbell\Markdown\MarkdownServiceProvider::class
 
     ],
 
@@ -202,7 +203,8 @@ return [
         'Html'            => Illuminate\Html\HtmlFacade::class,
         'Date'            => Jenssegers\Date\Date::class,
         'Twitter'         => Thujohn\Twitter\Facades\Twitter::class,
-        'Image'           => Intervention\Image\Facades\Image::class
+        'Image'           => Intervention\Image\Facades\Image::class,
+        'Markdown'        => GrahamCampbell\Markdown\Facades\Markdown::class
 
     ],
 
