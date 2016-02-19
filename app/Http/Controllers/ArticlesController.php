@@ -37,8 +37,10 @@ class ArticlesController extends Controller
      */
     public function create()
     {
+        $twitter = Auth::user()->twitter_token()->first();
+        $hasTwitter = (is_null($twitter)) ? false : true;
         $tags = Tag::lists('name', 'id');
-        return view('articles.create', compact('tags'));
+        return view('articles.create', compact('tags', 'hasTwitter'));
     }
 
     /**
@@ -84,9 +86,10 @@ class ArticlesController extends Controller
      */
     public function edit(Article $article)
     {
+        $twitter = Auth::user()->twitter_token()->first();
+        $hasTwitter = (is_null($twitter)) ? false : true;
         $tags = Tag::lists('name', 'id');
-
-        return view('articles.edit', compact('article', 'tags'));
+        return view('articles.edit', compact('article', 'tags', 'hasTwitter'));
     }
 
     /**
@@ -166,7 +169,7 @@ class ArticlesController extends Controller
         $path = $destinationPath . '/' . $fileName;
 
         $image = Image::make($file->getRealPath());
-        $image->resize(1440, null, function ($constraint) {
+        $image->resize(600, null, function ($constraint) {
             $constraint->aspectRatio();
             $constraint->upsize();
         })->save($path);
