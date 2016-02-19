@@ -6860,7 +6860,7 @@ code, tt {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 400;
+  z-index: 5;
   height: 40px;
   padding: 0;
   text-transform: uppercase;
