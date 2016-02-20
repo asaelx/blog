@@ -3,6 +3,9 @@ $(function(){
     var $body = $('body'),
         $window = $(window);
 
+    //Zoom js
+    $('.single').find('.body').find('img').attr('data-action', 'zoom');
+
 
     /* HighlightJS */
     hljs.initHighlightingOnLoad();

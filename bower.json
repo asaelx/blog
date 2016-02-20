@@ -29,6 +29,7 @@
     "bootstrap": "~3.3.6",
     "instafeed.js": "~1.4.1",
     "MediumButton": "*",
-    "sharer.js": "sharerjs#^0.2.12"
+    "sharer.js": "sharerjs#^0.2.12",
+    "zoomjs": "^0.0.2"
   }
 }

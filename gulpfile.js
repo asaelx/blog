@@ -10,7 +10,8 @@ elixir.config.sourcemaps = false;
 elixir(function(mix) {
     mix.sass([
         'themes/realnerdo/master.sass',
-        bw + 'highlightjs/styles/monokai-sublime.css'
+        bw + 'highlightjs/styles/monokai-sublime.css',
+        bw + 'zoomjs/css/zoom.css'
     ], 'public/css/themes/realnerdo/master.css');
 });
 
@@ -20,6 +21,8 @@ elixir(function(mix) {
         bw + 'instafeed.js/instafeed.js',
         bw + 'highlightjs/highlight.pack.js',
         bw + 'sharer.js/sharer.js',
+        'themes/realnerdo/transition.js',
+        bw + 'zoomjs/js/zoom.js',
         'themes/realnerdo/magic.js'
     ], 'public/js/themes/realnerdo/magic.js');
 });
