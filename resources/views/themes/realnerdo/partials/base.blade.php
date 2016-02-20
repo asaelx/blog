@@ -6,6 +6,7 @@
         @yield('metas')
         <title>@yield('title')</title>
         <link rel="stylesheet" href="{{ asset('css/themes/realnerdo/master.css') }}" media="screen" title="no title" charset="utf-8">
+        @include('themes.realnerdo.partials.favicon')
     </head>
     <body>
         @include('themes.realnerdo.partials.topbar')
