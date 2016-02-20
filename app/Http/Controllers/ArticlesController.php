@@ -242,9 +242,9 @@ class ArticlesController extends Controller
         $stream = $image->stream();
 
         $s3 = Storage::disk('s3');
-        $s3->put($fileName, $stream->__toString(), 'public');
+        $s3->put($path, $stream->__toString(), 'public');
         $client = $s3->getDriver()->getAdapter()->getClient();
-        $public_url = $client->getObjectUrl(env('S3_BUCKET'), $fileName);
+        $public_url = $client->getObjectUrl(env('S3_BUCKET'), $path);
 
         $original_name = pathinfo($client_original_name, PATHINFO_FILENAME);
 
