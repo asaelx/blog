@@ -15,6 +15,7 @@ use App\File;
 use \Twitter as Tweet;
 use App\Twitter;
 use Intervention\Image\ImageManagerStatic as Image;
+use Storage;
 
 class ArticlesController extends Controller
 {
@@ -163,22 +164,11 @@ class ArticlesController extends Controller
      */
     private function uploadFile($article, $file)
     {
-        $client_original_name = $file->getClientOriginalName();
-        $fileName = time() . '_' . $client_original_name; //?
-        $destinationPath = 'uploads/articles';
-        $path = $destinationPath . '/' . $fileName;
-
-        $image = Image::make($file->getRealPath());
-        $image->resize(600, null, function ($constraint) {
-            $constraint->aspectRatio();
-            $constraint->upsize();
-        })->save($path);
-
-        $original_name = pathinfo($client_original_name, PATHINFO_FILENAME);
+        $uploadedFile = $this->s3Upload($file, 'articles');
 
         $file = File::create([
-            'url' => $path,
-            'original_name' => $original_name,
+            'url' => $uploadedFile['public_url'],
+            'original_name' => $uploadedFile['original_name'],
             'type' => 'article_cover'
         ]);
 
@@ -186,7 +176,7 @@ class ArticlesController extends Controller
     }
 
     /**
-     * Upload images from Medium Editor
+     * Upload images from Markdown Editor
      *
      * @param  Request $request
      * @return Json Response
@@ -195,36 +185,15 @@ class ArticlesController extends Controller
     {
         $file = $request->file('file');
 
-        $client_original_name = $file->getClientOriginalName();
-        $fileName = time() . '_' . $client_original_name;
-        $destinationPath = 'uploads/articles';
-        $file->move($destinationPath, $fileName);
-
-        $path = '/' . $destinationPath . '/' . $fileName;
-        $original_name = pathinfo($client_original_name, PATHINFO_FILENAME);
+        $uploadedFile = $this->s3Upload($file, 'articles');
 
         $response = [
             'type' => 'success',
-            'id' => $fileName,
-            'path' => $path
+            'id' => $uploadedFile['file_name'],
+            'path' => $uploadedFile['public_url']
         ];
 
         return response()->json($response);
-    }
-
-    /**
-     * Delete image file from Medium Editor
-     *
-     * @param  Request $request
-     * @return Json Response
-     */
-    public function editorDelete(Request $request)
-    {
-        $url = $request->input('file');
-        $path = str_replace(url('/'), '', $url);
-        $relative_path = ltrim($path, '/');
-        unlink($relative_path);
-        return response()->json('success', 200);
     }
 
     /**
@@ -248,5 +217,43 @@ class ArticlesController extends Controller
             'status' => $article->title . ' ' . url($article->slug),
             'media_ids' => $media->media_id_string
         ]);
+    }
+
+    /**
+     * Upload file to Amazon s3
+     *
+     * @param  UploadedFile $file
+     * @param  String $subdirectory
+     * @return Array $uploadedFile
+     */
+    private function s3Upload($file, $subdirectory)
+    {
+        $client_original_name = $file->getClientOriginalName();
+        $fileName = time() . '_' . $client_original_name;
+        $destinationPath = 'uploads/' . $subdirectory;
+        $path = $destinationPath . '/' . $fileName;
+
+        $image = Image::make($file->getRealPath());
+        $image->resize(600, null, function ($constraint) {
+            $constraint->aspectRatio();
+            $constraint->upsize();
+        });
+
+        $stream = $image->stream();
+
+        $s3 = Storage::disk('s3');
+        $s3->put($fileName, $stream->__toString(), 'public');
+        $client = $s3->getDriver()->getAdapter()->getClient();
+        $public_url = $client->getObjectUrl(env('S3_BUCKET'), $fileName);
+
+        $original_name = pathinfo($client_original_name, PATHINFO_FILENAME);
+
+        $uploadedFile = [
+            'original_name' => $original_name,
+            'file_name' => $fileName,
+            'public_url' => $public_url
+        ];
+
+        return $uploadedFile;
     }
 }
