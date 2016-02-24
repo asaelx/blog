@@ -44,10 +44,10 @@
         @if($admin->bio != '')
             {{ $admin->bio }}
         @else
-            Hola, soy Asael y me gusta hacer cosas para internet.
+            Hi, I'm Asael and I love to make things for the internet.
         @endif
         <br>
-        Soy <a href="http://realnerdo.com/" class="link" target="_blank">diseñador</a> y <a href="https://github.com/realnerdo/" class="link" target="_blank">desarrollador</a> web.
+        I'm a <a href="https://github.com/realnerdo/" class="link" target="_blank">Web Developer</a> and <a href="http://realnerdo.com/" class="link" target="_blank">Designer</a>.
     </div>
     {{-- /Bio --}}
 </div>

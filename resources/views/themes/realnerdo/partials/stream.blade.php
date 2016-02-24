@@ -2,7 +2,7 @@
 <section class="stream">
 
     @if(isset($currentTag))
-        <h1 class="title tagged">Artículos archivados en <a href="{{ url('tagged', $currentTag->slug) }}" class="tag">{{ $currentTag->name }}</a></h1>
+        <h1 class="title tagged">Articles archived in <a href="{{ url('tagged', $currentTag->slug) }}" class="tag">{{ $currentTag->name }}</a></h1>
     @endif
 
     @if(!$articles->isEmpty())
@@ -32,7 +32,7 @@
                     </div>
                     {{-- /Excerpt --}}
                     {{-- Read --}}
-                    <a href="{{ url($article->slug) }}" class="read">Leer</a>
+                    <a href="{{ url($article->slug) }}" class="read">Read</a>
                     {{-- /Read --}}
                 </div>
                 {{-- /Content --}}
@@ -42,11 +42,11 @@
 
         <div class="row pagination">
             @if(!is_null($articles->previousPageUrl()))
-                <a href="{{ $articles->previousPageUrl() }}" class="btn green previous"><span class="typcn typcn-chevron-left"></span> Anterior</a>
+                <a href="{{ $articles->previousPageUrl() }}" class="btn green previous"><span class="typcn typcn-chevron-left"></span> Previous</a>
             @endif
 
             @if(!is_null($articles->nextPageUrl()))
-            <a href="{{ $articles->nextPageUrl() }}" class="btn green next">Siguiente <span class="typcn typcn-chevron-right"></span></a>
+            <a href="{{ $articles->nextPageUrl() }}" class="btn green next">Next <span class="typcn typcn-chevron-right"></span></a>
             @endif
         </div>
 

@@ -1,8 +1,8 @@
 {{-- Share --}}
 <div class="share">
-    <p>¡Gracias por leer <span>🤓</span>!</p>
-    <p>Si te gustó este artículo, por favor compártelo.</p>
-    <p>Así me ayudas a generar más contenido.</p>
+    <p>¡Thank you for reading <span>🤓</span>!</p>
+    <p>If you like this article, please share it.</p>
+    <p>That way you help me create more awesome content.</p>
     <ul class="networks">
         <li class="network">
             <a href="#" class="link twitter sharer button"
@@ -12,7 +12,7 @@
                 data-hashtags="{{ $article->tags()->first()->name }}"
                 data-url="{{ url($article->slug) }}">
                 <img src="{{ asset('img/twitter.svg') }}" alt="Twitter Icon SVG" class="logo svg">
-                Compartir en twitter
+                Share on twitter
             </a>
         </li>
         <li class="network">
@@ -20,7 +20,7 @@
                 data-sharer="facebook"
                 data-url="{{ url($article->slug) }}">
                 <img src="{{ asset('img/facebook.svg') }}" alt="Facebook Icon SVG" class="logo svg">
-                Compartir en facebook
+                Share on facebook
             </a>
         </li>
     </ul>
